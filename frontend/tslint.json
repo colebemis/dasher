@@ -1,0 +1,13 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "interface-name": false,
+    "object-literal-sort-keys": false,
+    "jsx-no-lambda": false,
+    "no-submodule-imports": false,
+    "curly": [true, "ignore-same-line"],
+    "prefer-conditional-expression": false
+  },
+  "linterOptions": { "exclude": ["./node_modules/**/*"] }
+}
