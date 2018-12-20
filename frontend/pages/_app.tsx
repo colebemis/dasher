@@ -9,7 +9,7 @@ interface MyAppProps {
 }
 
 class MyApp extends App<MyAppProps> {
-  render() {
+  public render() {
     const { apollo, Component, pageProps } = this.props
 
     return (
