@@ -15,7 +15,6 @@ module.exports = phase => {
   // Don't use build plugins in production phase
   // https://git.io/fhvat
   if (phase === PHASE_PRODUCTION_SERVER) {
-    // Config used to run in production.
     return config
   }
 
