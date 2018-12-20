@@ -1,8 +1,15 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { withRouter } from 'next/router'
+import { withRouter, WithRouterProps } from 'next/router'
 
-const Board = ({ router }) => {
+interface Query {
+  id?: string
+}
+
+const Board: React.FunctionComponent<WithRouterProps<Query>> = ({ router }) => {
+  // Q: When will router or router.query be undefined?
+  if (!router || !router.query) return null
+
   return (
     <div>
       <Head>

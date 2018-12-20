@@ -8,6 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@types/next": "^7.0.5",
+    "@zeit/next-typescript": "^1.1.1",
     "apollo-boost": "^0.1.23",
     "graphql": "^14.0.2",
     "next": "^7.0.2",
