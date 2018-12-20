@@ -1,10 +1,10 @@
 import ApolloClient from 'apollo-boost'
-import withApollo from 'next-with-apollo'
+import withApollo, { InitApolloOptions } from 'next-with-apollo'
 import getConfig from 'next/config'
 
 const { publicRuntimeConfig } = getConfig()
 
-function initApolloClient({ headers }) {
+function initApolloClient({ headers }: InitApolloOptions<any>) {
   const { apiEndpoint } = publicRuntimeConfig
 
   // node-fetch (used by apollo-client) requires absolute URLs,
