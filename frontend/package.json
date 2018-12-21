@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "tslint --config tslint.json './**/*.{ts,tsx}'"
+    "lint": "tslint --config tslint.json ./**/*.{ts,tsx}"
   },
   "dependencies": {
     "@types/next": "^7.0.5",
