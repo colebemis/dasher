@@ -1,3 +1,3 @@
-// Include type definitions for emotion's css prop
+// Include type definitions for emotion
 // https://git.io/fhv7b
 /// <reference types="@emotion/core" />
