@@ -9,6 +9,8 @@
     "lint": "tslint --config tslint.json ./**/*.{ts,tsx}"
   },
   "dependencies": {
+    "@emotion/babel-preset-css-prop": "^10.0.5",
+    "@emotion/core": "^10.0.5",
     "@types/next": "^7.0.5",
     "@zeit/next-typescript": "^1.1.1",
     "apollo-boost": "^0.1.23",
