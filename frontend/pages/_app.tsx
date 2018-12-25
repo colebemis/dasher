@@ -5,7 +5,7 @@ import { ApolloProvider } from 'react-apollo'
 import withApollo from '../lib/withApollo'
 
 interface MyAppProps {
-  apollo: ApolloClient<any>
+  apollo: ApolloClient<{}>
 }
 
 class MyApp extends App<MyAppProps> {
