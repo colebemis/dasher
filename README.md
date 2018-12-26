@@ -2,7 +2,9 @@
 
 Create flexible dashboards with GitHub queries
 
-## Development
+https://dasher.sh
+
+## Local Development
 
 **Install dependencies**
 
