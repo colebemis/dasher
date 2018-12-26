@@ -1,4 +1,4 @@
-const { ApolloServer, gql } = require('apollo-server')
+import { ApolloServer, gql } from 'apollo-server'
 
 const typeDefs = gql`
   type Query {
@@ -8,7 +8,7 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    message: () => 'Hello Apollo',
+    message: () => 'Hello World',
   },
 }
 
