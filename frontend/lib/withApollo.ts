@@ -4,7 +4,7 @@ import getConfig from 'next/config'
 
 const { publicRuntimeConfig } = getConfig()
 
-function initApolloClient({ headers }: InitApolloOptions<any>) {
+function createClient({ headers }: InitApolloOptions<{}>) {
   const { apiEndpoint } = publicRuntimeConfig
 
   // node-fetch (used by apollo-client) requires absolute URLs,
@@ -24,4 +24,4 @@ function initApolloClient({ headers }: InitApolloOptions<any>) {
   return new ApolloClient({ uri })
 }
 
-export default withApollo(initApolloClient)
+export default withApollo(createClient)

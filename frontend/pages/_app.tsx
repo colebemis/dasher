@@ -2,10 +2,11 @@ import { ApolloClient } from 'apollo-boost'
 import App, { Container } from 'next/app'
 import Head from 'next/head'
 import { ApolloProvider } from 'react-apollo'
+import GlobalStyle from '../components/GlobalStyle'
 import withApollo from '../lib/withApollo'
 
 interface MyAppProps {
-  apollo: ApolloClient<any>
+  apollo: ApolloClient<{}>
 }
 
 class MyApp extends App<MyAppProps> {
@@ -22,6 +23,7 @@ class MyApp extends App<MyAppProps> {
             />
             <title>Dasher</title>
           </Head>
+          <GlobalStyle />
           <Component {...pageProps} />
         </ApolloProvider>
       </Container>
