@@ -1,5 +1,7 @@
 # Dasher
 
+Create flexible dashboards with GitHub queries
+
 ## Development
 
 **Install dependencies**
