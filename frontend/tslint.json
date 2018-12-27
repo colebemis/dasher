@@ -1,13 +1,6 @@
 {
-  "defaultSeverity": "error",
-  "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+  "extends": ["tslint-react", "../tslint.json"],
   "rules": {
-    "interface-name": false,
-    "object-literal-sort-keys": false,
-    "jsx-no-lambda": false,
-    "no-submodule-imports": false,
-    "curly": [true, "ignore-same-line"],
-    "prefer-conditional-expression": false
-  },
-  "linterOptions": { "exclude": ["./node_modules/**/*"] }
+    "jsx-no-lambda": false
+  }
 }

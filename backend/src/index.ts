@@ -17,4 +17,5 @@ const server = new ApolloServer({
   resolvers,
 })
 
+// tslint:disable-next-line:no-console
 server.listen().then(({ url }) => console.log(`Server ready at ${url}`))
