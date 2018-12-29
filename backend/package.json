@@ -5,12 +5,18 @@
     "dev": "nodemon --exec ts-node src/index.ts",
     "start": "ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "tslint ./**/*.{ts,tsx}"
+    "lint": "tslint ./**/*.{ts,tsx}",
+    "prisma:generate": "prisma generate",
+    "prisma:deploy": "prisma deploy"
   },
   "dependencies": {
+    "@types/graphql": "^14.0.3",
     "apollo-server": "^2.3.1",
     "graphql": "^14.0.2",
+    "graphql-import": "^0.7.1",
     "nodemon": "^1.18.9",
+    "prisma": "^1.23.2",
+    "prisma-client-lib": "^1.23.2",
     "ts-node": "^7.0.1",
     "tslint": "^5.12.0",
     "tslint-config-prettier": "^1.17.0",

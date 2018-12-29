@@ -1,0 +1,12 @@
+endpoint: https://us1.prisma.sh/cole-bemis-8ac4aa/dasher/dev
+datamodel: datamodel.prisma
+
+generate:
+  - generator: typescript-client
+    output: ./src/generated/prisma
+  - generator: graphql-schema
+    output: ./src/generated/prisma
+
+hooks:
+  post-deploy:
+    - prisma generate
