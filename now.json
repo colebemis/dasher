@@ -3,7 +3,7 @@
   "name": "dasher",
   "alias": ["dasher.sh"],
   "builds": [
-    { "src": "backend/src/index.ts", "use": "@now/node-server" },
+    { "src": "backend/src/index.ts", "use": "@now/node-server@canary" },
     { "src": "frontend/next.config.js", "use": "@now/next" }
   ],
   "routes": [
