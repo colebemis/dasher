@@ -1,4 +1,7 @@
 {
-  "presets": ["next/babel", "@zeit/next-typescript/babel"],
-  "plugins": ["babel-plugin-styled-components"]
+  "presets": [
+    "next/babel",
+    "@zeit/next-typescript/babel",
+    "@emotion/babel-preset-css-prop"
+  ]
 }

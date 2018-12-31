@@ -1,8 +1,9 @@
+import {} from '@emotion/core' // Include type definitions for emotion https://git.io/fhv7b
 import { ApolloClient } from 'apollo-boost'
 import App, { Container } from 'next/app'
 import Head from 'next/head'
 import { ApolloProvider } from 'react-apollo'
-import GlobalStyle from '../components/GlobalStyle'
+import GlobalStyles from '../components/GlobalStyles'
 import withApollo from '../lib/withApollo'
 
 interface MyAppProps {
@@ -23,7 +24,7 @@ class MyApp extends App<MyAppProps> {
             />
             <title>Dasher</title>
           </Head>
-          <GlobalStyle />
+          <GlobalStyles />
           <Component {...pageProps} />
         </ApolloProvider>
       </Container>
