@@ -3,11 +3,7 @@ import MessageQuery from '../components/MessageQuery'
 
 const Index: React.FunctionComponent<{}> = () => {
   return (
-    <div
-      css={`
-        color: red;
-      `}
-    >
+    <div css={{ color: 'red' }}>
       <MessageQuery>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>

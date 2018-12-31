@@ -1,24 +1,9 @@
-const { PHASE_PRODUCTION_SERVER } =
-  process.env.NODE_ENV === 'development'
-    ? {}
-    : !process.env.NOW_REGION
-    ? require('next/constants')
-    : require('next-server/constants')
+const withTypescript = require('@zeit/next-typescript')
 
-module.exports = phase => {
-  const config = {
-    publicRuntimeConfig: {
-      apiEndpoint: process.env.API_ENDPOINT || 'http://localhost:4000',
-    },
-  }
-
-  // Don't use build plugins in production phase
-  // https://git.io/fhvat
-  if (phase === PHASE_PRODUCTION_SERVER) {
-    return config
-  }
-
-  const withTypescript = require('@zeit/next-typescript')
-
-  return withTypescript(config)
+const config = {
+  publicRuntimeConfig: {
+    apiEndpoint: process.env.API_ENDPOINT || 'http://localhost:4000',
+  },
 }
+
+module.exports = withTypescript(config)

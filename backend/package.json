@@ -1,11 +1,11 @@
 {
-  "name": "dasher-backend",
+  "name": "backend",
   "version": "1.0.0",
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
     "start": "ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "tslint ./**/*.{ts,tsx}",
+    "lint": "tslint ./**/*.ts",
     "prisma:generate": "prisma generate",
     "prisma:deploy": "prisma deploy"
   },

@@ -2,34 +2,16 @@
 
 Create flexible dashboards with GitHub queries
 
-https://dasher.sh
-
 ## Local Development
 
-**Install dependencies**
-
 ```shell
+# Clone repo
+git clone https://github.com/colebemis/dasher.git
+cd dasher
+
+# Install dependencies
 yarn
-```
 
-**Run frontend dev server**
-
-```shell
-cd frontend
+# Run dev servers
 yarn dev
-```
-
-**Run backend dev server**
-
-```shell
-cd backend
-yarn dev
-```
-
-## Deployment
-
-With [Now CLI](https://github.com/zeit/now-cli) installed globally, deploy the app by running:
-
-```shell
-now
 ```
