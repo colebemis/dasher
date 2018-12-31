@@ -3,5 +3,11 @@
   "workspaces": [
     "frontend",
     "backend"
-  ]
+  ],
+  "scripts": {
+    "dev": "concurrently --kill-others --names frontend,backend 'yarn workspace frontend dev' 'yarn workspace backend dev'"
+  },
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  }
 }
