@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon --exec ts-node src/index.ts",
+    "dev": "ts-node-dev --no-notify src/index.ts",
     "start": "ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "tslint ./**/*.ts",
@@ -14,10 +14,10 @@
     "apollo-server": "^2.3.1",
     "graphql": "^14.0.2",
     "graphql-import": "^0.7.1",
-    "nodemon": "^1.18.9",
     "prisma": "^1.23.2",
     "prisma-client-lib": "^1.23.2",
     "ts-node": "^7.0.1",
+    "ts-node-dev": "^1.0.0-pre.32",
     "tslint": "^5.12.0",
     "tslint-config-prettier": "^1.17.0",
     "typescript": "^3.2.2"
