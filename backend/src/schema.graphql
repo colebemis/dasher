@@ -1,4 +1,4 @@
-# import * from "./generated/prisma/prisma.graphql"
+# import * from "./__generated__/prisma/prisma.graphql"
 
 type Query {
   message: String

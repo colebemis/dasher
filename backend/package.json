@@ -6,8 +6,8 @@
     "start": "ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "tslint ./**/*.ts",
-    "prisma:generate": "prisma generate",
-    "prisma:deploy": "prisma deploy"
+    "generate:prisma": "prisma generate",
+    "deploy:prisma": "prisma deploy"
   },
   "dependencies": {
     "@types/graphql": "^14.0.3",
