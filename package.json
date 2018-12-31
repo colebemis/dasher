@@ -5,7 +5,9 @@
     "backend"
   ],
   "scripts": {
-    "dev": "concurrently --kill-others --names frontend,backend 'yarn workspace frontend dev' 'yarn workspace backend dev'"
+    "dev": "concurrently --kill-others yarn:dev:*",
+    "dev:frontend": "yarn workspace frontend dev",
+    "dev:backend": "yarn workspace backend dev"
   },
   "dependencies": {
     "concurrently": "^4.1.0"
