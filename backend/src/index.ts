@@ -1,7 +1,7 @@
 import { ApolloServer, gql, IResolvers } from 'apollo-server'
 import { importSchema } from 'graphql-import'
 import path from 'path'
-import { prisma, Prisma } from './generated/prisma'
+import { prisma, Prisma } from './__generated__/prisma'
 
 interface Context {
   prisma: Prisma
