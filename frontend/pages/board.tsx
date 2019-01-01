@@ -27,7 +27,15 @@ const Board: React.FunctionComponent<WithRouterProps<Query>> = ({ router }) => {
               <a>Home</a>
             </Link>
             <h1>{data.board.name}</h1>
-            <code>{data.board.query}</code>
+            <div>{data.board.query}</div>
+            {data.board.columns
+              ? data.board.columns.map(column => (
+                  <div key={column.id}>
+                    <h2>{column.name}</h2>
+                    <div>{column.query}</div>
+                  </div>
+                ))
+              : null}
           </div>
         )
       }}
