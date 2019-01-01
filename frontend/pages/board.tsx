@@ -17,6 +17,7 @@ const Board: React.FunctionComponent<WithRouterProps<Query>> = ({ router }) => {
         if (loading) return <p>Loading...</p>
         if (error) return <p>Error: {error.message}</p>
         if (!data || !data.board) return <p>Not found</p>
+
         return (
           <div>
             <Head>
