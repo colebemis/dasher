@@ -1,9 +1,15 @@
 export type Maybe<T> = T | null;
 
+export interface BoardWhereUniqueInput {
+  id?: Maybe<string>;
+}
+
 export enum CacheControlScope {
   Public = "PUBLIC",
   Private = "PRIVATE"
 }
+
+export type DateTime = any;
 
 /** The `Upload` scalar type represents a file upload. */
 export type Upload = any;
@@ -11,6 +17,26 @@ export type Upload = any;
 // ====================================================
 // Documents
 // ====================================================
+
+export type GetBoardVariables = {
+  id?: Maybe<string>;
+};
+
+export type GetBoardQuery = {
+  __typename?: "Query";
+
+  board: Maybe<GetBoardBoard>;
+};
+
+export type GetBoardBoard = {
+  __typename?: "Board";
+
+  id: string;
+
+  name: string;
+
+  query: string;
+};
 
 export type GetUsersVariables = {};
 
@@ -37,6 +63,48 @@ import gql from "graphql-tag";
 // Components
 // ====================================================
 
+export const GetBoardDocument = gql`
+  query getBoard($id: ID) {
+    board(where: { id: $id }) {
+      id
+      name
+      query
+    }
+  }
+`;
+export class GetBoardComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<GetBoardQuery, GetBoardVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<GetBoardQuery, GetBoardVariables>
+        query={GetBoardDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type GetBoardProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<GetBoardQuery, GetBoardVariables>
+> &
+  TChildProps;
+export function GetBoardHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        GetBoardQuery,
+        GetBoardVariables,
+        GetBoardProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    GetBoardQuery,
+    GetBoardVariables,
+    GetBoardProps<TChildProps>
+  >(GetBoardDocument, operationOptions);
+}
 export const GetUsersDocument = gql`
   query getUsers {
     users {
