@@ -9,6 +9,7 @@ const Index: React.FunctionComponent<{}> = () => {
           if (loading) return <p>Loading...</p>
           if (error) return <p>Error: {error.message}</p>
           if (!data) return <p>Not found</p>
+
           return (
             <ul>
               {data.users.map(user => (
