@@ -1,7 +1,7 @@
 import { ApolloServer, gql, IResolvers } from 'apollo-server'
 import { importSchema } from 'graphql-import'
 import path from 'path'
-import { prisma, Prisma } from './__generated__/prisma'
+import { Board, prisma, Prisma } from './__generated__/prisma'
 
 interface Context {
   prisma: Prisma
@@ -14,6 +14,10 @@ const resolvers: IResolvers<any, Context> = {
     message: () => 'Hello World',
     users: (parent, args, context) => context.prisma.users(),
     board: (parent, args, context) => context.prisma.board(args.where),
+  },
+  Board: {
+    columns: (parent: Board, args, context) =>
+      context.prisma.board({ id: parent.id }).columns(args),
   },
 }
 
