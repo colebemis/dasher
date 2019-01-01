@@ -3,4 +3,5 @@
 type Query {
   message: String
   users: [User]!
+  board(where: BoardWhereUniqueInput!): Board
 }

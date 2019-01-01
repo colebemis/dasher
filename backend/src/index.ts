@@ -12,7 +12,8 @@ const typeDefs = gql(importSchema(path.resolve(__dirname, 'schema.graphql')))
 const resolvers: IResolvers<any, Context> = {
   Query: {
     message: () => 'Hello World',
-    users: (parent, args, context, info) => context.prisma.users(),
+    users: (parent, args, context) => context.prisma.users(),
+    board: (parent, args, context) => context.prisma.board(args.where),
   },
 }
 
