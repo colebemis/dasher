@@ -9,6 +9,17 @@ type Board {
   id: ID! @unique
   createdAt: DateTime!
   updatedAt: DateTime!
-  name: String!
-  query: String!
+  name: String
+  query: String
+  columns: [Column!]! @relation(name: "BoardToColumns", onDelete: CASCADE)
+}
+
+type Column {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  board: Board! @relation(name: "BoardToColumns")
+  index: Int!
+  name: String
+  query: String
 }
