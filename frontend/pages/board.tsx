@@ -7,7 +7,7 @@ interface Query {
   id?: string
 }
 
-const Board: React.FunctionComponent<WithRouterProps<Query>> = ({ router }) => {
+const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
   // Q: When will router or router.query be undefined?
   if (!router || !router.query || !router.query.id) return <p>Not found</p>
 

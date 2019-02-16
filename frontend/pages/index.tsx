@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { GetUsersComponent } from '../__generated__/graphql'
 
-const Index: React.FunctionComponent<{}> = () => {
+const Index: React.FC<{}> = () => {
   return (
     <div css={{ color: 'red' }}>
       <GetUsersComponent>

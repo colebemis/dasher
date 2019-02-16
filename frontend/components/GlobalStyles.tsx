@@ -1,6 +1,6 @@
 import { Global } from '@emotion/core'
 
-const GlobalStyles: React.FunctionComponent<{}> = () => {
+const GlobalStyles: React.FC<{}> = () => {
   return (
     <Global
       styles={{
