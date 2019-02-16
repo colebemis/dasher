@@ -4,12 +4,14 @@ workflow "Lint" {
 }
 
 action "yarn install" {
-  uses = "actions/bin/sh@master"
-  args = "yarn"
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+  args = "install"
+  runs = "yarn"
 }
 
 action "lint frontend" {
-  uses = "actions/bin/sh@master"
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   needs = ["yarn install"]
-  args = "yarn workspace frontend lint"
+  args = "workspace frontend lint"
+  runs = "yarn"
 }
