@@ -1,11 +1,8 @@
 import ApolloClient from 'apollo-boost'
 import withApollo from 'next-with-apollo'
-import getConfig from 'next/config'
-
-const { publicRuntimeConfig } = getConfig()
 
 function createClient() {
-  return new ApolloClient({ uri: publicRuntimeConfig.apiEndpoint })
+  return new ApolloClient({ uri: process.env.apiEndpoint })
 }
 
 export default withApollo(createClient)

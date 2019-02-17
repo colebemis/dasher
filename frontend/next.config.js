@@ -1,7 +1,7 @@
 const withTypescript = require('@zeit/next-typescript')
 
 const config = {
-  publicRuntimeConfig: {
+  env: {
     apiEndpoint: process.env.API_ENDPOINT || 'http://localhost:4000',
   },
 }
