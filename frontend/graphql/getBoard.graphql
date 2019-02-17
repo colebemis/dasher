@@ -1,4 +1,4 @@
-query getBoard($id: ID) {
+query getBoard($id: ID!) {
   board(where: { id: $id }) {
     id
     name

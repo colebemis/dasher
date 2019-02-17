@@ -306,7 +306,7 @@ export type Upload = any;
 // ====================================================
 
 export type GetBoardVariables = {
-  id?: Maybe<string>;
+  id: string;
 };
 
 export type GetBoardQuery = {
@@ -365,7 +365,7 @@ import gql from "graphql-tag";
 // ====================================================
 
 export const GetBoardDocument = gql`
-  query getBoard($id: ID) {
+  query getBoard($id: ID!) {
     board(where: { id: $id }) {
       id
       name
