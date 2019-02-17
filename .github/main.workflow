@@ -1,4 +1,4 @@
-workflow "Lint" {
+workflow "Lint on push" {
   on = "push"
   resolves = [
     "lint frontend",
