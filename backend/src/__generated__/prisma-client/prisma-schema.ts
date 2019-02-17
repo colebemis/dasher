@@ -18,7 +18,7 @@ type Board {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
-  name: String!
+  name: String
   query: String
   columns(where: ColumnWhereInput, orderBy: ColumnOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Column!]
 }
@@ -30,7 +30,7 @@ type BoardConnection {
 }
 
 input BoardCreateInput {
-  name: String!
+  name: String
   query: String
   columns: ColumnCreateManyWithoutBoardInput
 }
@@ -41,7 +41,7 @@ input BoardCreateOneWithoutColumnsInput {
 }
 
 input BoardCreateWithoutColumnsInput {
-  name: String!
+  name: String
   query: String
 }
 
@@ -67,7 +67,7 @@ type BoardPreviousValues {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
-  name: String!
+  name: String
   query: String
 }
 
@@ -364,6 +364,7 @@ input ColumnUpdateManyWithoutBoardInput {
   create: [ColumnCreateWithoutBoardInput!]
   delete: [ColumnWhereUniqueInput!]
   connect: [ColumnWhereUniqueInput!]
+  set: [ColumnWhereUniqueInput!]
   disconnect: [ColumnWhereUniqueInput!]
   update: [ColumnUpdateWithWhereUniqueWithoutBoardInput!]
   upsert: [ColumnUpsertWithWhereUniqueWithoutBoardInput!]
