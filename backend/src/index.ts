@@ -1,31 +1,29 @@
-import { ApolloServer, gql, IResolvers } from 'apollo-server'
-import { importSchema } from 'graphql-import'
+import { ApolloServer } from 'apollo-server'
+import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
 import path from 'path'
-import { Board, prisma, Prisma } from './__generated__/prisma'
+import datamodelInfo from './__generated__/nexus-prisma'
+import { prisma } from './__generated__/prisma-client'
 
-interface Context {
-  prisma: Prisma
-}
-
-const typeDefs = gql(importSchema(path.resolve(__dirname, 'schema.graphql')))
-
-const resolvers: IResolvers<any, Context> = {
-  Query: {
-    message: () => 'Hello World',
-    users: (parent, args, context) => context.prisma.users(),
-    board: (parent, args, context) => context.prisma.board(args.where),
+const Query = prismaObjectType({
+  name: 'Query',
+  definition(t) {
+    t.prismaFields(['users', 'board'])
   },
-  Board: {
-    columns: (parent: Board, args, context) =>
-      context.prisma.board({ id: parent.id }).columns(args),
-  },
-}
-
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: { prisma },
 })
+
+const schema = makePrismaSchema({
+  types: [Query],
+  prisma: {
+    datamodelInfo,
+    client: prisma,
+  },
+  outputs: {
+    schema: path.join(__dirname, './__generated__/schema.graphql'),
+    typegen: path.join(__dirname, './__generated__/nexus.ts'),
+  },
+})
+
+const server = new ApolloServer({ schema })
 
 // tslint:disable-next-line:no-console
 server.listen().then(({ url }) => console.log(`Server ready at ${url}`))

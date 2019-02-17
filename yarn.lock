@@ -5669,6 +5669,18 @@ next@^8.0.1:
     worker-farm "1.5.2"
     ws "6.1.2"
 
+nexus-prisma@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/nexus-prisma/-/nexus-prisma-0.3.1.tgz#26eb370a1c082d28ec50f1171ca7a6f0ce864c96"
+  integrity sha512-ixA49PsqXsigBI4VHuTnYpeVXBAaTYOV54dCXGwdtnI9B3vdb7nwpcBn9mJ6m1PsqItMgDN/0e9F4G2OTbM/rQ==
+
+nexus@^0.9.13:
+  version "0.9.13"
+  resolved "https://registry.yarnpkg.com/nexus/-/nexus-0.9.13.tgz#8a7787cb74ce1d9614a0a7b911a4ffd9ecca0fc3"
+  integrity sha512-ql+8BV54S4KJZQyoArPoR5iVEmGa0wXy13DZvqFeiWsdTefP5m+oCKMf3ERcXYP4YFDS+W6Pf7swZaPUT2BS2w==
+  dependencies:
+    tslib "^1.9.3"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
@@ -7962,7 +7974,7 @@ ts-node-dev@^1.0.0-pre.32:
     ts-node "*"
     tsconfig "^7.0.0"
 
-ts-node@*, ts-node@^7.0.1:
+ts-node@*:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-7.0.1.tgz#9562dc2d1e6d248d24bc55f773e3f614337d9baf"
   dependencies:
@@ -7985,7 +7997,7 @@ tsconfig@^7.0.0:
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.0"
 
-tslib@1.9.3, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
+tslib@1.9.3, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
 
