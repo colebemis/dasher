@@ -10,8 +10,8 @@ git clone https://github.com/colebemis/dasher.git
 cd dasher
 
 # Install dependencies
-yarn
+yarn install
 
-# Run dev servers
+# Start dev servers
 yarn dev
 ```
