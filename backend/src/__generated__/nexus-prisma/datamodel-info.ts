@@ -1,6 +1,6 @@
 export default {
   uniqueFieldsByModel: {
-    User: ['id'],
+    User: ['id', 'githubId'],
     Board: ['id'],
     Column: ['id']
   },
@@ -684,6 +684,16 @@ export default {
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "githubId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -754,7 +764,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "name",
+            "name": "githubId",
             "description": null,
             "args": [],
             "type": {
@@ -762,7 +772,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "ID",
                 "ofType": null
               }
             },
@@ -779,16 +789,6 @@ export default {
         "kind": "SCALAR",
         "name": "DateTime",
         "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "String",
-        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -1150,27 +1150,27 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "name",
+            "name": "githubId",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "name_not",
+            "name": "githubId_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "name_in",
+            "name": "githubId_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -1180,7 +1180,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "String",
+                  "name": "ID",
                   "ofType": null
                 }
               }
@@ -1188,7 +1188,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "name_not_in",
+            "name": "githubId_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -1198,7 +1198,7 @@ export default {
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "String",
+                  "name": "ID",
                   "ofType": null
                 }
               }
@@ -1206,101 +1206,101 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "name_lt",
+            "name": "githubId_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "name_lte",
+            "name": "githubId_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "name_gt",
+            "name": "githubId_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "name_gte",
+            "name": "githubId_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "name_contains",
+            "name": "githubId_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "name_not_contains",
+            "name": "githubId_not_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "name_starts_with",
+            "name": "githubId_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "name_not_starts_with",
+            "name": "githubId_not_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "name_ends_with",
+            "name": "githubId_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "name_not_ends_with",
+            "name": "githubId_not_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
@@ -1409,13 +1409,13 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "name_ASC",
+            "name": "githubId_ASC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "name_DESC",
+            "name": "githubId_DESC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -1427,6 +1427,16 @@ export default {
         "kind": "SCALAR",
         "name": "Int",
         "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. ",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "String",
+        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -4703,14 +4713,14 @@ export default {
         "fields": null,
         "inputFields": [
           {
-            "name": "name",
+            "name": "githubId",
             "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "ID",
                 "ofType": null
               }
             },
@@ -4728,11 +4738,11 @@ export default {
         "fields": null,
         "inputFields": [
           {
-            "name": "name",
+            "name": "githubId",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
@@ -4749,11 +4759,11 @@ export default {
         "fields": null,
         "inputFields": [
           {
-            "name": "name",
+            "name": "githubId",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
@@ -6919,7 +6929,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "name",
+            "name": "githubId",
             "description": null,
             "args": [],
             "type": {
@@ -6927,7 +6937,7 @@ export default {
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "ID",
                 "ofType": null
               }
             },

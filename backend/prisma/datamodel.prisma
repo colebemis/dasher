@@ -2,7 +2,7 @@ type User {
   id: ID! @unique
   createdAt: DateTime!
   updatedAt: DateTime!
-  name: String!
+  githubId: ID! @unique
 }
 
 type Board {

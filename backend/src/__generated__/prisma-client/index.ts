@@ -222,8 +222,8 @@ export type UserOrderByInput =
   | "createdAt_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC"
-  | "name_ASC"
-  | "name_DESC";
+  | "githubId_ASC"
+  | "githubId_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
@@ -497,11 +497,11 @@ export interface ColumnSubscriptionWhereInput {
 }
 
 export interface UserUpdateManyMutationInput {
-  name?: String;
+  githubId?: ID_Input;
 }
 
 export interface UserUpdateInput {
-  name?: String;
+  githubId?: ID_Input;
 }
 
 export interface BoardCreateInput {
@@ -572,7 +572,7 @@ export interface ColumnUpdateManyWithoutBoardInput {
 }
 
 export interface UserCreateInput {
-  name: String;
+  githubId: ID_Input;
 }
 
 export interface ColumnUpdateManyDataInput {
@@ -600,6 +600,7 @@ export interface ColumnUpdateWithWhereUniqueWithoutBoardInput {
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  githubId?: ID_Input;
 }>;
 
 export type ColumnWhereUniqueInput = AtLeastOne<{
@@ -648,20 +649,20 @@ export interface UserWhereInput {
   updatedAt_lte?: DateTimeInput;
   updatedAt_gt?: DateTimeInput;
   updatedAt_gte?: DateTimeInput;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
+  githubId?: ID_Input;
+  githubId_not?: ID_Input;
+  githubId_in?: ID_Input[] | ID_Input;
+  githubId_not_in?: ID_Input[] | ID_Input;
+  githubId_lt?: ID_Input;
+  githubId_lte?: ID_Input;
+  githubId_gt?: ID_Input;
+  githubId_gte?: ID_Input;
+  githubId_contains?: ID_Input;
+  githubId_not_contains?: ID_Input;
+  githubId_starts_with?: ID_Input;
+  githubId_not_starts_with?: ID_Input;
+  githubId_ends_with?: ID_Input;
+  githubId_not_ends_with?: ID_Input;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
@@ -675,7 +676,7 @@ export interface UserPreviousValues {
   id: ID_Output;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
-  name: String;
+  githubId: ID_Output;
 }
 
 export interface UserPreviousValuesPromise
@@ -684,7 +685,7 @@ export interface UserPreviousValuesPromise
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
-  name: () => Promise<String>;
+  githubId: () => Promise<ID_Output>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -693,7 +694,7 @@ export interface UserPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  name: () => Promise<AsyncIterator<String>>;
+  githubId: () => Promise<AsyncIterator<ID_Output>>;
 }
 
 export interface ColumnEdge {
@@ -1061,14 +1062,14 @@ export interface User {
   id: ID_Output;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
-  name: String;
+  githubId: ID_Output;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
-  name: () => Promise<String>;
+  githubId: () => Promise<ID_Output>;
 }
 
 export interface UserSubscription
@@ -1077,7 +1078,7 @@ export interface UserSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  name: () => Promise<AsyncIterator<String>>;
+  githubId: () => Promise<AsyncIterator<ID_Output>>;
 }
 
 export interface UserConnection {
