@@ -1,7 +1,8 @@
 import { NextContext, NextFC } from 'next'
 import Router from 'next/router'
+import { AppContext } from 'next-with-apollo'
 
-const Callback: NextFC<{}> = () => {
+const Callback: NextFC<{}, {}, AppContext> = () => {
   return null
 }
 
