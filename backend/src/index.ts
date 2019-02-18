@@ -1,4 +1,5 @@
 import { ApolloServer } from 'apollo-server'
+import { stringArg } from 'nexus'
 import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
 import path from 'path'
 import datamodelInfo from './__generated__/nexus-prisma'
@@ -11,8 +12,19 @@ const Query = prismaObjectType({
   },
 })
 
+const Mutation = prismaObjectType({
+  name: 'Mutation',
+  definition(t) {
+    t.field('logIn', {
+      type: 'Boolean',
+      args: { githubCode: stringArg({ required: true }) },
+      resolve: (root, args) => true,
+    })
+  },
+})
+
 const schema = makePrismaSchema({
-  types: [Query],
+  types: [Query, Mutation],
   prisma: {
     datamodelInfo,
     client: prisma,

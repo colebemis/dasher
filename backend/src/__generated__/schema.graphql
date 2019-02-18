@@ -182,6 +182,10 @@ input ColumnWhereInput {
 
 scalar DateTime
 
+type Mutation {
+  logIn(githubCode: String!): Boolean!
+}
+
 type Query {
   board(where: BoardWhereUniqueInput!): Board
   users(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): [User!]!
