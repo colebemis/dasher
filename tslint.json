@@ -2,10 +2,11 @@
   "defaultSeverity": "error",
   "extends": ["tslint:latest", "tslint-config-prettier"],
   "rules": {
-    "interface-name": false,
-    "object-literal-sort-keys": false,
-    "no-submodule-imports": false,
     "curly": [true, "ignore-same-line"],
+    "interface-name": false,
+    "no-submodule-imports": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
     "prefer-conditional-expression": false
   },
   "linterOptions": {
