@@ -332,13 +332,13 @@ type UserObject =
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'createdAt', args?: [] | false, alias?: string  } 
   | { name: 'updatedAt', args?: [] | false, alias?: string  } 
-  | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'githubId', args?: [] | false, alias?: string  } 
 
 type UserFields =
   | 'id'
   | 'createdAt'
   | 'updatedAt'
-  | 'name'
+  | 'githubId'
 
 
 
@@ -369,8 +369,8 @@ export interface UserFieldDetails {
     nullable: false
     resolve: undefined
   }
-  name: {
-    type: 'String'
+  githubId: {
+    type: 'ID'
     args: {}
     description: string
     list: undefined
@@ -1486,13 +1486,13 @@ type UserPreviousValuesObject =
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'createdAt', args?: [] | false, alias?: string  } 
   | { name: 'updatedAt', args?: [] | false, alias?: string  } 
-  | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'githubId', args?: [] | false, alias?: string  } 
 
 type UserPreviousValuesFields =
   | 'id'
   | 'createdAt'
   | 'updatedAt'
-  | 'name'
+  | 'githubId'
 
 
 
@@ -1523,8 +1523,8 @@ export interface UserPreviousValuesFieldDetails {
     nullable: false
     resolve: undefined
   }
-  name: {
-    type: 'String'
+  githubId: {
+    type: 'ID'
     args: {}
     description: string
     list: undefined
@@ -1817,10 +1817,12 @@ export interface ColumnPreviousValuesFieldDetails {
 
 export interface UserWhereUniqueInput {
   id?: string | null
+  githubId?: string | null
 }
 export type UserWhereUniqueInputInputObject =
   | Extract<keyof UserWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
+  | { name: 'githubId', alias?: string  } 
   
 export interface UserWhereInput {
   id?: string | null
@@ -1853,20 +1855,20 @@ export interface UserWhereInput {
   updatedAt_lte?: string | null
   updatedAt_gt?: string | null
   updatedAt_gte?: string | null
-  name?: string | null
-  name_not?: string | null
-  name_in?: string[]
-  name_not_in?: string[]
-  name_lt?: string | null
-  name_lte?: string | null
-  name_gt?: string | null
-  name_gte?: string | null
-  name_contains?: string | null
-  name_not_contains?: string | null
-  name_starts_with?: string | null
-  name_not_starts_with?: string | null
-  name_ends_with?: string | null
-  name_not_ends_with?: string | null
+  githubId?: string | null
+  githubId_not?: string | null
+  githubId_in?: string[]
+  githubId_not_in?: string[]
+  githubId_lt?: string | null
+  githubId_lte?: string | null
+  githubId_gt?: string | null
+  githubId_gte?: string | null
+  githubId_contains?: string | null
+  githubId_not_contains?: string | null
+  githubId_starts_with?: string | null
+  githubId_not_starts_with?: string | null
+  githubId_ends_with?: string | null
+  githubId_not_ends_with?: string | null
   AND?: UserWhereInput[]
   OR?: UserWhereInput[]
   NOT?: UserWhereInput[]
@@ -1903,20 +1905,20 @@ export type UserWhereInputInputObject =
   | { name: 'updatedAt_lte', alias?: string  } 
   | { name: 'updatedAt_gt', alias?: string  } 
   | { name: 'updatedAt_gte', alias?: string  } 
-  | { name: 'name', alias?: string  } 
-  | { name: 'name_not', alias?: string  } 
-  | { name: 'name_in', alias?: string  } 
-  | { name: 'name_not_in', alias?: string  } 
-  | { name: 'name_lt', alias?: string  } 
-  | { name: 'name_lte', alias?: string  } 
-  | { name: 'name_gt', alias?: string  } 
-  | { name: 'name_gte', alias?: string  } 
-  | { name: 'name_contains', alias?: string  } 
-  | { name: 'name_not_contains', alias?: string  } 
-  | { name: 'name_starts_with', alias?: string  } 
-  | { name: 'name_not_starts_with', alias?: string  } 
-  | { name: 'name_ends_with', alias?: string  } 
-  | { name: 'name_not_ends_with', alias?: string  } 
+  | { name: 'githubId', alias?: string  } 
+  | { name: 'githubId_not', alias?: string  } 
+  | { name: 'githubId_in', alias?: string  } 
+  | { name: 'githubId_not_in', alias?: string  } 
+  | { name: 'githubId_lt', alias?: string  } 
+  | { name: 'githubId_lte', alias?: string  } 
+  | { name: 'githubId_gt', alias?: string  } 
+  | { name: 'githubId_gte', alias?: string  } 
+  | { name: 'githubId_contains', alias?: string  } 
+  | { name: 'githubId_not_contains', alias?: string  } 
+  | { name: 'githubId_starts_with', alias?: string  } 
+  | { name: 'githubId_not_starts_with', alias?: string  } 
+  | { name: 'githubId_ends_with', alias?: string  } 
+  | { name: 'githubId_not_ends_with', alias?: string  } 
   | { name: 'AND', alias?: string  } 
   | { name: 'OR', alias?: string  } 
   | { name: 'NOT', alias?: string  } 
@@ -2214,25 +2216,25 @@ export type ColumnWhereUniqueInputInputObject =
   | { name: 'id', alias?: string  } 
   
 export interface UserCreateInput {
-  name?: string
+  githubId?: string
 }
 export type UserCreateInputInputObject =
   | Extract<keyof UserCreateInput, string>
-  | { name: 'name', alias?: string  } 
+  | { name: 'githubId', alias?: string  } 
   
 export interface UserUpdateInput {
-  name?: string | null
+  githubId?: string | null
 }
 export type UserUpdateInputInputObject =
   | Extract<keyof UserUpdateInput, string>
-  | { name: 'name', alias?: string  } 
+  | { name: 'githubId', alias?: string  } 
   
 export interface UserUpdateManyMutationInput {
-  name?: string | null
+  githubId?: string | null
 }
 export type UserUpdateManyMutationInputInputObject =
   | Extract<keyof UserUpdateManyMutationInput, string>
-  | { name: 'name', alias?: string  } 
+  | { name: 'githubId', alias?: string  } 
   
 export interface BoardCreateInput {
   name?: string | null
@@ -2659,8 +2661,8 @@ export type UserOrderByInputValues =
   | 'createdAt_DESC'
   | 'updatedAt_ASC'
   | 'updatedAt_DESC'
-  | 'name_ASC'
-  | 'name_DESC'
+  | 'githubId_ASC'
+  | 'githubId_DESC'
   
 export type ColumnOrderByInputValues =
   | 'id_ASC'

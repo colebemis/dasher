@@ -162,6 +162,20 @@ export interface NexusGenInputs {
     createdAt_lte?: any | null; // DateTime
     createdAt_not?: any | null; // DateTime
     createdAt_not_in?: any[] | null; // [DateTime!]
+    githubId?: string | null; // ID
+    githubId_contains?: string | null; // ID
+    githubId_ends_with?: string | null; // ID
+    githubId_gt?: string | null; // ID
+    githubId_gte?: string | null; // ID
+    githubId_in?: string[] | null; // [ID!]
+    githubId_lt?: string | null; // ID
+    githubId_lte?: string | null; // ID
+    githubId_not?: string | null; // ID
+    githubId_not_contains?: string | null; // ID
+    githubId_not_ends_with?: string | null; // ID
+    githubId_not_in?: string[] | null; // [ID!]
+    githubId_not_starts_with?: string | null; // ID
+    githubId_starts_with?: string | null; // ID
     id?: string | null; // ID
     id_contains?: string | null; // ID
     id_ends_with?: string | null; // ID
@@ -176,20 +190,6 @@ export interface NexusGenInputs {
     id_not_in?: string[] | null; // [ID!]
     id_not_starts_with?: string | null; // ID
     id_starts_with?: string | null; // ID
-    name?: string | null; // String
-    name_contains?: string | null; // String
-    name_ends_with?: string | null; // String
-    name_gt?: string | null; // String
-    name_gte?: string | null; // String
-    name_in?: string[] | null; // [String!]
-    name_lt?: string | null; // String
-    name_lte?: string | null; // String
-    name_not?: string | null; // String
-    name_not_contains?: string | null; // String
-    name_not_ends_with?: string | null; // String
-    name_not_in?: string[] | null; // [String!]
-    name_not_starts_with?: string | null; // String
-    name_starts_with?: string | null; // String
     NOT?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
     OR?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
     updatedAt?: any | null; // DateTime
@@ -205,7 +205,7 @@ export interface NexusGenInputs {
 
 export interface NexusGenEnums {
   ColumnOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "index_ASC" | "index_DESC" | "name_ASC" | "name_DESC" | "query_ASC" | "query_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
-  UserOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
+  UserOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "githubId_ASC" | "githubId_DESC" | "id_ASC" | "id_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
 }
 
 export interface NexusGenRootTypes {
@@ -227,8 +227,8 @@ export interface NexusGenRootTypes {
   Query: {};
   User: { // root type
     createdAt: any; // DateTime!
+    githubId: string; // ID!
     id: string; // ID!
-    name: string; // String!
     updatedAt: any; // DateTime!
   }
   String: string;
@@ -272,8 +272,8 @@ export interface NexusGenFieldTypes {
   }
   User: { // field return type
     createdAt: any; // DateTime!
+    githubId: string; // ID!
     id: string; // ID!
-    name: string; // String!
     updatedAt: any; // DateTime!
   }
 }

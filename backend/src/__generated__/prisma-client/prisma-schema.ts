@@ -536,7 +536,7 @@ type User {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
-  name: String!
+  githubId: ID!
 }
 
 type UserConnection {
@@ -546,7 +546,7 @@ type UserConnection {
 }
 
 input UserCreateInput {
-  name: String!
+  githubId: ID!
 }
 
 type UserEdge {
@@ -561,15 +561,15 @@ enum UserOrderByInput {
   createdAt_DESC
   updatedAt_ASC
   updatedAt_DESC
-  name_ASC
-  name_DESC
+  githubId_ASC
+  githubId_DESC
 }
 
 type UserPreviousValues {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
-  name: String!
+  githubId: ID!
 }
 
 type UserSubscriptionPayload {
@@ -591,11 +591,11 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateInput {
-  name: String
+  githubId: ID
 }
 
 input UserUpdateManyMutationInput {
-  name: String
+  githubId: ID
 }
 
 input UserWhereInput {
@@ -629,20 +629,20 @@ input UserWhereInput {
   updatedAt_lte: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
+  githubId: ID
+  githubId_not: ID
+  githubId_in: [ID!]
+  githubId_not_in: [ID!]
+  githubId_lt: ID
+  githubId_lte: ID
+  githubId_gt: ID
+  githubId_gte: ID
+  githubId_contains: ID
+  githubId_not_contains: ID
+  githubId_starts_with: ID
+  githubId_not_starts_with: ID
+  githubId_ends_with: ID
+  githubId_not_ends_with: ID
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
@@ -650,5 +650,6 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  githubId: ID
 }
 `

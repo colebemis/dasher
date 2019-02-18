@@ -189,18 +189,18 @@ type Query {
 
 type User {
   createdAt: DateTime!
+  githubId: ID!
   id: ID!
-  name: String!
   updatedAt: DateTime!
 }
 
 enum UserOrderByInput {
   createdAt_ASC
   createdAt_DESC
+  githubId_ASC
+  githubId_DESC
   id_ASC
   id_DESC
-  name_ASC
-  name_DESC
   updatedAt_ASC
   updatedAt_DESC
 }
@@ -215,6 +215,20 @@ input UserWhereInput {
   createdAt_lte: DateTime
   createdAt_not: DateTime
   createdAt_not_in: [DateTime!]
+  githubId: ID
+  githubId_contains: ID
+  githubId_ends_with: ID
+  githubId_gt: ID
+  githubId_gte: ID
+  githubId_in: [ID!]
+  githubId_lt: ID
+  githubId_lte: ID
+  githubId_not: ID
+  githubId_not_contains: ID
+  githubId_not_ends_with: ID
+  githubId_not_in: [ID!]
+  githubId_not_starts_with: ID
+  githubId_starts_with: ID
   id: ID
   id_contains: ID
   id_ends_with: ID
@@ -229,20 +243,6 @@ input UserWhereInput {
   id_not_in: [ID!]
   id_not_starts_with: ID
   id_starts_with: ID
-  name: String
-  name_contains: String
-  name_ends_with: String
-  name_gt: String
-  name_gte: String
-  name_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_not: String
-  name_not_contains: String
-  name_not_ends_with: String
-  name_not_in: [String!]
-  name_not_starts_with: String
-  name_starts_with: String
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
   updatedAt: DateTime
