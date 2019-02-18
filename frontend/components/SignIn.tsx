@@ -1,10 +1,10 @@
 import Router from 'next/router'
 import queryString from 'query-string'
 
-const Login: React.FC<{}> = () => {
+const SignIn: React.FC<{}> = () => {
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Sign in</h1>
       <button
         onClick={() =>
           // Redirect to GitHub
@@ -17,10 +17,10 @@ const Login: React.FC<{}> = () => {
           )
         }
       >
-        Log in with GitHub
+        Sign in with GitHub
       </button>
     </div>
   )
 }
 
-export default Login
+export default SignIn
