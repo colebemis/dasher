@@ -224,6 +224,7 @@ export interface NexusGenRootTypes {
     query?: string | null; // String
     updatedAt: any; // DateTime!
   }
+  Mutation: {};
   Query: {};
   User: { // root type
     createdAt: any; // DateTime!
@@ -266,6 +267,9 @@ export interface NexusGenFieldTypes {
     query: string | null; // String
     updatedAt: any; // DateTime!
   }
+  Mutation: { // field return type
+    logIn: boolean; // Boolean!
+  }
   Query: { // field return type
     board: NexusGenRootTypes['Board'] | null; // Board
     users: NexusGenRootTypes['User'][]; // [User!]!
@@ -290,6 +294,11 @@ export interface NexusGenArgTypes {
       where?: NexusGenInputs['ColumnWhereInput'] | null; // ColumnWhereInput
     }
   }
+  Mutation: {
+    logIn: { // args
+      githubCode: string; // String!
+    }
+  }
   Query: {
     board: { // args
       where: NexusGenInputs['BoardWhereUniqueInput']; // BoardWhereUniqueInput!
@@ -311,7 +320,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Board" | "Column" | "Query" | "User";
+export type NexusGenObjectNames = "Board" | "Column" | "Mutation" | "Query" | "User";
 
 export type NexusGenInputNames = "BoardWhereInput" | "BoardWhereUniqueInput" | "ColumnWhereInput" | "UserWhereInput";
 
