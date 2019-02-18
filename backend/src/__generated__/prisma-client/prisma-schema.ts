@@ -1,4 +1,4 @@
-type AggregateBoard {
+export const typeDefs = /* GraphQL */ `type AggregateBoard {
   count: Int!
 }
 
@@ -364,6 +364,7 @@ input ColumnUpdateManyWithoutBoardInput {
   create: [ColumnCreateWithoutBoardInput!]
   delete: [ColumnWhereUniqueInput!]
   connect: [ColumnWhereUniqueInput!]
+  set: [ColumnWhereUniqueInput!]
   disconnect: [ColumnWhereUniqueInput!]
   update: [ColumnUpdateWithWhereUniqueWithoutBoardInput!]
   upsert: [ColumnUpsertWithWhereUniqueWithoutBoardInput!]
@@ -650,3 +651,4 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
 }
+`

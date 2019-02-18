@@ -1,7 +1,0 @@
-# import * from "./__generated__/prisma/prisma.graphql"
-
-type Query {
-  message: String
-  users: [User]!
-  board(where: BoardWhereUniqueInput!): Board
-}
