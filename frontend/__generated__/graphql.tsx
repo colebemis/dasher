@@ -61,33 +61,33 @@ export interface UserWhereInput {
 
   updatedAt_gte?: Maybe<DateTime>;
 
-  name?: Maybe<string>;
+  githubId?: Maybe<string>;
 
-  name_not?: Maybe<string>;
+  githubId_not?: Maybe<string>;
 
-  name_in?: Maybe<string[]>;
+  githubId_in?: Maybe<string[]>;
 
-  name_not_in?: Maybe<string[]>;
+  githubId_not_in?: Maybe<string[]>;
 
-  name_lt?: Maybe<string>;
+  githubId_lt?: Maybe<string>;
 
-  name_lte?: Maybe<string>;
+  githubId_lte?: Maybe<string>;
 
-  name_gt?: Maybe<string>;
+  githubId_gt?: Maybe<string>;
 
-  name_gte?: Maybe<string>;
+  githubId_gte?: Maybe<string>;
 
-  name_contains?: Maybe<string>;
+  githubId_contains?: Maybe<string>;
 
-  name_not_contains?: Maybe<string>;
+  githubId_not_contains?: Maybe<string>;
 
-  name_starts_with?: Maybe<string>;
+  githubId_starts_with?: Maybe<string>;
 
-  name_not_starts_with?: Maybe<string>;
+  githubId_not_starts_with?: Maybe<string>;
 
-  name_ends_with?: Maybe<string>;
+  githubId_ends_with?: Maybe<string>;
 
-  name_not_ends_with?: Maybe<string>;
+  githubId_not_ends_with?: Maybe<string>;
 
   AND?: Maybe<UserWhereInput[]>;
 
@@ -379,8 +379,8 @@ export enum UserOrderByInput {
   CreatedAtDesc = "createdAt_DESC",
   UpdatedAtAsc = "updatedAt_ASC",
   UpdatedAtDesc = "updatedAt_DESC",
-  NameAsc = "name_ASC",
-  NameDesc = "name_DESC"
+  GithubIdAsc = "githubId_ASC",
+  GithubIdDesc = "githubId_DESC"
 }
 
 export enum ColumnOrderByInput {
@@ -436,6 +436,16 @@ export type GetBoardColumns = {
   name: Maybe<string>;
 
   query: Maybe<string>;
+};
+
+export type SignInVariables = {
+  githubCode: string;
+};
+
+export type SignInMutation = {
+  __typename?: "Mutation";
+
+  signIn: boolean;
 };
 
 import * as ReactApollo from "react-apollo";
@@ -494,4 +504,46 @@ export function GetBoardHOC<TProps, TChildProps = any>(
     GetBoardVariables,
     GetBoardProps<TChildProps>
   >(GetBoardDocument, operationOptions);
+}
+export const SignInDocument = gql`
+  mutation signIn($githubCode: String!) {
+    signIn(githubCode: $githubCode)
+  }
+`;
+export class SignInComponent extends React.Component<
+  Partial<ReactApollo.MutationProps<SignInMutation, SignInVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<SignInMutation, SignInVariables>
+        mutation={SignInDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type SignInProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<SignInMutation, SignInVariables>
+> &
+  TChildProps;
+export type SignInMutationFn = ReactApollo.MutationFn<
+  SignInMutation,
+  SignInVariables
+>;
+export function SignInHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        SignInMutation,
+        SignInVariables,
+        SignInProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    SignInMutation,
+    SignInVariables,
+    SignInProps<TChildProps>
+  >(SignInDocument, operationOptions);
 }
