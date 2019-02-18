@@ -1,5 +1,101 @@
 export type Maybe<T> = T | null;
 
+export interface UserWhereInput {
+  id?: Maybe<string>;
+
+  id_not?: Maybe<string>;
+
+  id_in?: Maybe<string[]>;
+
+  id_not_in?: Maybe<string[]>;
+
+  id_lt?: Maybe<string>;
+
+  id_lte?: Maybe<string>;
+
+  id_gt?: Maybe<string>;
+
+  id_gte?: Maybe<string>;
+
+  id_contains?: Maybe<string>;
+
+  id_not_contains?: Maybe<string>;
+
+  id_starts_with?: Maybe<string>;
+
+  id_not_starts_with?: Maybe<string>;
+
+  id_ends_with?: Maybe<string>;
+
+  id_not_ends_with?: Maybe<string>;
+
+  createdAt?: Maybe<DateTime>;
+
+  createdAt_not?: Maybe<DateTime>;
+
+  createdAt_in?: Maybe<DateTime[]>;
+
+  createdAt_not_in?: Maybe<DateTime[]>;
+
+  createdAt_lt?: Maybe<DateTime>;
+
+  createdAt_lte?: Maybe<DateTime>;
+
+  createdAt_gt?: Maybe<DateTime>;
+
+  createdAt_gte?: Maybe<DateTime>;
+
+  updatedAt?: Maybe<DateTime>;
+
+  updatedAt_not?: Maybe<DateTime>;
+
+  updatedAt_in?: Maybe<DateTime[]>;
+
+  updatedAt_not_in?: Maybe<DateTime[]>;
+
+  updatedAt_lt?: Maybe<DateTime>;
+
+  updatedAt_lte?: Maybe<DateTime>;
+
+  updatedAt_gt?: Maybe<DateTime>;
+
+  updatedAt_gte?: Maybe<DateTime>;
+
+  name?: Maybe<string>;
+
+  name_not?: Maybe<string>;
+
+  name_in?: Maybe<string[]>;
+
+  name_not_in?: Maybe<string[]>;
+
+  name_lt?: Maybe<string>;
+
+  name_lte?: Maybe<string>;
+
+  name_gt?: Maybe<string>;
+
+  name_gte?: Maybe<string>;
+
+  name_contains?: Maybe<string>;
+
+  name_not_contains?: Maybe<string>;
+
+  name_starts_with?: Maybe<string>;
+
+  name_not_starts_with?: Maybe<string>;
+
+  name_ends_with?: Maybe<string>;
+
+  name_not_ends_with?: Maybe<string>;
+
+  AND?: Maybe<UserWhereInput[]>;
+
+  OR?: Maybe<UserWhereInput[]>;
+
+  NOT?: Maybe<UserWhereInput[]>;
+}
+
 export interface BoardWhereUniqueInput {
   id?: Maybe<string>;
 }
@@ -276,6 +372,17 @@ export interface BoardWhereInput {
   NOT?: Maybe<BoardWhereInput[]>;
 }
 
+export enum UserOrderByInput {
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+  NameAsc = "name_ASC",
+  NameDesc = "name_DESC"
+}
+
 export enum ColumnOrderByInput {
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
@@ -291,15 +398,7 @@ export enum ColumnOrderByInput {
   QueryDesc = "query_DESC"
 }
 
-export enum CacheControlScope {
-  Public = "PUBLIC",
-  Private = "PRIVATE"
-}
-
 export type DateTime = any;
-
-/** The `Upload` scalar type represents a file upload. */
-export type Upload = any;
 
 // ====================================================
 // Documents
@@ -337,22 +436,6 @@ export type GetBoardColumns = {
   name: Maybe<string>;
 
   query: Maybe<string>;
-};
-
-export type GetUsersVariables = {};
-
-export type GetUsersQuery = {
-  __typename?: "Query";
-
-  users: GetUsersUsers[];
-};
-
-export type GetUsersUsers = {
-  __typename?: "User";
-
-  id: string;
-
-  name: string;
 };
 
 import * as ReactApollo from "react-apollo";
@@ -411,45 +494,4 @@ export function GetBoardHOC<TProps, TChildProps = any>(
     GetBoardVariables,
     GetBoardProps<TChildProps>
   >(GetBoardDocument, operationOptions);
-}
-export const GetUsersDocument = gql`
-  query getUsers {
-    users {
-      id
-      name
-    }
-  }
-`;
-export class GetUsersComponent extends React.Component<
-  Partial<ReactApollo.QueryProps<GetUsersQuery, GetUsersVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Query<GetUsersQuery, GetUsersVariables>
-        query={GetUsersDocument}
-        {...(this as any)["props"] as any}
-      />
-    );
-  }
-}
-export type GetUsersProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<GetUsersQuery, GetUsersVariables>
-> &
-  TChildProps;
-export function GetUsersHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        GetUsersQuery,
-        GetUsersVariables,
-        GetUsersProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    GetUsersQuery,
-    GetUsersVariables,
-    GetUsersProps<TChildProps>
-  >(GetUsersDocument, operationOptions);
 }
