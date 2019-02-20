@@ -7,8 +7,8 @@ const SignIn: React.FC<{}> = () => {
       <h1>Sign in</h1>
       <button
         onClick={() =>
-          // Redirect to GitHub
-          // https://git.io/fh5FD
+          // Redirect to request the user's GitHub idenity.
+          // Reference: https://git.io/fh5FD
           Router.push(
             `https://github.com/login/oauth/authorize?${queryString.stringify({
               client_id: process.env.githubClientId,
