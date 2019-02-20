@@ -25,6 +25,7 @@ const Mutation = prismaObjectType({
         // find or create user
         // generate JWT that encodes the user id and github token
         // store JWT in an httpOnly cookie
+        context.response.cookie('foo', 'bar', { httpOnly: true })
         return true
       },
     })
@@ -54,7 +55,7 @@ const schema = makePrismaSchema({
 
 const server = new GraphQLServer({
   schema,
-  context: { prisma },
+  context: params => ({ ...params, prisma }),
 })
 
 // tslint:disable-next-line:no-console
