@@ -8,8 +8,9 @@ generate:
 hooks:
   post-deploy:
     - prisma generate
-    # `prisma deploy` needs to be run from the backend directory,
-    # otherwise the relative client and output paths will be incorrect
     - npx nexus-prisma-generate --client ./src/__generated__/prisma-client --output ./src/__generated__/nexus-prisma
-    # Known issue: nexus-prisma-generate will fail if the output directory already exists
-    # https://github.com/prisma/nexus-prisma/issues/87
+    # Known issues:
+    # - `prisma deploy` needs to be run from the backend directory,
+    #   otherwise the relative client and output paths will be incorrect.
+    # - nexus-prisma-generate will fail if the output directory already exists.
+    #   Reference: https://github.com/prisma/nexus-prisma/issues/87
