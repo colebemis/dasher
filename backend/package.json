@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@types/graphql": "^14.0.7",
-    "cookie-parser": "^1.4.4",
     "graphql": "^14.0.2",
     "graphql-yoga": "^1.17.4",
     "nexus": "^0.9.14",
