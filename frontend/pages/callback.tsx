@@ -3,7 +3,8 @@ import { AppContext } from 'next-with-apollo'
 import Router from 'next/router'
 import { SignInDocument } from '../__generated__/graphql'
 
-// GitHub redirects back to this page with a temporary `code` in the query string.
+// As part of the sign-in flow, GitHub redirects back to
+// this page with a temporary `code` in the query string.
 // Reference: https://git.io/fhd1D
 
 const Callback: NextFC<{}, {}, AppContext> = () => {
