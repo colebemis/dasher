@@ -183,9 +183,13 @@ input ColumnWhereInput {
 scalar DateTime
 
 type Mutation {
-  signIn(githubCode: String!): Boolean!
+  signIn(githubCode: String!): SignInPayload!
 }
 
 type Query {
   board(where: BoardWhereUniqueInput!): Board
+}
+
+type SignInPayload {
+  token: String!
 }
