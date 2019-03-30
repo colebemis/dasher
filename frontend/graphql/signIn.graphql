@@ -1,3 +1,5 @@
 mutation signIn($githubCode: String!) {
-  signIn(githubCode: $githubCode)
+  signIn(githubCode: $githubCode) {
+    token
+  }
 }

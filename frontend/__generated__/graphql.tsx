@@ -1,101 +1,5 @@
 export type Maybe<T> = T | null;
 
-export interface UserWhereInput {
-  id?: Maybe<string>;
-
-  id_not?: Maybe<string>;
-
-  id_in?: Maybe<string[]>;
-
-  id_not_in?: Maybe<string[]>;
-
-  id_lt?: Maybe<string>;
-
-  id_lte?: Maybe<string>;
-
-  id_gt?: Maybe<string>;
-
-  id_gte?: Maybe<string>;
-
-  id_contains?: Maybe<string>;
-
-  id_not_contains?: Maybe<string>;
-
-  id_starts_with?: Maybe<string>;
-
-  id_not_starts_with?: Maybe<string>;
-
-  id_ends_with?: Maybe<string>;
-
-  id_not_ends_with?: Maybe<string>;
-
-  createdAt?: Maybe<DateTime>;
-
-  createdAt_not?: Maybe<DateTime>;
-
-  createdAt_in?: Maybe<DateTime[]>;
-
-  createdAt_not_in?: Maybe<DateTime[]>;
-
-  createdAt_lt?: Maybe<DateTime>;
-
-  createdAt_lte?: Maybe<DateTime>;
-
-  createdAt_gt?: Maybe<DateTime>;
-
-  createdAt_gte?: Maybe<DateTime>;
-
-  updatedAt?: Maybe<DateTime>;
-
-  updatedAt_not?: Maybe<DateTime>;
-
-  updatedAt_in?: Maybe<DateTime[]>;
-
-  updatedAt_not_in?: Maybe<DateTime[]>;
-
-  updatedAt_lt?: Maybe<DateTime>;
-
-  updatedAt_lte?: Maybe<DateTime>;
-
-  updatedAt_gt?: Maybe<DateTime>;
-
-  updatedAt_gte?: Maybe<DateTime>;
-
-  githubId?: Maybe<string>;
-
-  githubId_not?: Maybe<string>;
-
-  githubId_in?: Maybe<string[]>;
-
-  githubId_not_in?: Maybe<string[]>;
-
-  githubId_lt?: Maybe<string>;
-
-  githubId_lte?: Maybe<string>;
-
-  githubId_gt?: Maybe<string>;
-
-  githubId_gte?: Maybe<string>;
-
-  githubId_contains?: Maybe<string>;
-
-  githubId_not_contains?: Maybe<string>;
-
-  githubId_starts_with?: Maybe<string>;
-
-  githubId_not_starts_with?: Maybe<string>;
-
-  githubId_ends_with?: Maybe<string>;
-
-  githubId_not_ends_with?: Maybe<string>;
-
-  AND?: Maybe<UserWhereInput[]>;
-
-  OR?: Maybe<UserWhereInput[]>;
-
-  NOT?: Maybe<UserWhereInput[]>;
-}
-
 export interface BoardWhereUniqueInput {
   id?: Maybe<string>;
 }
@@ -372,17 +276,6 @@ export interface BoardWhereInput {
   NOT?: Maybe<BoardWhereInput[]>;
 }
 
-export enum UserOrderByInput {
-  IdAsc = "id_ASC",
-  IdDesc = "id_DESC",
-  CreatedAtAsc = "createdAt_ASC",
-  CreatedAtDesc = "createdAt_DESC",
-  UpdatedAtAsc = "updatedAt_ASC",
-  UpdatedAtDesc = "updatedAt_DESC",
-  GithubIdAsc = "githubId_ASC",
-  GithubIdDesc = "githubId_DESC"
-}
-
 export enum ColumnOrderByInput {
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
@@ -445,7 +338,13 @@ export type SignInVariables = {
 export type SignInMutation = {
   __typename?: "Mutation";
 
-  signIn: boolean;
+  signIn: SignInSignIn;
+};
+
+export type SignInSignIn = {
+  __typename?: "SignInPayload";
+
+  token: string;
 };
 
 import * as ReactApollo from "react-apollo";
@@ -507,7 +406,9 @@ export function GetBoardHOC<TProps, TChildProps = any>(
 }
 export const SignInDocument = gql`
   mutation signIn($githubCode: String!) {
-    signIn(githubCode: $githubCode)
+    signIn(githubCode: $githubCode) {
+      token
+    }
   }
 `;
 export class SignInComponent extends React.Component<

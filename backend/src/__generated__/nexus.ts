@@ -176,6 +176,9 @@ export interface NexusGenRootTypes {
   }
   Mutation: {};
   Query: {};
+  SignInPayload: { // root type
+    token: string; // String!
+  }
   String: string;
   Int: number;
   Float: number;
@@ -210,10 +213,13 @@ export interface NexusGenFieldTypes {
     updatedAt: any; // DateTime!
   }
   Mutation: { // field return type
-    signIn: boolean; // Boolean!
+    signIn: NexusGenRootTypes['SignInPayload']; // SignInPayload!
   }
   Query: { // field return type
     board: NexusGenRootTypes['Board'] | null; // Board
+  }
+  SignInPayload: { // field return type
+    token: string; // String!
   }
 }
 
@@ -246,7 +252,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Board" | "Column" | "Mutation" | "Query";
+export type NexusGenObjectNames = "Board" | "Column" | "Mutation" | "Query" | "SignInPayload";
 
 export type NexusGenInputNames = "BoardWhereInput" | "BoardWhereUniqueInput" | "ColumnWhereInput";
 
