@@ -10,7 +10,6 @@ interface Query {
 
 const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
   if (!router || !router.query || !router.query.id) return <p>Not found</p>
-
   return (
     <Private>
       <GetBoardComponent variables={{ id: router.query.id }}>
@@ -18,7 +17,6 @@ const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
           if (loading) return <p>Loading...</p>
           if (error) return <p>Error: {error.message}</p>
           if (!data || !data.board) return <p>Not found</p>
-
           return (
             <div>
               <Head>
