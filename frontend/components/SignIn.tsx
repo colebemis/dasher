@@ -1,12 +1,16 @@
 import Router from 'next/router'
 import queryString from 'query-string'
+import React from 'react'
 
 const SignIn: React.FC<{}> = () => {
+  const [loading, setLoading] = React.useState(false)
   return (
     <div>
       <h1>Sign in</h1>
       <button
-        onClick={() =>
+        disabled={loading}
+        onClick={() => {
+          setLoading(true)
           // Redirect to request the user's GitHub idenity.
           // Reference: https://git.io/fh5FD
           Router.push(
@@ -15,9 +19,9 @@ const SignIn: React.FC<{}> = () => {
               redirect_uri: process.env.githubRedirectUri,
             })}`,
           )
-        }
+        }}
       >
-        Sign in with GitHub
+        {loading ? 'Loading...' : 'Sign in with GitHub'}
       </button>
     </div>
   )
