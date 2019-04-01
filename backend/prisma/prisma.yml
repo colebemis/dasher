@@ -1,4 +1,4 @@
-endpoint: https://us1.prisma.sh/cole-bemis-8ac4aa/dasher/dev
+endpoint: http://localhost:4466
 datamodel: datamodel.prisma
 
 generate:
@@ -9,8 +9,5 @@ hooks:
   post-deploy:
     - prisma generate
     - npx nexus-prisma-generate --client ./src/__generated__/prisma-client --output ./src/__generated__/nexus-prisma
-    # Known issues:
-    # - `prisma deploy` needs to be run from the backend directory,
-    #   otherwise the relative client and output paths will be incorrect.
-    # - nexus-prisma-generate will fail if the output directory already exists.
-    #   Reference: https://github.com/prisma/nexus-prisma/issues/87
+    # `prisma deploy` needs to be run from the `backend` directory,
+    # otherwise the relative client and output paths will be incorrect.
