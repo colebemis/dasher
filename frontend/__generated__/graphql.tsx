@@ -332,7 +332,7 @@ export type GetBoardColumns = {
 };
 
 export type SignInVariables = {
-  githubCode: string;
+  gitHubCode: string;
 };
 
 export type SignInMutation = {
@@ -405,8 +405,8 @@ export function GetBoardHOC<TProps, TChildProps = any>(
   >(GetBoardDocument, operationOptions);
 }
 export const SignInDocument = gql`
-  mutation signIn($githubCode: String!) {
-    signIn(githubCode: $githubCode) {
+  mutation signIn($gitHubCode: String!) {
+    signIn(gitHubCode: $gitHubCode) {
       token
     }
   }
