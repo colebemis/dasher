@@ -1,9 +1,15 @@
+import dotenv from 'dotenv'
 import { GraphQLServer } from 'graphql-yoga'
-import { stringArg, objectType } from 'nexus'
+import jwt from 'jsonwebtoken'
+import { objectType, stringArg } from 'nexus'
 import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
 import path from 'path'
+import fetchGitHubToken from './lib/fetchGitHubToken'
+import fetchGitHubUser from './lib/fetchGitHubUser'
 import datamodelInfo from './__generated__/nexus-prisma'
 import { prisma } from './__generated__/prisma-client'
+
+dotenv.config()
 
 const Query = prismaObjectType({
   name: 'Query',
@@ -17,13 +23,28 @@ const Mutation = prismaObjectType({
   definition(t) {
     t.field('signIn', {
       type: SignInPayload,
-      args: { githubCode: stringArg({ required: true }) },
+      args: { gitHubCode: stringArg({ required: true }) },
       resolve: async (root, args, context) => {
-        // fetch github token
-        // fetch github user id
-        // find or create user
-        // generate JWT
-        const token = 'fake_token'
+        const gitHubToken = await fetchGitHubToken(args.gitHubCode)
+        const gitHubUser = await fetchGitHubUser(gitHubToken)
+
+        // Find or create the user.
+        const user = await context.prisma.upsertUser({
+          where: { gitHubId: gitHubUser.id },
+          create: { gitHubId: gitHubUser.id },
+          update: {},
+        })
+
+        if (!process.env.APP_SECRET) {
+          throw new Error('APP_SECRET is not defined.')
+        }
+
+        // Generate a JWT.
+        const token = jwt.sign(
+          { userId: user.id, gitHubToken },
+          process.env.APP_SECRET,
+        )
+
         return { token }
       },
     })
