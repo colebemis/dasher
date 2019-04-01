@@ -1,5 +1,5 @@
-mutation signIn($githubCode: String!) {
-  signIn(githubCode: $githubCode) {
+mutation signIn($gitHubCode: String!) {
+  signIn(gitHubCode: $gitHubCode) {
     token
   }
 }

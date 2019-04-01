@@ -24,8 +24,8 @@ Callback.getInitialProps = async context => {
     const { data } = await context.apolloClient.mutate<SignInMutation>({
       mutation: SignInDocument,
       variables: {
-        githubCode: context.query.code,
-        // The API exchanges this `githubCode` for an access token that it
+        gitHubCode: context.query.code,
+        // The API exchanges this `gitHubCode` for an access token that it
         // can use to make requests to GitHub's API on behalf of the user.
         // Reference: https://git.io/fhd1D
       },
