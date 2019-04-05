@@ -7,7 +7,7 @@ import schema from '../schema'
 jest.mock('../lib/fetchGitHubToken')
 jest.mock('../lib/fetchGitHubUser')
 
-// Cast mock functions to their correct types.
+// Cast mock functions to the correct types.
 const fetchGitHubTokenMock = fetchGitHubToken as jest.Mock<
   ReturnType<typeof fetchGitHubToken>
 >
@@ -16,16 +16,16 @@ const fetchGitHubUserMock = fetchGitHubUser as jest.Mock<
 >
 
 describe('signIn', () => {
-  // Save previous environment to restore later.
+  // Save the previous environment to restore later.
   const previousEnv = process.env
 
   beforeEach(() => {
-    // Make a copy of previous environment.
+    // Make a copy of the previous environment.
     process.env = { ...previousEnv }
   })
 
   afterEach(() => {
-    // Restore previous environment.
+    // Restore the previous environment.
     process.env = previousEnv
   })
 
