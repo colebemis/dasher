@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "ts-node-dev --no-notify --transpileOnly src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "lint": "tslint ./**/*.ts",
     "generate:prisma": "prisma generate",
     "deploy:prisma": "prisma deploy"
@@ -11,16 +11,19 @@
   "dependencies": {
     "@types/dotenv": "^6.1.1",
     "@types/graphql": "^14.0.7",
+    "@types/jest": "^24.0.11",
     "@types/jsonwebtoken": "^8.3.2",
     "axios": "^0.18.0",
     "dotenv": "^7.0.0",
     "graphql": "^14.0.2",
     "graphql-yoga": "^1.17.4",
+    "jest": "^24.6.0",
     "jsonwebtoken": "^8.5.1",
     "nexus": "^0.11.6",
     "nexus-prisma": "^0.3.5",
     "prisma": "^1.29.2",
     "prisma-client-lib": "^1.29.2",
+    "ts-jest": "^24.0.1",
     "ts-node-dev": "^1.0.0-pre.32",
     "tslint": "^5.12.0",
     "tslint-config-prettier": "^1.17.0",
