@@ -4,6 +4,8 @@ import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
 import path from 'path'
 import fetchGitHubToken from './lib/fetchGitHubToken'
 import fetchGitHubUser from './lib/fetchGitHubUser'
+import getEnv from './lib/getEnv'
+import { JwtPayload } from './types'
 import datamodelInfo from './__generated__/nexus-prisma'
 import { prisma } from './__generated__/prisma-client'
 
@@ -31,15 +33,9 @@ const Mutation = prismaObjectType({
           update: {},
         })
 
-        if (!process.env.APP_SECRET) {
-          throw new Error('APP_SECRET is not defined.')
-        }
-
         // Generate a JWT.
-        const token = jwt.sign(
-          { userId: user.id, gitHubToken },
-          process.env.APP_SECRET,
-        )
+        const payload: JwtPayload = { userId: user.id, gitHubToken }
+        const token = jwt.sign(payload, getEnv('APP_SECRET'))
 
         return { token }
       },
@@ -61,13 +57,13 @@ const schema = makePrismaSchema({
     client: prisma,
   },
   outputs: {
-    schema: path.join(__dirname, './__generated__/schema.graphql'),
-    typegen: path.join(__dirname, './__generated__/nexus.ts'),
+    schema: path.join(__dirname, '../__generated__/schema.graphql'),
+    typegen: path.join(__dirname, '../__generated__/nexus.ts'),
   },
   typegenAutoConfig: {
     sources: [
       {
-        source: path.join(__dirname, './types.ts'),
+        source: path.join(__dirname, '../types.ts'),
         alias: 'types',
       },
     ],
