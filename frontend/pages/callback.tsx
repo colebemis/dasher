@@ -40,7 +40,7 @@ Callback.getInitialProps = async context => {
     }
   }
 
-  redirect(context, '/')
+  redirect(context, (context.query.from as string) || '/')
   return {}
 }
 
