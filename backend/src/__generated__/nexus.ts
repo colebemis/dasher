@@ -217,6 +217,7 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     board: NexusGenRootTypes['Board'] | null; // Board
+    isSignedIn: boolean; // Boolean!
   }
   SignInPayload: { // field return type
     token: string; // String!

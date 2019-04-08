@@ -1,12 +1,12 @@
 import Private from '../components/Private'
-import { ViewerComponent } from '../__generated__/graphql'
+import { GetViewerComponent } from '../__generated__/graphql'
 
 const Index: React.FC<{}> = () => {
   return (
     <Private>
       <div>
         <h1>Home</h1>
-        <ViewerComponent>
+        <GetViewerComponent>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>
             if (error) return <p>Error: {error.message}</p>
@@ -19,7 +19,7 @@ const Index: React.FC<{}> = () => {
               </div>
             )
           }}
-        </ViewerComponent>
+        </GetViewerComponent>
       </div>
     </Private>
   )
