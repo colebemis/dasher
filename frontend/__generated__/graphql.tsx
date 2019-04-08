@@ -1,158 +1,5 @@
 export type Maybe<T> = T | null;
 
-/** Ways in which lists of issues can be ordered upon return. */
-export interface GitHubIssueOrder {
-  /** The field in which to order issues by. */
-  field: GitHubIssueOrderField;
-  /** The direction in which to order issues by the specified field. */
-  direction: GitHubOrderDirection;
-}
-/** Ways in which to filter lists of issues. */
-export interface GitHubIssueFilters {
-  /** List issues assigned to given name. Pass in `null` for issues with no assigned user, and `*` for issues assigned to any user. */
-  assignee?: Maybe<string>;
-  /** List issues created by given name. */
-  createdBy?: Maybe<string>;
-  /** List issues where the list of label names exist on the issue. */
-  labels?: Maybe<string[]>;
-  /** List issues where the given name is mentioned in the issue. */
-  mentioned?: Maybe<string>;
-  /** List issues by given milestone argument. If an string representation of an integer is passed, it should refer to a milestone by its number field. Pass in `null` for issues with no milestone, and `*` for issues that are assigned to any milestone. */
-  milestone?: Maybe<string>;
-  /** List issues that have been updated at or after the given date. */
-  since?: Maybe<GitHubDateTime>;
-  /** List issues filtered by the list of states given. */
-  states?: Maybe<GitHubIssueState[]>;
-  /** List issues subscribed to by viewer. */
-  viewerSubscribed?: Maybe<boolean>;
-}
-/** Ways in which star connections can be ordered. */
-export interface GitHubStarOrder {
-  /** The field in which to order nodes by. */
-  field: GitHubStarOrderField;
-  /** The direction in which to order nodes. */
-  direction: GitHubOrderDirection;
-}
-/** Ordering options for repository connections */
-export interface GitHubRepositoryOrder {
-  /** The field to order repositories by. */
-  field: GitHubRepositoryOrderField;
-  /** The ordering direction. */
-  direction: GitHubOrderDirection;
-}
-/** Ordering options for user status connections. */
-export interface GitHubUserStatusOrder {
-  /** The field to order user statuses by. */
-  field: GitHubUserStatusOrderField;
-  /** The ordering direction. */
-  direction: GitHubOrderDirection;
-}
-/** Ways in which lists of projects can be ordered upon return. */
-export interface GitHubProjectOrder {
-  /** The field in which to order projects by. */
-  field: GitHubProjectOrderField;
-  /** The direction in which to order projects by the specified field. */
-  direction: GitHubOrderDirection;
-}
-/** Ways in which team connections can be ordered. */
-export interface GitHubTeamOrder {
-  /** The field in which to order nodes by. */
-  field: GitHubTeamOrderField;
-  /** The direction in which to order nodes. */
-  direction: GitHubOrderDirection;
-}
-/** Ordering options for team member connections */
-export interface GitHubTeamMemberOrder {
-  /** The field to order team members by. */
-  field: GitHubTeamMemberOrderField;
-  /** The ordering direction. */
-  direction: GitHubOrderDirection;
-}
-/** Ordering options for team repository connections */
-export interface GitHubTeamRepositoryOrder {
-  /** The field to order repositories by. */
-  field: GitHubTeamRepositoryOrderField;
-  /** The ordering direction. */
-  direction: GitHubOrderDirection;
-}
-/** Ways in which lists of reactions can be ordered upon return. */
-export interface GitHubReactionOrder {
-  /** The field in which to order reactions by. */
-  field: GitHubReactionOrderField;
-  /** The direction in which to order reactions by the specified field. */
-  direction: GitHubOrderDirection;
-}
-/** Ways in which lists of issues can be ordered upon return. */
-export interface GitHubPullRequestOrder {
-  /** The field in which to order pull requests by. */
-  field: GitHubPullRequestOrderField;
-  /** The direction in which to order pull requests by the specified field. */
-  direction: GitHubOrderDirection;
-}
-/** Ordering options for deployment connections */
-export interface GitHubDeploymentOrder {
-  /** The field to order deployments by. */
-  field: GitHubDeploymentOrderField;
-  /** The ordering direction. */
-  direction: GitHubOrderDirection;
-}
-/** Specifies an author for filtering Git commits. */
-export interface GitHubCommitAuthor {
-  /** ID of a User to filter by. If non-null, only commits authored by this user will be returned. This field takes precedence over emails. */
-  id?: Maybe<string>;
-  /** Email addresses to filter by. Commits authored by any of the specified email addresses will be returned. */
-  emails?: Maybe<string[]>;
-}
-/** Ordering options for language connections. */
-export interface GitHubLanguageOrder {
-  /** The field to order languages by. */
-  field: GitHubLanguageOrderField;
-  /** The ordering direction. */
-  direction: GitHubOrderDirection;
-}
-/** Ordering options for milestone connections. */
-export interface GitHubMilestoneOrder {
-  /** The field to order milestones by. */
-  field: GitHubMilestoneOrderField;
-  /** The ordering direction. */
-  direction: GitHubOrderDirection;
-}
-/** Ways in which lists of git refs can be ordered upon return. */
-export interface GitHubRefOrder {
-  /** The field in which to order refs by. */
-  field: GitHubRefOrderField;
-  /** The direction in which to order refs by the specified field. */
-  direction: GitHubOrderDirection;
-}
-/** Ways in which lists of releases can be ordered upon return. */
-export interface GitHubReleaseOrder {
-  /** The field in which to order releases by. */
-  field: GitHubReleaseOrderField;
-  /** The direction in which to order releases by the specified field. */
-  direction: GitHubOrderDirection;
-}
-/** Ordering options for commit contribution connections. */
-export interface GitHubCommitContributionOrder {
-  /** The field by which to order commit contributions. */
-  field: GitHubCommitContributionOrderField;
-  /** The ordering direction. */
-  direction: GitHubOrderDirection;
-}
-/** Ordering options for contribution connections. */
-export interface GitHubContributionOrder {
-  /** The field by which to order contributions. */
-  field: GitHubContributionOrderField;
-  /** The ordering direction. */
-  direction: GitHubOrderDirection;
-}
-/** Ordering options for gist connections */
-export interface GitHubGistOrder {
-  /** The field to order repositories by. */
-  field: GitHubGistOrderField;
-  /** The ordering direction. */
-  direction: GitHubOrderDirection;
-}
-
 export interface BoardWhereUniqueInput {
   id?: Maybe<string>;
 }
@@ -427,6 +274,158 @@ export interface BoardWhereInput {
   OR?: Maybe<BoardWhereInput[]>;
 
   NOT?: Maybe<BoardWhereInput[]>;
+}
+/** Ways in which lists of issues can be ordered upon return. */
+export interface GitHubIssueOrder {
+  /** The field in which to order issues by. */
+  field: GitHubIssueOrderField;
+  /** The direction in which to order issues by the specified field. */
+  direction: GitHubOrderDirection;
+}
+/** Ways in which to filter lists of issues. */
+export interface GitHubIssueFilters {
+  /** List issues assigned to given name. Pass in `null` for issues with no assigned user, and `*` for issues assigned to any user. */
+  assignee?: Maybe<string>;
+  /** List issues created by given name. */
+  createdBy?: Maybe<string>;
+  /** List issues where the list of label names exist on the issue. */
+  labels?: Maybe<string[]>;
+  /** List issues where the given name is mentioned in the issue. */
+  mentioned?: Maybe<string>;
+  /** List issues by given milestone argument. If an string representation of an integer is passed, it should refer to a milestone by its number field. Pass in `null` for issues with no milestone, and `*` for issues that are assigned to any milestone. */
+  milestone?: Maybe<string>;
+  /** List issues that have been updated at or after the given date. */
+  since?: Maybe<GitHubDateTime>;
+  /** List issues filtered by the list of states given. */
+  states?: Maybe<GitHubIssueState[]>;
+  /** List issues subscribed to by viewer. */
+  viewerSubscribed?: Maybe<boolean>;
+}
+/** Ways in which star connections can be ordered. */
+export interface GitHubStarOrder {
+  /** The field in which to order nodes by. */
+  field: GitHubStarOrderField;
+  /** The direction in which to order nodes. */
+  direction: GitHubOrderDirection;
+}
+/** Ordering options for repository connections */
+export interface GitHubRepositoryOrder {
+  /** The field to order repositories by. */
+  field: GitHubRepositoryOrderField;
+  /** The ordering direction. */
+  direction: GitHubOrderDirection;
+}
+/** Ordering options for user status connections. */
+export interface GitHubUserStatusOrder {
+  /** The field to order user statuses by. */
+  field: GitHubUserStatusOrderField;
+  /** The ordering direction. */
+  direction: GitHubOrderDirection;
+}
+/** Ways in which lists of projects can be ordered upon return. */
+export interface GitHubProjectOrder {
+  /** The field in which to order projects by. */
+  field: GitHubProjectOrderField;
+  /** The direction in which to order projects by the specified field. */
+  direction: GitHubOrderDirection;
+}
+/** Ways in which team connections can be ordered. */
+export interface GitHubTeamOrder {
+  /** The field in which to order nodes by. */
+  field: GitHubTeamOrderField;
+  /** The direction in which to order nodes. */
+  direction: GitHubOrderDirection;
+}
+/** Ordering options for team member connections */
+export interface GitHubTeamMemberOrder {
+  /** The field to order team members by. */
+  field: GitHubTeamMemberOrderField;
+  /** The ordering direction. */
+  direction: GitHubOrderDirection;
+}
+/** Ordering options for team repository connections */
+export interface GitHubTeamRepositoryOrder {
+  /** The field to order repositories by. */
+  field: GitHubTeamRepositoryOrderField;
+  /** The ordering direction. */
+  direction: GitHubOrderDirection;
+}
+/** Ways in which lists of reactions can be ordered upon return. */
+export interface GitHubReactionOrder {
+  /** The field in which to order reactions by. */
+  field: GitHubReactionOrderField;
+  /** The direction in which to order reactions by the specified field. */
+  direction: GitHubOrderDirection;
+}
+/** Ways in which lists of issues can be ordered upon return. */
+export interface GitHubPullRequestOrder {
+  /** The field in which to order pull requests by. */
+  field: GitHubPullRequestOrderField;
+  /** The direction in which to order pull requests by the specified field. */
+  direction: GitHubOrderDirection;
+}
+/** Ordering options for deployment connections */
+export interface GitHubDeploymentOrder {
+  /** The field to order deployments by. */
+  field: GitHubDeploymentOrderField;
+  /** The ordering direction. */
+  direction: GitHubOrderDirection;
+}
+/** Specifies an author for filtering Git commits. */
+export interface GitHubCommitAuthor {
+  /** ID of a User to filter by. If non-null, only commits authored by this user will be returned. This field takes precedence over emails. */
+  id?: Maybe<string>;
+  /** Email addresses to filter by. Commits authored by any of the specified email addresses will be returned. */
+  emails?: Maybe<string[]>;
+}
+/** Ordering options for language connections. */
+export interface GitHubLanguageOrder {
+  /** The field to order languages by. */
+  field: GitHubLanguageOrderField;
+  /** The ordering direction. */
+  direction: GitHubOrderDirection;
+}
+/** Ordering options for milestone connections. */
+export interface GitHubMilestoneOrder {
+  /** The field to order milestones by. */
+  field: GitHubMilestoneOrderField;
+  /** The ordering direction. */
+  direction: GitHubOrderDirection;
+}
+/** Ways in which lists of git refs can be ordered upon return. */
+export interface GitHubRefOrder {
+  /** The field in which to order refs by. */
+  field: GitHubRefOrderField;
+  /** The direction in which to order refs by the specified field. */
+  direction: GitHubOrderDirection;
+}
+/** Ways in which lists of releases can be ordered upon return. */
+export interface GitHubReleaseOrder {
+  /** The field in which to order releases by. */
+  field: GitHubReleaseOrderField;
+  /** The direction in which to order releases by the specified field. */
+  direction: GitHubOrderDirection;
+}
+/** Ordering options for commit contribution connections. */
+export interface GitHubCommitContributionOrder {
+  /** The field by which to order commit contributions. */
+  field: GitHubCommitContributionOrderField;
+  /** The ordering direction. */
+  direction: GitHubOrderDirection;
+}
+/** Ordering options for contribution connections. */
+export interface GitHubContributionOrder {
+  /** The field by which to order contributions. */
+  field: GitHubContributionOrderField;
+  /** The ordering direction. */
+  direction: GitHubOrderDirection;
+}
+/** Ordering options for gist connections */
+export interface GitHubGistOrder {
+  /** The field to order repositories by. */
+  field: GitHubGistOrderField;
+  /** The ordering direction. */
+  direction: GitHubOrderDirection;
 }
 /** Autogenerated input type of AcceptTopicSuggestion */
 export interface GitHubAcceptTopicSuggestionInput {
@@ -1160,6 +1159,21 @@ export interface GitHubUpdateTopicsInput {
   /** A unique identifier for the client performing the mutation. */
   clientMutationId?: Maybe<string>;
 }
+
+export enum ColumnOrderByInput {
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+  IndexAsc = "index_ASC",
+  IndexDesc = "index_DESC",
+  NameAsc = "name_ASC",
+  NameDesc = "name_DESC",
+  QueryAsc = "query_ASC",
+  QueryDesc = "query_DESC"
+}
 /** Represents the individual results of a search. */
 export enum GitHubSearchType {
   Issue = "ISSUE",
@@ -1585,21 +1599,6 @@ export enum GitHubIssueTimelineItemsItemType {
   UnpinnedEvent = "UNPINNED_EVENT",
   UnsubscribedEvent = "UNSUBSCRIBED_EVENT"
 }
-
-export enum ColumnOrderByInput {
-  IdAsc = "id_ASC",
-  IdDesc = "id_DESC",
-  CreatedAtAsc = "createdAt_ASC",
-  CreatedAtDesc = "createdAt_DESC",
-  UpdatedAtAsc = "updatedAt_ASC",
-  UpdatedAtDesc = "updatedAt_DESC",
-  IndexAsc = "index_ASC",
-  IndexDesc = "index_DESC",
-  NameAsc = "name_ASC",
-  NameDesc = "name_DESC",
-  QueryAsc = "query_ASC",
-  QueryDesc = "query_DESC"
-}
 /** The possible events to perform on a pull request review. */
 export enum GitHubPullRequestReviewEvent {
   Comment = "COMMENT",
@@ -1685,6 +1684,8 @@ export enum GitHubSecurityAdvisoryOrderField {
   UpdatedAt = "UPDATED_AT"
 }
 
+export type DateTime = any;
+
 /** An RFC 3986, RFC 3987, and RFC 6570 (level 4) compliant URI string. */
 export type GitHubUri = any;
 
@@ -1708,8 +1709,6 @@ export type GitHubGitSshRemote = any;
 
 /** An ISO-8601 encoded date string. */
 export type GitHubDate = any;
-
-export type DateTime = any;
 
 // ====================================================
 // Documents
@@ -1749,6 +1748,32 @@ export type GetBoardColumns = {
   query: Maybe<string>;
 };
 
+export type GetIsSignedInVariables = {};
+
+export type GetIsSignedInQuery = {
+  __typename?: "Query";
+
+  isSignedIn: boolean;
+};
+
+export type GetViewerVariables = {};
+
+export type GetViewerQuery = {
+  __typename?: "Query";
+
+  viewer: GetViewerViewer;
+};
+
+export type GetViewerViewer = {
+  __typename?: "GitHubUser";
+
+  login: string;
+
+  name: Maybe<string>;
+
+  avatarUrl: GitHubUri;
+};
+
 export type SignInVariables = {
   gitHubCode: string;
 };
@@ -1763,24 +1788,6 @@ export type SignInSignIn = {
   __typename?: "SignInPayload";
 
   token: string;
-};
-
-export type ViewerVariables = {};
-
-export type ViewerQuery = {
-  __typename?: "Query";
-
-  viewer: ViewerViewer;
-};
-
-export type ViewerViewer = {
-  __typename?: "GitHubUser";
-
-  login: string;
-
-  name: Maybe<string>;
-
-  avatarUrl: GitHubUri;
 };
 
 import * as ReactApollo from "react-apollo";
@@ -1840,6 +1847,86 @@ export function GetBoardHOC<TProps, TChildProps = any>(
     GetBoardProps<TChildProps>
   >(GetBoardDocument, operationOptions);
 }
+export const GetIsSignedInDocument = gql`
+  query getIsSignedIn {
+    isSignedIn
+  }
+`;
+export class GetIsSignedInComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<GetIsSignedInQuery, GetIsSignedInVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<GetIsSignedInQuery, GetIsSignedInVariables>
+        query={GetIsSignedInDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type GetIsSignedInProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<GetIsSignedInQuery, GetIsSignedInVariables>
+> &
+  TChildProps;
+export function GetIsSignedInHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        GetIsSignedInQuery,
+        GetIsSignedInVariables,
+        GetIsSignedInProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    GetIsSignedInQuery,
+    GetIsSignedInVariables,
+    GetIsSignedInProps<TChildProps>
+  >(GetIsSignedInDocument, operationOptions);
+}
+export const GetViewerDocument = gql`
+  query getViewer {
+    viewer {
+      login
+      name
+      avatarUrl
+    }
+  }
+`;
+export class GetViewerComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<GetViewerQuery, GetViewerVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<GetViewerQuery, GetViewerVariables>
+        query={GetViewerDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type GetViewerProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<GetViewerQuery, GetViewerVariables>
+> &
+  TChildProps;
+export function GetViewerHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        GetViewerQuery,
+        GetViewerVariables,
+        GetViewerProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    GetViewerQuery,
+    GetViewerVariables,
+    GetViewerProps<TChildProps>
+  >(GetViewerDocument, operationOptions);
+}
 export const SignInDocument = gql`
   mutation signIn($gitHubCode: String!) {
     signIn(gitHubCode: $gitHubCode) {
@@ -1883,46 +1970,4 @@ export function SignInHOC<TProps, TChildProps = any>(
     SignInVariables,
     SignInProps<TChildProps>
   >(SignInDocument, operationOptions);
-}
-export const ViewerDocument = gql`
-  query viewer {
-    viewer {
-      login
-      name
-      avatarUrl
-    }
-  }
-`;
-export class ViewerComponent extends React.Component<
-  Partial<ReactApollo.QueryProps<ViewerQuery, ViewerVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Query<ViewerQuery, ViewerVariables>
-        query={ViewerDocument}
-        {...(this as any)["props"] as any}
-      />
-    );
-  }
-}
-export type ViewerProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<ViewerQuery, ViewerVariables>
-> &
-  TChildProps;
-export function ViewerHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        ViewerQuery,
-        ViewerVariables,
-        ViewerProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    ViewerQuery,
-    ViewerVariables,
-    ViewerProps<TChildProps>
-  >(ViewerDocument, operationOptions);
 }
