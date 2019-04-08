@@ -13,6 +13,19 @@ const Query = prismaObjectType({
   name: 'Query',
   definition(t) {
     t.prismaFields(['board'])
+    t.boolean('isSignedIn', {
+      resolve: (root, args, context) => {
+        try {
+          const { token } = context.request.cookies
+          // `jwt.verify()` will throw an error if the value stored in
+          // the `token` cookie is undefined or invalid.
+          jwt.verify(token, getEnv('APP_SECRET'))
+          return true
+        } catch {
+          return false
+        }
+      },
+    })
   },
 })
 

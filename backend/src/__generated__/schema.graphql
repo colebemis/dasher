@@ -188,6 +188,7 @@ type Mutation {
 
 type Query {
   board(where: BoardWhereUniqueInput!): Board
+  isSignedIn: Boolean!
 }
 
 type SignInPayload {
