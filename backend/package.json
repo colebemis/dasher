@@ -9,13 +9,16 @@
     "deploy:prisma": "prisma deploy"
   },
   "dependencies": {
+    "@types/cookie-parser": "^1.4.1",
     "@types/dotenv": "^6.1.1",
     "@types/graphql": "^14.0.7",
     "@types/jest": "^24.0.11",
     "@types/jsonwebtoken": "^8.3.2",
     "axios": "^0.18.0",
+    "cookie-parser": "^1.4.4",
     "dotenv": "^7.0.0",
     "graphql": "^14.0.2",
+    "graphql-tools": "^4.0.4",
     "graphql-yoga": "^1.17.4",
     "jest": "^24.6.0",
     "jsonwebtoken": "^8.5.1",
