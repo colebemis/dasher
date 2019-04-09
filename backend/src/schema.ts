@@ -16,9 +16,10 @@ const Query = prismaObjectType({
     t.boolean('isSignedIn', {
       resolve: (root, args, context) => {
         try {
+          // It should be suffcient to check that the token exists and
+          // was properly signed. We are not explicitly checking the
+          // contents of the payload.
           const { token } = context.request.cookies
-          // `jwt.verify()` will throw an error if the value stored in
-          // the `token` cookie is undefined or invalid.
           jwt.verify(token, getEnv('APP_SECRET'))
           return true
         } catch {
