@@ -4,8 +4,9 @@ import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
 import path from 'path'
 import fetchGitHubToken from './lib/fetchGitHubToken'
 import fetchGitHubUser from './lib/fetchGitHubUser'
+import getTokenPayload from './lib/getTokenPayload'
 import getEnv from './lib/getEnv'
-import { JwtPayload } from './types'
+import { TokenPayload } from './types'
 import datamodelInfo from './__generated__/nexus-prisma'
 import { prisma } from './__generated__/prisma-client'
 
@@ -18,13 +19,20 @@ const Query = prismaObjectType({
         try {
           // It should be suffcient to check that the token exists and
           // was properly signed. We are not explicitly checking the
-          // contents of the payload.
-          const { token } = context.request.cookies
-          jwt.verify(token, getEnv('APP_SECRET'))
+          // contents of the payload. getTokenPayload() will throw
+          // an error if the token is undefined or invalid.
+          getTokenPayload(context)
           return true
         } catch {
           return false
         }
+      },
+    })
+    t.field('signedInUser', {
+      type: User,
+      resolve: (root, args, context) => {
+        const { userId } = getTokenPayload(context)
+        return context.prisma.user({ id: userId })
       },
     })
   },
@@ -47,8 +55,8 @@ const Mutation = prismaObjectType({
           update: {},
         })
 
-        // Generate a JWT.
-        const payload: JwtPayload = { userId: user.id, gitHubToken }
+        // Generate a token.
+        const payload: TokenPayload = { userId: user.id, gitHubToken }
         const token = jwt.sign(payload, getEnv('APP_SECRET'))
 
         return { token }
@@ -70,8 +78,15 @@ const SignInPayload = objectType({
   },
 })
 
+const User = prismaObjectType({
+  name: 'User',
+  definition(t) {
+    t.prismaFields(['*'])
+  },
+})
+
 const schema = makePrismaSchema({
-  types: [Query, Mutation, SignInPayload],
+  types: [Query, Mutation, SignInPayload, User],
   prisma: {
     datamodelInfo,
     client: prisma,

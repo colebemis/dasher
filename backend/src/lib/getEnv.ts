@@ -1,6 +1,6 @@
 function getEnv(name: string) {
   const value = process.env[name]
-  if (!value) throw new Error(`${name} is not defined.`)
+  if (!value) throw new Error(`${name} is undefined.`)
   return value
 }
 

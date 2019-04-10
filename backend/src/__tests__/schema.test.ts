@@ -50,6 +50,50 @@ describe('isSignedIn', () => {
   })
 })
 
+describe('signedInUser', () => {
+  test('returns signed-in user', async () => {
+    process.env.APP_SECRET = 'fake_app_secret'
+
+    const user = { id: 'fake_user_id' }
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET)
+    const document = `query { signedInUser { id } }`
+    const context = {
+      request: { cookies: { token } },
+      prisma: { user: () => user },
+    }
+    const result = await graphql(schema, document, null, context, {})
+
+    expect(result.data).toEqual({ signedInUser: { id: user.id } })
+  })
+
+  test('returns an error if token is invalid', async () => {
+    const user = { id: 'fake_user_id' }
+    const token = 'bad_token'
+    const document = `query { signedInUser { id } }`
+    const context = {
+      request: { cookies: { token } },
+      prisma: { user: () => user },
+    }
+    const result = await graphql(schema, document, null, context, {})
+
+    expect(result.data).toBeFalsy()
+    expect(result.errors).toBeTruthy()
+  })
+
+  test('returns an error if token is undefined', async () => {
+    const user = { id: 'fake_user_id' }
+    const document = `query { signedInUser { id } }`
+    const context = {
+      request: { cookies: {} },
+      prisma: { user: () => user },
+    }
+    const result = await graphql(schema, document, null, context, {})
+
+    expect(result.data).toBeFalsy()
+    expect(result.errors).toBeTruthy()
+  })
+})
+
 describe('signIn', () => {
   // Cast mock functions to the correct types.
   const fetchGitHubTokenMock = fetchGitHubToken as jest.Mock<

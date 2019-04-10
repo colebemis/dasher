@@ -190,8 +190,16 @@ type Mutation {
 type Query {
   board(where: BoardWhereUniqueInput!): Board
   isSignedIn: Boolean!
+  signedInUser: User!
 }
 
 type SignInPayload {
   token: String!
+}
+
+type User {
+  createdAt: DateTime!
+  gitHubId: ID!
+  id: ID!
+  updatedAt: DateTime!
 }

@@ -19,7 +19,7 @@ Callback.getInitialProps = async context => {
 
   // Server only
   if (context.res) {
-    // The API generates a JWT that can be passed between
+    // The API generates a token that can be passed between
     // the frontend and backend to authenticate requests.
     const { data } = await context.apolloClient.mutate<SignInMutation>({
       mutation: SignInDocument,
@@ -32,7 +32,7 @@ Callback.getInitialProps = async context => {
     })
 
     if (data) {
-      // Store the JWT in an httpOnly cookie.
+      // Store the token in an httpOnly cookie.
       context.res.setHeader(
         'Set-Cookie',
         cookie.serialize('token', data.signIn.token, { httpOnly: true }),

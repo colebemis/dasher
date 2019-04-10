@@ -1,9 +1,8 @@
 import axios from 'axios'
 import { DocumentNode, print } from 'graphql'
 import { introspectSchema, makeRemoteExecutableSchema } from 'graphql-tools'
-import jwt from 'jsonwebtoken'
-import { JwtPayload } from '../types'
 import getEnv from './getEnv'
+import getTokenPayload from './getTokenPayload'
 
 interface Operation {
   query: DocumentNode
@@ -40,15 +39,14 @@ async function introspectionFetcher(operation: Operation) {
 }
 
 async function fetcher(operation: Operation) {
-  if (!operation.context) throw new Error('context is not defined.')
-  const { token } = operation.context.graphqlContext.request.cookies
-  const payload = jwt.verify(token, getEnv('APP_SECRET')) as JwtPayload
+  if (!operation.context) throw new Error('context is undefined.')
+  const { gitHubToken } = getTokenPayload(operation.context.graphqlContext)
   const response = await axios({
     method: 'post',
     url: 'https://api.github.com/graphql',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${payload.gitHubToken}`,
+      Authorization: `Bearer ${gitHubToken}`,
     },
     data: {
       query: print(operation.query),
