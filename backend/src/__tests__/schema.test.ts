@@ -123,3 +123,15 @@ describe('signIn', () => {
     expect(result.errors).toBeTruthy()
   })
 })
+
+describe('signOut', () => {
+  test('clears token from response', async () => {
+    const clearCookie = jest.fn()
+    const document = `mutation { signOut }`
+    const context = { response: { clearCookie } }
+    const result = await graphql(schema, document, null, context, {})
+
+    expect(result.data).toEqual({ signOut: true })
+    expect(clearCookie).toHaveBeenCalledWith('token')
+  })
+})

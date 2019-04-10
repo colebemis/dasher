@@ -1790,6 +1790,14 @@ export type SignInSignIn = {
   token: string;
 };
 
+export type SignOutVariables = {};
+
+export type SignOutMutation = {
+  __typename?: "Mutation";
+
+  signOut: boolean;
+};
+
 import * as ReactApollo from "react-apollo";
 import * as React from "react";
 
@@ -1970,4 +1978,46 @@ export function SignInHOC<TProps, TChildProps = any>(
     SignInVariables,
     SignInProps<TChildProps>
   >(SignInDocument, operationOptions);
+}
+export const SignOutDocument = gql`
+  mutation signOut {
+    signOut
+  }
+`;
+export class SignOutComponent extends React.Component<
+  Partial<ReactApollo.MutationProps<SignOutMutation, SignOutVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<SignOutMutation, SignOutVariables>
+        mutation={SignOutDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type SignOutProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<SignOutMutation, SignOutVariables>
+> &
+  TChildProps;
+export type SignOutMutationFn = ReactApollo.MutationFn<
+  SignOutMutation,
+  SignOutVariables
+>;
+export function SignOutHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        SignOutMutation,
+        SignOutVariables,
+        SignOutProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    SignOutMutation,
+    SignOutVariables,
+    SignOutProps<TChildProps>
+  >(SignOutDocument, operationOptions);
 }
