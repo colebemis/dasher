@@ -3,7 +3,7 @@ import { ContextParameters } from 'graphql-yoga/dist/types'
 
 export type Context = ContextParameters & { prisma: Prisma }
 
-export interface JwtPayload {
+export interface TokenPayload {
   userId: string
   gitHubToken: string
 }

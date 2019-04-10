@@ -179,6 +179,12 @@ export interface NexusGenRootTypes {
   SignInPayload: { // root type
     token: string; // String!
   }
+  User: { // root type
+    createdAt: any; // DateTime!
+    gitHubId: string; // ID!
+    id: string; // ID!
+    updatedAt: any; // DateTime!
+  }
   String: string;
   Int: number;
   Float: number;
@@ -219,9 +225,16 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     board: NexusGenRootTypes['Board'] | null; // Board
     isSignedIn: boolean; // Boolean!
+    signedInUser: NexusGenRootTypes['User']; // User!
   }
   SignInPayload: { // field return type
     token: string; // String!
+  }
+  User: { // field return type
+    createdAt: any; // DateTime!
+    gitHubId: string; // ID!
+    id: string; // ID!
+    updatedAt: any; // DateTime!
   }
 }
 
@@ -254,7 +267,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Board" | "Column" | "Mutation" | "Query" | "SignInPayload";
+export type NexusGenObjectNames = "Board" | "Column" | "Mutation" | "Query" | "SignInPayload" | "User";
 
 export type NexusGenInputNames = "BoardWhereInput" | "BoardWhereUniqueInput" | "ColumnWhereInput";
 
