@@ -1,11 +1,18 @@
 import Private from '../components/Private'
-import { GetViewerComponent } from '../__generated__/graphql'
+import {
+  GetViewerComponent,
+  SignOutComponent,
+  GetIsSignedInDocument,
+} from '../__generated__/graphql'
 
 const Index: React.FC<{}> = () => {
   return (
     <Private>
       <div>
         <h1>Home</h1>
+        <SignOutComponent refetchQueries={[{ query: GetIsSignedInDocument }]}>
+          {signOut => <button onClick={() => signOut()}>Sign out</button>}
+        </SignOutComponent>
         <GetViewerComponent>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>

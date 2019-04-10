@@ -184,6 +184,7 @@ scalar DateTime
 
 type Mutation {
   signIn(gitHubCode: String!): SignInPayload!
+  signOut: Boolean!
 }
 
 type Query {

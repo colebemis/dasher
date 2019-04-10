@@ -214,6 +214,7 @@ export interface NexusGenFieldTypes {
   }
   Mutation: { // field return type
     signIn: NexusGenRootTypes['SignInPayload']; // SignInPayload!
+    signOut: boolean; // Boolean!
   }
   Query: { // field return type
     board: NexusGenRootTypes['Board'] | null; // Board

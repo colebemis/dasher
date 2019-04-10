@@ -54,6 +54,12 @@ const Mutation = prismaObjectType({
         return { token }
       },
     })
+    t.boolean('signOut', {
+      resolve: (root, args, context) => {
+        context.response.clearCookie('token')
+        return true
+      },
+    })
   },
 })
 
