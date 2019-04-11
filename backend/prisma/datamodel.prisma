@@ -3,23 +3,25 @@ type User {
   createdAt: DateTime!
   updatedAt: DateTime!
   gitHubId: ID! @unique
+  boards: [Board!]! @relation(name: "UserBoards", onDelete: CASCADE)
 }
 
 type Board {
   id: ID! @unique
   createdAt: DateTime!
   updatedAt: DateTime!
-  name: String
-  query: String
-  columns: [Column!]! @relation(name: "BoardToColumns", onDelete: CASCADE)
+  owner: User! @relation(name: "UserBoards")
+  name: String!
+  query: String!
+  columns: [Column!]! @relation(name: "BoardColumns", onDelete: CASCADE)
 }
 
 type Column {
   id: ID! @unique
   createdAt: DateTime!
   updatedAt: DateTime!
-  board: Board! @relation(name: "BoardToColumns")
+  board: Board! @relation(name: "BoardColumns")
   index: Int!
-  name: String
-  query: String
+  name: String!
+  query: String!
 }

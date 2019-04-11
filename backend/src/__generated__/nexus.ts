@@ -54,6 +54,7 @@ export interface NexusGenInputs {
     name_starts_with?: string | null; // String
     NOT?: NexusGenInputs['BoardWhereInput'][] | null; // [BoardWhereInput!]
     OR?: NexusGenInputs['BoardWhereInput'][] | null; // [BoardWhereInput!]
+    owner?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     query?: string | null; // String
     query_contains?: string | null; // String
     query_ends_with?: string | null; // String
@@ -152,9 +153,62 @@ export interface NexusGenInputs {
     updatedAt_not?: any | null; // DateTime
     updatedAt_not_in?: any[] | null; // [DateTime!]
   }
+  UserWhereInput: { // input type
+    AND?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
+    boards_every?: NexusGenInputs['BoardWhereInput'] | null; // BoardWhereInput
+    boards_none?: NexusGenInputs['BoardWhereInput'] | null; // BoardWhereInput
+    boards_some?: NexusGenInputs['BoardWhereInput'] | null; // BoardWhereInput
+    createdAt?: any | null; // DateTime
+    createdAt_gt?: any | null; // DateTime
+    createdAt_gte?: any | null; // DateTime
+    createdAt_in?: any[] | null; // [DateTime!]
+    createdAt_lt?: any | null; // DateTime
+    createdAt_lte?: any | null; // DateTime
+    createdAt_not?: any | null; // DateTime
+    createdAt_not_in?: any[] | null; // [DateTime!]
+    gitHubId?: string | null; // ID
+    gitHubId_contains?: string | null; // ID
+    gitHubId_ends_with?: string | null; // ID
+    gitHubId_gt?: string | null; // ID
+    gitHubId_gte?: string | null; // ID
+    gitHubId_in?: string[] | null; // [ID!]
+    gitHubId_lt?: string | null; // ID
+    gitHubId_lte?: string | null; // ID
+    gitHubId_not?: string | null; // ID
+    gitHubId_not_contains?: string | null; // ID
+    gitHubId_not_ends_with?: string | null; // ID
+    gitHubId_not_in?: string[] | null; // [ID!]
+    gitHubId_not_starts_with?: string | null; // ID
+    gitHubId_starts_with?: string | null; // ID
+    id?: string | null; // ID
+    id_contains?: string | null; // ID
+    id_ends_with?: string | null; // ID
+    id_gt?: string | null; // ID
+    id_gte?: string | null; // ID
+    id_in?: string[] | null; // [ID!]
+    id_lt?: string | null; // ID
+    id_lte?: string | null; // ID
+    id_not?: string | null; // ID
+    id_not_contains?: string | null; // ID
+    id_not_ends_with?: string | null; // ID
+    id_not_in?: string[] | null; // [ID!]
+    id_not_starts_with?: string | null; // ID
+    id_starts_with?: string | null; // ID
+    NOT?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
+    OR?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
+    updatedAt?: any | null; // DateTime
+    updatedAt_gt?: any | null; // DateTime
+    updatedAt_gte?: any | null; // DateTime
+    updatedAt_in?: any[] | null; // [DateTime!]
+    updatedAt_lt?: any | null; // DateTime
+    updatedAt_lte?: any | null; // DateTime
+    updatedAt_not?: any | null; // DateTime
+    updatedAt_not_in?: any[] | null; // [DateTime!]
+  }
 }
 
 export interface NexusGenEnums {
+  BoardOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "query_ASC" | "query_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
   ColumnOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "index_ASC" | "index_DESC" | "name_ASC" | "name_DESC" | "query_ASC" | "query_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
 }
 
@@ -162,16 +216,16 @@ export interface NexusGenRootTypes {
   Board: { // root type
     createdAt: any; // DateTime!
     id: string; // ID!
-    name?: string | null; // String
-    query?: string | null; // String
+    name: string; // String!
+    query: string; // String!
     updatedAt: any; // DateTime!
   }
   Column: { // root type
     createdAt: any; // DateTime!
     id: string; // ID!
     index: number; // Int!
-    name?: string | null; // String
-    query?: string | null; // String
+    name: string; // String!
+    query: string; // String!
     updatedAt: any; // DateTime!
   }
   Mutation: {};
@@ -197,6 +251,8 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   BoardWhereInput: NexusGenInputs['BoardWhereInput'];
   BoardWhereUniqueInput: NexusGenInputs['BoardWhereUniqueInput'];
   ColumnWhereInput: NexusGenInputs['ColumnWhereInput'];
+  UserWhereInput: NexusGenInputs['UserWhereInput'];
+  BoardOrderByInput: NexusGenEnums['BoardOrderByInput'];
   ColumnOrderByInput: NexusGenEnums['ColumnOrderByInput'];
 }
 
@@ -205,8 +261,9 @@ export interface NexusGenFieldTypes {
     columns: NexusGenRootTypes['Column'][] | null; // [Column!]
     createdAt: any; // DateTime!
     id: string; // ID!
-    name: string | null; // String
-    query: string | null; // String
+    name: string; // String!
+    owner: NexusGenRootTypes['User']; // User!
+    query: string; // String!
     updatedAt: any; // DateTime!
   }
   Column: { // field return type
@@ -214,8 +271,8 @@ export interface NexusGenFieldTypes {
     createdAt: any; // DateTime!
     id: string; // ID!
     index: number; // Int!
-    name: string | null; // String
-    query: string | null; // String
+    name: string; // String!
+    query: string; // String!
     updatedAt: any; // DateTime!
   }
   Mutation: { // field return type
@@ -231,6 +288,7 @@ export interface NexusGenFieldTypes {
     token: string; // String!
   }
   User: { // field return type
+    boards: NexusGenRootTypes['Board'][] | null; // [Board!]
     createdAt: any; // DateTime!
     gitHubId: string; // ID!
     id: string; // ID!
@@ -260,6 +318,17 @@ export interface NexusGenArgTypes {
       where: NexusGenInputs['BoardWhereUniqueInput']; // BoardWhereUniqueInput!
     }
   }
+  User: {
+    boards: { // args
+      after?: string | null; // String
+      before?: string | null; // String
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenEnums['BoardOrderByInput'] | null; // BoardOrderByInput
+      skip?: number | null; // Int
+      where?: NexusGenInputs['BoardWhereInput'] | null; // BoardWhereInput
+    }
+  }
 }
 
 export interface NexusGenAbstractResolveReturnTypes {
@@ -269,9 +338,9 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Board" | "Column" | "Mutation" | "Query" | "SignInPayload" | "User";
 
-export type NexusGenInputNames = "BoardWhereInput" | "BoardWhereUniqueInput" | "ColumnWhereInput";
+export type NexusGenInputNames = "BoardWhereInput" | "BoardWhereUniqueInput" | "ColumnWhereInput" | "UserWhereInput";
 
-export type NexusGenEnumNames = "ColumnOrderByInput";
+export type NexusGenEnumNames = "BoardOrderByInput" | "ColumnOrderByInput";
 
 export type NexusGenInterfaceNames = never;
 
