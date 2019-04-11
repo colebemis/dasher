@@ -11,7 +11,6 @@ const Index: React.FC<{}> = () => {
   return (
     <Private>
       <div>
-        <h1>Home</h1>
         <SignOutComponent refetchQueries={[{ query: GetIsSignedInDocument }]}>
           {signOut => <button onClick={() => signOut()}>Sign out</button>}
         </SignOutComponent>
@@ -29,6 +28,7 @@ const Index: React.FC<{}> = () => {
             )
           }}
         </GetViewerComponent>
+        <h1>Boards</h1>
         <GetBoardsComponent>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>
