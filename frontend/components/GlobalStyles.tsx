@@ -1,4 +1,5 @@
 import { Global } from '@emotion/core'
+import theme from '../theme'
 
 const GlobalStyles: React.FC<{}> = () => {
   return (
@@ -7,7 +8,10 @@ const GlobalStyles: React.FC<{}> = () => {
         body: {
           boxSizing: 'border-box',
           margin: 0,
-          fontFamily: 'system-ui, sans-serif',
+          fontFamily: theme.fonts.sansSerif,
+          lineHeight: theme.lineHeights.normal,
+          color: theme.colors.gray[9],
+          backgroundColor: theme.colors.gray[0],
         },
         '*, *::before, *::before': {
           boxSizing: 'inherit',
