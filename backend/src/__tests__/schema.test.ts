@@ -55,25 +55,23 @@ describe('signedInUser', () => {
     process.env.APP_SECRET = 'fake_app_secret'
 
     const user = { id: 'fake_user_id' }
+    const getUser = jest.fn().mockReturnValue(user)
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET)
     const document = `query { signedInUser { id } }`
     const context = {
       request: { cookies: { token } },
-      prisma: { user: () => user },
+      prisma: { user: getUser },
     }
     const result = await graphql(schema, document, null, context, {})
 
+    expect(getUser).toHaveBeenCalledWith({ id: user.id })
     expect(result.data).toEqual({ signedInUser: { id: user.id } })
   })
 
   test('returns an error if token is invalid', async () => {
-    const user = { id: 'fake_user_id' }
     const token = 'bad_token'
     const document = `query { signedInUser { id } }`
-    const context = {
-      request: { cookies: { token } },
-      prisma: { user: () => user },
-    }
+    const context = { request: { cookies: { token } } }
     const result = await graphql(schema, document, null, context, {})
 
     expect(result.data).toBeFalsy()
@@ -81,12 +79,8 @@ describe('signedInUser', () => {
   })
 
   test('returns an error if token is undefined', async () => {
-    const user = { id: 'fake_user_id' }
     const document = `query { signedInUser { id } }`
-    const context = {
-      request: { cookies: {} },
-      prisma: { user: () => user },
-    }
+    const context = { request: { cookies: {} } }
     const result = await graphql(schema, document, null, context, {})
 
     expect(result.data).toBeFalsy()
@@ -175,7 +169,7 @@ describe('signOut', () => {
     const context = { response: { clearCookie } }
     const result = await graphql(schema, document, null, context, {})
 
-    expect(result.data).toEqual({ signOut: true })
     expect(clearCookie).toHaveBeenCalledWith('token')
+    expect(result.data).toEqual({ signOut: true })
   })
 })
