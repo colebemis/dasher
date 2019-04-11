@@ -16,12 +16,12 @@ export interface NexusPrismaTypes {
     fields: {
       Query: QueryObject
       User: UserObject
+      Board: BoardObject
+      Column: ColumnObject
       UserConnection: UserConnectionObject
       PageInfo: PageInfoObject
       UserEdge: UserEdgeObject
       AggregateUser: AggregateUserObject
-      Board: BoardObject
-      Column: ColumnObject
       BoardConnection: BoardConnectionObject
       BoardEdge: BoardEdgeObject
       AggregateBoard: AggregateBoardObject
@@ -41,12 +41,12 @@ export interface NexusPrismaTypes {
     fieldsDetails: {
       Query: QueryFieldDetails
       User: UserFieldDetails
+      Board: BoardFieldDetails
+      Column: ColumnFieldDetails
       UserConnection: UserConnectionFieldDetails
       PageInfo: PageInfoFieldDetails
       UserEdge: UserEdgeFieldDetails
       AggregateUser: AggregateUserFieldDetails
-      Board: BoardFieldDetails
-      Column: ColumnFieldDetails
       BoardConnection: BoardConnectionFieldDetails
       BoardEdge: BoardEdgeFieldDetails
       AggregateBoard: AggregateBoardFieldDetails
@@ -67,18 +67,20 @@ export interface NexusPrismaTypes {
   inputTypes: {
     fields: {
       UserWhereUniqueInput: UserWhereUniqueInputInputObject
-      UserWhereInput: UserWhereInputInputObject
-      BoardWhereUniqueInput: BoardWhereUniqueInputInputObject
-      ColumnWhereInput: ColumnWhereInputInputObject
       BoardWhereInput: BoardWhereInputInputObject
+      UserWhereInput: UserWhereInputInputObject
+      ColumnWhereInput: ColumnWhereInputInputObject
+      BoardWhereUniqueInput: BoardWhereUniqueInputInputObject
       ColumnWhereUniqueInput: ColumnWhereUniqueInputInputObject
       UserCreateInput: UserCreateInputInputObject
-      UserUpdateInput: UserUpdateInputInputObject
-      UserUpdateManyMutationInput: UserUpdateManyMutationInputInputObject
-      BoardCreateInput: BoardCreateInputInputObject
+      BoardCreateManyWithoutOwnerInput: BoardCreateManyWithoutOwnerInputInputObject
+      BoardCreateWithoutOwnerInput: BoardCreateWithoutOwnerInputInputObject
       ColumnCreateManyWithoutBoardInput: ColumnCreateManyWithoutBoardInputInputObject
       ColumnCreateWithoutBoardInput: ColumnCreateWithoutBoardInputInputObject
-      BoardUpdateInput: BoardUpdateInputInputObject
+      UserUpdateInput: UserUpdateInputInputObject
+      BoardUpdateManyWithoutOwnerInput: BoardUpdateManyWithoutOwnerInputInputObject
+      BoardUpdateWithWhereUniqueWithoutOwnerInput: BoardUpdateWithWhereUniqueWithoutOwnerInputInputObject
+      BoardUpdateWithoutOwnerDataInput: BoardUpdateWithoutOwnerDataInputInputObject
       ColumnUpdateManyWithoutBoardInput: ColumnUpdateManyWithoutBoardInputInputObject
       ColumnUpdateWithWhereUniqueWithoutBoardInput: ColumnUpdateWithWhereUniqueWithoutBoardInputInputObject
       ColumnUpdateWithoutBoardDataInput: ColumnUpdateWithoutBoardDataInputInputObject
@@ -86,6 +88,18 @@ export interface NexusPrismaTypes {
       ColumnScalarWhereInput: ColumnScalarWhereInputInputObject
       ColumnUpdateManyWithWhereNestedInput: ColumnUpdateManyWithWhereNestedInputInputObject
       ColumnUpdateManyDataInput: ColumnUpdateManyDataInputInputObject
+      BoardUpsertWithWhereUniqueWithoutOwnerInput: BoardUpsertWithWhereUniqueWithoutOwnerInputInputObject
+      BoardScalarWhereInput: BoardScalarWhereInputInputObject
+      BoardUpdateManyWithWhereNestedInput: BoardUpdateManyWithWhereNestedInputInputObject
+      BoardUpdateManyDataInput: BoardUpdateManyDataInputInputObject
+      UserUpdateManyMutationInput: UserUpdateManyMutationInputInputObject
+      BoardCreateInput: BoardCreateInputInputObject
+      UserCreateOneWithoutBoardsInput: UserCreateOneWithoutBoardsInputInputObject
+      UserCreateWithoutBoardsInput: UserCreateWithoutBoardsInputInputObject
+      BoardUpdateInput: BoardUpdateInputInputObject
+      UserUpdateOneRequiredWithoutBoardsInput: UserUpdateOneRequiredWithoutBoardsInputInputObject
+      UserUpdateWithoutBoardsDataInput: UserUpdateWithoutBoardsDataInputInputObject
+      UserUpsertWithoutBoardsInput: UserUpsertWithoutBoardsInputInputObject
       BoardUpdateManyMutationInput: BoardUpdateManyMutationInputInputObject
       ColumnCreateInput: ColumnCreateInputInputObject
       BoardCreateOneWithoutColumnsInput: BoardCreateOneWithoutColumnsInputInputObject
@@ -101,9 +115,9 @@ export interface NexusPrismaTypes {
     }
   }
   enumTypes: {
-    UserOrderByInput: UserOrderByInputValues,
-    ColumnOrderByInput: ColumnOrderByInputValues,
     BoardOrderByInput: BoardOrderByInputValues,
+    ColumnOrderByInput: ColumnOrderByInputValues,
+    UserOrderByInput: UserOrderByInputValues,
     MutationType: MutationTypeValues,
   }
 }
@@ -319,15 +333,24 @@ type UserObject =
   | { name: 'createdAt', args?: [] | false, alias?: string  } 
   | { name: 'updatedAt', args?: [] | false, alias?: string  } 
   | { name: 'gitHubId', args?: [] | false, alias?: string  } 
+  | { name: 'boards', args?: UserBoardsArgs[] | false, alias?: string  } 
 
 type UserFields =
   | 'id'
   | 'createdAt'
   | 'updatedAt'
   | 'gitHubId'
+  | 'boards'
 
 
-
+type UserBoardsArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
   
 
 export interface UserFieldDetails {
@@ -357,6 +380,211 @@ export interface UserFieldDetails {
   }
   gitHubId: {
     type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  boards: {
+    type: 'Board'
+    args: Record<UserBoardsArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"User">,
+      args: { where?: BoardWhereInput | null, orderBy?: prisma.BoardOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Board[]> | prisma.Board[]
+  }
+}
+  
+
+// Types for Board
+
+type BoardObject =
+  | BoardFields
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'createdAt', args?: [] | false, alias?: string  } 
+  | { name: 'updatedAt', args?: [] | false, alias?: string  } 
+  | { name: 'owner', args?: [] | false, alias?: string  } 
+  | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'query', args?: [] | false, alias?: string  } 
+  | { name: 'columns', args?: BoardColumnsArgs[] | false, alias?: string  } 
+
+type BoardFields =
+  | 'id'
+  | 'createdAt'
+  | 'updatedAt'
+  | 'owner'
+  | 'name'
+  | 'query'
+  | 'columns'
+
+
+type BoardColumnsArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+  
+
+export interface BoardFieldDetails {
+  id: {
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  createdAt: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  updatedAt: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  owner: {
+    type: 'User'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Board">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.User> | prisma.User
+  }
+  name: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  query: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  columns: {
+    type: 'Column'
+    args: Record<BoardColumnsArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Board">,
+      args: { where?: ColumnWhereInput | null, orderBy?: prisma.ColumnOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Column[]> | prisma.Column[]
+  }
+}
+  
+
+// Types for Column
+
+type ColumnObject =
+  | ColumnFields
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'createdAt', args?: [] | false, alias?: string  } 
+  | { name: 'updatedAt', args?: [] | false, alias?: string  } 
+  | { name: 'board', args?: [] | false, alias?: string  } 
+  | { name: 'index', args?: [] | false, alias?: string  } 
+  | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'query', args?: [] | false, alias?: string  } 
+
+type ColumnFields =
+  | 'id'
+  | 'createdAt'
+  | 'updatedAt'
+  | 'board'
+  | 'index'
+  | 'name'
+  | 'query'
+
+
+
+  
+
+export interface ColumnFieldDetails {
+  id: {
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  createdAt: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  updatedAt: {
+    type: 'DateTime'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  board: {
+    type: 'Board'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Column">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Board> | prisma.Board
+  }
+  index: {
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  name: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  query: {
+    type: 'String'
     args: {}
     description: string
     list: undefined
@@ -541,183 +769,6 @@ export interface AggregateUserFieldDetails {
     description: string
     list: undefined
     nullable: false
-    resolve: undefined
-  }
-}
-  
-
-// Types for Board
-
-type BoardObject =
-  | BoardFields
-  | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'createdAt', args?: [] | false, alias?: string  } 
-  | { name: 'updatedAt', args?: [] | false, alias?: string  } 
-  | { name: 'name', args?: [] | false, alias?: string  } 
-  | { name: 'query', args?: [] | false, alias?: string  } 
-  | { name: 'columns', args?: BoardColumnsArgs[] | false, alias?: string  } 
-
-type BoardFields =
-  | 'id'
-  | 'createdAt'
-  | 'updatedAt'
-  | 'name'
-  | 'query'
-  | 'columns'
-
-
-type BoardColumnsArgs =
-  | 'where'
-  | 'orderBy'
-  | 'skip'
-  | 'after'
-  | 'before'
-  | 'first'
-  | 'last'
-  
-
-export interface BoardFieldDetails {
-  id: {
-    type: 'ID'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-  createdAt: {
-    type: 'DateTime'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-  updatedAt: {
-    type: 'DateTime'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-  name: {
-    type: 'String'
-    args: {}
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
-  query: {
-    type: 'String'
-    args: {}
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
-  columns: {
-    type: 'Column'
-    args: Record<BoardColumnsArgs, core.NexusArgDef<string>>
-    description: string
-    list: true
-    nullable: false
-    resolve: (
-      root: core.RootValue<"Board">,
-      args: { where?: ColumnWhereInput | null, orderBy?: prisma.ColumnOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Column[]> | prisma.Column[]
-  }
-}
-  
-
-// Types for Column
-
-type ColumnObject =
-  | ColumnFields
-  | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'createdAt', args?: [] | false, alias?: string  } 
-  | { name: 'updatedAt', args?: [] | false, alias?: string  } 
-  | { name: 'board', args?: [] | false, alias?: string  } 
-  | { name: 'index', args?: [] | false, alias?: string  } 
-  | { name: 'name', args?: [] | false, alias?: string  } 
-  | { name: 'query', args?: [] | false, alias?: string  } 
-
-type ColumnFields =
-  | 'id'
-  | 'createdAt'
-  | 'updatedAt'
-  | 'board'
-  | 'index'
-  | 'name'
-  | 'query'
-
-
-
-  
-
-export interface ColumnFieldDetails {
-  id: {
-    type: 'ID'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-  createdAt: {
-    type: 'DateTime'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-  updatedAt: {
-    type: 'DateTime'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-  board: {
-    type: 'Board'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: (
-      root: core.RootValue<"Column">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Board> | prisma.Board
-  }
-  index: {
-    type: 'Int'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-  name: {
-    type: 'String'
-    args: {}
-    description: string
-    list: undefined
-    nullable: true
-    resolve: undefined
-  }
-  query: {
-    type: 'String'
-    args: {}
-    description: string
-    list: undefined
-    nullable: true
     resolve: undefined
   }
 }
@@ -1641,7 +1692,7 @@ export interface BoardPreviousValuesFieldDetails {
     args: {}
     description: string
     list: undefined
-    nullable: true
+    nullable: false
     resolve: undefined
   }
   query: {
@@ -1649,7 +1700,7 @@ export interface BoardPreviousValuesFieldDetails {
     args: {}
     description: string
     list: undefined
-    nullable: true
+    nullable: false
     resolve: undefined
   }
 }
@@ -1786,7 +1837,7 @@ export interface ColumnPreviousValuesFieldDetails {
     args: {}
     description: string
     list: undefined
-    nullable: true
+    nullable: false
     resolve: undefined
   }
   query: {
@@ -1794,7 +1845,7 @@ export interface ColumnPreviousValuesFieldDetails {
     args: {}
     description: string
     list: undefined
-    nullable: true
+    nullable: false
     resolve: undefined
   }
 }
@@ -1809,6 +1860,141 @@ export type UserWhereUniqueInputInputObject =
   | Extract<keyof UserWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
   | { name: 'gitHubId', alias?: string  } 
+  
+export interface BoardWhereInput {
+  id?: string | null
+  id_not?: string | null
+  id_in?: string[]
+  id_not_in?: string[]
+  id_lt?: string | null
+  id_lte?: string | null
+  id_gt?: string | null
+  id_gte?: string | null
+  id_contains?: string | null
+  id_not_contains?: string | null
+  id_starts_with?: string | null
+  id_not_starts_with?: string | null
+  id_ends_with?: string | null
+  id_not_ends_with?: string | null
+  createdAt?: string | null
+  createdAt_not?: string | null
+  createdAt_in?: string[]
+  createdAt_not_in?: string[]
+  createdAt_lt?: string | null
+  createdAt_lte?: string | null
+  createdAt_gt?: string | null
+  createdAt_gte?: string | null
+  updatedAt?: string | null
+  updatedAt_not?: string | null
+  updatedAt_in?: string[]
+  updatedAt_not_in?: string[]
+  updatedAt_lt?: string | null
+  updatedAt_lte?: string | null
+  updatedAt_gt?: string | null
+  updatedAt_gte?: string | null
+  owner?: UserWhereInput | null
+  name?: string | null
+  name_not?: string | null
+  name_in?: string[]
+  name_not_in?: string[]
+  name_lt?: string | null
+  name_lte?: string | null
+  name_gt?: string | null
+  name_gte?: string | null
+  name_contains?: string | null
+  name_not_contains?: string | null
+  name_starts_with?: string | null
+  name_not_starts_with?: string | null
+  name_ends_with?: string | null
+  name_not_ends_with?: string | null
+  query?: string | null
+  query_not?: string | null
+  query_in?: string[]
+  query_not_in?: string[]
+  query_lt?: string | null
+  query_lte?: string | null
+  query_gt?: string | null
+  query_gte?: string | null
+  query_contains?: string | null
+  query_not_contains?: string | null
+  query_starts_with?: string | null
+  query_not_starts_with?: string | null
+  query_ends_with?: string | null
+  query_not_ends_with?: string | null
+  columns_every?: ColumnWhereInput | null
+  columns_some?: ColumnWhereInput | null
+  columns_none?: ColumnWhereInput | null
+  AND?: BoardWhereInput[]
+  OR?: BoardWhereInput[]
+  NOT?: BoardWhereInput[]
+}
+export type BoardWhereInputInputObject =
+  | Extract<keyof BoardWhereInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'id_not', alias?: string  } 
+  | { name: 'id_in', alias?: string  } 
+  | { name: 'id_not_in', alias?: string  } 
+  | { name: 'id_lt', alias?: string  } 
+  | { name: 'id_lte', alias?: string  } 
+  | { name: 'id_gt', alias?: string  } 
+  | { name: 'id_gte', alias?: string  } 
+  | { name: 'id_contains', alias?: string  } 
+  | { name: 'id_not_contains', alias?: string  } 
+  | { name: 'id_starts_with', alias?: string  } 
+  | { name: 'id_not_starts_with', alias?: string  } 
+  | { name: 'id_ends_with', alias?: string  } 
+  | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'createdAt', alias?: string  } 
+  | { name: 'createdAt_not', alias?: string  } 
+  | { name: 'createdAt_in', alias?: string  } 
+  | { name: 'createdAt_not_in', alias?: string  } 
+  | { name: 'createdAt_lt', alias?: string  } 
+  | { name: 'createdAt_lte', alias?: string  } 
+  | { name: 'createdAt_gt', alias?: string  } 
+  | { name: 'createdAt_gte', alias?: string  } 
+  | { name: 'updatedAt', alias?: string  } 
+  | { name: 'updatedAt_not', alias?: string  } 
+  | { name: 'updatedAt_in', alias?: string  } 
+  | { name: 'updatedAt_not_in', alias?: string  } 
+  | { name: 'updatedAt_lt', alias?: string  } 
+  | { name: 'updatedAt_lte', alias?: string  } 
+  | { name: 'updatedAt_gt', alias?: string  } 
+  | { name: 'updatedAt_gte', alias?: string  } 
+  | { name: 'owner', alias?: string  } 
+  | { name: 'name', alias?: string  } 
+  | { name: 'name_not', alias?: string  } 
+  | { name: 'name_in', alias?: string  } 
+  | { name: 'name_not_in', alias?: string  } 
+  | { name: 'name_lt', alias?: string  } 
+  | { name: 'name_lte', alias?: string  } 
+  | { name: 'name_gt', alias?: string  } 
+  | { name: 'name_gte', alias?: string  } 
+  | { name: 'name_contains', alias?: string  } 
+  | { name: 'name_not_contains', alias?: string  } 
+  | { name: 'name_starts_with', alias?: string  } 
+  | { name: 'name_not_starts_with', alias?: string  } 
+  | { name: 'name_ends_with', alias?: string  } 
+  | { name: 'name_not_ends_with', alias?: string  } 
+  | { name: 'query', alias?: string  } 
+  | { name: 'query_not', alias?: string  } 
+  | { name: 'query_in', alias?: string  } 
+  | { name: 'query_not_in', alias?: string  } 
+  | { name: 'query_lt', alias?: string  } 
+  | { name: 'query_lte', alias?: string  } 
+  | { name: 'query_gt', alias?: string  } 
+  | { name: 'query_gte', alias?: string  } 
+  | { name: 'query_contains', alias?: string  } 
+  | { name: 'query_not_contains', alias?: string  } 
+  | { name: 'query_starts_with', alias?: string  } 
+  | { name: 'query_not_starts_with', alias?: string  } 
+  | { name: 'query_ends_with', alias?: string  } 
+  | { name: 'query_not_ends_with', alias?: string  } 
+  | { name: 'columns_every', alias?: string  } 
+  | { name: 'columns_some', alias?: string  } 
+  | { name: 'columns_none', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
   
 export interface UserWhereInput {
   id?: string | null
@@ -1855,6 +2041,9 @@ export interface UserWhereInput {
   gitHubId_not_starts_with?: string | null
   gitHubId_ends_with?: string | null
   gitHubId_not_ends_with?: string | null
+  boards_every?: BoardWhereInput | null
+  boards_some?: BoardWhereInput | null
+  boards_none?: BoardWhereInput | null
   AND?: UserWhereInput[]
   OR?: UserWhereInput[]
   NOT?: UserWhereInput[]
@@ -1905,16 +2094,12 @@ export type UserWhereInputInputObject =
   | { name: 'gitHubId_not_starts_with', alias?: string  } 
   | { name: 'gitHubId_ends_with', alias?: string  } 
   | { name: 'gitHubId_not_ends_with', alias?: string  } 
+  | { name: 'boards_every', alias?: string  } 
+  | { name: 'boards_some', alias?: string  } 
+  | { name: 'boards_none', alias?: string  } 
   | { name: 'AND', alias?: string  } 
   | { name: 'OR', alias?: string  } 
   | { name: 'NOT', alias?: string  } 
-  
-export interface BoardWhereUniqueInput {
-  id?: string | null
-}
-export type BoardWhereUniqueInputInputObject =
-  | Extract<keyof BoardWhereUniqueInput, string>
-  | { name: 'id', alias?: string  } 
   
 export interface ColumnWhereInput {
   id?: string | null
@@ -2061,138 +2246,12 @@ export type ColumnWhereInputInputObject =
   | { name: 'OR', alias?: string  } 
   | { name: 'NOT', alias?: string  } 
   
-export interface BoardWhereInput {
+export interface BoardWhereUniqueInput {
   id?: string | null
-  id_not?: string | null
-  id_in?: string[]
-  id_not_in?: string[]
-  id_lt?: string | null
-  id_lte?: string | null
-  id_gt?: string | null
-  id_gte?: string | null
-  id_contains?: string | null
-  id_not_contains?: string | null
-  id_starts_with?: string | null
-  id_not_starts_with?: string | null
-  id_ends_with?: string | null
-  id_not_ends_with?: string | null
-  createdAt?: string | null
-  createdAt_not?: string | null
-  createdAt_in?: string[]
-  createdAt_not_in?: string[]
-  createdAt_lt?: string | null
-  createdAt_lte?: string | null
-  createdAt_gt?: string | null
-  createdAt_gte?: string | null
-  updatedAt?: string | null
-  updatedAt_not?: string | null
-  updatedAt_in?: string[]
-  updatedAt_not_in?: string[]
-  updatedAt_lt?: string | null
-  updatedAt_lte?: string | null
-  updatedAt_gt?: string | null
-  updatedAt_gte?: string | null
-  name?: string | null
-  name_not?: string | null
-  name_in?: string[]
-  name_not_in?: string[]
-  name_lt?: string | null
-  name_lte?: string | null
-  name_gt?: string | null
-  name_gte?: string | null
-  name_contains?: string | null
-  name_not_contains?: string | null
-  name_starts_with?: string | null
-  name_not_starts_with?: string | null
-  name_ends_with?: string | null
-  name_not_ends_with?: string | null
-  query?: string | null
-  query_not?: string | null
-  query_in?: string[]
-  query_not_in?: string[]
-  query_lt?: string | null
-  query_lte?: string | null
-  query_gt?: string | null
-  query_gte?: string | null
-  query_contains?: string | null
-  query_not_contains?: string | null
-  query_starts_with?: string | null
-  query_not_starts_with?: string | null
-  query_ends_with?: string | null
-  query_not_ends_with?: string | null
-  columns_every?: ColumnWhereInput | null
-  columns_some?: ColumnWhereInput | null
-  columns_none?: ColumnWhereInput | null
-  AND?: BoardWhereInput[]
-  OR?: BoardWhereInput[]
-  NOT?: BoardWhereInput[]
 }
-export type BoardWhereInputInputObject =
-  | Extract<keyof BoardWhereInput, string>
+export type BoardWhereUniqueInputInputObject =
+  | Extract<keyof BoardWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
-  | { name: 'id_not', alias?: string  } 
-  | { name: 'id_in', alias?: string  } 
-  | { name: 'id_not_in', alias?: string  } 
-  | { name: 'id_lt', alias?: string  } 
-  | { name: 'id_lte', alias?: string  } 
-  | { name: 'id_gt', alias?: string  } 
-  | { name: 'id_gte', alias?: string  } 
-  | { name: 'id_contains', alias?: string  } 
-  | { name: 'id_not_contains', alias?: string  } 
-  | { name: 'id_starts_with', alias?: string  } 
-  | { name: 'id_not_starts_with', alias?: string  } 
-  | { name: 'id_ends_with', alias?: string  } 
-  | { name: 'id_not_ends_with', alias?: string  } 
-  | { name: 'createdAt', alias?: string  } 
-  | { name: 'createdAt_not', alias?: string  } 
-  | { name: 'createdAt_in', alias?: string  } 
-  | { name: 'createdAt_not_in', alias?: string  } 
-  | { name: 'createdAt_lt', alias?: string  } 
-  | { name: 'createdAt_lte', alias?: string  } 
-  | { name: 'createdAt_gt', alias?: string  } 
-  | { name: 'createdAt_gte', alias?: string  } 
-  | { name: 'updatedAt', alias?: string  } 
-  | { name: 'updatedAt_not', alias?: string  } 
-  | { name: 'updatedAt_in', alias?: string  } 
-  | { name: 'updatedAt_not_in', alias?: string  } 
-  | { name: 'updatedAt_lt', alias?: string  } 
-  | { name: 'updatedAt_lte', alias?: string  } 
-  | { name: 'updatedAt_gt', alias?: string  } 
-  | { name: 'updatedAt_gte', alias?: string  } 
-  | { name: 'name', alias?: string  } 
-  | { name: 'name_not', alias?: string  } 
-  | { name: 'name_in', alias?: string  } 
-  | { name: 'name_not_in', alias?: string  } 
-  | { name: 'name_lt', alias?: string  } 
-  | { name: 'name_lte', alias?: string  } 
-  | { name: 'name_gt', alias?: string  } 
-  | { name: 'name_gte', alias?: string  } 
-  | { name: 'name_contains', alias?: string  } 
-  | { name: 'name_not_contains', alias?: string  } 
-  | { name: 'name_starts_with', alias?: string  } 
-  | { name: 'name_not_starts_with', alias?: string  } 
-  | { name: 'name_ends_with', alias?: string  } 
-  | { name: 'name_not_ends_with', alias?: string  } 
-  | { name: 'query', alias?: string  } 
-  | { name: 'query_not', alias?: string  } 
-  | { name: 'query_in', alias?: string  } 
-  | { name: 'query_not_in', alias?: string  } 
-  | { name: 'query_lt', alias?: string  } 
-  | { name: 'query_lte', alias?: string  } 
-  | { name: 'query_gt', alias?: string  } 
-  | { name: 'query_gte', alias?: string  } 
-  | { name: 'query_contains', alias?: string  } 
-  | { name: 'query_not_contains', alias?: string  } 
-  | { name: 'query_starts_with', alias?: string  } 
-  | { name: 'query_not_starts_with', alias?: string  } 
-  | { name: 'query_ends_with', alias?: string  } 
-  | { name: 'query_not_ends_with', alias?: string  } 
-  | { name: 'columns_every', alias?: string  } 
-  | { name: 'columns_some', alias?: string  } 
-  | { name: 'columns_none', alias?: string  } 
-  | { name: 'AND', alias?: string  } 
-  | { name: 'OR', alias?: string  } 
-  | { name: 'NOT', alias?: string  } 
   
 export interface ColumnWhereUniqueInput {
   id?: string | null
@@ -2203,32 +2262,29 @@ export type ColumnWhereUniqueInputInputObject =
   
 export interface UserCreateInput {
   gitHubId?: string
+  boards?: BoardCreateManyWithoutOwnerInput | null
 }
 export type UserCreateInputInputObject =
   | Extract<keyof UserCreateInput, string>
   | { name: 'gitHubId', alias?: string  } 
+  | { name: 'boards', alias?: string  } 
   
-export interface UserUpdateInput {
-  gitHubId?: string | null
+export interface BoardCreateManyWithoutOwnerInput {
+  create?: BoardCreateWithoutOwnerInput[]
+  connect?: BoardWhereUniqueInput[]
 }
-export type UserUpdateInputInputObject =
-  | Extract<keyof UserUpdateInput, string>
-  | { name: 'gitHubId', alias?: string  } 
+export type BoardCreateManyWithoutOwnerInputInputObject =
+  | Extract<keyof BoardCreateManyWithoutOwnerInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
   
-export interface UserUpdateManyMutationInput {
-  gitHubId?: string | null
-}
-export type UserUpdateManyMutationInputInputObject =
-  | Extract<keyof UserUpdateManyMutationInput, string>
-  | { name: 'gitHubId', alias?: string  } 
-  
-export interface BoardCreateInput {
-  name?: string | null
-  query?: string | null
+export interface BoardCreateWithoutOwnerInput {
+  name?: string
+  query?: string
   columns?: ColumnCreateManyWithoutBoardInput | null
 }
-export type BoardCreateInputInputObject =
-  | Extract<keyof BoardCreateInput, string>
+export type BoardCreateWithoutOwnerInputInputObject =
+  | Extract<keyof BoardCreateWithoutOwnerInput, string>
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
   | { name: 'columns', alias?: string  } 
@@ -2244,8 +2300,8 @@ export type ColumnCreateManyWithoutBoardInputInputObject =
   
 export interface ColumnCreateWithoutBoardInput {
   index?: number
-  name?: string | null
-  query?: string | null
+  name?: string
+  query?: string
 }
 export type ColumnCreateWithoutBoardInputInputObject =
   | Extract<keyof ColumnCreateWithoutBoardInput, string>
@@ -2253,13 +2309,54 @@ export type ColumnCreateWithoutBoardInputInputObject =
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
   
-export interface BoardUpdateInput {
+export interface UserUpdateInput {
+  gitHubId?: string | null
+  boards?: BoardUpdateManyWithoutOwnerInput | null
+}
+export type UserUpdateInputInputObject =
+  | Extract<keyof UserUpdateInput, string>
+  | { name: 'gitHubId', alias?: string  } 
+  | { name: 'boards', alias?: string  } 
+  
+export interface BoardUpdateManyWithoutOwnerInput {
+  create?: BoardCreateWithoutOwnerInput[]
+  delete?: BoardWhereUniqueInput[]
+  connect?: BoardWhereUniqueInput[]
+  set?: BoardWhereUniqueInput[]
+  disconnect?: BoardWhereUniqueInput[]
+  update?: BoardUpdateWithWhereUniqueWithoutOwnerInput[]
+  upsert?: BoardUpsertWithWhereUniqueWithoutOwnerInput[]
+  deleteMany?: BoardScalarWhereInput[]
+  updateMany?: BoardUpdateManyWithWhereNestedInput[]
+}
+export type BoardUpdateManyWithoutOwnerInputInputObject =
+  | Extract<keyof BoardUpdateManyWithoutOwnerInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'delete', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  | { name: 'set', alias?: string  } 
+  | { name: 'disconnect', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'deleteMany', alias?: string  } 
+  | { name: 'updateMany', alias?: string  } 
+  
+export interface BoardUpdateWithWhereUniqueWithoutOwnerInput {
+  where?: BoardWhereUniqueInput
+  data?: BoardUpdateWithoutOwnerDataInput
+}
+export type BoardUpdateWithWhereUniqueWithoutOwnerInputInputObject =
+  | Extract<keyof BoardUpdateWithWhereUniqueWithoutOwnerInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface BoardUpdateWithoutOwnerDataInput {
   name?: string | null
   query?: string | null
   columns?: ColumnUpdateManyWithoutBoardInput | null
 }
-export type BoardUpdateInputInputObject =
-  | Extract<keyof BoardUpdateInput, string>
+export type BoardUpdateWithoutOwnerDataInputInputObject =
+  | Extract<keyof BoardUpdateWithoutOwnerDataInput, string>
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
   | { name: 'columns', alias?: string  } 
@@ -2481,6 +2578,240 @@ export type ColumnUpdateManyDataInputInputObject =
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
   
+export interface BoardUpsertWithWhereUniqueWithoutOwnerInput {
+  where?: BoardWhereUniqueInput
+  update?: BoardUpdateWithoutOwnerDataInput
+  create?: BoardCreateWithoutOwnerInput
+}
+export type BoardUpsertWithWhereUniqueWithoutOwnerInputInputObject =
+  | Extract<keyof BoardUpsertWithWhereUniqueWithoutOwnerInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
+export interface BoardScalarWhereInput {
+  id?: string | null
+  id_not?: string | null
+  id_in?: string[]
+  id_not_in?: string[]
+  id_lt?: string | null
+  id_lte?: string | null
+  id_gt?: string | null
+  id_gte?: string | null
+  id_contains?: string | null
+  id_not_contains?: string | null
+  id_starts_with?: string | null
+  id_not_starts_with?: string | null
+  id_ends_with?: string | null
+  id_not_ends_with?: string | null
+  createdAt?: string | null
+  createdAt_not?: string | null
+  createdAt_in?: string[]
+  createdAt_not_in?: string[]
+  createdAt_lt?: string | null
+  createdAt_lte?: string | null
+  createdAt_gt?: string | null
+  createdAt_gte?: string | null
+  updatedAt?: string | null
+  updatedAt_not?: string | null
+  updatedAt_in?: string[]
+  updatedAt_not_in?: string[]
+  updatedAt_lt?: string | null
+  updatedAt_lte?: string | null
+  updatedAt_gt?: string | null
+  updatedAt_gte?: string | null
+  name?: string | null
+  name_not?: string | null
+  name_in?: string[]
+  name_not_in?: string[]
+  name_lt?: string | null
+  name_lte?: string | null
+  name_gt?: string | null
+  name_gte?: string | null
+  name_contains?: string | null
+  name_not_contains?: string | null
+  name_starts_with?: string | null
+  name_not_starts_with?: string | null
+  name_ends_with?: string | null
+  name_not_ends_with?: string | null
+  query?: string | null
+  query_not?: string | null
+  query_in?: string[]
+  query_not_in?: string[]
+  query_lt?: string | null
+  query_lte?: string | null
+  query_gt?: string | null
+  query_gte?: string | null
+  query_contains?: string | null
+  query_not_contains?: string | null
+  query_starts_with?: string | null
+  query_not_starts_with?: string | null
+  query_ends_with?: string | null
+  query_not_ends_with?: string | null
+  AND?: BoardScalarWhereInput[]
+  OR?: BoardScalarWhereInput[]
+  NOT?: BoardScalarWhereInput[]
+}
+export type BoardScalarWhereInputInputObject =
+  | Extract<keyof BoardScalarWhereInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'id_not', alias?: string  } 
+  | { name: 'id_in', alias?: string  } 
+  | { name: 'id_not_in', alias?: string  } 
+  | { name: 'id_lt', alias?: string  } 
+  | { name: 'id_lte', alias?: string  } 
+  | { name: 'id_gt', alias?: string  } 
+  | { name: 'id_gte', alias?: string  } 
+  | { name: 'id_contains', alias?: string  } 
+  | { name: 'id_not_contains', alias?: string  } 
+  | { name: 'id_starts_with', alias?: string  } 
+  | { name: 'id_not_starts_with', alias?: string  } 
+  | { name: 'id_ends_with', alias?: string  } 
+  | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'createdAt', alias?: string  } 
+  | { name: 'createdAt_not', alias?: string  } 
+  | { name: 'createdAt_in', alias?: string  } 
+  | { name: 'createdAt_not_in', alias?: string  } 
+  | { name: 'createdAt_lt', alias?: string  } 
+  | { name: 'createdAt_lte', alias?: string  } 
+  | { name: 'createdAt_gt', alias?: string  } 
+  | { name: 'createdAt_gte', alias?: string  } 
+  | { name: 'updatedAt', alias?: string  } 
+  | { name: 'updatedAt_not', alias?: string  } 
+  | { name: 'updatedAt_in', alias?: string  } 
+  | { name: 'updatedAt_not_in', alias?: string  } 
+  | { name: 'updatedAt_lt', alias?: string  } 
+  | { name: 'updatedAt_lte', alias?: string  } 
+  | { name: 'updatedAt_gt', alias?: string  } 
+  | { name: 'updatedAt_gte', alias?: string  } 
+  | { name: 'name', alias?: string  } 
+  | { name: 'name_not', alias?: string  } 
+  | { name: 'name_in', alias?: string  } 
+  | { name: 'name_not_in', alias?: string  } 
+  | { name: 'name_lt', alias?: string  } 
+  | { name: 'name_lte', alias?: string  } 
+  | { name: 'name_gt', alias?: string  } 
+  | { name: 'name_gte', alias?: string  } 
+  | { name: 'name_contains', alias?: string  } 
+  | { name: 'name_not_contains', alias?: string  } 
+  | { name: 'name_starts_with', alias?: string  } 
+  | { name: 'name_not_starts_with', alias?: string  } 
+  | { name: 'name_ends_with', alias?: string  } 
+  | { name: 'name_not_ends_with', alias?: string  } 
+  | { name: 'query', alias?: string  } 
+  | { name: 'query_not', alias?: string  } 
+  | { name: 'query_in', alias?: string  } 
+  | { name: 'query_not_in', alias?: string  } 
+  | { name: 'query_lt', alias?: string  } 
+  | { name: 'query_lte', alias?: string  } 
+  | { name: 'query_gt', alias?: string  } 
+  | { name: 'query_gte', alias?: string  } 
+  | { name: 'query_contains', alias?: string  } 
+  | { name: 'query_not_contains', alias?: string  } 
+  | { name: 'query_starts_with', alias?: string  } 
+  | { name: 'query_not_starts_with', alias?: string  } 
+  | { name: 'query_ends_with', alias?: string  } 
+  | { name: 'query_not_ends_with', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
+  
+export interface BoardUpdateManyWithWhereNestedInput {
+  where?: BoardScalarWhereInput
+  data?: BoardUpdateManyDataInput
+}
+export type BoardUpdateManyWithWhereNestedInputInputObject =
+  | Extract<keyof BoardUpdateManyWithWhereNestedInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface BoardUpdateManyDataInput {
+  name?: string | null
+  query?: string | null
+}
+export type BoardUpdateManyDataInputInputObject =
+  | Extract<keyof BoardUpdateManyDataInput, string>
+  | { name: 'name', alias?: string  } 
+  | { name: 'query', alias?: string  } 
+  
+export interface UserUpdateManyMutationInput {
+  gitHubId?: string | null
+}
+export type UserUpdateManyMutationInputInputObject =
+  | Extract<keyof UserUpdateManyMutationInput, string>
+  | { name: 'gitHubId', alias?: string  } 
+  
+export interface BoardCreateInput {
+  owner?: UserCreateOneWithoutBoardsInput
+  name?: string
+  query?: string
+  columns?: ColumnCreateManyWithoutBoardInput | null
+}
+export type BoardCreateInputInputObject =
+  | Extract<keyof BoardCreateInput, string>
+  | { name: 'owner', alias?: string  } 
+  | { name: 'name', alias?: string  } 
+  | { name: 'query', alias?: string  } 
+  | { name: 'columns', alias?: string  } 
+  
+export interface UserCreateOneWithoutBoardsInput {
+  create?: UserCreateWithoutBoardsInput | null
+  connect?: UserWhereUniqueInput | null
+}
+export type UserCreateOneWithoutBoardsInputInputObject =
+  | Extract<keyof UserCreateOneWithoutBoardsInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface UserCreateWithoutBoardsInput {
+  gitHubId?: string
+}
+export type UserCreateWithoutBoardsInputInputObject =
+  | Extract<keyof UserCreateWithoutBoardsInput, string>
+  | { name: 'gitHubId', alias?: string  } 
+  
+export interface BoardUpdateInput {
+  owner?: UserUpdateOneRequiredWithoutBoardsInput | null
+  name?: string | null
+  query?: string | null
+  columns?: ColumnUpdateManyWithoutBoardInput | null
+}
+export type BoardUpdateInputInputObject =
+  | Extract<keyof BoardUpdateInput, string>
+  | { name: 'owner', alias?: string  } 
+  | { name: 'name', alias?: string  } 
+  | { name: 'query', alias?: string  } 
+  | { name: 'columns', alias?: string  } 
+  
+export interface UserUpdateOneRequiredWithoutBoardsInput {
+  create?: UserCreateWithoutBoardsInput | null
+  update?: UserUpdateWithoutBoardsDataInput | null
+  upsert?: UserUpsertWithoutBoardsInput | null
+  connect?: UserWhereUniqueInput | null
+}
+export type UserUpdateOneRequiredWithoutBoardsInputInputObject =
+  | Extract<keyof UserUpdateOneRequiredWithoutBoardsInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface UserUpdateWithoutBoardsDataInput {
+  gitHubId?: string | null
+}
+export type UserUpdateWithoutBoardsDataInputInputObject =
+  | Extract<keyof UserUpdateWithoutBoardsDataInput, string>
+  | { name: 'gitHubId', alias?: string  } 
+  
+export interface UserUpsertWithoutBoardsInput {
+  update?: UserUpdateWithoutBoardsDataInput
+  create?: UserCreateWithoutBoardsInput
+}
+export type UserUpsertWithoutBoardsInputInputObject =
+  | Extract<keyof UserUpsertWithoutBoardsInput, string>
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
 export interface BoardUpdateManyMutationInput {
   name?: string | null
   query?: string | null
@@ -2493,8 +2824,8 @@ export type BoardUpdateManyMutationInputInputObject =
 export interface ColumnCreateInput {
   board?: BoardCreateOneWithoutColumnsInput
   index?: number
-  name?: string | null
-  query?: string | null
+  name?: string
+  query?: string
 }
 export type ColumnCreateInputInputObject =
   | Extract<keyof ColumnCreateInput, string>
@@ -2513,11 +2844,13 @@ export type BoardCreateOneWithoutColumnsInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface BoardCreateWithoutColumnsInput {
-  name?: string | null
-  query?: string | null
+  owner?: UserCreateOneWithoutBoardsInput
+  name?: string
+  query?: string
 }
 export type BoardCreateWithoutColumnsInputInputObject =
   | Extract<keyof BoardCreateWithoutColumnsInput, string>
+  | { name: 'owner', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
   
@@ -2548,11 +2881,13 @@ export type BoardUpdateOneRequiredWithoutColumnsInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface BoardUpdateWithoutColumnsDataInput {
+  owner?: UserUpdateOneRequiredWithoutBoardsInput | null
   name?: string | null
   query?: string | null
 }
 export type BoardUpdateWithoutColumnsDataInputInputObject =
   | Extract<keyof BoardUpdateWithoutColumnsDataInput, string>
+  | { name: 'owner', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
   
@@ -2640,15 +2975,17 @@ export type ColumnSubscriptionWhereInputInputObject =
   | { name: 'NOT', alias?: string  } 
   
 
-export type UserOrderByInputValues =
+export type BoardOrderByInputValues =
   | 'id_ASC'
   | 'id_DESC'
   | 'createdAt_ASC'
   | 'createdAt_DESC'
   | 'updatedAt_ASC'
   | 'updatedAt_DESC'
-  | 'gitHubId_ASC'
-  | 'gitHubId_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'query_ASC'
+  | 'query_DESC'
   
 export type ColumnOrderByInputValues =
   | 'id_ASC'
@@ -2664,17 +3001,15 @@ export type ColumnOrderByInputValues =
   | 'query_ASC'
   | 'query_DESC'
   
-export type BoardOrderByInputValues =
+export type UserOrderByInputValues =
   | 'id_ASC'
   | 'id_DESC'
   | 'createdAt_ASC'
   | 'createdAt_DESC'
   | 'updatedAt_ASC'
   | 'updatedAt_DESC'
-  | 'name_ASC'
-  | 'name_DESC'
-  | 'query_ASC'
-  | 'query_DESC'
+  | 'gitHubId_ASC'
+  | 'gitHubId_DESC'
   
 export type MutationTypeValues =
   | 'CREATED'

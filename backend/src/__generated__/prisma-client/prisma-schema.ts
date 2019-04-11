@@ -22,8 +22,9 @@ type Board {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
-  name: String
-  query: String
+  owner: User!
+  name: String!
+  query: String!
   columns(where: ColumnWhereInput, orderBy: ColumnOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Column!]
 }
 
@@ -34,9 +35,15 @@ type BoardConnection {
 }
 
 input BoardCreateInput {
-  name: String
-  query: String
+  owner: UserCreateOneWithoutBoardsInput!
+  name: String!
+  query: String!
   columns: ColumnCreateManyWithoutBoardInput
+}
+
+input BoardCreateManyWithoutOwnerInput {
+  create: [BoardCreateWithoutOwnerInput!]
+  connect: [BoardWhereUniqueInput!]
 }
 
 input BoardCreateOneWithoutColumnsInput {
@@ -45,8 +52,15 @@ input BoardCreateOneWithoutColumnsInput {
 }
 
 input BoardCreateWithoutColumnsInput {
-  name: String
-  query: String
+  owner: UserCreateOneWithoutBoardsInput!
+  name: String!
+  query: String!
+}
+
+input BoardCreateWithoutOwnerInput {
+  name: String!
+  query: String!
+  columns: ColumnCreateManyWithoutBoardInput
 }
 
 type BoardEdge {
@@ -71,57 +85,11 @@ type BoardPreviousValues {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
-  name: String
-  query: String
+  name: String!
+  query: String!
 }
 
-type BoardSubscriptionPayload {
-  mutation: MutationType!
-  node: Board
-  updatedFields: [String!]
-  previousValues: BoardPreviousValues
-}
-
-input BoardSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: BoardWhereInput
-  AND: [BoardSubscriptionWhereInput!]
-  OR: [BoardSubscriptionWhereInput!]
-  NOT: [BoardSubscriptionWhereInput!]
-}
-
-input BoardUpdateInput {
-  name: String
-  query: String
-  columns: ColumnUpdateManyWithoutBoardInput
-}
-
-input BoardUpdateManyMutationInput {
-  name: String
-  query: String
-}
-
-input BoardUpdateOneRequiredWithoutColumnsInput {
-  create: BoardCreateWithoutColumnsInput
-  update: BoardUpdateWithoutColumnsDataInput
-  upsert: BoardUpsertWithoutColumnsInput
-  connect: BoardWhereUniqueInput
-}
-
-input BoardUpdateWithoutColumnsDataInput {
-  name: String
-  query: String
-}
-
-input BoardUpsertWithoutColumnsInput {
-  update: BoardUpdateWithoutColumnsDataInput!
-  create: BoardCreateWithoutColumnsInput!
-}
-
-input BoardWhereInput {
+input BoardScalarWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -180,6 +148,158 @@ input BoardWhereInput {
   query_not_starts_with: String
   query_ends_with: String
   query_not_ends_with: String
+  AND: [BoardScalarWhereInput!]
+  OR: [BoardScalarWhereInput!]
+  NOT: [BoardScalarWhereInput!]
+}
+
+type BoardSubscriptionPayload {
+  mutation: MutationType!
+  node: Board
+  updatedFields: [String!]
+  previousValues: BoardPreviousValues
+}
+
+input BoardSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: BoardWhereInput
+  AND: [BoardSubscriptionWhereInput!]
+  OR: [BoardSubscriptionWhereInput!]
+  NOT: [BoardSubscriptionWhereInput!]
+}
+
+input BoardUpdateInput {
+  owner: UserUpdateOneRequiredWithoutBoardsInput
+  name: String
+  query: String
+  columns: ColumnUpdateManyWithoutBoardInput
+}
+
+input BoardUpdateManyDataInput {
+  name: String
+  query: String
+}
+
+input BoardUpdateManyMutationInput {
+  name: String
+  query: String
+}
+
+input BoardUpdateManyWithoutOwnerInput {
+  create: [BoardCreateWithoutOwnerInput!]
+  delete: [BoardWhereUniqueInput!]
+  connect: [BoardWhereUniqueInput!]
+  set: [BoardWhereUniqueInput!]
+  disconnect: [BoardWhereUniqueInput!]
+  update: [BoardUpdateWithWhereUniqueWithoutOwnerInput!]
+  upsert: [BoardUpsertWithWhereUniqueWithoutOwnerInput!]
+  deleteMany: [BoardScalarWhereInput!]
+  updateMany: [BoardUpdateManyWithWhereNestedInput!]
+}
+
+input BoardUpdateManyWithWhereNestedInput {
+  where: BoardScalarWhereInput!
+  data: BoardUpdateManyDataInput!
+}
+
+input BoardUpdateOneRequiredWithoutColumnsInput {
+  create: BoardCreateWithoutColumnsInput
+  update: BoardUpdateWithoutColumnsDataInput
+  upsert: BoardUpsertWithoutColumnsInput
+  connect: BoardWhereUniqueInput
+}
+
+input BoardUpdateWithoutColumnsDataInput {
+  owner: UserUpdateOneRequiredWithoutBoardsInput
+  name: String
+  query: String
+}
+
+input BoardUpdateWithoutOwnerDataInput {
+  name: String
+  query: String
+  columns: ColumnUpdateManyWithoutBoardInput
+}
+
+input BoardUpdateWithWhereUniqueWithoutOwnerInput {
+  where: BoardWhereUniqueInput!
+  data: BoardUpdateWithoutOwnerDataInput!
+}
+
+input BoardUpsertWithoutColumnsInput {
+  update: BoardUpdateWithoutColumnsDataInput!
+  create: BoardCreateWithoutColumnsInput!
+}
+
+input BoardUpsertWithWhereUniqueWithoutOwnerInput {
+  where: BoardWhereUniqueInput!
+  update: BoardUpdateWithoutOwnerDataInput!
+  create: BoardCreateWithoutOwnerInput!
+}
+
+input BoardWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  owner: UserWhereInput
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  query: String
+  query_not: String
+  query_in: [String!]
+  query_not_in: [String!]
+  query_lt: String
+  query_lte: String
+  query_gt: String
+  query_gte: String
+  query_contains: String
+  query_not_contains: String
+  query_starts_with: String
+  query_not_starts_with: String
+  query_ends_with: String
+  query_not_ends_with: String
   columns_every: ColumnWhereInput
   columns_some: ColumnWhereInput
   columns_none: ColumnWhereInput
@@ -198,8 +318,8 @@ type Column {
   updatedAt: DateTime!
   board: Board!
   index: Int!
-  name: String
-  query: String
+  name: String!
+  query: String!
 }
 
 type ColumnConnection {
@@ -211,8 +331,8 @@ type ColumnConnection {
 input ColumnCreateInput {
   board: BoardCreateOneWithoutColumnsInput!
   index: Int!
-  name: String
-  query: String
+  name: String!
+  query: String!
 }
 
 input ColumnCreateManyWithoutBoardInput {
@@ -222,8 +342,8 @@ input ColumnCreateManyWithoutBoardInput {
 
 input ColumnCreateWithoutBoardInput {
   index: Int!
-  name: String
-  query: String
+  name: String!
+  query: String!
 }
 
 type ColumnEdge {
@@ -251,8 +371,8 @@ type ColumnPreviousValues {
   createdAt: DateTime!
   updatedAt: DateTime!
   index: Int!
-  name: String
-  query: String
+  name: String!
+  query: String!
 }
 
 input ColumnScalarWhereInput {
@@ -541,6 +661,7 @@ type User {
   createdAt: DateTime!
   updatedAt: DateTime!
   gitHubId: ID!
+  boards(where: BoardWhereInput, orderBy: BoardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Board!]
 }
 
 type UserConnection {
@@ -550,6 +671,16 @@ type UserConnection {
 }
 
 input UserCreateInput {
+  gitHubId: ID!
+  boards: BoardCreateManyWithoutOwnerInput
+}
+
+input UserCreateOneWithoutBoardsInput {
+  create: UserCreateWithoutBoardsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutBoardsInput {
   gitHubId: ID!
 }
 
@@ -596,10 +727,27 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateInput {
   gitHubId: ID
+  boards: BoardUpdateManyWithoutOwnerInput
 }
 
 input UserUpdateManyMutationInput {
   gitHubId: ID
+}
+
+input UserUpdateOneRequiredWithoutBoardsInput {
+  create: UserCreateWithoutBoardsInput
+  update: UserUpdateWithoutBoardsDataInput
+  upsert: UserUpsertWithoutBoardsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateWithoutBoardsDataInput {
+  gitHubId: ID
+}
+
+input UserUpsertWithoutBoardsInput {
+  update: UserUpdateWithoutBoardsDataInput!
+  create: UserCreateWithoutBoardsInput!
 }
 
 input UserWhereInput {
@@ -647,6 +795,9 @@ input UserWhereInput {
   gitHubId_not_starts_with: ID
   gitHubId_ends_with: ID
   gitHubId_not_ends_with: ID
+  boards_every: BoardWhereInput
+  boards_some: BoardWhereInput
+  boards_none: BoardWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

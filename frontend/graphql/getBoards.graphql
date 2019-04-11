@@ -1,0 +1,9 @@
+query getBoards {
+  signedInUser {
+    boards {
+      id
+      name
+      query
+    }
+  }
+}

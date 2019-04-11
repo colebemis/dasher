@@ -6,9 +6,23 @@ type Board {
   columns(after: String, before: String, first: Int, last: Int, orderBy: ColumnOrderByInput, skip: Int, where: ColumnWhereInput): [Column!]
   createdAt: DateTime!
   id: ID!
-  name: String
-  query: String
+  name: String!
+  owner: User!
+  query: String!
   updatedAt: DateTime!
+}
+
+enum BoardOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  query_ASC
+  query_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 input BoardWhereInput {
@@ -54,6 +68,7 @@ input BoardWhereInput {
   name_starts_with: String
   NOT: [BoardWhereInput!]
   OR: [BoardWhereInput!]
+  owner: UserWhereInput
   query: String
   query_contains: String
   query_ends_with: String
@@ -87,8 +102,8 @@ type Column {
   createdAt: DateTime!
   id: ID!
   index: Int!
-  name: String
-  query: String
+  name: String!
+  query: String!
   updatedAt: DateTime!
 }
 
@@ -198,8 +213,62 @@ type SignInPayload {
 }
 
 type User {
+  boards(after: String, before: String, first: Int, last: Int, orderBy: BoardOrderByInput, skip: Int, where: BoardWhereInput): [Board!]
   createdAt: DateTime!
   gitHubId: ID!
   id: ID!
   updatedAt: DateTime!
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  boards_every: BoardWhereInput
+  boards_none: BoardWhereInput
+  boards_some: BoardWhereInput
+  createdAt: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_not: DateTime
+  createdAt_not_in: [DateTime!]
+  gitHubId: ID
+  gitHubId_contains: ID
+  gitHubId_ends_with: ID
+  gitHubId_gt: ID
+  gitHubId_gte: ID
+  gitHubId_in: [ID!]
+  gitHubId_lt: ID
+  gitHubId_lte: ID
+  gitHubId_not: ID
+  gitHubId_not_contains: ID
+  gitHubId_not_ends_with: ID
+  gitHubId_not_in: [ID!]
+  gitHubId_not_starts_with: ID
+  gitHubId_starts_with: ID
+  id: ID
+  id_contains: ID
+  id_ends_with: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_not: ID
+  id_not_contains: ID
+  id_not_ends_with: ID
+  id_not_in: [ID!]
+  id_not_starts_with: ID
+  id_starts_with: ID
+  NOT: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  updatedAt: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_not: DateTime
+  updatedAt_not_in: [DateTime!]
 }

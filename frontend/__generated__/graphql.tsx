@@ -4,6 +4,240 @@ export interface BoardWhereUniqueInput {
   id?: Maybe<string>;
 }
 
+export interface BoardWhereInput {
+  id?: Maybe<string>;
+
+  id_not?: Maybe<string>;
+
+  id_in?: Maybe<string[]>;
+
+  id_not_in?: Maybe<string[]>;
+
+  id_lt?: Maybe<string>;
+
+  id_lte?: Maybe<string>;
+
+  id_gt?: Maybe<string>;
+
+  id_gte?: Maybe<string>;
+
+  id_contains?: Maybe<string>;
+
+  id_not_contains?: Maybe<string>;
+
+  id_starts_with?: Maybe<string>;
+
+  id_not_starts_with?: Maybe<string>;
+
+  id_ends_with?: Maybe<string>;
+
+  id_not_ends_with?: Maybe<string>;
+
+  createdAt?: Maybe<DateTime>;
+
+  createdAt_not?: Maybe<DateTime>;
+
+  createdAt_in?: Maybe<DateTime[]>;
+
+  createdAt_not_in?: Maybe<DateTime[]>;
+
+  createdAt_lt?: Maybe<DateTime>;
+
+  createdAt_lte?: Maybe<DateTime>;
+
+  createdAt_gt?: Maybe<DateTime>;
+
+  createdAt_gte?: Maybe<DateTime>;
+
+  updatedAt?: Maybe<DateTime>;
+
+  updatedAt_not?: Maybe<DateTime>;
+
+  updatedAt_in?: Maybe<DateTime[]>;
+
+  updatedAt_not_in?: Maybe<DateTime[]>;
+
+  updatedAt_lt?: Maybe<DateTime>;
+
+  updatedAt_lte?: Maybe<DateTime>;
+
+  updatedAt_gt?: Maybe<DateTime>;
+
+  updatedAt_gte?: Maybe<DateTime>;
+
+  owner?: Maybe<UserWhereInput>;
+
+  name?: Maybe<string>;
+
+  name_not?: Maybe<string>;
+
+  name_in?: Maybe<string[]>;
+
+  name_not_in?: Maybe<string[]>;
+
+  name_lt?: Maybe<string>;
+
+  name_lte?: Maybe<string>;
+
+  name_gt?: Maybe<string>;
+
+  name_gte?: Maybe<string>;
+
+  name_contains?: Maybe<string>;
+
+  name_not_contains?: Maybe<string>;
+
+  name_starts_with?: Maybe<string>;
+
+  name_not_starts_with?: Maybe<string>;
+
+  name_ends_with?: Maybe<string>;
+
+  name_not_ends_with?: Maybe<string>;
+
+  query?: Maybe<string>;
+
+  query_not?: Maybe<string>;
+
+  query_in?: Maybe<string[]>;
+
+  query_not_in?: Maybe<string[]>;
+
+  query_lt?: Maybe<string>;
+
+  query_lte?: Maybe<string>;
+
+  query_gt?: Maybe<string>;
+
+  query_gte?: Maybe<string>;
+
+  query_contains?: Maybe<string>;
+
+  query_not_contains?: Maybe<string>;
+
+  query_starts_with?: Maybe<string>;
+
+  query_not_starts_with?: Maybe<string>;
+
+  query_ends_with?: Maybe<string>;
+
+  query_not_ends_with?: Maybe<string>;
+
+  columns_every?: Maybe<ColumnWhereInput>;
+
+  columns_some?: Maybe<ColumnWhereInput>;
+
+  columns_none?: Maybe<ColumnWhereInput>;
+
+  AND?: Maybe<BoardWhereInput[]>;
+
+  OR?: Maybe<BoardWhereInput[]>;
+
+  NOT?: Maybe<BoardWhereInput[]>;
+}
+
+export interface UserWhereInput {
+  id?: Maybe<string>;
+
+  id_not?: Maybe<string>;
+
+  id_in?: Maybe<string[]>;
+
+  id_not_in?: Maybe<string[]>;
+
+  id_lt?: Maybe<string>;
+
+  id_lte?: Maybe<string>;
+
+  id_gt?: Maybe<string>;
+
+  id_gte?: Maybe<string>;
+
+  id_contains?: Maybe<string>;
+
+  id_not_contains?: Maybe<string>;
+
+  id_starts_with?: Maybe<string>;
+
+  id_not_starts_with?: Maybe<string>;
+
+  id_ends_with?: Maybe<string>;
+
+  id_not_ends_with?: Maybe<string>;
+
+  createdAt?: Maybe<DateTime>;
+
+  createdAt_not?: Maybe<DateTime>;
+
+  createdAt_in?: Maybe<DateTime[]>;
+
+  createdAt_not_in?: Maybe<DateTime[]>;
+
+  createdAt_lt?: Maybe<DateTime>;
+
+  createdAt_lte?: Maybe<DateTime>;
+
+  createdAt_gt?: Maybe<DateTime>;
+
+  createdAt_gte?: Maybe<DateTime>;
+
+  updatedAt?: Maybe<DateTime>;
+
+  updatedAt_not?: Maybe<DateTime>;
+
+  updatedAt_in?: Maybe<DateTime[]>;
+
+  updatedAt_not_in?: Maybe<DateTime[]>;
+
+  updatedAt_lt?: Maybe<DateTime>;
+
+  updatedAt_lte?: Maybe<DateTime>;
+
+  updatedAt_gt?: Maybe<DateTime>;
+
+  updatedAt_gte?: Maybe<DateTime>;
+
+  gitHubId?: Maybe<string>;
+
+  gitHubId_not?: Maybe<string>;
+
+  gitHubId_in?: Maybe<string[]>;
+
+  gitHubId_not_in?: Maybe<string[]>;
+
+  gitHubId_lt?: Maybe<string>;
+
+  gitHubId_lte?: Maybe<string>;
+
+  gitHubId_gt?: Maybe<string>;
+
+  gitHubId_gte?: Maybe<string>;
+
+  gitHubId_contains?: Maybe<string>;
+
+  gitHubId_not_contains?: Maybe<string>;
+
+  gitHubId_starts_with?: Maybe<string>;
+
+  gitHubId_not_starts_with?: Maybe<string>;
+
+  gitHubId_ends_with?: Maybe<string>;
+
+  gitHubId_not_ends_with?: Maybe<string>;
+
+  boards_every?: Maybe<BoardWhereInput>;
+
+  boards_some?: Maybe<BoardWhereInput>;
+
+  boards_none?: Maybe<BoardWhereInput>;
+
+  AND?: Maybe<UserWhereInput[]>;
+
+  OR?: Maybe<UserWhereInput[]>;
+
+  NOT?: Maybe<UserWhereInput[]>;
+}
+
 export interface ColumnWhereInput {
   id?: Maybe<string>;
 
@@ -144,136 +378,6 @@ export interface ColumnWhereInput {
   OR?: Maybe<ColumnWhereInput[]>;
 
   NOT?: Maybe<ColumnWhereInput[]>;
-}
-
-export interface BoardWhereInput {
-  id?: Maybe<string>;
-
-  id_not?: Maybe<string>;
-
-  id_in?: Maybe<string[]>;
-
-  id_not_in?: Maybe<string[]>;
-
-  id_lt?: Maybe<string>;
-
-  id_lte?: Maybe<string>;
-
-  id_gt?: Maybe<string>;
-
-  id_gte?: Maybe<string>;
-
-  id_contains?: Maybe<string>;
-
-  id_not_contains?: Maybe<string>;
-
-  id_starts_with?: Maybe<string>;
-
-  id_not_starts_with?: Maybe<string>;
-
-  id_ends_with?: Maybe<string>;
-
-  id_not_ends_with?: Maybe<string>;
-
-  createdAt?: Maybe<DateTime>;
-
-  createdAt_not?: Maybe<DateTime>;
-
-  createdAt_in?: Maybe<DateTime[]>;
-
-  createdAt_not_in?: Maybe<DateTime[]>;
-
-  createdAt_lt?: Maybe<DateTime>;
-
-  createdAt_lte?: Maybe<DateTime>;
-
-  createdAt_gt?: Maybe<DateTime>;
-
-  createdAt_gte?: Maybe<DateTime>;
-
-  updatedAt?: Maybe<DateTime>;
-
-  updatedAt_not?: Maybe<DateTime>;
-
-  updatedAt_in?: Maybe<DateTime[]>;
-
-  updatedAt_not_in?: Maybe<DateTime[]>;
-
-  updatedAt_lt?: Maybe<DateTime>;
-
-  updatedAt_lte?: Maybe<DateTime>;
-
-  updatedAt_gt?: Maybe<DateTime>;
-
-  updatedAt_gte?: Maybe<DateTime>;
-
-  name?: Maybe<string>;
-
-  name_not?: Maybe<string>;
-
-  name_in?: Maybe<string[]>;
-
-  name_not_in?: Maybe<string[]>;
-
-  name_lt?: Maybe<string>;
-
-  name_lte?: Maybe<string>;
-
-  name_gt?: Maybe<string>;
-
-  name_gte?: Maybe<string>;
-
-  name_contains?: Maybe<string>;
-
-  name_not_contains?: Maybe<string>;
-
-  name_starts_with?: Maybe<string>;
-
-  name_not_starts_with?: Maybe<string>;
-
-  name_ends_with?: Maybe<string>;
-
-  name_not_ends_with?: Maybe<string>;
-
-  query?: Maybe<string>;
-
-  query_not?: Maybe<string>;
-
-  query_in?: Maybe<string[]>;
-
-  query_not_in?: Maybe<string[]>;
-
-  query_lt?: Maybe<string>;
-
-  query_lte?: Maybe<string>;
-
-  query_gt?: Maybe<string>;
-
-  query_gte?: Maybe<string>;
-
-  query_contains?: Maybe<string>;
-
-  query_not_contains?: Maybe<string>;
-
-  query_starts_with?: Maybe<string>;
-
-  query_not_starts_with?: Maybe<string>;
-
-  query_ends_with?: Maybe<string>;
-
-  query_not_ends_with?: Maybe<string>;
-
-  columns_every?: Maybe<ColumnWhereInput>;
-
-  columns_some?: Maybe<ColumnWhereInput>;
-
-  columns_none?: Maybe<ColumnWhereInput>;
-
-  AND?: Maybe<BoardWhereInput[]>;
-
-  OR?: Maybe<BoardWhereInput[]>;
-
-  NOT?: Maybe<BoardWhereInput[]>;
 }
 /** Ways in which lists of issues can be ordered upon return. */
 export interface GitHubIssueOrder {
@@ -1160,6 +1264,19 @@ export interface GitHubUpdateTopicsInput {
   clientMutationId?: Maybe<string>;
 }
 
+export enum BoardOrderByInput {
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+  NameAsc = "name_ASC",
+  NameDesc = "name_DESC",
+  QueryAsc = "query_ASC",
+  QueryDesc = "query_DESC"
+}
+
 export enum ColumnOrderByInput {
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
@@ -1349,6 +1466,13 @@ export enum GitHubCollaboratorAffiliation {
   Outside = "OUTSIDE",
   Direct = "DIRECT",
   All = "ALL"
+}
+/** The possible default permissions for repositories. */
+export enum GitHubDefaultRepositoryPermissionField {
+  None = "NONE",
+  Read = "READ",
+  Write = "WRITE",
+  Admin = "ADMIN"
 }
 /** Emojis that can be attached to Issues, Pull Requests and Comments. */
 export enum GitHubReactionContent {
@@ -1613,13 +1737,6 @@ export enum GitHubTopicSuggestionDeclineReason {
   PersonalPreference = "PERSONAL_PREFERENCE",
   TooGeneral = "TOO_GENERAL"
 }
-/** The possible default permissions for repositories. */
-export enum GitHubDefaultRepositoryPermissionField {
-  None = "NONE",
-  Read = "READ",
-  Write = "WRITE",
-  Admin = "ADMIN"
-}
 /** The possible states in which authentication can be configured with an Identity Provider. */
 export enum GitHubIdentityProviderConfigurationState {
   Enforced = "ENFORCED",
@@ -1729,9 +1846,9 @@ export type GetBoardBoard = {
 
   id: string;
 
-  name: Maybe<string>;
+  name: string;
 
-  query: Maybe<string>;
+  query: string;
 
   columns: Maybe<GetBoardColumns[]>;
 };
@@ -1743,9 +1860,33 @@ export type GetBoardColumns = {
 
   index: number;
 
-  name: Maybe<string>;
+  name: string;
 
-  query: Maybe<string>;
+  query: string;
+};
+
+export type GetBoardsVariables = {};
+
+export type GetBoardsQuery = {
+  __typename?: "Query";
+
+  signedInUser: GetBoardsSignedInUser;
+};
+
+export type GetBoardsSignedInUser = {
+  __typename?: "User";
+
+  boards: Maybe<GetBoardsBoards[]>;
+};
+
+export type GetBoardsBoards = {
+  __typename?: "Board";
+
+  id: string;
+
+  name: string;
+
+  query: string;
 };
 
 export type GetIsSignedInVariables = {};
@@ -1854,6 +1995,50 @@ export function GetBoardHOC<TProps, TChildProps = any>(
     GetBoardVariables,
     GetBoardProps<TChildProps>
   >(GetBoardDocument, operationOptions);
+}
+export const GetBoardsDocument = gql`
+  query getBoards {
+    signedInUser {
+      boards {
+        id
+        name
+        query
+      }
+    }
+  }
+`;
+export class GetBoardsComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<GetBoardsQuery, GetBoardsVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<GetBoardsQuery, GetBoardsVariables>
+        query={GetBoardsDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type GetBoardsProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<GetBoardsQuery, GetBoardsVariables>
+> &
+  TChildProps;
+export function GetBoardsHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        GetBoardsQuery,
+        GetBoardsVariables,
+        GetBoardsProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    GetBoardsQuery,
+    GetBoardsVariables,
+    GetBoardsProps<TChildProps>
+  >(GetBoardsDocument, operationOptions);
 }
 export const GetIsSignedInDocument = gql`
   query getIsSignedIn {
