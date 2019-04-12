@@ -75,7 +75,13 @@ const Index: React.FC<{}> = () => {
             if (error) return <p>Error: {error.message}</p>
             if (!data || !data.signedInUser.boards) return null
             return (
-              <>
+              <div
+                css={{
+                  '& > :not(:last-child)': {
+                    marginBottom: theme.space[4],
+                  },
+                }}
+              >
                 {data.signedInUser.boards.map(board => (
                   <Link
                     key={board.id}
@@ -86,7 +92,7 @@ const Index: React.FC<{}> = () => {
                       css={{
                         display: 'block',
                         height: '8em',
-                        marginBottom: theme.space[4],
+
                         padding: `${theme.space[3]} ${theme.space[4]}`,
                         textDecoration: 'none',
                         color: 'inherit',
@@ -126,7 +132,7 @@ const Index: React.FC<{}> = () => {
                     </a>
                   </Link>
                 ))}
-              </>
+              </div>
             )
           }}
         </GetBoardsComponent>
