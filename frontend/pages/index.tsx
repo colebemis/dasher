@@ -92,7 +92,6 @@ const Index: React.FC<{}> = () => {
                       css={{
                         display: 'block',
                         height: '8em',
-
                         padding: `${theme.space[3]} ${theme.space[4]}`,
                         textDecoration: 'none',
                         color: 'inherit',
