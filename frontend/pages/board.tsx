@@ -30,8 +30,9 @@ const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
               {data.board.columns
                 ? data.board.columns.map(column => (
                     <div key={column.id}>
-                      <h2>{column.name}</h2>
-                      <p>{column.query}</p>
+                      <h2>
+                        {column.name} ({column.query})
+                      </h2>
                     </div>
                   ))
                 : null}
