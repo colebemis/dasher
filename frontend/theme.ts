@@ -43,6 +43,11 @@ const theme = {
     ],
   },
   radii: ['0', '3px', '6px'],
+  mediaQueries: {
+    small: '@media screen and (min-width: 40em)',
+    medium: '@media screen and (min-width: 48em)',
+    large: '@media screen and (min-width: 64em)',
+  },
 }
 
 export default theme
