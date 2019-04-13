@@ -1,7 +1,7 @@
 import { Global } from '@emotion/core'
 import theme from '../theme'
 
-const GlobalStyles: React.FC<{}> = () => {
+const GlobalStyles: React.FC = () => {
   return (
     <Global
       styles={{

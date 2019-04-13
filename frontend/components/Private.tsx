@@ -1,7 +1,7 @@
 import { GetIsSignedInComponent } from '../__generated__/graphql'
 import SignIn from './SignIn'
 
-const Private: React.FC<{}> = ({ children }) => {
+const Private: React.FC = ({ children }) => {
   return (
     <GetIsSignedInComponent>
       {({ loading, data }) => {
