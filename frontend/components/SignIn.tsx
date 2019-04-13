@@ -2,7 +2,7 @@ import Router from 'next/router'
 import qs from 'query-string'
 import React from 'react'
 
-const SignIn: React.FC<{}> = () => {
+const SignIn: React.FC = () => {
   const [loading, setLoading] = React.useState(false)
   return (
     <div>
