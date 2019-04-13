@@ -1,5 +1,5 @@
 # To start Prisma and launch the connected database,
-# run `docker-compose up -d` from the `backend/prisma` directory.
+# run `docker-compose up --detach` from the `backend/prisma` directory.
 # Reference: https://bit.ly/2CLeXQQ
 version: '3'
 services:
