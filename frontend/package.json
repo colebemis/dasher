@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/babel-preset-css-prop": "^10.0.5",
     "@emotion/core": "^10.0.5",
+    "@tippy.js/react": "^2.1.2",
     "@types/cookie": "^0.3.2",
     "@types/next": "^8.0.1",
     "@types/query-string": "^6.2.0",

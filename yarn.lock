@@ -1046,6 +1046,14 @@
   dependencies:
     any-observable "^0.3.0"
 
+"@tippy.js/react@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@tippy.js/react/-/react-2.1.2.tgz#2f51a206d3b90ee2423574bf256c76e1cf2b3e53"
+  integrity sha512-5napcBju8l285PiNoNHlVj0rqVHevlwBV2ndXAzbvzUfFgtb3NxoMWUWT9vCBwx6hzK3ljAw8qqTtmkImYvVEg==
+  dependencies:
+    prop-types "^15.6.2"
+    tippy.js "^4.2.1"
+
 "@types/anymatch@*":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@types/anymatch/-/anymatch-1.3.0.tgz#d1d55958d1fccc5527d4aba29fc9c4b942f563ff"
@@ -7552,6 +7560,11 @@ pn@^1.1.0:
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
   integrity sha512-2qHaIQr2VLRFoxe2nASzsV6ef4yOOH+Fi9FBOVH6cqeSgUnoyySPZkxzLuzd+RYOQTRpROA0ztTMqxROKSb/nA==
 
+popper.js@^1.14.7:
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.15.0.tgz#5560b99bbad7647e9faa475c6b8056621f5a4ff2"
+  integrity sha512-w010cY1oCUmI+9KwwlWki+r5jxKfTFDVoadl7MSrIujHU5MJ5OR6HTDj6Xo8aoR/QsA56x8jKjA59qGH4ELtrA==
+
 popsicle@10:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/popsicle/-/popsicle-10.0.1.tgz#2abd36130560647c74eaf08400d473ae25c4486f"
@@ -9313,6 +9326,13 @@ timers-browserify@^2.0.4:
   resolved "https://registry.yarnpkg.com/timers-browserify/-/timers-browserify-2.0.10.tgz#1d28e3d2aadf1d5a5996c4e9f95601cd053480ae"
   dependencies:
     setimmediate "^1.0.4"
+
+tippy.js@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/tippy.js/-/tippy.js-4.2.1.tgz#9e4939d976465f77229b05a3cb233b5dc28cf850"
+  integrity sha512-xEE7zYNgQxCDdPcuT6T04f0frPh0wO7CcIqJKMFazU/NqusyjCgYSkLRosIHoiRkZMRzSPOudC8wRN5GjvAyOQ==
+  dependencies:
+    popper.js "^1.14.7"
 
 title-case@^2.1.0:
   version "2.1.1"

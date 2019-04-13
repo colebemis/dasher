@@ -1,12 +1,10 @@
 import Link from 'next/link'
+import AccountDropdown from '../components/AccountDropdown'
 import Private from '../components/Private'
 import theme from '../theme'
-import {
-  GetBoardsComponent,
-  GetViewerComponent,
-} from '../__generated__/graphql'
+import { GetBoardsComponent } from '../__generated__/graphql'
 
-const Index: React.FC<{}> = () => {
+const Index: React.FC = () => {
   return (
     <Private>
       <div
@@ -26,26 +24,7 @@ const Index: React.FC<{}> = () => {
           Dasher
         </span>
         <div css={{ margin: '0 auto' }} />
-        {/* <SignOutComponent refetchQueries={[{ query: GetIsSignedInDocument }]}>
-          {signOut => <button onClick={() => signOut()}>Sign out</button>}
-        </SignOutComponent> */}
-        <GetViewerComponent>
-          {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>
-            if (error) return <p>Error: {error.message}</p>
-            if (!data) return null
-            return (
-              <img
-                src={data.viewer.avatarUrl}
-                css={{
-                  width: '1.5em',
-                  height: '1.5em',
-                  borderRadius: theme.radii[1],
-                }}
-              />
-            )
-          }}
-        </GetViewerComponent>
+        <AccountDropdown />
       </div>
       <div
         css={{
@@ -97,8 +76,7 @@ const Index: React.FC<{}> = () => {
                         color: 'inherit',
                         backgroundColor: theme.colors.white,
                         borderRadius: theme.radii[2],
-                        boxShadow:
-                          '0px 0px 1px rgba(0, 0, 0, 0.2), 0px 1px 2px rgba(0, 0, 0, 0.1)',
+                        boxShadow: theme.shadows.small,
                         [theme.mediaQueries.medium]: {
                           padding: `${theme.space[4]} ${theme.space[5]}`,
                         },
