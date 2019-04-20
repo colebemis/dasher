@@ -1737,7 +1737,7 @@ export enum GitHubTopicSuggestionDeclineReason {
   PersonalPreference = "PERSONAL_PREFERENCE",
   TooGeneral = "TOO_GENERAL"
 }
-/** The possible states in which authentication can be configured with an Identity Provider. */
+/** The possible states in which authentication can be configured with an identity provider. */
 export enum GitHubIdentityProviderConfigurationState {
   Enforced = "ENFORCED",
   Configured = "CONFIGURED",
@@ -1830,6 +1830,22 @@ export type GitHubDate = any;
 // ====================================================
 // Documents
 // ====================================================
+
+export type DeleteBoardVariables = {
+  id: string;
+};
+
+export type DeleteBoardMutation = {
+  __typename?: "Mutation";
+
+  deleteBoard: Maybe<DeleteBoardDeleteBoard>;
+};
+
+export type DeleteBoardDeleteBoard = {
+  __typename?: "Board";
+
+  id: string;
+};
 
 export type GetBoardVariables = {
   id: string;
@@ -1948,6 +1964,50 @@ import gql from "graphql-tag";
 // Components
 // ====================================================
 
+export const DeleteBoardDocument = gql`
+  mutation deleteBoard($id: ID!) {
+    deleteBoard(where: { id: $id }) {
+      id
+    }
+  }
+`;
+export class DeleteBoardComponent extends React.Component<
+  Partial<ReactApollo.MutationProps<DeleteBoardMutation, DeleteBoardVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<DeleteBoardMutation, DeleteBoardVariables>
+        mutation={DeleteBoardDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type DeleteBoardProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<DeleteBoardMutation, DeleteBoardVariables>
+> &
+  TChildProps;
+export type DeleteBoardMutationFn = ReactApollo.MutationFn<
+  DeleteBoardMutation,
+  DeleteBoardVariables
+>;
+export function DeleteBoardHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        DeleteBoardMutation,
+        DeleteBoardVariables,
+        DeleteBoardProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    DeleteBoardMutation,
+    DeleteBoardVariables,
+    DeleteBoardProps<TChildProps>
+  >(DeleteBoardDocument, operationOptions);
+}
 export const GetBoardDocument = gql`
   query getBoard($id: ID!) {
     board(where: { id: $id }) {

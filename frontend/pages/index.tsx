@@ -1,8 +1,14 @@
-import Link from 'next/link'
-import AccountDropdown from '../components/AccountDropdown'
+import AccountMenu from '../components/AccountMenu'
+import BoardCard from '../components/BoardCard'
 import Private from '../components/Private'
 import theme from '../theme'
 import { GetBoardsComponent } from '../__generated__/graphql'
+import posed, { PoseGroup } from 'react-pose'
+
+const PosedBoardCard = posed(BoardCard)({
+  enter: { opacity: 1 },
+  exit: { opacity: 0 },
+})
 
 const Index: React.FC = () => {
   return (
@@ -24,7 +30,7 @@ const Index: React.FC = () => {
           Dasher
         </span>
         <div css={{ margin: '0 auto' }} />
-        <AccountDropdown />
+        <AccountMenu />
       </div>
       <div
         css={{
@@ -61,54 +67,16 @@ const Index: React.FC = () => {
                   },
                 }}
               >
-                {data.signedInUser.boards.map(board => (
-                  <Link
-                    key={board.id}
-                    href={`/board?id=${board.id}`}
-                    passHref={true}
-                  >
-                    <a
-                      css={{
-                        display: 'block',
-                        height: '8em',
-                        padding: `${theme.space[3]} ${theme.space[4]}`,
-                        textDecoration: 'none',
-                        color: 'inherit',
-                        backgroundColor: theme.colors.white,
-                        borderRadius: theme.radii[2],
-                        boxShadow: theme.shadows.small,
-                        [theme.mediaQueries.medium]: {
-                          padding: `${theme.space[4]} ${theme.space[5]}`,
-                        },
-                      }}
-                    >
-                      <div
-                        css={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                        }}
-                      >
-                        <span
-                          css={{
-                            fontSize: theme.fontSizes[3],
-                            fontWeight: theme.fontWeights.semibold,
-                          }}
-                        >
-                          {board.name}
-                        </span>
-                        <span
-                          css={{
-                            fontFamily: theme.fonts.monospace,
-                            fontSize: theme.fontSizes[1],
-                            color: theme.colors.gray[7],
-                          }}
-                        >
-                          {board.query}
-                        </span>
-                      </div>
-                    </a>
-                  </Link>
-                ))}
+                <PoseGroup>
+                  {data.signedInUser.boards.map(board => (
+                    <PosedBoardCard
+                      key={board.id}
+                      id={board.id}
+                      name={board.name}
+                      query={board.query}
+                    />
+                  ))}
+                </PoseGroup>
               </div>
             )
           }}
