@@ -198,6 +198,7 @@ input ColumnWhereInput {
 scalar DateTime
 
 type Mutation {
+  deleteBoard(where: BoardWhereUniqueInput!): Board
   signIn(gitHubCode: String!): SignInPayload!
   signOut: Boolean!
 }

@@ -276,6 +276,7 @@ export interface NexusGenFieldTypes {
     updatedAt: any; // DateTime!
   }
   Mutation: { // field return type
+    deleteBoard: NexusGenRootTypes['Board'] | null; // Board
     signIn: NexusGenRootTypes['SignInPayload']; // SignInPayload!
     signOut: boolean; // Boolean!
   }
@@ -309,6 +310,9 @@ export interface NexusGenArgTypes {
     }
   }
   Mutation: {
+    deleteBoard: { // args
+      where: NexusGenInputs['BoardWhereUniqueInput']; // BoardWhereUniqueInput!
+    }
     signIn: { // args
       gitHubCode: string; // String!
     }
