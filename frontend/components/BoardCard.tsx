@@ -14,14 +14,14 @@ const BoardCard = React.forwardRef<
   BoardCardProps & React.HTMLProps<HTMLDivElement>
 >(({ id, name, query, ...props }, ref) => {
   return (
-    <div css={{ position: 'relative' }} ref={ref} {...props}>
+    <div ref={ref} css={{ position: 'relative' }} {...props}>
       <Link href={`/board?id=${id}`} passHref={true}>
         <a
           css={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'start',
-            height: '8em',
+            height: '8rem',
             padding: `${theme.space[3]} ${theme.space[4]}`,
             textDecoration: 'none',
             color: 'inherit',
