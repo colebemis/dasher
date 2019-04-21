@@ -9,6 +9,9 @@ Create flexible dashboards with GitHub queries
 git clone https://github.com/colebemis/dasher.git
 cd dasher
 
+# Install dependencies
+yarn install
+
 # Start Prisma server and launch connected database
 pushd backend/prisma
 docker-compose up --detach
@@ -18,9 +21,6 @@ popd
 pushd backend
 yarn deploy:prisma
 popd
-
-# Install dependencies
-yarn install
 
 # Start frontend and backend dev servers
 yarn dev
