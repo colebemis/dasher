@@ -1,12 +1,12 @@
-import Tippy from '@tippy.js/react'
 import theme from '../theme'
 import {
   GetIsSignedInDocument,
   GetViewerComponent,
   SignOutComponent,
 } from '../__generated__/graphql'
+import Menu, { MenuDivider, MenuItem } from './Menu'
 
-const AccountDropdown: React.FC = () => {
+const AccountMenu: React.FC = () => {
   return (
     <GetViewerComponent>
       {({ loading, error, data }) => {
@@ -14,36 +14,13 @@ const AccountDropdown: React.FC = () => {
         if (error) return <p>Error: {error.message}</p>
         if (!data) return null
         return (
-          <Tippy
-            trigger="click"
-            interactive={true}
-            arrow={true}
-            arrowType="round"
-            appendTo="parent"
-            onMount={({ reference }) => {
-              reference.setAttribute('aria-expanded', 'true')
-            }}
-            onHide={({ reference }) => {
-              reference.setAttribute('aria-expanded', 'false')
-            }}
-            css={{
-              padding: `${theme.space[2]} 0`,
-              textAlign: 'left',
-              lineHeight: theme.lineHeights.normal,
-              backgroundColor: theme.colors.gray[9],
-              borderRadius: theme.radii[2],
-              boxShadow: theme.shadows.large,
-              '.tippy-roundarrow': {
-                fill: theme.colors.gray[9],
-              },
-            }}
+          <Menu
             content={
               <>
                 <div
                   css={{
                     display: 'flex',
                     flexDirection: 'column',
-                    minWidth: '10rem',
                     padding: `${theme.space[1]} ${theme.space[4]} ${
                       theme.space[2]
                     }`,
@@ -66,37 +43,12 @@ const AccountDropdown: React.FC = () => {
                     {data.viewer.login}
                   </span>
                 </div>
-                <div
-                  css={{
-                    width: '100%',
-                    margin: `${theme.space[2]} 0`,
-                    borderTop: `1px solid ${theme.colors.gray[7]}`,
-                  }}
-                />
+                <MenuDivider />
                 <SignOutComponent
                   refetchQueries={[{ query: GetIsSignedInDocument }]}
                 >
                   {signOut => (
-                    <button
-                      onClick={() => signOut()}
-                      css={{
-                        width: '100%',
-                        padding: `${theme.space[2]} ${theme.space[4]}`,
-                        textAlign: 'left',
-                        fontSize: theme.fontSizes[1],
-                        lineHeight: theme.lineHeights.tight,
-                        color: 'inherit',
-                        backgroundColor: 'transparent',
-                        border: 0,
-                        appearance: 'none',
-                        cursor: 'pointer',
-                        '&:hover': {
-                          backgroundColor: theme.colors.gray[8],
-                        },
-                      }}
-                    >
-                      Sign out
-                    </button>
+                    <MenuItem onClick={() => signOut()}>Sign out</MenuItem>
                   )}
                 </SignOutComponent>
               </>
@@ -107,9 +59,10 @@ const AccountDropdown: React.FC = () => {
               aria-expanded="false"
               css={{
                 padding: 0,
-                background: 'transparent',
+                backgroundColor: 'transparent',
                 border: 0,
                 appearance: 'none',
+                cursor: 'pointer',
               }}
             >
               <img
@@ -122,11 +75,11 @@ const AccountDropdown: React.FC = () => {
                 }}
               />
             </button>
-          </Tippy>
+          </Menu>
         )
       }}
     </GetViewerComponent>
   )
 }
 
-export default AccountDropdown
+export default AccountMenu
