@@ -11,6 +11,12 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  BoardUpdateInput: { // input type
+    columns?: NexusGenInputs['ColumnUpdateManyWithoutBoardInput'] | null; // ColumnUpdateManyWithoutBoardInput
+    name?: string | null; // String
+    owner?: NexusGenInputs['UserUpdateOneRequiredWithoutBoardsInput'] | null; // UserUpdateOneRequiredWithoutBoardsInput
+    query?: string | null; // String
+  }
   BoardWhereInput: { // input type
     AND?: NexusGenInputs['BoardWhereInput'][] | null; // [BoardWhereInput!]
     columns_every?: NexusGenInputs['ColumnWhereInput'] | null; // ColumnWhereInput
@@ -80,6 +86,116 @@ export interface NexusGenInputs {
   }
   BoardWhereUniqueInput: { // input type
     id?: string | null; // ID
+  }
+  ColumnCreateWithoutBoardInput: { // input type
+    index: number; // Int!
+    name: string; // String!
+    query: string; // String!
+  }
+  ColumnScalarWhereInput: { // input type
+    AND?: NexusGenInputs['ColumnScalarWhereInput'][] | null; // [ColumnScalarWhereInput!]
+    createdAt?: any | null; // DateTime
+    createdAt_gt?: any | null; // DateTime
+    createdAt_gte?: any | null; // DateTime
+    createdAt_in?: any[] | null; // [DateTime!]
+    createdAt_lt?: any | null; // DateTime
+    createdAt_lte?: any | null; // DateTime
+    createdAt_not?: any | null; // DateTime
+    createdAt_not_in?: any[] | null; // [DateTime!]
+    id?: string | null; // ID
+    id_contains?: string | null; // ID
+    id_ends_with?: string | null; // ID
+    id_gt?: string | null; // ID
+    id_gte?: string | null; // ID
+    id_in?: string[] | null; // [ID!]
+    id_lt?: string | null; // ID
+    id_lte?: string | null; // ID
+    id_not?: string | null; // ID
+    id_not_contains?: string | null; // ID
+    id_not_ends_with?: string | null; // ID
+    id_not_in?: string[] | null; // [ID!]
+    id_not_starts_with?: string | null; // ID
+    id_starts_with?: string | null; // ID
+    index?: number | null; // Int
+    index_gt?: number | null; // Int
+    index_gte?: number | null; // Int
+    index_in?: number[] | null; // [Int!]
+    index_lt?: number | null; // Int
+    index_lte?: number | null; // Int
+    index_not?: number | null; // Int
+    index_not_in?: number[] | null; // [Int!]
+    name?: string | null; // String
+    name_contains?: string | null; // String
+    name_ends_with?: string | null; // String
+    name_gt?: string | null; // String
+    name_gte?: string | null; // String
+    name_in?: string[] | null; // [String!]
+    name_lt?: string | null; // String
+    name_lte?: string | null; // String
+    name_not?: string | null; // String
+    name_not_contains?: string | null; // String
+    name_not_ends_with?: string | null; // String
+    name_not_in?: string[] | null; // [String!]
+    name_not_starts_with?: string | null; // String
+    name_starts_with?: string | null; // String
+    NOT?: NexusGenInputs['ColumnScalarWhereInput'][] | null; // [ColumnScalarWhereInput!]
+    OR?: NexusGenInputs['ColumnScalarWhereInput'][] | null; // [ColumnScalarWhereInput!]
+    query?: string | null; // String
+    query_contains?: string | null; // String
+    query_ends_with?: string | null; // String
+    query_gt?: string | null; // String
+    query_gte?: string | null; // String
+    query_in?: string[] | null; // [String!]
+    query_lt?: string | null; // String
+    query_lte?: string | null; // String
+    query_not?: string | null; // String
+    query_not_contains?: string | null; // String
+    query_not_ends_with?: string | null; // String
+    query_not_in?: string[] | null; // [String!]
+    query_not_starts_with?: string | null; // String
+    query_starts_with?: string | null; // String
+    updatedAt?: any | null; // DateTime
+    updatedAt_gt?: any | null; // DateTime
+    updatedAt_gte?: any | null; // DateTime
+    updatedAt_in?: any[] | null; // [DateTime!]
+    updatedAt_lt?: any | null; // DateTime
+    updatedAt_lte?: any | null; // DateTime
+    updatedAt_not?: any | null; // DateTime
+    updatedAt_not_in?: any[] | null; // [DateTime!]
+  }
+  ColumnUpdateManyDataInput: { // input type
+    index?: number | null; // Int
+    name?: string | null; // String
+    query?: string | null; // String
+  }
+  ColumnUpdateManyWithWhereNestedInput: { // input type
+    data: NexusGenInputs['ColumnUpdateManyDataInput']; // ColumnUpdateManyDataInput!
+    where: NexusGenInputs['ColumnScalarWhereInput']; // ColumnScalarWhereInput!
+  }
+  ColumnUpdateManyWithoutBoardInput: { // input type
+    connect?: NexusGenInputs['ColumnWhereUniqueInput'][] | null; // [ColumnWhereUniqueInput!]
+    create?: NexusGenInputs['ColumnCreateWithoutBoardInput'][] | null; // [ColumnCreateWithoutBoardInput!]
+    delete?: NexusGenInputs['ColumnWhereUniqueInput'][] | null; // [ColumnWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['ColumnScalarWhereInput'][] | null; // [ColumnScalarWhereInput!]
+    disconnect?: NexusGenInputs['ColumnWhereUniqueInput'][] | null; // [ColumnWhereUniqueInput!]
+    set?: NexusGenInputs['ColumnWhereUniqueInput'][] | null; // [ColumnWhereUniqueInput!]
+    update?: NexusGenInputs['ColumnUpdateWithWhereUniqueWithoutBoardInput'][] | null; // [ColumnUpdateWithWhereUniqueWithoutBoardInput!]
+    updateMany?: NexusGenInputs['ColumnUpdateManyWithWhereNestedInput'][] | null; // [ColumnUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['ColumnUpsertWithWhereUniqueWithoutBoardInput'][] | null; // [ColumnUpsertWithWhereUniqueWithoutBoardInput!]
+  }
+  ColumnUpdateWithWhereUniqueWithoutBoardInput: { // input type
+    data: NexusGenInputs['ColumnUpdateWithoutBoardDataInput']; // ColumnUpdateWithoutBoardDataInput!
+    where: NexusGenInputs['ColumnWhereUniqueInput']; // ColumnWhereUniqueInput!
+  }
+  ColumnUpdateWithoutBoardDataInput: { // input type
+    index?: number | null; // Int
+    name?: string | null; // String
+    query?: string | null; // String
+  }
+  ColumnUpsertWithWhereUniqueWithoutBoardInput: { // input type
+    create: NexusGenInputs['ColumnCreateWithoutBoardInput']; // ColumnCreateWithoutBoardInput!
+    update: NexusGenInputs['ColumnUpdateWithoutBoardDataInput']; // ColumnUpdateWithoutBoardDataInput!
+    where: NexusGenInputs['ColumnWhereUniqueInput']; // ColumnWhereUniqueInput!
   }
   ColumnWhereInput: { // input type
     AND?: NexusGenInputs['ColumnWhereInput'][] | null; // [ColumnWhereInput!]
@@ -153,6 +269,25 @@ export interface NexusGenInputs {
     updatedAt_not?: any | null; // DateTime
     updatedAt_not_in?: any[] | null; // [DateTime!]
   }
+  ColumnWhereUniqueInput: { // input type
+    id?: string | null; // ID
+  }
+  UserCreateWithoutBoardsInput: { // input type
+    gitHubId: string; // ID!
+  }
+  UserUpdateOneRequiredWithoutBoardsInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+    create?: NexusGenInputs['UserCreateWithoutBoardsInput'] | null; // UserCreateWithoutBoardsInput
+    update?: NexusGenInputs['UserUpdateWithoutBoardsDataInput'] | null; // UserUpdateWithoutBoardsDataInput
+    upsert?: NexusGenInputs['UserUpsertWithoutBoardsInput'] | null; // UserUpsertWithoutBoardsInput
+  }
+  UserUpdateWithoutBoardsDataInput: { // input type
+    gitHubId?: string | null; // ID
+  }
+  UserUpsertWithoutBoardsInput: { // input type
+    create: NexusGenInputs['UserCreateWithoutBoardsInput']; // UserCreateWithoutBoardsInput!
+    update: NexusGenInputs['UserUpdateWithoutBoardsDataInput']; // UserUpdateWithoutBoardsDataInput!
+  }
   UserWhereInput: { // input type
     AND?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
     boards_every?: NexusGenInputs['BoardWhereInput'] | null; // BoardWhereInput
@@ -205,6 +340,10 @@ export interface NexusGenInputs {
     updatedAt_not?: any | null; // DateTime
     updatedAt_not_in?: any[] | null; // [DateTime!]
   }
+  UserWhereUniqueInput: { // input type
+    gitHubId?: string | null; // ID
+    id?: string | null; // ID
+  }
 }
 
 export interface NexusGenEnums {
@@ -248,10 +387,25 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  BoardUpdateInput: NexusGenInputs['BoardUpdateInput'];
   BoardWhereInput: NexusGenInputs['BoardWhereInput'];
   BoardWhereUniqueInput: NexusGenInputs['BoardWhereUniqueInput'];
+  ColumnCreateWithoutBoardInput: NexusGenInputs['ColumnCreateWithoutBoardInput'];
+  ColumnScalarWhereInput: NexusGenInputs['ColumnScalarWhereInput'];
+  ColumnUpdateManyDataInput: NexusGenInputs['ColumnUpdateManyDataInput'];
+  ColumnUpdateManyWithWhereNestedInput: NexusGenInputs['ColumnUpdateManyWithWhereNestedInput'];
+  ColumnUpdateManyWithoutBoardInput: NexusGenInputs['ColumnUpdateManyWithoutBoardInput'];
+  ColumnUpdateWithWhereUniqueWithoutBoardInput: NexusGenInputs['ColumnUpdateWithWhereUniqueWithoutBoardInput'];
+  ColumnUpdateWithoutBoardDataInput: NexusGenInputs['ColumnUpdateWithoutBoardDataInput'];
+  ColumnUpsertWithWhereUniqueWithoutBoardInput: NexusGenInputs['ColumnUpsertWithWhereUniqueWithoutBoardInput'];
   ColumnWhereInput: NexusGenInputs['ColumnWhereInput'];
+  ColumnWhereUniqueInput: NexusGenInputs['ColumnWhereUniqueInput'];
+  UserCreateWithoutBoardsInput: NexusGenInputs['UserCreateWithoutBoardsInput'];
+  UserUpdateOneRequiredWithoutBoardsInput: NexusGenInputs['UserUpdateOneRequiredWithoutBoardsInput'];
+  UserUpdateWithoutBoardsDataInput: NexusGenInputs['UserUpdateWithoutBoardsDataInput'];
+  UserUpsertWithoutBoardsInput: NexusGenInputs['UserUpsertWithoutBoardsInput'];
   UserWhereInput: NexusGenInputs['UserWhereInput'];
+  UserWhereUniqueInput: NexusGenInputs['UserWhereUniqueInput'];
   BoardOrderByInput: NexusGenEnums['BoardOrderByInput'];
   ColumnOrderByInput: NexusGenEnums['ColumnOrderByInput'];
 }
@@ -279,6 +433,7 @@ export interface NexusGenFieldTypes {
     deleteBoard: NexusGenRootTypes['Board'] | null; // Board
     signIn: NexusGenRootTypes['SignInPayload']; // SignInPayload!
     signOut: boolean; // Boolean!
+    updateBoard: NexusGenRootTypes['Board'] | null; // Board
   }
   Query: { // field return type
     board: NexusGenRootTypes['Board'] | null; // Board
@@ -316,6 +471,10 @@ export interface NexusGenArgTypes {
     signIn: { // args
       gitHubCode: string; // String!
     }
+    updateBoard: { // args
+      data: NexusGenInputs['BoardUpdateInput']; // BoardUpdateInput!
+      where: NexusGenInputs['BoardWhereUniqueInput']; // BoardWhereUniqueInput!
+    }
   }
   Query: {
     board: { // args
@@ -342,7 +501,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Board" | "Column" | "Mutation" | "Query" | "SignInPayload" | "User";
 
-export type NexusGenInputNames = "BoardWhereInput" | "BoardWhereUniqueInput" | "ColumnWhereInput" | "UserWhereInput";
+export type NexusGenInputNames = "BoardUpdateInput" | "BoardWhereInput" | "BoardWhereUniqueInput" | "ColumnCreateWithoutBoardInput" | "ColumnScalarWhereInput" | "ColumnUpdateManyDataInput" | "ColumnUpdateManyWithWhereNestedInput" | "ColumnUpdateManyWithoutBoardInput" | "ColumnUpdateWithWhereUniqueWithoutBoardInput" | "ColumnUpdateWithoutBoardDataInput" | "ColumnUpsertWithWhereUniqueWithoutBoardInput" | "ColumnWhereInput" | "ColumnWhereUniqueInput" | "UserCreateWithoutBoardsInput" | "UserUpdateOneRequiredWithoutBoardsInput" | "UserUpdateWithoutBoardsDataInput" | "UserUpsertWithoutBoardsInput" | "UserWhereInput" | "UserWhereUniqueInput";
 
 export type NexusGenEnumNames = "BoardOrderByInput" | "ColumnOrderByInput";
 
