@@ -14,6 +14,11 @@ pushd backend/prisma
 docker-compose up --detach
 popd
 
+# Deploy Prisma datamodel
+pushd backend
+yarn deploy:prisma
+popd
+
 # Install dependencies
 yarn install
 
