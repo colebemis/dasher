@@ -1,9 +1,9 @@
+import posed, { PoseGroup } from 'react-pose'
 import AccountMenu from '../components/AccountMenu'
 import BoardCard from '../components/BoardCard'
 import Private from '../components/Private'
 import theme from '../theme'
 import { GetBoardsComponent } from '../__generated__/graphql'
-import posed, { PoseGroup } from 'react-pose'
 
 const PosedBoardCard = posed(BoardCard)({
   enter: { opacity: 1 },
