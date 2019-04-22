@@ -21,7 +21,7 @@ const BoardCard = React.forwardRef<
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'start',
-            height: '8rem',
+            minHeight: '8rem',
             padding: `${theme.space[3]} ${theme.space[4]}`,
             textDecoration: 'none',
             color: 'inherit',
@@ -58,6 +58,7 @@ const BoardCard = React.forwardRef<
       <BoardMenu
         id={id}
         name={name}
+        query={query}
         css={{
           position: 'absolute',
           top: theme.space[2],
