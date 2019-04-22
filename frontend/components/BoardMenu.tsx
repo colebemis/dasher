@@ -26,9 +26,7 @@ const BoardMenu: React.FC<
       onCreate={instance =>
         // `RefObject.current` is read-only, so it must
         // be cast to `any` in order to be reassigned.
-        // References:
-        // * https://git.io/fj3Lh
-        // * https://git.io/fj3tT
+        // Reference: https://git.io/fj3Lh
         ((tippyInstance.current as any) = instance)
       }
       content={
