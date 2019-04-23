@@ -1,21 +1,8 @@
 import React, { SyntheticEvent } from 'react'
-import posed from 'react-pose'
 import theme from '../theme'
+import Button from './Button'
 import Field from './Field'
 import Label from './Label'
-
-const PosedButtonGroup = posed.div({
-  open: {
-    height: 'auto',
-    opacity: 1,
-    transition: { duration: 100 },
-  },
-  closed: {
-    height: 0,
-    opacity: 0,
-    transition: { duration: 100 },
-  },
-})
 
 interface BoardFormValues {
   name: string
@@ -99,24 +86,44 @@ const BoardForm: React.FC<BoardFormProps> = ({
       >
         View GitHub's search syntax
       </a>
-      <PosedButtonGroup
-        pose={isDirty ? 'open' : 'closed'}
-        css={{ width: '100%' }}
-      >
+      {isDirty ? (
         <div
           css={{
+            width: '100%',
             display: 'grid',
             gridTemplateColumns: 'repeat(2, 1fr)',
             gridGap: theme.space[3],
             marginTop: theme.space[4],
           }}
         >
-          <button type="button" disabled={!isDirty} onClick={() => onReset()}>
+          <Button
+            type="button"
+            onClick={() => onReset()}
+            css={{
+              color: theme.colors.white,
+              backgroundColor: theme.colors.gray[8],
+              boxShadow: theme.shadows.small,
+              '&:hover': {
+                backgroundColor: theme.colors.gray[7],
+              },
+            }}
+          >
             Reset
-          </button>
-          <button disabled={!isDirty}>Apply</button>
+          </Button>
+          <Button
+            css={{
+              color: theme.colors.white,
+              backgroundColor: theme.colors.primary[7],
+              boxShadow: theme.shadows.small,
+              '&:hover': {
+                backgroundColor: theme.colors.primary[6],
+              },
+            }}
+          >
+            Apply
+          </Button>
         </div>
-      </PosedButtonGroup>
+      ) : null}
     </form>
   )
 }

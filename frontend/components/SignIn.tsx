@@ -1,13 +1,15 @@
 import Router from 'next/router'
 import qs from 'query-string'
 import React from 'react'
+import theme from '../theme'
+import Button from './Button'
 
 const SignIn: React.FC = () => {
   const [loading, setLoading] = React.useState(false)
   return (
-    <div>
+    <div css={{ padding: theme.space[4] }}>
       <h1>Sign in</h1>
-      <button
+      <Button
         disabled={loading}
         onClick={() => {
           setLoading(true)
@@ -22,9 +24,17 @@ const SignIn: React.FC = () => {
             })}`,
           )
         }}
+        css={{
+          color: theme.colors.white,
+          backgroundColor: theme.colors.gray[9],
+          boxShadow: theme.shadows.small,
+          '&:hover': {
+            backgroundColor: theme.colors.gray[8],
+          },
+        }}
       >
         {loading ? 'Loading...' : 'Sign in with GitHub'}
-      </button>
+      </Button>
     </div>
   )
 }

@@ -29,6 +29,18 @@ const theme = {
   colors: {
     white: '#ffffff',
     black: '#000000',
+    primary: [
+      '#edf2ff',
+      '#dbe4ff',
+      '#bac8ff',
+      '#91a7ff',
+      '#748ffc',
+      '#5c7cfa',
+      '#4c6ef5',
+      '#4263eb',
+      '#3b5bdb',
+      '#364fc7',
+    ],
     gray: [
       '#f8f9fa',
       '#f1f3f5',
