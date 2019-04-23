@@ -1,4 +1,5 @@
 import get from 'lodash/get'
+import isEqual from 'lodash/isEqual'
 import React from 'react'
 import { Instance } from 'tippy.js'
 import theme from '../theme'
@@ -21,6 +22,7 @@ const BoardMenu: React.FC<
   BoardCardProps & React.HTMLProps<HTMLButtonElement>
 > = ({ id, name, query, ...props }) => {
   const tippyInstance = React.useRef<Instance>(null)
+  const [formValues, setFormValues] = React.useState({ name, query })
   return (
     <Menu
       onCreate={instance =>
@@ -29,6 +31,7 @@ const BoardMenu: React.FC<
         // Reference: https://git.io/fj3Lh
         ((tippyInstance.current as any) = instance)
       }
+      onHidden={() => setFormValues({ name, query })}
       content={
         <>
           <UpdateBoardComponent
@@ -55,13 +58,16 @@ const BoardMenu: React.FC<
           >
             {updateBoard => (
               <BoardForm
-                initialValues={{ name, query }}
-                onSubmit={values => {
-                  updateBoard({ variables: { id, ...values } })
+                values={formValues}
+                isDirty={!isEqual(formValues, { name, query })}
+                onChange={setFormValues}
+                onSubmit={() => {
+                  updateBoard({ variables: { id, ...formValues } })
                   if (tippyInstance.current) {
                     tippyInstance.current.hide()
                   }
                 }}
+                onReset={() => setFormValues({ name, query })}
               />
             )}
           </UpdateBoardComponent>

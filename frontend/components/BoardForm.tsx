@@ -1,4 +1,3 @@
-import isEqual from 'lodash/isEqual'
 import React, { SyntheticEvent } from 'react'
 import posed from 'react-pose'
 import theme from '../theme'
@@ -24,16 +23,23 @@ interface BoardFormValues {
 }
 
 interface BoardFormProps {
-  initialValues: BoardFormValues
-  onSubmit: (values: BoardFormValues) => void
+  values: BoardFormValues
+  isDirty: boolean
+  onChange: (values: BoardFormValues) => void
+  onSubmit: () => void
+  onReset: () => void
 }
 
-const BoardForm: React.FC<BoardFormProps> = ({ initialValues, onSubmit }) => {
-  const [values, setValues] = React.useState(initialValues)
-
+const BoardForm: React.FC<BoardFormProps> = ({
+  values,
+  isDirty,
+  onChange,
+  onSubmit,
+  onReset,
+}) => {
   function handleSubmit(event: SyntheticEvent) {
     event.preventDefault()
-    onSubmit(values)
+    onSubmit()
   }
 
   return (
@@ -54,7 +60,7 @@ const BoardForm: React.FC<BoardFormProps> = ({ initialValues, onSubmit }) => {
         type="text"
         value={values.name}
         onChange={event =>
-          setValues({ ...values, name: event.currentTarget.value })
+          onChange({ ...values, name: event.currentTarget.value })
         }
       />
       <div css={{ marginBottom: theme.space[4] }} />
@@ -65,7 +71,7 @@ const BoardForm: React.FC<BoardFormProps> = ({ initialValues, onSubmit }) => {
         spellCheck={false}
         value={values.query}
         onChange={event =>
-          setValues({ ...values, query: event.currentTarget.value })
+          onChange({ ...values, query: event.currentTarget.value })
         }
         onKeyPress={event => {
           if (event.key === 'Enter' && !event.shiftKey) {
@@ -94,7 +100,7 @@ const BoardForm: React.FC<BoardFormProps> = ({ initialValues, onSubmit }) => {
         View GitHub's search syntax
       </a>
       <PosedButtonGroup
-        pose={isEqual(initialValues, values) ? 'closed' : 'open'}
+        pose={isDirty ? 'open' : 'closed'}
         css={{ width: '100%' }}
       >
         <div
@@ -105,10 +111,10 @@ const BoardForm: React.FC<BoardFormProps> = ({ initialValues, onSubmit }) => {
             marginTop: theme.space[4],
           }}
         >
-          <button type="button" onClick={() => setValues(initialValues)}>
+          <button type="button" disabled={!isDirty} onClick={() => onReset()}>
             Reset
           </button>
-          <button>Apply</button>
+          <button disabled={!isDirty}>Apply</button>
         </div>
       </PosedButtonGroup>
     </form>
