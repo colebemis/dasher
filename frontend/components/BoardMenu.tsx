@@ -1,5 +1,6 @@
 import get from 'lodash/get'
 import isEqual from 'lodash/isEqual'
+import Router from 'next/router'
 import React from 'react'
 import { Instance } from 'tippy.js'
 import theme from '../theme'
@@ -98,6 +99,9 @@ const BoardMenu: React.FC<
                 onClick={() => {
                   if (window.confirm(`Delete "${name}"?`)) {
                     deleteBoard()
+                    if (Router.pathname === '/board') {
+                      Router.push('/')
+                    }
                   }
                 }}
               >
