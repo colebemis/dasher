@@ -21,9 +21,7 @@ const AccountMenu: React.FC = () => {
                   css={{
                     display: 'flex',
                     flexDirection: 'column',
-                    padding: `${theme.space[1]} ${theme.space[4]} ${
-                      theme.space[2]
-                    }`,
+                    padding: `${theme.space[2]} ${theme.space[4]}`,
                   }}
                 >
                   <span

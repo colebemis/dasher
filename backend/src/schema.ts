@@ -41,7 +41,7 @@ const Query = prismaObjectType({
 const Mutation = prismaObjectType({
   name: 'Mutation',
   definition(t) {
-    t.prismaFields(['deleteBoard'])
+    t.prismaFields(['updateBoard', 'deleteBoard'])
     t.field('signIn', {
       type: SignInPayload,
       args: { gitHubCode: stringArg({ required: true }) },

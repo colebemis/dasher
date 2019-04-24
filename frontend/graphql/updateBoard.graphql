@@ -1,0 +1,7 @@
+mutation updateBoard($id: ID!, $name: String, $query: String) {
+  updateBoard(where: { id: $id }, data: { name: $name, query: $query }) {
+    id
+    name
+    query
+  }
+}
