@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from 'react'
+import React from 'react'
 import theme from '../theme'
 import Button from './Button'
 import Field from './Field'
@@ -24,7 +24,7 @@ const BoardForm: React.FC<BoardFormProps> = ({
   onSubmit,
   onReset,
 }) => {
-  function handleSubmit(event: SyntheticEvent) {
+  function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault()
     onSubmit()
   }
