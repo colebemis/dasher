@@ -73,8 +73,6 @@ const BoardForm: React.FC<BoardFormProps> = ({
         target="_blank"
         rel="noopener noreferrer"
         css={{
-          display: 'flex',
-          alignItems: 'center',
           marginTop: theme.space[2],
           fontSize: theme.fontSizes[1],
           fontWeight: theme.fontWeights.normal,
