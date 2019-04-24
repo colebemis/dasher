@@ -6,7 +6,7 @@ const Button: React.FC<React.HTMLProps<HTMLButtonElement>> = props => {
     <button
       css={{
         margin: 0,
-        padding: `${theme.space[2]} ${theme.space[3]}`,
+        padding: `${theme.space[2]} ${theme.space[4]}`,
         fontSize: theme.fontSizes[1],
         fontWeight: theme.fontWeights.semibold,
         fontFamily: 'inherit',
