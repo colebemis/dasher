@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { withRouter, WithRouterProps } from 'next/router'
 import Private from '../components/Private'
 import { GetBoardComponent } from '../__generated__/graphql'
+import BoardMenu from '../components/BoardMenu'
 
 interface Query {
   id?: string
@@ -27,6 +28,11 @@ const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
               </Link>
               <h1>{data.board.name}</h1>
               <p>{data.board.query}</p>
+              <BoardMenu
+                id={data.board.id}
+                name={data.board.name}
+                query={data.board.query}
+              />
               {data.board.columns
                 ? data.board.columns.map(column => (
                     <div key={column.id}>
