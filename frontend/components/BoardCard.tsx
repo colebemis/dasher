@@ -22,7 +22,12 @@ const BoardCard = React.forwardRef<
             flexDirection: 'column',
             alignItems: 'start',
             minHeight: '8rem',
-            padding: `${theme.space[3]} ${theme.space[4]}`,
+            paddingTop: theme.space[3],
+            paddingBottom: theme.space[3],
+            // paddingRight is hard-coded to account for the button
+            // absolutely positioned in the top-right of the card.
+            paddingRight: 48,
+            paddingLeft: theme.space[4],
             textDecoration: 'none',
             color: 'inherit',
             backgroundColor: theme.colors.white,
@@ -32,7 +37,10 @@ const BoardCard = React.forwardRef<
               boxShadow: theme.shadows.medium,
             },
             [theme.mediaQueries.medium]: {
-              padding: `${theme.space[4]} ${theme.space[5]}`,
+              paddingTop: theme.space[4],
+              paddingBottom: theme.space[4],
+              paddingRight: 56,
+              paddingLeft: theme.space[5],
             },
           }}
         >
