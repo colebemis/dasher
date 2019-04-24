@@ -61,7 +61,8 @@ const BoardForm: React.FC<BoardFormProps> = ({
           onChange({ ...values, query: event.currentTarget.value })
         }
         onKeyPress={event => {
-          if (event.key === 'Enter' && !event.shiftKey) {
+          // Make `Enter` submit the form instead of adding a new line.
+          if (event.key === 'Enter') {
             handleSubmit(event)
           }
         }}
