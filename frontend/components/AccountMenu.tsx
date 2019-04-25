@@ -4,7 +4,6 @@ import {
   GetViewerComponent,
   SignOutComponent,
 } from '../__generated__/graphql'
-import { SignOutIcon } from './Icon'
 import Menu, { MenuDivider, MenuItem } from './Menu'
 
 const AccountMenu: React.FC = () => {
