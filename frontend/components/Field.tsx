@@ -19,7 +19,6 @@ const Field: React.FC<FieldProps & React.HTMLProps<any>> = ({
         fontSize: theme.fontSizes[2],
         lineHeight: theme.lineHeights.normal,
         color: 'inherit',
-        backgroundColor: theme.colors.gray[8],
         border: 0,
         borderRadius: theme.radii[1],
       }}

@@ -50,6 +50,10 @@ const BoardForm: React.FC<BoardFormProps> = ({
         onChange={event =>
           onChange({ ...values, name: event.currentTarget.value })
         }
+        css={{
+          backgroundColor: theme.colors.gray[8],
+          boxShadow: theme.shadows.small,
+        }}
       />
       <div css={{ marginBottom: theme.space[4] }} />
       <Label htmlFor="query">GitHub query</Label>
@@ -67,7 +71,11 @@ const BoardForm: React.FC<BoardFormProps> = ({
             handleSubmit(event)
           }
         }}
-        css={{ resize: 'vertical' }}
+        css={{
+          backgroundColor: theme.colors.gray[8],
+          boxShadow: theme.shadows.small,
+          resize: 'vertical',
+        }}
       />
       <a
         href="https://help.github.com/en/articles/searching-issues-and-pull-requests"
