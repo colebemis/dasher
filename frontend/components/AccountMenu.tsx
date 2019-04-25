@@ -47,15 +47,7 @@ const AccountMenu: React.FC = () => {
                   refetchQueries={[{ query: GetIsSignedInDocument }]}
                 >
                   {signOut => (
-                    <MenuItem onClick={() => signOut()}>
-                      <SignOutIcon
-                        css={{
-                          marginRight: theme.space[3],
-                          color: theme.colors.gray[6],
-                        }}
-                      />
-                      Sign out
-                    </MenuItem>
+                    <MenuItem onClick={() => signOut()}>Sign out</MenuItem>
                   )}
                 </SignOutComponent>
               </>

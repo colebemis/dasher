@@ -42,12 +42,4 @@ export const ExternalLinkIcon: React.FC<
   )
 }
 
-export const SignOutIcon: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-  return (
-    <Icon {...props}>
-      <path d="M1,4A3,3,0,0,1,4,1H7A1,1,0,0,1,7,3H4A1,1,0,0,0,3,4v8a1,1,0,0,0,1,1H7a1,1,0,0,1,0,2H4a3,3,0,0,1-3-3ZM15.15,7.65l-3.3-3.3a.5.5,0,0,0-.85.36V7H7A1,1,0,0,0,7,9h4v2.29a.5.5,0,0,0,.85.36l3.3-3.3A.5.5,0,0,0,15.15,7.65Z" />
-    </Icon>
-  )
-}
-
 export default Icon
