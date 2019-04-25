@@ -27,8 +27,6 @@ const theme = {
     loose: 2,
   },
   colors: {
-    white: '#ffffff',
-    black: '#000000',
     primary: [
       '#edf2ff',
       '#dbe4ff',
@@ -41,6 +39,8 @@ const theme = {
       '#3b5bdb',
       '#364fc7',
     ],
+    white: '#ffffff',
+    black: '#000000',
     gray: [
       '#f8f9fa',
       '#f1f3f5',
@@ -52,6 +52,18 @@ const theme = {
       '#495057',
       '#343a40',
       '#212529',
+    ],
+    red: [
+      '#fff5f5',
+      '#ffe3e3',
+      '#ffc9c9',
+      '#ffa8a8',
+      '#ff8787',
+      '#ff6b6b',
+      '#fa5252',
+      '#f03e3e',
+      '#e03131',
+      '#c92a2a',
     ],
   },
   radii: ['0', '3px', '6px'],
