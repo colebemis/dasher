@@ -113,8 +113,8 @@ const BoardMenu: React.FC<
               >
                 <TrashIcon
                   css={{
-                    color: theme.colors.gray[6],
                     marginRight: theme.space[3],
+                    color: theme.colors.gray[6],
                   }}
                 />
                 Delete

@@ -4,6 +4,7 @@ import {
   GetViewerComponent,
   SignOutComponent,
 } from '../__generated__/graphql'
+import { SignOutIcon } from './Icon'
 import Menu, { MenuDivider, MenuItem } from './Menu'
 
 const AccountMenu: React.FC = () => {
@@ -46,7 +47,15 @@ const AccountMenu: React.FC = () => {
                   refetchQueries={[{ query: GetIsSignedInDocument }]}
                 >
                   {signOut => (
-                    <MenuItem onClick={() => signOut()}>Sign out</MenuItem>
+                    <MenuItem onClick={() => signOut()}>
+                      <SignOutIcon
+                        css={{
+                          marginRight: theme.space[3],
+                          color: theme.colors.gray[6],
+                        }}
+                      />
+                      Sign out
+                    </MenuItem>
                   )}
                 </SignOutComponent>
               </>

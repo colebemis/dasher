@@ -32,4 +32,22 @@ export const TrashIcon: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   )
 }
 
+export const ExternalLinkIcon: React.FC<
+  React.SVGProps<SVGSVGElement>
+> = props => {
+  return (
+    <Icon {...props}>
+      <path d="M15,1.5V6.29a.5.5,0,0,1-.85.36L12.46,5,8.71,8.71a1,1,0,0,1-1.42,0,1,1,0,0,1,0-1.42L11,3.54,9.35,1.85A.5.5,0,0,1,9.71,1H14.5A.5.5,0,0,1,15,1.5ZM15,12V10a1,1,0,0,0-2,0v2a1,1,0,0,1-1,1H4a1,1,0,0,1-1-1V4A1,1,0,0,1,4,3H6A1,1,0,0,0,6,1H4A3,3,0,0,0,1,4v8a3,3,0,0,0,3,3h8A3,3,0,0,0,15,12Z" />
+    </Icon>
+  )
+}
+
+export const SignOutIcon: React.FC<React.SVGProps<SVGSVGElement>> = props => {
+  return (
+    <Icon {...props}>
+      <path d="M1,4A3,3,0,0,1,4,1H7A1,1,0,0,1,7,3H4A1,1,0,0,0,3,4v8a1,1,0,0,0,1,1H7a1,1,0,0,1,0,2H4a3,3,0,0,1-3-3ZM15.15,7.65l-3.3-3.3a.5.5,0,0,0-.85.36V7H7A1,1,0,0,0,7,9h4v2.29a.5.5,0,0,0,.85.36l3.3-3.3A.5.5,0,0,0,15.15,7.65Z" />
+    </Icon>
+  )
+}
+
 export default Icon
