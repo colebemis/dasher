@@ -2,6 +2,7 @@ import React from 'react'
 import theme from '../theme'
 import Button from './Button'
 import Field from './Field'
+import { ExternalLinkIcon } from './Icon'
 import Label from './Label'
 
 interface BoardFormValues {
@@ -83,6 +84,9 @@ const BoardForm: React.FC<BoardFormProps> = ({
           },
         }}
       >
+        <ExternalLinkIcon
+          css={{ marginRight: theme.space[2], color: theme.colors.gray[6] }}
+        />
         View GitHub's search syntax
       </a>
       {isDirty ? (
