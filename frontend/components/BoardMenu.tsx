@@ -11,6 +11,7 @@ import {
   UpdateBoardComponent,
 } from '../__generated__/graphql'
 import BoardForm from './BoardForm'
+import { EllipsesIcon, TrashIcon } from './Icon'
 import Menu, { MenuDivider, MenuItem } from './Menu'
 
 interface BoardCardProps {
@@ -104,7 +105,18 @@ const BoardMenu: React.FC<
                     }
                   }
                 }}
+                css={{
+                  '&:hover svg': {
+                    color: theme.colors.red[6],
+                  },
+                }}
               >
+                <TrashIcon
+                  css={{
+                    color: theme.colors.gray[6],
+                    marginRight: theme.space[3],
+                  }}
+                />
                 Delete
               </MenuItem>
             )}
@@ -130,17 +142,7 @@ const BoardMenu: React.FC<
         }}
         {...props}
       >
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="currentColor"
-          css={{ verticalAlign: 'text-bottom' }}
-        >
-          <circle cx="7.5" cy="7.5" r="1.5" />
-          <circle cx="1.5" cy="7.5" r="1.5" />
-          <circle cx="13.5" cy="7.5" r="1.5" />
-        </svg>
+        <EllipsesIcon />
       </button>
     </Menu>
   )
