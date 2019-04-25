@@ -62,9 +62,8 @@ const Index: React.FC = () => {
             return (
               <div
                 css={{
-                  '& > :not(:last-child)': {
-                    marginBottom: theme.space[4],
-                  },
+                  display: 'grid',
+                  gridGap: theme.space[4],
                 }}
               >
                 <PoseGroup>
