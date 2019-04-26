@@ -1,13 +1,13 @@
 import Head from 'next/head'
 import NextLink from 'next/link'
 import { withRouter, WithRouterProps } from 'next/router'
-import Private from '../components/Private'
-import { GetBoardComponent } from '../__generated__/graphql'
-import BoardMenu from '../components/BoardMenu'
 import AccountMenu from '../components/AccountMenu'
-import theme from '../theme'
+import BoardMenu from '../components/BoardMenu'
 import { ChevronLeftIcon } from '../components/Icon'
 import Link from '../components/Link'
+import Private from '../components/Private'
+import theme from '../theme'
+import { GetBoardComponent } from '../__generated__/graphql'
 
 interface Query {
   id?: string
