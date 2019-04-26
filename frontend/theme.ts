@@ -1,5 +1,15 @@
 const theme = {
-  space: ['0', '0.25rem', '0.5rem', '0.75rem', '1rem', '1.5rem', '2rem'],
+  space: [
+    '0',
+    '0.25rem',
+    '0.5rem',
+    '0.75rem',
+    '1rem',
+    '1.5rem',
+    '2rem',
+    '2.5rem',
+    '3rem',
+  ],
   fonts: {
     sansSerif:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
