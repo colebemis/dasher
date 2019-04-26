@@ -1,16 +1,24 @@
 import posed, { PoseGroup } from 'react-pose'
 import AccountMenu from '../components/AccountMenu'
 import BoardCard from '../components/BoardCard'
+import Button from '../components/Button'
+import { PlusIcon } from '../components/Icon'
 import Private from '../components/Private'
 import theme from '../theme'
 import { GetBoardsComponent } from '../__generated__/graphql'
+import React from 'react'
+import CreateBoardForm from '../components/CreateBoardForm'
 
-const PosedBoardCard = posed(BoardCard)({
-  enter: { opacity: 1 },
-  exit: { opacity: 0 },
+const PosedDiv = posed.div({
+  enter: { opacity: 1, transition: { durration: 100 } },
+  exit: { opacity: 0, transition: { durration: 100 } },
 })
 
 const Index: React.FC = () => {
+  const [
+    isCreateBoardFormVisible,
+    setIsCreateBoardFormVisible,
+  ] = React.useState(false)
   return (
     <Private>
       <div
@@ -42,18 +50,48 @@ const Index: React.FC = () => {
           },
         }}
       >
-        <h1
+        <div
           css={{
-            margin: `0 0 ${theme.space[4]}`,
-            fontSize: theme.fontSizes[6],
-            lineHeight: theme.lineHeights.tight,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginBottom: theme.space[4],
             [theme.mediaQueries.medium]: {
-              margin: `0 0 ${theme.space[5]}`,
+              marginBottom: theme.space[5],
             },
           }}
         >
-          Boards
-        </h1>
+          <h1
+            css={{
+              margin: 0,
+              fontSize: theme.fontSizes[6],
+              lineHeight: theme.lineHeights.tight,
+            }}
+          >
+            Boards
+          </h1>
+          <Button
+            disabled={isCreateBoardFormVisible}
+            onClick={() => setIsCreateBoardFormVisible(true)}
+            css={{
+              padding: `${theme.space[2]} ${theme.space[3]}`,
+              color: theme.colors.white,
+              backgroundColor: theme.colors.primary[7],
+              boxShadow: theme.shadows.small,
+              '&:hover:enabled': {
+                backgroundColor: theme.colors.primary[6],
+              },
+            }}
+          >
+            <PlusIcon
+              css={{
+                marginRight: theme.space[2],
+                color: theme.colors.primary[1],
+              }}
+            />
+            New board
+          </Button>
+        </div>
         <GetBoardsComponent>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>
@@ -67,14 +105,24 @@ const Index: React.FC = () => {
                 }}
               >
                 <PoseGroup>
-                  {data.signedInUser.boards.map(board => (
-                    <PosedBoardCard
-                      key={board.id}
-                      id={board.id}
-                      name={board.name}
-                      query={board.query}
-                    />
-                  ))}
+                  {[
+                    isCreateBoardFormVisible && (
+                      <PosedDiv key="create-board-form">
+                        <CreateBoardForm
+                          onCancel={() => setIsCreateBoardFormVisible(false)}
+                        />
+                      </PosedDiv>
+                    ),
+                    ...data.signedInUser.boards.map(board => (
+                      <PosedDiv key={board.id}>
+                        <BoardCard
+                          id={board.id}
+                          name={board.name}
+                          query={board.query}
+                        />
+                      </PosedDiv>
+                    )),
+                  ]}
                 </PoseGroup>
               </div>
             )

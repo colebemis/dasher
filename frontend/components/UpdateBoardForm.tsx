@@ -5,20 +5,20 @@ import Field from './Field'
 import { ExternalLinkIcon } from './Icon'
 import Label from './Label'
 
-interface BoardFormValues {
+interface UpdateBoardFormValues {
   name: string
   query: string
 }
 
-interface BoardFormProps {
-  values: BoardFormValues
+interface UpdateBoardFormProps {
+  values: UpdateBoardFormValues
   isDirty: boolean
-  onChange: (values: BoardFormValues) => void
+  onChange: (values: UpdateBoardFormValues) => void
   onSubmit: () => void
   onReset: () => void
 }
 
-const BoardForm: React.FC<BoardFormProps> = ({
+const UpdateBoardForm: React.FC<UpdateBoardFormProps> = ({
   values,
   isDirty,
   onChange,
@@ -42,9 +42,11 @@ const BoardForm: React.FC<BoardFormProps> = ({
         padding: `${theme.space[2]} ${theme.space[4]}`,
       }}
     >
-      <Label htmlFor="name">Name</Label>
+      <Label htmlFor="update-board-name" css={{ color: theme.colors.gray[5] }}>
+        Board name
+      </Label>
       <Field
-        id="name"
+        id="update-board-name"
         type="text"
         value={values.name}
         onChange={event =>
@@ -56,10 +58,12 @@ const BoardForm: React.FC<BoardFormProps> = ({
         }}
       />
       <div css={{ marginBottom: theme.space[4] }} />
-      <Label htmlFor="query">GitHub query</Label>
+      <Label htmlFor="update-board-query" css={{ color: theme.colors.gray[5] }}>
+        GitHub query
+      </Label>
       <Field
         as="textarea"
-        id="query"
+        id="update-board-query"
         spellCheck={false}
         value={values.query}
         onChange={event =>
@@ -95,7 +99,7 @@ const BoardForm: React.FC<BoardFormProps> = ({
         <ExternalLinkIcon
           css={{ marginRight: theme.space[2], color: theme.colors.gray[6] }}
         />
-        View GitHub's search syntax
+        View GitHub's query syntax
       </a>
       {isDirty ? (
         <div
@@ -139,4 +143,4 @@ const BoardForm: React.FC<BoardFormProps> = ({
   )
 }
 
-export default BoardForm
+export default UpdateBoardForm
