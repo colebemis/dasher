@@ -12,6 +12,12 @@ type Board {
   updatedAt: DateTime!
 }
 
+input BoardCreateInput {
+  columns: ColumnCreateManyWithoutBoardInput
+  name: String!
+  query: String!
+}
+
 enum BoardOrderByInput {
   createdAt_ASC
   createdAt_DESC
@@ -112,6 +118,11 @@ type Column {
   name: String!
   query: String!
   updatedAt: DateTime!
+}
+
+input ColumnCreateManyWithoutBoardInput {
+  connect: [ColumnWhereUniqueInput!]
+  create: [ColumnCreateWithoutBoardInput!]
 }
 
 input ColumnCreateWithoutBoardInput {
@@ -327,6 +338,7 @@ input ColumnWhereUniqueInput {
 scalar DateTime
 
 type Mutation {
+  createBoard(data: BoardCreateInput!): Board!
   deleteBoard(where: BoardWhereUniqueInput!): Board
   signIn(gitHubCode: String!): SignInPayload!
   signOut: Boolean!
