@@ -28,7 +28,7 @@ const SignIn: React.FC = () => {
           color: theme.colors.white,
           backgroundColor: theme.colors.gray[9],
           boxShadow: theme.shadows.small,
-          '&:hover': {
+          '&:hover:enabled': {
             backgroundColor: theme.colors.gray[8],
           },
         }}

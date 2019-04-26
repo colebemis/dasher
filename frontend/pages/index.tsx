@@ -8,6 +8,7 @@ import theme from '../theme'
 import { GetBoardsComponent } from '../__generated__/graphql'
 import React from 'react'
 import CreateBoardForm from '../components/CreateBoardForm'
+import PrimaryButton from '../components/PrimaryButton'
 
 const PosedDiv = posed.div({
   enter: { opacity: 1, transition: { durration: 100 } },
@@ -70,18 +71,10 @@ const Index: React.FC = () => {
           >
             Boards
           </h1>
-          <Button
+          <PrimaryButton
             disabled={isCreateBoardFormVisible}
             onClick={() => setIsCreateBoardFormVisible(true)}
-            css={{
-              padding: `${theme.space[2]} ${theme.space[3]}`,
-              color: theme.colors.white,
-              backgroundColor: theme.colors.primary[7],
-              boxShadow: theme.shadows.small,
-              '&:hover:enabled': {
-                backgroundColor: theme.colors.primary[6],
-              },
-            }}
+            css={{ padding: `${theme.space[2]} ${theme.space[3]}` }}
           >
             <PlusIcon
               css={{
@@ -90,7 +83,7 @@ const Index: React.FC = () => {
               }}
             />
             New board
-          </Button>
+          </PrimaryButton>
         </div>
         <GetBoardsComponent>
           {({ loading, error, data }) => {
