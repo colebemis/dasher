@@ -1,20 +1,8 @@
 import React from 'react'
+import Link from './Link'
 
 const ExternalLink: React.FC<React.HTMLProps<HTMLAnchorElement>> = props => {
-  return (
-    <a
-      target="_blank"
-      rel="noopener noreferrer"
-      css={{
-        color: 'inherit',
-        textDecoration: 'none',
-        '&:hover': {
-          textDecoration: 'underline',
-        },
-      }}
-      {...props}
-    />
-  )
+  return <Link target="_blank" rel="noopener noreferrer" {...props} />
 }
 
 export default ExternalLink
