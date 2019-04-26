@@ -1,0 +1,7 @@
+mutation createBoard($name: String!, $query: String!) {
+  createBoard(data: { name: $name, query: $query }) {
+    id
+    name
+    query
+  }
+}
