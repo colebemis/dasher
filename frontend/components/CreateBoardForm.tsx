@@ -1,16 +1,19 @@
+import get from 'lodash/get'
+import Router from 'next/router'
 import React from 'react'
 import theme from '../theme'
-import Button from './Button'
-import Field from './Field'
-import { ExternalLinkIcon } from './Icon'
-import Label from './Label'
 import {
   CreateBoardComponent,
   GetBoardsDocument,
   GetBoardsQuery,
 } from '../__generated__/graphql'
-import Router from 'next/router'
-import get from 'lodash/get'
+import Button from './Button'
+import ExternalLink from './ExternalLink'
+import FormGroup from './FormGroup'
+import { ExternalLinkIcon } from './Icon'
+import Input from './Input'
+import Label from './Label'
+import PrimaryButton from './PrimaryButton'
 
 interface CreateBoardFormProps {
   onCancel: () => void
@@ -20,7 +23,7 @@ const CreateBoardForm: React.FC<CreateBoardFormProps> = ({ onCancel }) => {
   const [values, setValues] = React.useState({ name: '', query: '' })
   return (
     <CreateBoardComponent
-      variables={{ name: values.name, query: values.query }}
+      variables={values}
       update={(proxy, mutationResult) => {
         const queryResult = proxy.readQuery<GetBoardsQuery>({
           query: GetBoardsDocument,
@@ -55,7 +58,6 @@ const CreateBoardForm: React.FC<CreateBoardFormProps> = ({ onCancel }) => {
             css={{
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'start',
               padding: theme.space[4],
               backgroundColor: theme.colors.white,
               borderRadius: theme.radii[2],
@@ -71,16 +73,9 @@ const CreateBoardForm: React.FC<CreateBoardFormProps> = ({ onCancel }) => {
               },
             }}
           >
-            <div
-              css={{
-                width: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-              }}
-            >
+            <FormGroup>
               <Label htmlFor="create-board-name">Board name</Label>
-              <Field
+              <Input
                 id="create-board-name"
                 type="text"
                 autoFocus={true}
@@ -90,17 +85,10 @@ const CreateBoardForm: React.FC<CreateBoardFormProps> = ({ onCancel }) => {
                 }
                 css={{ boxShadow: `inset 0 0 0 1px ${theme.colors.gray[4]}` }}
               />
-            </div>
-            <div
-              css={{
-                width: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-              }}
-            >
+            </FormGroup>
+            <FormGroup>
               <Label htmlFor="create-board-query">GitHub query</Label>
-              <Field
+              <Input
                 as="textarea"
                 id="create-board-query"
                 value={values.query}
@@ -118,19 +106,12 @@ const CreateBoardForm: React.FC<CreateBoardFormProps> = ({ onCancel }) => {
                   resize: 'vertical',
                 }}
               />
-              <a
+              <ExternalLink
                 href="https://help.github.com/en/articles/searching-issues-and-pull-requests"
-                target="_blank"
-                rel="noopener noreferrer"
                 css={{
                   marginTop: theme.space[2],
                   fontSize: theme.fontSizes[1],
-                  fontWeight: theme.fontWeights.normal,
                   color: theme.colors.gray[7],
-                  textDecoration: 'none',
-                  '&:hover': {
-                    textDecoration: 'underline',
-                  },
                 }}
               >
                 <ExternalLinkIcon
@@ -140,8 +121,8 @@ const CreateBoardForm: React.FC<CreateBoardFormProps> = ({ onCancel }) => {
                   }}
                 />
                 View GitHub's query syntax
-              </a>
-            </div>
+              </ExternalLink>
+            </FormGroup>
             <div
               css={{
                 '& > :not(:last-child)': {
@@ -149,25 +130,14 @@ const CreateBoardForm: React.FC<CreateBoardFormProps> = ({ onCancel }) => {
                 },
               }}
             >
-              <Button
-                css={{
-                  color: theme.colors.white,
-                  backgroundColor: theme.colors.primary[7],
-                  boxShadow: theme.shadows.small,
-                  '&:hover:enabled': {
-                    backgroundColor: theme.colors.primary[6],
-                  },
-                }}
-              >
-                Create board
-              </Button>
+              <PrimaryButton>Create board</PrimaryButton>
               <Button
                 type="button"
                 onClick={() => onCancel()}
                 css={{
                   color: theme.colors.gray[7],
                   backgroundColor: 'transparent',
-                  '&:hover': {
+                  '&:hover:enabled': {
                     backgroundColor: theme.colors.gray[1],
                   },
                 }}

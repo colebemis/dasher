@@ -1,11 +1,11 @@
 import React from 'react'
 import theme from '../theme'
 
-interface FieldProps {
+interface InputProps {
   as?: 'input' | 'textarea'
 }
 
-const Field: React.FC<FieldProps & React.HTMLProps<any>> = ({
+const Input: React.FC<InputProps & React.HTMLProps<any>> = ({
   as: Component = 'input',
   ...props
 }) => {
@@ -27,4 +27,4 @@ const Field: React.FC<FieldProps & React.HTMLProps<any>> = ({
   )
 }
 
-export default Field
+export default Input
