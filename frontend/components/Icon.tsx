@@ -50,4 +50,14 @@ export const PlusIcon: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   )
 }
 
+export const ChevronLeftIcon: React.FC<
+  React.SVGProps<SVGSVGElement>
+> = props => {
+  return (
+    <Icon {...props}>
+      <path d="M10.7071 2.29289C11.0976 2.68342 11.0976 3.31658 10.7071 3.70711L6.41421 8L10.7071 12.2929C11.0976 12.6834 11.0976 13.3166 10.7071 13.7071C10.3166 14.0976 9.68342 14.0976 9.29289 13.7071L4.29289 8.70711C3.90237 8.31658 3.90237 7.68342 4.29289 7.29289L9.29289 2.29289C9.68342 1.90237 10.3166 1.90237 10.7071 2.29289Z" />
+    </Icon>
+  )
+}
+
 export default Icon
