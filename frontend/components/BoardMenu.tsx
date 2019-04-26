@@ -10,9 +10,9 @@ import {
   GetBoardsQuery,
   UpdateBoardComponent,
 } from '../__generated__/graphql'
-import BoardForm from './BoardForm'
 import { EllipsesIcon, TrashIcon } from './Icon'
 import Menu, { MenuDivider, MenuItem } from './Menu'
+import UpdateBoardForm from './UpdateBoardForm'
 
 interface BoardCardProps {
   id: string
@@ -59,7 +59,7 @@ const BoardMenu: React.FC<
             }}
           >
             {updateBoard => (
-              <BoardForm
+              <UpdateBoardForm
                 values={formValues}
                 isDirty={!isEqual(formValues, { name, query })}
                 onChange={setFormValues}
