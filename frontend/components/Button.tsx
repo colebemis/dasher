@@ -6,17 +6,18 @@ const Button: React.FC<React.HTMLProps<HTMLButtonElement>> = props => {
     <button
       css={{
         margin: 0,
-        padding: `${theme.space[2]} ${theme.space[4]}`,
+        padding: `${theme.space[3]} ${theme.space[4]}`,
         fontSize: theme.fontSizes[1],
         fontWeight: theme.fontWeights.semibold,
         fontFamily: 'inherit',
-        lineHeight: theme.lineHeights.normal,
+        lineHeight: theme.lineHeights.none,
         border: 0,
         borderRadius: theme.radii[1],
         appearance: 'none',
         cursor: 'pointer',
         '&:disabled': {
           opacity: 0.5,
+          cursor: 'default',
         },
       }}
       {...props}
