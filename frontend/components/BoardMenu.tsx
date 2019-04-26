@@ -117,7 +117,7 @@ const BoardMenu: React.FC<
                     color: theme.colors.gray[6],
                   }}
                 />
-                Delete
+                Delete board
               </MenuItem>
             )}
           </DeleteBoardComponent>
