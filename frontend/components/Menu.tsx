@@ -43,7 +43,7 @@ export const MenuItem: React.FC<React.HTMLProps<HTMLButtonElement>> = props => {
         padding: `${theme.space[2]} ${theme.space[4]}`,
         textAlign: 'left',
         fontSize: theme.fontSizes[1],
-        lineHeight: theme.lineHeights.tight,
+        lineHeight: theme.lineHeights.none,
         color: 'inherit',
         backgroundColor: 'transparent',
         border: 0,
