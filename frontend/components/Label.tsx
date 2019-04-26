@@ -10,7 +10,6 @@ const Label: React.FC<React.HTMLProps<HTMLLabelElement>> = props => {
         fontSize: theme.fontSizes[1],
         fontWeight: theme.fontWeights.semibold,
         lineHeight: theme.lineHeights.tight,
-        color: theme.colors.gray[5],
       }}
       {...props}
     />
