@@ -1,11 +1,15 @@
 import jwt from 'jsonwebtoken'
-import { objectType, stringArg } from 'nexus'
-import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
+import { arg, objectType, stringArg } from 'nexus'
+import {
+  makePrismaSchema,
+  prismaInputObjectType,
+  prismaObjectType,
+} from 'nexus-prisma'
 import path from 'path'
 import fetchGitHubToken from './lib/fetchGitHubToken'
 import fetchGitHubUser from './lib/fetchGitHubUser'
-import getTokenPayload from './lib/getTokenPayload'
 import getEnv from './lib/getEnv'
+import getTokenPayload from './lib/getTokenPayload'
 import { TokenPayload } from './types'
 import datamodelInfo from './__generated__/nexus-prisma'
 import { prisma } from './__generated__/prisma-client'
@@ -29,7 +33,7 @@ const Query = prismaObjectType({
       },
     })
     t.field('signedInUser', {
-      type: User,
+      type: 'User',
       resolve: (root, args, context) => {
         const { userId } = getTokenPayload(context)
         return context.prisma.user({ id: userId })
@@ -43,7 +47,7 @@ const Mutation = prismaObjectType({
   definition(t) {
     t.prismaFields(['updateBoard', 'deleteBoard'])
     t.field('signIn', {
-      type: SignInPayload,
+      type: 'SignInPayload',
       args: { gitHubCode: stringArg({ required: true }) },
       resolve: async (root, args, context) => {
         const gitHubToken = await fetchGitHubToken(args.gitHubCode)
@@ -69,6 +73,18 @@ const Mutation = prismaObjectType({
         return true
       },
     })
+    t.field('createBoard', {
+      type: 'Board',
+      args: { data: arg({ type: 'BoardCreateInput', required: true }) },
+      resolve: (root, args, context) => {
+        const { userId } = getTokenPayload(context)
+        return context.prisma.createBoard({
+          owner: { connect: { id: userId } },
+          name: args.data.name,
+          query: args.data.query,
+        })
+      },
+    })
   },
 })
 
@@ -86,8 +102,24 @@ const User = prismaObjectType({
   },
 })
 
+const BoardCreateInput = prismaInputObjectType({
+  name: 'BoardCreateInput',
+  definition(t) {
+    // `owner` is an unnecessary argument when creating a board
+    // because the signed-in user's id is stored in their token.
+    t.prismaFields({ filter: ['owner'] })
+  },
+})
+
+const Board = prismaObjectType({
+  name: 'Board',
+  definition(t) {
+    t.prismaFields(['*'])
+  },
+})
+
 const schema = makePrismaSchema({
-  types: [Query, Mutation, SignInPayload, User],
+  types: [Query, Mutation, SignInPayload, User, BoardCreateInput, Board],
   prisma: {
     datamodelInfo,
     client: prisma,
