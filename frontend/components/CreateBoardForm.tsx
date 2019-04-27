@@ -83,7 +83,7 @@ const CreateBoardForm: React.FC<CreateBoardFormProps> = ({ onCancel }) => {
                 onChange={event =>
                   setValues({ ...values, name: event.currentTarget.value })
                 }
-                css={{ boxShadow: `inset 0 0 0 1px ${theme.colors.gray[4]}` }}
+                css={{ border: `1px solid ${theme.colors.gray[4]}` }}
               />
             </FormGroup>
             <FormGroup>
@@ -102,7 +102,7 @@ const CreateBoardForm: React.FC<CreateBoardFormProps> = ({ onCancel }) => {
                   }
                 }}
                 css={{
-                  boxShadow: `inset 0 0 0 1px ${theme.colors.gray[4]}`,
+                  border: ` 1px solid ${theme.colors.gray[4]}`,
                   resize: 'vertical',
                 }}
               />
