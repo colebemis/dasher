@@ -45,9 +45,9 @@ const Index: React.FC = () => {
         css={{
           maxWidth: '40em',
           margin: '0 auto',
-          padding: `${theme.space[6]} ${theme.space[4]}`,
+          padding: `${theme.space[6]} ${theme.space[5]}`,
           [theme.mediaQueries.medium]: {
-            padding: `${theme.space[8]} ${theme.space[4]}`,
+            padding: `${theme.space[8]} ${theme.space[5]}`,
           },
         }}
       >
