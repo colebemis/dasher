@@ -21,7 +21,18 @@ const Column: React.FC<ColumnProps> = ({ name }) => {
         },
       }}
     >
-      <h3 css={{ margin: 0 }}>{name}</h3>
+      <div css={{ padding: theme.space[2] }}>
+        <h2
+          css={{
+            margin: `0 ${theme.space[2]}`,
+            fontSize: theme.fontSizes[3],
+            fontWeight: theme.fontWeights.semibold,
+            lineHeight: theme.lineHeights.tight,
+          }}
+        >
+          {name}
+        </h2>
+      </div>
     </div>
   )
 }
