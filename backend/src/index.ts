@@ -1,5 +1,7 @@
+// tslint:disable-next-line:no-var-requires
+require('dotenv').config()
+
 import cookieParser from 'cookie-parser'
-import dotenv from 'dotenv'
 import {
   FilterRootFields,
   mergeSchemas,
@@ -10,8 +12,6 @@ import { GraphQLServer } from 'graphql-yoga'
 import makeGitHubSchema from './lib/makeGitHubSchema'
 import schema from './schema'
 import { prisma } from './__generated__/prisma-client'
-
-dotenv.config()
 
 makeGitHubSchema().then(gitHubSchema => {
   // Transform GitHub schema before merging.
