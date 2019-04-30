@@ -1,4 +1,4 @@
-workflow "Lint, test and deploy on push" {
+workflow "Lint, test and deploy" {
   resolves = [
     "lint frontend",
     "test backend",
