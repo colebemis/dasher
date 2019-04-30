@@ -2,7 +2,7 @@ workflow "Lint, test and deploy on push" {
   resolves = [
     "lint frontend",
     "test backend",
-    "deploy prisma",
+    "deploy prisma service",
   ]
   on = "push"
 }
@@ -34,9 +34,15 @@ action "test backend" {
   args = "workspace backend test"
 }
 
-action "deploy prisma" {
-  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+action "on master branch" {
+  uses = "actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da"
   needs = ["yarn install"]
+  args = "branch master"
+}
+
+action "deploy prisma service" {
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+  needs = ["on master branch"]
   runs = "yarn"
   args = "workspace backend deploy:prisma"
   secrets = [
