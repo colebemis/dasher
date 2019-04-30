@@ -1,13 +1,19 @@
-workflow "Lint, test and deploy" {
+workflow "Lint and test" {
   resolves = [
     "lint frontend",
     "test backend",
+  ]
+  on = "push"
+}
+
+workflow "Deploy" {
+  resolves = [
     "deploy prisma service",
   ]
   on = "push"
 }
 
-action "yarn install" {
+action "install" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   args = "install"
   runs = "yarn"
@@ -15,16 +21,16 @@ action "yarn install" {
 
 action "lint frontend" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
-  needs = ["yarn install"]
   args = "workspace frontend lint"
   runs = "yarn"
+  needs = ["install"]
 }
 
 action "lint backend" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
-  needs = ["yarn install"]
   runs = "yarn"
   args = "workspace backend lint"
+  needs = ["install"]
 }
 
 action "test backend" {
@@ -36,8 +42,8 @@ action "test backend" {
 
 action "on master branch" {
   uses = "actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da"
-  needs = ["yarn install"]
   args = "branch master"
+  needs = ["install"]
 }
 
 action "deploy prisma service" {
