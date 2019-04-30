@@ -39,7 +39,10 @@ action "deploy prisma" {
   needs = ["yarn install"]
   runs = "yarn"
   args = "workspace backend deploy:prisma"
-  secrets = ["PRISMA_SECRET"]
+  secrets = [
+    "PRISMA_SECRET",
+    "PRISMA_MANAGEMENT_API_SECRET",
+  ]
   env = {
     PRISMA_ENDPOINT = "https://dasher-9598c5ecbe.herokuapp.com/dasher/prod"
   }
