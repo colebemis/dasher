@@ -6,7 +6,7 @@
     "test": "jest",
     "lint": "tslint ./**/*.ts",
     "generate:prisma": "prisma generate",
-    "deploy:prisma": "prisma deploy --env-file .env"
+    "deploy:prisma": "prisma deploy"
   },
   "dependencies": {
     "@types/cookie-parser": "^1.4.1",
