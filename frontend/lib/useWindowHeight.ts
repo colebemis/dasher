@@ -14,7 +14,7 @@ function useWindowHeight() {
     return function cleanup() {
       window.removeEventListener('resize', updateWindowHeight)
     }
-  })
+  }, [])
 
   return windowHeight
 }
