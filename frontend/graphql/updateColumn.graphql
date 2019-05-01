@@ -1,0 +1,7 @@
+mutation updateColumn($id: ID!, $name: String, $query: String) {
+  updateColumn(where: { id: $id }, data: { name: $name, query: $query }) {
+    id
+    name
+    query
+  }
+}

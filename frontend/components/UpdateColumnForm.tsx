@@ -8,20 +8,20 @@ import Input from './Input'
 import Label from './Label'
 import PrimaryButton from './PrimaryButton'
 
-interface UpdateBoardFormValues {
+interface UpdateColumnFormValues {
   name: string
   query: string
 }
 
-interface UpdateBoardFormProps {
-  values: UpdateBoardFormValues
+interface UpdateColumnFormProps {
+  values: UpdateColumnFormValues
   isDirty: boolean
-  onChange: (values: UpdateBoardFormValues) => void
+  onChange: (values: UpdateColumnFormValues) => void
   onSubmit: () => void
   onReset: () => void
 }
 
-const UpdateBoardForm: React.FC<UpdateBoardFormProps> = ({
+const UpdateColumnForm: React.FC<UpdateColumnFormProps> = ({
   values,
   isDirty,
   onChange,
@@ -51,7 +51,7 @@ const UpdateBoardForm: React.FC<UpdateBoardFormProps> = ({
           htmlFor="update-board-name"
           css={{ color: theme.colors.gray[5] }}
         >
-          Board name
+          Column name
         </Label>
         <Input
           id="update-board-name"
@@ -138,4 +138,4 @@ const UpdateBoardForm: React.FC<UpdateBoardFormProps> = ({
   )
 }
 
-export default UpdateBoardForm
+export default UpdateColumnForm
