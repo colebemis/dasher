@@ -1,0 +1,5 @@
+mutation deleteColumn($id: ID!) {
+  deleteColumn(where: { id: $id }) {
+    id
+  }
+}

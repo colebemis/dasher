@@ -1,13 +1,15 @@
 import React from 'react'
 import theme from '../theme'
+import ColumnMenu from './ColumnMenu'
 
 interface ColumnProps {
+  boardId: string
   id: string
   name: string
   query: string
 }
 
-const Column: React.FC<ColumnProps> = ({ name }) => {
+const Column: React.FC<ColumnProps> = ({ boardId, id, name, query }) => {
   return (
     <div
       css={{
@@ -32,6 +34,7 @@ const Column: React.FC<ColumnProps> = ({ name }) => {
         >
           {name}
         </h2>
+        <ColumnMenu boardId={boardId} id={id} name={name} query={query} />
       </div>
     </div>
   )

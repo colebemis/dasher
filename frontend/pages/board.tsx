@@ -21,6 +21,7 @@ const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
           if (loading) return <p>Loading...</p>
           if (error) return <p>Error: {error.message}</p>
           if (!data || !data.board) return <p>Not found</p>
+          const { board } = data
           return (
             <div
               css={{
@@ -30,12 +31,12 @@ const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
               }}
             >
               <Head>
-                <title>{data.board.name} | Dasher</title>
+                <title>{board.name} | Dasher</title>
               </Head>
               <BoardHeader
-                id={data.board.id}
-                name={data.board.name}
-                query={data.board.query}
+                id={board.id}
+                name={board.name}
+                query={board.query}
               />
               <div
                 css={{
@@ -58,10 +59,11 @@ const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
                     },
                   }}
                 >
-                  {data.board.columns
-                    ? data.board.columns.map(column => (
+                  {board.columns
+                    ? board.columns.map(column => (
                         <Column
                           key={column.id}
+                          boardId={board.id}
                           id={column.id}
                           name={column.name}
                           query={column.query}
