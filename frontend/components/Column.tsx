@@ -23,7 +23,9 @@ const Column: React.FC<ColumnProps> = ({ boardId, id, name, query }) => {
         },
       }}
     >
-      <div css={{ padding: theme.space[2] }}>
+      <div
+        css={{ display: 'flex', alignItems: 'center', padding: theme.space[2] }}
+      >
         <h2
           css={{
             margin: `0 ${theme.space[2]}`,
@@ -34,6 +36,7 @@ const Column: React.FC<ColumnProps> = ({ boardId, id, name, query }) => {
         >
           {name}
         </h2>
+        <div css={{ margin: '0 auto' }} />
         <ColumnMenu boardId={boardId} id={id} name={name} query={query} />
       </div>
     </div>
