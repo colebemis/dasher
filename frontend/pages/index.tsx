@@ -31,6 +31,22 @@ const Index: React.FC = () => {
         >
           Dasher
         </span>
+        <span
+          css={{
+            padding: theme.space[1],
+            marginLeft: theme.space[2],
+            fontFamily: theme.fonts.monospace,
+            fontSize: theme.fontSizes[0],
+            fontWeight: theme.fontWeights.bold,
+            lineHeight: theme.lineHeights.none,
+            textTransform: 'uppercase',
+            letterSpacing: 1,
+            backgroundColor: theme.colors.yellow[5],
+            borderRadius: theme.radii[1],
+          }}
+        >
+          Alpha
+        </span>
         <div css={{ margin: '0 auto' }} />
         <AccountMenu />
       </div>
