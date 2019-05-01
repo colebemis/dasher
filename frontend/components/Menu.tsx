@@ -7,9 +7,9 @@ const Menu: React.FC<TippyProps> = props => {
     <Tippy
       trigger="click"
       interactive={true}
-      inertia={true}
       arrow={true}
       arrowType="round"
+      duration={150}
       placement="bottom"
       appendTo="parent"
       onMount={({ reference }) => {

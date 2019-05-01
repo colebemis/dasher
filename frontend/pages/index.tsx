@@ -1,19 +1,12 @@
-import posed, { PoseGroup } from 'react-pose'
+import React from 'react'
 import AccountMenu from '../components/AccountMenu'
 import BoardCard from '../components/BoardCard'
-import Button from '../components/Button'
+import CreateBoardForm from '../components/CreateBoardForm'
 import { PlusIcon } from '../components/Icon'
+import PrimaryButton from '../components/PrimaryButton'
 import Private from '../components/Private'
 import theme from '../theme'
 import { GetBoardsComponent } from '../__generated__/graphql'
-import React from 'react'
-import CreateBoardForm from '../components/CreateBoardForm'
-import PrimaryButton from '../components/PrimaryButton'
-
-const PosedDiv = posed.div({
-  enter: { opacity: 1, transition: { durration: 100 } },
-  exit: { opacity: 0, transition: { durration: 100 } },
-})
 
 const Index: React.FC = () => {
   const [
@@ -97,26 +90,19 @@ const Index: React.FC = () => {
                   gridGap: theme.space[4],
                 }}
               >
-                <PoseGroup>
-                  {[
-                    isCreateBoardFormVisible && (
-                      <PosedDiv key="create-board-form">
-                        <CreateBoardForm
-                          onCancel={() => setIsCreateBoardFormVisible(false)}
-                        />
-                      </PosedDiv>
-                    ),
-                    ...data.signedInUser.boards.map(board => (
-                      <PosedDiv key={board.id}>
-                        <BoardCard
-                          id={board.id}
-                          name={board.name}
-                          query={board.query}
-                        />
-                      </PosedDiv>
-                    )),
-                  ]}
-                </PoseGroup>
+                {isCreateBoardFormVisible ? (
+                  <CreateBoardForm
+                    onCancel={() => setIsCreateBoardFormVisible(false)}
+                  />
+                ) : null}
+                {data.signedInUser.boards.map(board => (
+                  <BoardCard
+                    key={board.id}
+                    id={board.id}
+                    name={board.name}
+                    query={board.query}
+                  />
+                ))}
               </div>
             )
           }}
