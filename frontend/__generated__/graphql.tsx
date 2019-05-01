@@ -780,6 +780,54 @@ export interface ColumnUpdateManyDataInput {
   query?: Maybe<string>;
 }
 
+export interface ColumnUpdateInput {
+  board?: Maybe<BoardUpdateOneRequiredWithoutColumnsInput>;
+
+  index?: Maybe<number>;
+
+  name?: Maybe<string>;
+
+  query?: Maybe<string>;
+}
+
+export interface BoardUpdateOneRequiredWithoutColumnsInput {
+  create?: Maybe<BoardCreateWithoutColumnsInput>;
+
+  update?: Maybe<BoardUpdateWithoutColumnsDataInput>;
+
+  upsert?: Maybe<BoardUpsertWithoutColumnsInput>;
+
+  connect?: Maybe<BoardWhereUniqueInput>;
+}
+
+export interface BoardCreateWithoutColumnsInput {
+  owner: UserCreateOneWithoutBoardsInput;
+
+  name: string;
+
+  query: string;
+}
+
+export interface UserCreateOneWithoutBoardsInput {
+  create?: Maybe<UserCreateWithoutBoardsInput>;
+
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface BoardUpdateWithoutColumnsDataInput {
+  owner?: Maybe<UserUpdateOneRequiredWithoutBoardsInput>;
+
+  name?: Maybe<string>;
+
+  query?: Maybe<string>;
+}
+
+export interface BoardUpsertWithoutColumnsInput {
+  update: BoardUpdateWithoutColumnsDataInput;
+
+  create: BoardCreateWithoutColumnsInput;
+}
+
 export interface BoardCreateInput {
   name: string;
 
@@ -2130,6 +2178,22 @@ export type DeleteBoardDeleteBoard = {
   id: string;
 };
 
+export type DeleteColumnVariables = {
+  id: string;
+};
+
+export type DeleteColumnMutation = {
+  __typename?: "Mutation";
+
+  deleteColumn: Maybe<DeleteColumnDeleteColumn>;
+};
+
+export type DeleteColumnDeleteColumn = {
+  __typename?: "Column";
+
+  id: string;
+};
+
 export type GetBoardVariables = {
   id: string;
 };
@@ -2358,6 +2422,52 @@ export function DeleteBoardHOC<TProps, TChildProps = any>(
     DeleteBoardVariables,
     DeleteBoardProps<TChildProps>
   >(DeleteBoardDocument, operationOptions);
+}
+export const DeleteColumnDocument = gql`
+  mutation deleteColumn($id: ID!) {
+    deleteColumn(where: { id: $id }) {
+      id
+    }
+  }
+`;
+export class DeleteColumnComponent extends React.Component<
+  Partial<
+    ReactApollo.MutationProps<DeleteColumnMutation, DeleteColumnVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<DeleteColumnMutation, DeleteColumnVariables>
+        mutation={DeleteColumnDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type DeleteColumnProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<DeleteColumnMutation, DeleteColumnVariables>
+> &
+  TChildProps;
+export type DeleteColumnMutationFn = ReactApollo.MutationFn<
+  DeleteColumnMutation,
+  DeleteColumnVariables
+>;
+export function DeleteColumnHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        DeleteColumnMutation,
+        DeleteColumnVariables,
+        DeleteColumnProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    DeleteColumnMutation,
+    DeleteColumnVariables,
+    DeleteColumnProps<TChildProps>
+  >(DeleteColumnDocument, operationOptions);
 }
 export const GetBoardDocument = gql`
   query getBoard($id: ID!) {
