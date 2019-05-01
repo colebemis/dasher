@@ -2324,6 +2324,28 @@ export type UpdateBoardUpdateBoard = {
   query: string;
 };
 
+export type UpdateColumnVariables = {
+  id: string;
+  name?: Maybe<string>;
+  query?: Maybe<string>;
+};
+
+export type UpdateColumnMutation = {
+  __typename?: "Mutation";
+
+  updateColumn: Maybe<UpdateColumnUpdateColumn>;
+};
+
+export type UpdateColumnUpdateColumn = {
+  __typename?: "Column";
+
+  id: string;
+
+  name: string;
+
+  query: string;
+};
+
 import * as ReactApollo from "react-apollo";
 import * as React from "react";
 
@@ -2772,4 +2794,52 @@ export function UpdateBoardHOC<TProps, TChildProps = any>(
     UpdateBoardVariables,
     UpdateBoardProps<TChildProps>
   >(UpdateBoardDocument, operationOptions);
+}
+export const UpdateColumnDocument = gql`
+  mutation updateColumn($id: ID!, $name: String, $query: String) {
+    updateColumn(where: { id: $id }, data: { name: $name, query: $query }) {
+      id
+      name
+      query
+    }
+  }
+`;
+export class UpdateColumnComponent extends React.Component<
+  Partial<
+    ReactApollo.MutationProps<UpdateColumnMutation, UpdateColumnVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<UpdateColumnMutation, UpdateColumnVariables>
+        mutation={UpdateColumnDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type UpdateColumnProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<UpdateColumnMutation, UpdateColumnVariables>
+> &
+  TChildProps;
+export type UpdateColumnMutationFn = ReactApollo.MutationFn<
+  UpdateColumnMutation,
+  UpdateColumnVariables
+>;
+export function UpdateColumnHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        UpdateColumnMutation,
+        UpdateColumnVariables,
+        UpdateColumnProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    UpdateColumnMutation,
+    UpdateColumnVariables,
+    UpdateColumnProps<TChildProps>
+  >(UpdateColumnDocument, operationOptions);
 }

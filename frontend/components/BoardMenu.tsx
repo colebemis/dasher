@@ -37,6 +37,7 @@ const BoardMenu: React.FC<
       content={
         <>
           <UpdateBoardComponent
+            variables={{ id, ...formValues }}
             update={(proxy, mutationResult) => {
               const queryResult = proxy.readQuery<GetBoardsQuery>({
                 query: GetBoardsDocument,
@@ -64,7 +65,7 @@ const BoardMenu: React.FC<
                 isDirty={!isEqual(formValues, { name, query })}
                 onChange={setFormValues}
                 onSubmit={() => {
-                  updateBoard({ variables: { id, ...formValues } })
+                  updateBoard()
                   if (tippyInstance.current) {
                     tippyInstance.current.hide()
                   }

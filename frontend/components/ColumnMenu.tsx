@@ -1,6 +1,5 @@
 import get from 'lodash/get'
 import isEqual from 'lodash/isEqual'
-import Router from 'next/router'
 import React from 'react'
 import { Instance } from 'tippy.js'
 import theme from '../theme'
@@ -8,11 +7,11 @@ import {
   DeleteColumnComponent,
   GetBoardDocument,
   GetBoardQuery,
-  UpdateBoardComponent,
+  UpdateColumnComponent,
 } from '../__generated__/graphql'
 import { EllipsesIcon, TrashIcon } from './Icon'
 import Menu, { MenuDivider, MenuItem } from './Menu'
-import UpdateBoardForm from './UpdateBoardForm'
+import UpdateColumnForm from './UpdateColumnForm'
 
 interface ColumnMenuProps {
   boardId: string
@@ -37,35 +36,14 @@ const BoardMenu: React.FC<
       onHidden={() => setFormValues({ name, query })}
       content={
         <>
-          {/* <UpdateBoardComponent
-            update={(proxy, mutationResult) => {
-              const queryResult = proxy.readQuery<GetBoardsQuery>({
-                query: GetBoardsDocument,
-              })
-
-              if (queryResult && queryResult.signedInUser.boards) {
-                const boards = queryResult.signedInUser.boards.map(board => {
-                  return board.id === get(mutationResult, 'data.updateBoard.id')
-                    ? get(mutationResult, 'data.updateBoard')
-                    : board
-                })
-
-                proxy.writeQuery({
-                  query: GetBoardsDocument,
-                  data: {
-                    signedInUser: { ...queryResult.signedInUser, boards },
-                  },
-                })
-              }
-            }}
-          >
-            {updateBoard => (
-              <UpdateBoardForm
+          <UpdateColumnComponent variables={{ id, ...formValues }}>
+            {updateColumn => (
+              <UpdateColumnForm
                 values={formValues}
                 isDirty={!isEqual(formValues, { name, query })}
                 onChange={setFormValues}
                 onSubmit={() => {
-                  updateBoard({ variables: { id, ...formValues } })
+                  updateColumn()
                   if (tippyInstance.current) {
                     tippyInstance.current.hide()
                   }
@@ -73,8 +51,8 @@ const BoardMenu: React.FC<
                 onReset={() => setFormValues({ name, query })}
               />
             )}
-          </UpdateBoardComponent>
-          <MenuDivider /> */}
+          </UpdateColumnComponent>
+          <MenuDivider />
           <DeleteColumnComponent
             variables={{ id }}
             update={(proxy, mutationResult) => {
