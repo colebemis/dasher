@@ -14,14 +14,14 @@ import { EllipsesIcon, TrashIcon } from './Icon'
 import Menu, { MenuDivider, MenuItem } from './Menu'
 import UpdateBoardForm from './UpdateBoardForm'
 
-interface BoardCardProps {
+interface BoardMenuProps {
   id: string
   name: string
   query: string
 }
 
 const BoardMenu: React.FC<
-  BoardCardProps & React.HTMLProps<HTMLButtonElement>
+  BoardMenuProps & React.HTMLProps<HTMLButtonElement>
 > = ({ id, name, query, ...props }) => {
   const tippyInstance = React.useRef<Instance>(null)
   const [formValues, setFormValues] = React.useState({ name, query })
