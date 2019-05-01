@@ -9,12 +9,14 @@ interface BoardCardProps {
   query: string
 }
 
-const BoardCard = React.forwardRef<
-  HTMLDivElement,
-  BoardCardProps & React.HTMLProps<HTMLDivElement>
->(({ id, name, query, ...props }, ref) => {
+const BoardCard: React.FC<BoardCardProps & React.HTMLProps<HTMLDivElement>> = ({
+  id,
+  name,
+  query,
+  ...props
+}) => {
   return (
-    <div ref={ref} css={{ position: 'relative' }} {...props}>
+    <div css={{ position: 'relative' }} {...props}>
       <Link href={`/board?id=${id}`} passHref={true}>
         <a
           css={{
@@ -79,6 +81,6 @@ const BoardCard = React.forwardRef<
       />
     </div>
   )
-})
+}
 
 export default BoardCard
