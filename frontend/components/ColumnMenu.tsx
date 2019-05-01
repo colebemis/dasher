@@ -83,7 +83,7 @@ const BoardMenu: React.FC<
             {deleteColumn => (
               <MenuItem
                 onClick={() => {
-                  if (window.confirm(`Delete "${name}"?`)) {
+                  if (window.confirm(`Delete "${name}" column?`)) {
                     deleteColumn()
                   }
                 }}

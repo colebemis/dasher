@@ -99,7 +99,7 @@ const BoardMenu: React.FC<
             {deleteBoard => (
               <MenuItem
                 onClick={() => {
-                  if (window.confirm(`Delete "${name}"?`)) {
+                  if (window.confirm(`Delete "${name}" board?`)) {
                     deleteBoard()
                     if (Router.pathname === '/board') {
                       Router.push('/')
