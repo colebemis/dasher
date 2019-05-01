@@ -18,6 +18,12 @@ input BoardCreateInput {
   query: String!
 }
 
+input BoardCreateWithoutColumnsInput {
+  name: String!
+  owner: UserCreateOneWithoutBoardsInput!
+  query: String!
+}
+
 enum BoardOrderByInput {
   createdAt_ASC
   createdAt_DESC
@@ -36,6 +42,24 @@ input BoardUpdateInput {
   name: String
   owner: UserUpdateOneRequiredWithoutBoardsInput
   query: String
+}
+
+input BoardUpdateOneRequiredWithoutColumnsInput {
+  connect: BoardWhereUniqueInput
+  create: BoardCreateWithoutColumnsInput
+  update: BoardUpdateWithoutColumnsDataInput
+  upsert: BoardUpsertWithoutColumnsInput
+}
+
+input BoardUpdateWithoutColumnsDataInput {
+  name: String
+  owner: UserUpdateOneRequiredWithoutBoardsInput
+  query: String
+}
+
+input BoardUpsertWithoutColumnsInput {
+  create: BoardCreateWithoutColumnsInput!
+  update: BoardUpdateWithoutColumnsDataInput!
 }
 
 input BoardWhereInput {
@@ -218,6 +242,13 @@ input ColumnScalarWhereInput {
   updatedAt_not_in: [DateTime!]
 }
 
+input ColumnUpdateInput {
+  board: BoardUpdateOneRequiredWithoutColumnsInput
+  index: Int
+  name: String
+  query: String
+}
+
 input ColumnUpdateManyDataInput {
   index: Int
   name: String
@@ -340,9 +371,11 @@ scalar DateTime
 type Mutation {
   createBoard(data: BoardCreateInput!): Board!
   deleteBoard(where: BoardWhereUniqueInput!): Board
+  deleteColumn(where: ColumnWhereUniqueInput!): Column
   signIn(gitHubCode: String!): SignInPayload!
   signOut: Boolean!
   updateBoard(data: BoardUpdateInput!, where: BoardWhereUniqueInput!): Board
+  updateColumn(data: ColumnUpdateInput!, where: ColumnWhereUniqueInput!): Column
 }
 
 type Query {
@@ -361,6 +394,11 @@ type User {
   gitHubId: ID!
   id: ID!
   updatedAt: DateTime!
+}
+
+input UserCreateOneWithoutBoardsInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutBoardsInput
 }
 
 input UserCreateWithoutBoardsInput {

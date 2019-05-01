@@ -16,11 +16,31 @@ export interface NexusGenInputs {
     name: string; // String!
     query: string; // String!
   }
+  BoardCreateWithoutColumnsInput: { // input type
+    name: string; // String!
+    owner: NexusGenInputs['UserCreateOneWithoutBoardsInput']; // UserCreateOneWithoutBoardsInput!
+    query: string; // String!
+  }
   BoardUpdateInput: { // input type
     columns?: NexusGenInputs['ColumnUpdateManyWithoutBoardInput'] | null; // ColumnUpdateManyWithoutBoardInput
     name?: string | null; // String
     owner?: NexusGenInputs['UserUpdateOneRequiredWithoutBoardsInput'] | null; // UserUpdateOneRequiredWithoutBoardsInput
     query?: string | null; // String
+  }
+  BoardUpdateOneRequiredWithoutColumnsInput: { // input type
+    connect?: NexusGenInputs['BoardWhereUniqueInput'] | null; // BoardWhereUniqueInput
+    create?: NexusGenInputs['BoardCreateWithoutColumnsInput'] | null; // BoardCreateWithoutColumnsInput
+    update?: NexusGenInputs['BoardUpdateWithoutColumnsDataInput'] | null; // BoardUpdateWithoutColumnsDataInput
+    upsert?: NexusGenInputs['BoardUpsertWithoutColumnsInput'] | null; // BoardUpsertWithoutColumnsInput
+  }
+  BoardUpdateWithoutColumnsDataInput: { // input type
+    name?: string | null; // String
+    owner?: NexusGenInputs['UserUpdateOneRequiredWithoutBoardsInput'] | null; // UserUpdateOneRequiredWithoutBoardsInput
+    query?: string | null; // String
+  }
+  BoardUpsertWithoutColumnsInput: { // input type
+    create: NexusGenInputs['BoardCreateWithoutColumnsInput']; // BoardCreateWithoutColumnsInput!
+    update: NexusGenInputs['BoardUpdateWithoutColumnsDataInput']; // BoardUpdateWithoutColumnsDataInput!
   }
   BoardWhereInput: { // input type
     AND?: NexusGenInputs['BoardWhereInput'][] | null; // [BoardWhereInput!]
@@ -172,6 +192,12 @@ export interface NexusGenInputs {
     updatedAt_not?: any | null; // DateTime
     updatedAt_not_in?: any[] | null; // [DateTime!]
   }
+  ColumnUpdateInput: { // input type
+    board?: NexusGenInputs['BoardUpdateOneRequiredWithoutColumnsInput'] | null; // BoardUpdateOneRequiredWithoutColumnsInput
+    index?: number | null; // Int
+    name?: string | null; // String
+    query?: string | null; // String
+  }
   ColumnUpdateManyDataInput: { // input type
     index?: number | null; // Int
     name?: string | null; // String
@@ -280,6 +306,10 @@ export interface NexusGenInputs {
   }
   ColumnWhereUniqueInput: { // input type
     id?: string | null; // ID
+  }
+  UserCreateOneWithoutBoardsInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+    create?: NexusGenInputs['UserCreateWithoutBoardsInput'] | null; // UserCreateWithoutBoardsInput
   }
   UserCreateWithoutBoardsInput: { // input type
     gitHubId: string; // ID!
@@ -397,12 +427,17 @@ export interface NexusGenRootTypes {
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
   BoardCreateInput: NexusGenInputs['BoardCreateInput'];
+  BoardCreateWithoutColumnsInput: NexusGenInputs['BoardCreateWithoutColumnsInput'];
   BoardUpdateInput: NexusGenInputs['BoardUpdateInput'];
+  BoardUpdateOneRequiredWithoutColumnsInput: NexusGenInputs['BoardUpdateOneRequiredWithoutColumnsInput'];
+  BoardUpdateWithoutColumnsDataInput: NexusGenInputs['BoardUpdateWithoutColumnsDataInput'];
+  BoardUpsertWithoutColumnsInput: NexusGenInputs['BoardUpsertWithoutColumnsInput'];
   BoardWhereInput: NexusGenInputs['BoardWhereInput'];
   BoardWhereUniqueInput: NexusGenInputs['BoardWhereUniqueInput'];
   ColumnCreateManyWithoutBoardInput: NexusGenInputs['ColumnCreateManyWithoutBoardInput'];
   ColumnCreateWithoutBoardInput: NexusGenInputs['ColumnCreateWithoutBoardInput'];
   ColumnScalarWhereInput: NexusGenInputs['ColumnScalarWhereInput'];
+  ColumnUpdateInput: NexusGenInputs['ColumnUpdateInput'];
   ColumnUpdateManyDataInput: NexusGenInputs['ColumnUpdateManyDataInput'];
   ColumnUpdateManyWithWhereNestedInput: NexusGenInputs['ColumnUpdateManyWithWhereNestedInput'];
   ColumnUpdateManyWithoutBoardInput: NexusGenInputs['ColumnUpdateManyWithoutBoardInput'];
@@ -411,6 +446,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   ColumnUpsertWithWhereUniqueWithoutBoardInput: NexusGenInputs['ColumnUpsertWithWhereUniqueWithoutBoardInput'];
   ColumnWhereInput: NexusGenInputs['ColumnWhereInput'];
   ColumnWhereUniqueInput: NexusGenInputs['ColumnWhereUniqueInput'];
+  UserCreateOneWithoutBoardsInput: NexusGenInputs['UserCreateOneWithoutBoardsInput'];
   UserCreateWithoutBoardsInput: NexusGenInputs['UserCreateWithoutBoardsInput'];
   UserUpdateOneRequiredWithoutBoardsInput: NexusGenInputs['UserUpdateOneRequiredWithoutBoardsInput'];
   UserUpdateWithoutBoardsDataInput: NexusGenInputs['UserUpdateWithoutBoardsDataInput'];
@@ -443,9 +479,11 @@ export interface NexusGenFieldTypes {
   Mutation: { // field return type
     createBoard: NexusGenRootTypes['Board']; // Board!
     deleteBoard: NexusGenRootTypes['Board'] | null; // Board
+    deleteColumn: NexusGenRootTypes['Column'] | null; // Column
     signIn: NexusGenRootTypes['SignInPayload']; // SignInPayload!
     signOut: boolean; // Boolean!
     updateBoard: NexusGenRootTypes['Board'] | null; // Board
+    updateColumn: NexusGenRootTypes['Column'] | null; // Column
   }
   Query: { // field return type
     board: NexusGenRootTypes['Board'] | null; // Board
@@ -483,12 +521,19 @@ export interface NexusGenArgTypes {
     deleteBoard: { // args
       where: NexusGenInputs['BoardWhereUniqueInput']; // BoardWhereUniqueInput!
     }
+    deleteColumn: { // args
+      where: NexusGenInputs['ColumnWhereUniqueInput']; // ColumnWhereUniqueInput!
+    }
     signIn: { // args
       gitHubCode: string; // String!
     }
     updateBoard: { // args
       data: NexusGenInputs['BoardUpdateInput']; // BoardUpdateInput!
       where: NexusGenInputs['BoardWhereUniqueInput']; // BoardWhereUniqueInput!
+    }
+    updateColumn: { // args
+      data: NexusGenInputs['ColumnUpdateInput']; // ColumnUpdateInput!
+      where: NexusGenInputs['ColumnWhereUniqueInput']; // ColumnWhereUniqueInput!
     }
   }
   Query: {
@@ -516,7 +561,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Board" | "Column" | "Mutation" | "Query" | "SignInPayload" | "User";
 
-export type NexusGenInputNames = "BoardCreateInput" | "BoardUpdateInput" | "BoardWhereInput" | "BoardWhereUniqueInput" | "ColumnCreateManyWithoutBoardInput" | "ColumnCreateWithoutBoardInput" | "ColumnScalarWhereInput" | "ColumnUpdateManyDataInput" | "ColumnUpdateManyWithWhereNestedInput" | "ColumnUpdateManyWithoutBoardInput" | "ColumnUpdateWithWhereUniqueWithoutBoardInput" | "ColumnUpdateWithoutBoardDataInput" | "ColumnUpsertWithWhereUniqueWithoutBoardInput" | "ColumnWhereInput" | "ColumnWhereUniqueInput" | "UserCreateWithoutBoardsInput" | "UserUpdateOneRequiredWithoutBoardsInput" | "UserUpdateWithoutBoardsDataInput" | "UserUpsertWithoutBoardsInput" | "UserWhereInput" | "UserWhereUniqueInput";
+export type NexusGenInputNames = "BoardCreateInput" | "BoardCreateWithoutColumnsInput" | "BoardUpdateInput" | "BoardUpdateOneRequiredWithoutColumnsInput" | "BoardUpdateWithoutColumnsDataInput" | "BoardUpsertWithoutColumnsInput" | "BoardWhereInput" | "BoardWhereUniqueInput" | "ColumnCreateManyWithoutBoardInput" | "ColumnCreateWithoutBoardInput" | "ColumnScalarWhereInput" | "ColumnUpdateInput" | "ColumnUpdateManyDataInput" | "ColumnUpdateManyWithWhereNestedInput" | "ColumnUpdateManyWithoutBoardInput" | "ColumnUpdateWithWhereUniqueWithoutBoardInput" | "ColumnUpdateWithoutBoardDataInput" | "ColumnUpsertWithWhereUniqueWithoutBoardInput" | "ColumnWhereInput" | "ColumnWhereUniqueInput" | "UserCreateOneWithoutBoardsInput" | "UserCreateWithoutBoardsInput" | "UserUpdateOneRequiredWithoutBoardsInput" | "UserUpdateWithoutBoardsDataInput" | "UserUpsertWithoutBoardsInput" | "UserWhereInput" | "UserWhereUniqueInput";
 
 export type NexusGenEnumNames = "BoardOrderByInput" | "ColumnOrderByInput";
 
