@@ -18,6 +18,11 @@ input BoardCreateInput {
   query: String!
 }
 
+input BoardCreateOneWithoutColumnsInput {
+  connect: BoardWhereUniqueInput
+  create: BoardCreateWithoutColumnsInput
+}
+
 input BoardCreateWithoutColumnsInput {
   name: String!
   owner: UserCreateOneWithoutBoardsInput!
@@ -142,6 +147,13 @@ type Column {
   name: String!
   query: String!
   updatedAt: DateTime!
+}
+
+input ColumnCreateInput {
+  board: BoardCreateOneWithoutColumnsInput!
+  index: Int!
+  name: String!
+  query: String!
 }
 
 input ColumnCreateManyWithoutBoardInput {
@@ -370,6 +382,7 @@ scalar DateTime
 
 type Mutation {
   createBoard(data: BoardCreateInput!): Board!
+  createColumn(data: ColumnCreateInput!): Column!
   deleteBoard(where: BoardWhereUniqueInput!): Board
   deleteColumn(where: ColumnWhereUniqueInput!): Column
   signIn(gitHubCode: String!): SignInPayload!
