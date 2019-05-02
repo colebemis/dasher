@@ -127,6 +127,9 @@ const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
                           color: theme.colors.gray[7],
                           backgroundColor: theme.colors.gray[2],
                           borderRadius: theme.radii[2],
+                          '&:hover': {
+                            backgroundColor: theme.colors.gray[3],
+                          },
                         }}
                       >
                         <PlusIcon
