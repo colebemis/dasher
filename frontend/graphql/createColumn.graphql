@@ -1,0 +1,19 @@
+mutation createColumn(
+  $boardId: ID!
+  $index: Int!
+  $name: String!
+  $query: String!
+) {
+  createColumn(
+    data: {
+      board: { connect: { id: $boardId } }
+      index: $index
+      name: $name
+      query: $query
+    }
+  ) {
+    id
+    name
+    query
+  }
+}

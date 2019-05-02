@@ -780,6 +780,36 @@ export interface ColumnUpdateManyDataInput {
   query?: Maybe<string>;
 }
 
+export interface ColumnCreateInput {
+  board: BoardCreateOneWithoutColumnsInput;
+
+  index: number;
+
+  name: string;
+
+  query: string;
+}
+
+export interface BoardCreateOneWithoutColumnsInput {
+  create?: Maybe<BoardCreateWithoutColumnsInput>;
+
+  connect?: Maybe<BoardWhereUniqueInput>;
+}
+
+export interface BoardCreateWithoutColumnsInput {
+  owner: UserCreateOneWithoutBoardsInput;
+
+  name: string;
+
+  query: string;
+}
+
+export interface UserCreateOneWithoutBoardsInput {
+  create?: Maybe<UserCreateWithoutBoardsInput>;
+
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
 export interface ColumnUpdateInput {
   board?: Maybe<BoardUpdateOneRequiredWithoutColumnsInput>;
 
@@ -798,20 +828,6 @@ export interface BoardUpdateOneRequiredWithoutColumnsInput {
   upsert?: Maybe<BoardUpsertWithoutColumnsInput>;
 
   connect?: Maybe<BoardWhereUniqueInput>;
-}
-
-export interface BoardCreateWithoutColumnsInput {
-  owner: UserCreateOneWithoutBoardsInput;
-
-  name: string;
-
-  query: string;
-}
-
-export interface UserCreateOneWithoutBoardsInput {
-  create?: Maybe<UserCreateWithoutBoardsInput>;
-
-  connect?: Maybe<UserWhereUniqueInput>;
 }
 
 export interface BoardUpdateWithoutColumnsDataInput {
@@ -2162,6 +2178,29 @@ export type CreateBoardCreateBoard = {
   query: string;
 };
 
+export type CreateColumnVariables = {
+  boardId: string;
+  index: number;
+  name: string;
+  query: string;
+};
+
+export type CreateColumnMutation = {
+  __typename?: "Mutation";
+
+  createColumn: CreateColumnCreateColumn;
+};
+
+export type CreateColumnCreateColumn = {
+  __typename?: "Column";
+
+  id: string;
+
+  name: string;
+
+  query: string;
+};
+
 export type DeleteBoardVariables = {
   id: string;
 };
@@ -2400,6 +2439,66 @@ export function CreateBoardHOC<TProps, TChildProps = any>(
     CreateBoardVariables,
     CreateBoardProps<TChildProps>
   >(CreateBoardDocument, operationOptions);
+}
+export const CreateColumnDocument = gql`
+  mutation createColumn(
+    $boardId: ID!
+    $index: Int!
+    $name: String!
+    $query: String!
+  ) {
+    createColumn(
+      data: {
+        board: { connect: { id: $boardId } }
+        index: $index
+        name: $name
+        query: $query
+      }
+    ) {
+      id
+      name
+      query
+    }
+  }
+`;
+export class CreateColumnComponent extends React.Component<
+  Partial<
+    ReactApollo.MutationProps<CreateColumnMutation, CreateColumnVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<CreateColumnMutation, CreateColumnVariables>
+        mutation={CreateColumnDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type CreateColumnProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<CreateColumnMutation, CreateColumnVariables>
+> &
+  TChildProps;
+export type CreateColumnMutationFn = ReactApollo.MutationFn<
+  CreateColumnMutation,
+  CreateColumnVariables
+>;
+export function CreateColumnHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        CreateColumnMutation,
+        CreateColumnVariables,
+        CreateColumnProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    CreateColumnMutation,
+    CreateColumnVariables,
+    CreateColumnProps<TChildProps>
+  >(CreateColumnDocument, operationOptions);
 }
 export const DeleteBoardDocument = gql`
   mutation deleteBoard($id: ID!) {
