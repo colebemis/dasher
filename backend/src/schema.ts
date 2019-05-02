@@ -48,6 +48,7 @@ const Mutation = prismaObjectType({
     t.prismaFields([
       'updateBoard',
       'deleteBoard',
+      'createColumn',
       'updateColumn',
       'deleteColumn',
     ])
