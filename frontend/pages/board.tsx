@@ -1,11 +1,19 @@
 import Head from 'next/head'
 import { withRouter, WithRouterProps } from 'next/router'
+import React from 'react'
 import BoardHeader from '../components/BoardHeader'
+import Button from '../components/Button'
 import Column from '../components/Column'
+import CreateColumnForm from '../components/CreateColumnForm'
+import { PlusIcon } from '../components/Icon'
 import Private from '../components/Private'
 import useWindowHeight from '../lib/useWindowHeight'
 import theme from '../theme'
-import { GetBoardComponent } from '../__generated__/graphql'
+import {
+  CreateColumnComponent,
+  GetBoardComponent,
+  GetBoardDocument,
+} from '../__generated__/graphql'
 
 interface Query {
   id?: string
@@ -13,6 +21,10 @@ interface Query {
 
 const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
   if (!router || !router.query || !router.query.id) return <p>Not found</p>
+  const [
+    isCreateColumnFormVisible,
+    setIsCreateColumnFormVisible,
+  ] = React.useState(false)
   const windowHeight = useWindowHeight()
   return (
     <Private>
@@ -70,6 +82,63 @@ const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
                         />
                       ))
                     : null}
+                  <div
+                    css={{
+                      width: 320,
+                      [theme.mediaQueries.medium]: {
+                        width: 360,
+                      },
+                    }}
+                  >
+                    {isCreateColumnFormVisible ? (
+                      <CreateColumnComponent
+                        awaitRefetchQueries={true}
+                        refetchQueries={[
+                          {
+                            query: GetBoardDocument,
+                            variables: { id: board.id },
+                          },
+                        ]}
+                      >
+                        {createColumn => (
+                          <CreateColumnForm
+                            onSubmit={async values => {
+                              await createColumn({
+                                variables: {
+                                  boardId: board.id,
+                                  index: board.columns
+                                    ? board.columns.length
+                                    : 0,
+                                  ...values,
+                                },
+                              })
+                              setIsCreateColumnFormVisible(false)
+                            }}
+                            onCancel={() => setIsCreateColumnFormVisible(false)}
+                          />
+                        )}
+                      </CreateColumnComponent>
+                    ) : (
+                      <Button
+                        onClick={() => setIsCreateColumnFormVisible(true)}
+                        css={{
+                          width: '100%',
+                          padding: theme.space[8],
+                          color: theme.colors.gray[7],
+                          backgroundColor: theme.colors.gray[2],
+                          borderRadius: theme.radii[2],
+                        }}
+                      >
+                        <PlusIcon
+                          css={{
+                            marginRight: theme.space[2],
+                            color: theme.colors.gray[6],
+                          }}
+                        />
+                        Add column
+                      </Button>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
