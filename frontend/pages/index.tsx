@@ -1,3 +1,4 @@
+import Router from 'next/router'
 import React from 'react'
 import AccountMenu from '../components/AccountMenu'
 import BoardCard from '../components/BoardCard'
@@ -6,7 +7,11 @@ import { PlusIcon } from '../components/Icon'
 import PrimaryButton from '../components/PrimaryButton'
 import Private from '../components/Private'
 import theme from '../theme'
-import { GetBoardsComponent } from '../__generated__/graphql'
+import {
+  CreateBoardComponent,
+  GetBoardsComponent,
+  GetBoardsDocument,
+} from '../__generated__/graphql'
 
 const Index: React.FC = () => {
   const [
@@ -108,9 +113,25 @@ const Index: React.FC = () => {
                 }}
               >
                 {isCreateBoardFormVisible ? (
-                  <CreateBoardForm
-                    onCancel={() => setIsCreateBoardFormVisible(false)}
-                  />
+                  <CreateBoardComponent
+                    refetchQueries={[{ query: GetBoardsDocument }]}
+                  >
+                    {createBoard => (
+                      <CreateBoardForm
+                        onSubmit={async values => {
+                          const result = await createBoard({
+                            variables: values,
+                          })
+                          if (result && result.data) {
+                            Router.push(
+                              `/board?id=${result.data.createBoard.id}`,
+                            )
+                          }
+                        }}
+                        onCancel={() => setIsCreateBoardFormVisible(false)}
+                      />
+                    )}
+                  </CreateBoardComponent>
                 ) : null}
                 {data.signedInUser.boards.map(board => (
                   <BoardCard
