@@ -55,30 +55,12 @@ const BoardMenu: React.FC<
           <MenuDivider />
           <DeleteColumnComponent
             variables={{ id }}
-            update={(proxy, mutationResult) => {
-              const queryResult = proxy.readQuery<GetBoardQuery>({
+            refetchQueries={[
+              {
                 query: GetBoardDocument,
                 variables: { id: boardId },
-              })
-
-              if (
-                queryResult &&
-                queryResult.board &&
-                queryResult.board.columns
-              ) {
-                const columns = queryResult.board.columns.filter(column => {
-                  return (
-                    column.id !== get(mutationResult, 'data.deleteColumn.id')
-                  )
-                })
-
-                proxy.writeQuery({
-                  query: GetBoardDocument,
-                  variables: { id: boardId },
-                  data: { board: { ...queryResult.board, columns } },
-                })
-              }
-            }}
+              },
+            ]}
           >
             {deleteColumn => (
               <MenuItem

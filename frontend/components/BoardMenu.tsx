@@ -38,26 +38,7 @@ const BoardMenu: React.FC<
         <>
           <UpdateBoardComponent
             variables={{ id, ...formValues }}
-            update={(proxy, mutationResult) => {
-              const queryResult = proxy.readQuery<GetBoardsQuery>({
-                query: GetBoardsDocument,
-              })
-
-              if (queryResult && queryResult.signedInUser.boards) {
-                const boards = queryResult.signedInUser.boards.map(board => {
-                  return board.id === get(mutationResult, 'data.updateBoard.id')
-                    ? get(mutationResult, 'data.updateBoard')
-                    : board
-                })
-
-                proxy.writeQuery({
-                  query: GetBoardsDocument,
-                  data: {
-                    signedInUser: { ...queryResult.signedInUser, boards },
-                  },
-                })
-              }
-            }}
+            refetchQueries={[{ query: GetBoardsDocument }]}
           >
             {updateBoard => (
               <UpdateBoardForm
@@ -77,24 +58,7 @@ const BoardMenu: React.FC<
           <MenuDivider />
           <DeleteBoardComponent
             variables={{ id }}
-            update={(proxy, mutationResult) => {
-              const queryResult = proxy.readQuery<GetBoardsQuery>({
-                query: GetBoardsDocument,
-              })
-
-              if (queryResult && queryResult.signedInUser.boards) {
-                const boards = queryResult.signedInUser.boards.filter(board => {
-                  return board.id !== get(mutationResult, 'data.deleteBoard.id')
-                })
-
-                proxy.writeQuery({
-                  query: GetBoardsDocument,
-                  data: {
-                    signedInUser: { ...queryResult.signedInUser, boards },
-                  },
-                })
-              }
-            }}
+            refetchQueries={[{ query: GetBoardsDocument }]}
           >
             {deleteBoard => (
               <MenuItem
