@@ -317,7 +317,6 @@ type Column {
   createdAt: DateTime!
   updatedAt: DateTime!
   board: Board!
-  index: Int!
   name: String!
   query: String!
 }
@@ -330,7 +329,6 @@ type ColumnConnection {
 
 input ColumnCreateInput {
   board: BoardCreateOneWithoutColumnsInput!
-  index: Int!
   name: String!
   query: String!
 }
@@ -341,7 +339,6 @@ input ColumnCreateManyWithoutBoardInput {
 }
 
 input ColumnCreateWithoutBoardInput {
-  index: Int!
   name: String!
   query: String!
 }
@@ -358,8 +355,6 @@ enum ColumnOrderByInput {
   createdAt_DESC
   updatedAt_ASC
   updatedAt_DESC
-  index_ASC
-  index_DESC
   name_ASC
   name_DESC
   query_ASC
@@ -370,7 +365,6 @@ type ColumnPreviousValues {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
-  index: Int!
   name: String!
   query: String!
 }
@@ -406,14 +400,6 @@ input ColumnScalarWhereInput {
   updatedAt_lte: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
-  index: Int
-  index_not: Int
-  index_in: [Int!]
-  index_not_in: [Int!]
-  index_lt: Int
-  index_lte: Int
-  index_gt: Int
-  index_gte: Int
   name: String
   name_not: String
   name_in: [String!]
@@ -467,19 +453,16 @@ input ColumnSubscriptionWhereInput {
 
 input ColumnUpdateInput {
   board: BoardUpdateOneRequiredWithoutColumnsInput
-  index: Int
   name: String
   query: String
 }
 
 input ColumnUpdateManyDataInput {
-  index: Int
   name: String
   query: String
 }
 
 input ColumnUpdateManyMutationInput {
-  index: Int
   name: String
   query: String
 }
@@ -502,7 +485,6 @@ input ColumnUpdateManyWithWhereNestedInput {
 }
 
 input ColumnUpdateWithoutBoardDataInput {
-  index: Int
   name: String
   query: String
 }
@@ -550,14 +532,6 @@ input ColumnWhereInput {
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
   board: BoardWhereInput
-  index: Int
-  index_not: Int
-  index_in: [Int!]
-  index_not_in: [Int!]
-  index_lt: Int
-  index_lte: Int
-  index_gt: Int
-  index_gte: Int
   name: String
   name_not: String
   name_in: [String!]

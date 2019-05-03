@@ -143,7 +143,6 @@ type Column {
   board: Board!
   createdAt: DateTime!
   id: ID!
-  index: Int!
   name: String!
   query: String!
   updatedAt: DateTime!
@@ -151,7 +150,6 @@ type Column {
 
 input ColumnCreateInput {
   board: BoardCreateOneWithoutColumnsInput!
-  index: Int!
   name: String!
   query: String!
 }
@@ -162,7 +160,6 @@ input ColumnCreateManyWithoutBoardInput {
 }
 
 input ColumnCreateWithoutBoardInput {
-  index: Int!
   name: String!
   query: String!
 }
@@ -172,8 +169,6 @@ enum ColumnOrderByInput {
   createdAt_DESC
   id_ASC
   id_DESC
-  index_ASC
-  index_DESC
   name_ASC
   name_DESC
   query_ASC
@@ -206,14 +201,6 @@ input ColumnScalarWhereInput {
   id_not_in: [ID!]
   id_not_starts_with: ID
   id_starts_with: ID
-  index: Int
-  index_gt: Int
-  index_gte: Int
-  index_in: [Int!]
-  index_lt: Int
-  index_lte: Int
-  index_not: Int
-  index_not_in: [Int!]
   name: String
   name_contains: String
   name_ends_with: String
@@ -256,13 +243,11 @@ input ColumnScalarWhereInput {
 
 input ColumnUpdateInput {
   board: BoardUpdateOneRequiredWithoutColumnsInput
-  index: Int
   name: String
   query: String
 }
 
 input ColumnUpdateManyDataInput {
-  index: Int
   name: String
   query: String
 }
@@ -285,7 +270,6 @@ input ColumnUpdateManyWithWhereNestedInput {
 }
 
 input ColumnUpdateWithoutBoardDataInput {
-  index: Int
   name: String
   query: String
 }
@@ -326,14 +310,6 @@ input ColumnWhereInput {
   id_not_in: [ID!]
   id_not_starts_with: ID
   id_starts_with: ID
-  index: Int
-  index_gt: Int
-  index_gte: Int
-  index_in: [Int!]
-  index_lt: Int
-  index_lte: Int
-  index_not: Int
-  index_not_in: [Int!]
   name: String
   name_contains: String
   name_ends_with: String

@@ -301,22 +301,6 @@ export interface ColumnWhereInput {
 
   board?: Maybe<BoardWhereInput>;
 
-  index?: Maybe<number>;
-
-  index_not?: Maybe<number>;
-
-  index_in?: Maybe<number[]>;
-
-  index_not_in?: Maybe<number[]>;
-
-  index_lt?: Maybe<number>;
-
-  index_lte?: Maybe<number>;
-
-  index_gt?: Maybe<number>;
-
-  index_gte?: Maybe<number>;
-
   name?: Maybe<string>;
 
   name_not?: Maybe<string>;
@@ -593,8 +577,6 @@ export interface ColumnUpdateManyWithoutBoardInput {
 }
 
 export interface ColumnCreateWithoutBoardInput {
-  index: number;
-
   name: string;
 
   query: string;
@@ -611,8 +593,6 @@ export interface ColumnUpdateWithWhereUniqueWithoutBoardInput {
 }
 
 export interface ColumnUpdateWithoutBoardDataInput {
-  index?: Maybe<number>;
-
   name?: Maybe<string>;
 
   query?: Maybe<string>;
@@ -687,22 +667,6 @@ export interface ColumnScalarWhereInput {
 
   updatedAt_gte?: Maybe<DateTime>;
 
-  index?: Maybe<number>;
-
-  index_not?: Maybe<number>;
-
-  index_in?: Maybe<number[]>;
-
-  index_not_in?: Maybe<number[]>;
-
-  index_lt?: Maybe<number>;
-
-  index_lte?: Maybe<number>;
-
-  index_gt?: Maybe<number>;
-
-  index_gte?: Maybe<number>;
-
   name?: Maybe<string>;
 
   name_not?: Maybe<string>;
@@ -773,8 +737,6 @@ export interface ColumnUpdateManyWithWhereNestedInput {
 }
 
 export interface ColumnUpdateManyDataInput {
-  index?: Maybe<number>;
-
   name?: Maybe<string>;
 
   query?: Maybe<string>;
@@ -782,8 +744,6 @@ export interface ColumnUpdateManyDataInput {
 
 export interface ColumnCreateInput {
   board: BoardCreateOneWithoutColumnsInput;
-
-  index: number;
 
   name: string;
 
@@ -812,8 +772,6 @@ export interface UserCreateOneWithoutBoardsInput {
 
 export interface ColumnUpdateInput {
   board?: Maybe<BoardUpdateOneRequiredWithoutColumnsInput>;
-
-  index?: Maybe<number>;
 
   name?: Maybe<string>;
 
@@ -1610,8 +1568,6 @@ export enum ColumnOrderByInput {
   CreatedAtDesc = "createdAt_DESC",
   UpdatedAtAsc = "updatedAt_ASC",
   UpdatedAtDesc = "updatedAt_DESC",
-  IndexAsc = "index_ASC",
-  IndexDesc = "index_DESC",
   NameAsc = "name_ASC",
   NameDesc = "name_DESC",
   QueryAsc = "query_ASC",
@@ -2180,7 +2136,6 @@ export type CreateBoardCreateBoard = {
 
 export type CreateColumnVariables = {
   boardId: string;
-  index: number;
   name: string;
   query: string;
 };
@@ -2259,8 +2214,6 @@ export type GetBoardColumns = {
   __typename?: "Column";
 
   id: string;
-
-  index: number;
 
   name: string;
 
@@ -2441,19 +2394,9 @@ export function CreateBoardHOC<TProps, TChildProps = any>(
   >(CreateBoardDocument, operationOptions);
 }
 export const CreateColumnDocument = gql`
-  mutation createColumn(
-    $boardId: ID!
-    $index: Int!
-    $name: String!
-    $query: String!
-  ) {
+  mutation createColumn($boardId: ID!, $name: String!, $query: String!) {
     createColumn(
-      data: {
-        board: { connect: { id: $boardId } }
-        index: $index
-        name: $name
-        query: $query
-      }
+      data: { board: { connect: { id: $boardId } }, name: $name, query: $query }
     ) {
       id
       name
@@ -2596,9 +2539,8 @@ export const GetBoardDocument = gql`
       id
       name
       query
-      columns(orderBy: index_ASC) {
+      columns {
         id
-        index
         name
         query
       }

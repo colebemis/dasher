@@ -106,9 +106,6 @@ const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
                               await createColumn({
                                 variables: {
                                   boardId: board.id,
-                                  index: board.columns
-                                    ? board.columns.length
-                                    : 0,
                                   ...values,
                                 },
                               })
