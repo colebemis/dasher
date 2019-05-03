@@ -512,7 +512,6 @@ type ColumnObject =
   | { name: 'createdAt', args?: [] | false, alias?: string  } 
   | { name: 'updatedAt', args?: [] | false, alias?: string  } 
   | { name: 'board', args?: [] | false, alias?: string  } 
-  | { name: 'index', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
   | { name: 'query', args?: [] | false, alias?: string  } 
 
@@ -521,7 +520,6 @@ type ColumnFields =
   | 'createdAt'
   | 'updatedAt'
   | 'board'
-  | 'index'
   | 'name'
   | 'query'
 
@@ -566,14 +564,6 @@ export interface ColumnFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Board> | prisma.Board
-  }
-  index: {
-    type: 'Int'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
   }
   name: {
     type: 'String'
@@ -1783,7 +1773,6 @@ type ColumnPreviousValuesObject =
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'createdAt', args?: [] | false, alias?: string  } 
   | { name: 'updatedAt', args?: [] | false, alias?: string  } 
-  | { name: 'index', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
   | { name: 'query', args?: [] | false, alias?: string  } 
 
@@ -1791,7 +1780,6 @@ type ColumnPreviousValuesFields =
   | 'id'
   | 'createdAt'
   | 'updatedAt'
-  | 'index'
   | 'name'
   | 'query'
 
@@ -1818,14 +1806,6 @@ export interface ColumnPreviousValuesFieldDetails {
   }
   updatedAt: {
     type: 'DateTime'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-  index: {
-    type: 'Int'
     args: {}
     description: string
     list: undefined
@@ -2133,14 +2113,6 @@ export interface ColumnWhereInput {
   updatedAt_gt?: string | null
   updatedAt_gte?: string | null
   board?: BoardWhereInput | null
-  index?: number | null
-  index_not?: number | null
-  index_in?: number[]
-  index_not_in?: number[]
-  index_lt?: number | null
-  index_lte?: number | null
-  index_gt?: number | null
-  index_gte?: number | null
   name?: string | null
   name_not?: string | null
   name_in?: string[]
@@ -2206,14 +2178,6 @@ export type ColumnWhereInputInputObject =
   | { name: 'updatedAt_gt', alias?: string  } 
   | { name: 'updatedAt_gte', alias?: string  } 
   | { name: 'board', alias?: string  } 
-  | { name: 'index', alias?: string  } 
-  | { name: 'index_not', alias?: string  } 
-  | { name: 'index_in', alias?: string  } 
-  | { name: 'index_not_in', alias?: string  } 
-  | { name: 'index_lt', alias?: string  } 
-  | { name: 'index_lte', alias?: string  } 
-  | { name: 'index_gt', alias?: string  } 
-  | { name: 'index_gte', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'name_not', alias?: string  } 
   | { name: 'name_in', alias?: string  } 
@@ -2299,13 +2263,11 @@ export type ColumnCreateManyWithoutBoardInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface ColumnCreateWithoutBoardInput {
-  index?: number
   name?: string
   query?: string
 }
 export type ColumnCreateWithoutBoardInputInputObject =
   | Extract<keyof ColumnCreateWithoutBoardInput, string>
-  | { name: 'index', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
   
@@ -2394,13 +2356,11 @@ export type ColumnUpdateWithWhereUniqueWithoutBoardInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface ColumnUpdateWithoutBoardDataInput {
-  index?: number | null
   name?: string | null
   query?: string | null
 }
 export type ColumnUpdateWithoutBoardDataInputInputObject =
   | Extract<keyof ColumnUpdateWithoutBoardDataInput, string>
-  | { name: 'index', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
   
@@ -2446,14 +2406,6 @@ export interface ColumnScalarWhereInput {
   updatedAt_lte?: string | null
   updatedAt_gt?: string | null
   updatedAt_gte?: string | null
-  index?: number | null
-  index_not?: number | null
-  index_in?: number[]
-  index_not_in?: number[]
-  index_lt?: number | null
-  index_lte?: number | null
-  index_gt?: number | null
-  index_gte?: number | null
   name?: string | null
   name_not?: string | null
   name_in?: string[]
@@ -2518,14 +2470,6 @@ export type ColumnScalarWhereInputInputObject =
   | { name: 'updatedAt_lte', alias?: string  } 
   | { name: 'updatedAt_gt', alias?: string  } 
   | { name: 'updatedAt_gte', alias?: string  } 
-  | { name: 'index', alias?: string  } 
-  | { name: 'index_not', alias?: string  } 
-  | { name: 'index_in', alias?: string  } 
-  | { name: 'index_not_in', alias?: string  } 
-  | { name: 'index_lt', alias?: string  } 
-  | { name: 'index_lte', alias?: string  } 
-  | { name: 'index_gt', alias?: string  } 
-  | { name: 'index_gte', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'name_not', alias?: string  } 
   | { name: 'name_in', alias?: string  } 
@@ -2568,13 +2512,11 @@ export type ColumnUpdateManyWithWhereNestedInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface ColumnUpdateManyDataInput {
-  index?: number | null
   name?: string | null
   query?: string | null
 }
 export type ColumnUpdateManyDataInputInputObject =
   | Extract<keyof ColumnUpdateManyDataInput, string>
-  | { name: 'index', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
   
@@ -2823,14 +2765,12 @@ export type BoardUpdateManyMutationInputInputObject =
   
 export interface ColumnCreateInput {
   board?: BoardCreateOneWithoutColumnsInput
-  index?: number
   name?: string
   query?: string
 }
 export type ColumnCreateInputInputObject =
   | Extract<keyof ColumnCreateInput, string>
   | { name: 'board', alias?: string  } 
-  | { name: 'index', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
   
@@ -2856,14 +2796,12 @@ export type BoardCreateWithoutColumnsInputInputObject =
   
 export interface ColumnUpdateInput {
   board?: BoardUpdateOneRequiredWithoutColumnsInput | null
-  index?: number | null
   name?: string | null
   query?: string | null
 }
 export type ColumnUpdateInputInputObject =
   | Extract<keyof ColumnUpdateInput, string>
   | { name: 'board', alias?: string  } 
-  | { name: 'index', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
   
@@ -2901,13 +2839,11 @@ export type BoardUpsertWithoutColumnsInputInputObject =
   | { name: 'create', alias?: string  } 
   
 export interface ColumnUpdateManyMutationInput {
-  index?: number | null
   name?: string | null
   query?: string | null
 }
 export type ColumnUpdateManyMutationInputInputObject =
   | Extract<keyof ColumnUpdateManyMutationInput, string>
-  | { name: 'index', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
   
@@ -2994,8 +2930,6 @@ export type ColumnOrderByInputValues =
   | 'createdAt_DESC'
   | 'updatedAt_ASC'
   | 'updatedAt_DESC'
-  | 'index_ASC'
-  | 'index_DESC'
   | 'name_ASC'
   | 'name_DESC'
   | 'query_ASC'

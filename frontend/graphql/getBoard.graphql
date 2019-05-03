@@ -3,9 +3,8 @@ query getBoard($id: ID!) {
     id
     name
     query
-    columns(orderBy: index_ASC) {
+    columns {
       id
-      index
       name
       query
     }

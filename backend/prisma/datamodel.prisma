@@ -21,7 +21,6 @@ type Column {
   createdAt: DateTime!
   updatedAt: DateTime!
   board: Board! @relation(name: "BoardColumns")
-  index: Int!
   name: String!
   query: String!
 }
