@@ -26,10 +26,12 @@ const CreateColumnForm: React.FC<CreateColumnFormProps> = ({
     name: '',
     query: '',
   })
+
   async function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault()
     onSubmit(values)
   }
+
   return (
     <form
       autoComplete="off"
