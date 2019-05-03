@@ -1,12 +1,5 @@
-import get from 'lodash/get'
-import Router from 'next/router'
 import React from 'react'
 import theme from '../theme'
-import {
-  CreateBoardComponent,
-  GetBoardsDocument,
-  GetBoardsQuery,
-} from '../__generated__/graphql'
 import Button from './Button'
 import ExternalLink from './ExternalLink'
 import FormGroup from './FormGroup'
