@@ -37,20 +37,15 @@ const CreateBoardForm: React.FC<CreateBoardFormProps> = ({
       autoComplete="off"
       onSubmit={handleSubmit}
       css={{
-        display: 'flex',
-        flexDirection: 'column',
+        display: 'grid',
+        gridGap: theme.space[4],
         padding: theme.space[4],
         backgroundColor: theme.colors.white,
         borderRadius: theme.radii[2],
         boxShadow: theme.shadows.small,
-        '& > :not(:last-child)': {
-          marginBottom: theme.space[4],
-        },
         [theme.mediaQueries.medium]: {
           padding: theme.space[5],
-          '& > :not(:last-child)': {
-            marginBottom: theme.space[5],
-          },
+          gridGap: theme.space[5],
         },
       }}
     >
@@ -102,8 +97,11 @@ const CreateBoardForm: React.FC<CreateBoardFormProps> = ({
       </FormGroup>
       <div
         css={{
-          '& > :not(:last-child)': {
-            marginRight: theme.space[3],
+          display: 'grid',
+          gridTemplateColumns: `1fr 1fr`,
+          gridGap: theme.space[3],
+          [theme.mediaQueries.medium]: {
+            gridGap: theme.space[4],
           },
         }}
       >
