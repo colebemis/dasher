@@ -37,13 +37,10 @@ const UpdateColumnForm: React.FC<UpdateColumnFormProps> = ({
       autoComplete="off"
       onSubmit={handleSubmit}
       css={{
-        display: 'flex',
-        flexDirection: 'column',
+        display: 'grid',
+        gridGap: theme.space[4],
         width: '18rem',
         padding: `${theme.space[2]} ${theme.space[4]}`,
-        '& > :not(:last-child)': {
-          marginBottom: theme.space[4],
-        },
       }}
     >
       <FormGroup>
@@ -94,10 +91,9 @@ const UpdateColumnForm: React.FC<UpdateColumnFormProps> = ({
       {isDirty ? (
         <div
           css={{
-            display: 'flex',
-            '& > :not(:last-child)': {
-              marginRight: theme.space[3],
-            },
+            display: 'grid',
+            gridTemplateColumns: `1fr 1fr`,
+            gridGap: theme.space[3],
           }}
         >
           <SecondaryButton
