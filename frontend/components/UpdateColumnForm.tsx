@@ -1,12 +1,12 @@
 import React from 'react'
 import theme from '../theme'
-import Button from './Button'
 import ExternalLink from './ExternalLink'
 import FormGroup from './FormGroup'
 import { ExternalLinkIcon } from './Icon'
 import Input from './Input'
 import Label from './Label'
 import PrimaryButton from './PrimaryButton'
+import SecondaryButton from './SecondaryButton'
 
 interface UpdateColumnFormValues {
   name: string
@@ -47,12 +47,7 @@ const UpdateColumnForm: React.FC<UpdateColumnFormProps> = ({
       }}
     >
       <FormGroup>
-        <Label
-          htmlFor="update-board-name"
-          css={{ color: theme.colors.gray[5] }}
-        >
-          Column name
-        </Label>
+        <Label htmlFor="update-board-name">Column name</Label>
         <Input
           id="update-board-name"
           type="text"
@@ -60,19 +55,10 @@ const UpdateColumnForm: React.FC<UpdateColumnFormProps> = ({
           onChange={event =>
             onChange({ ...values, name: event.currentTarget.value })
           }
-          css={{
-            backgroundColor: theme.colors.gray[8],
-            boxShadow: theme.shadows.small,
-          }}
         />
       </FormGroup>
       <FormGroup>
-        <Label
-          htmlFor="update-board-query"
-          css={{ color: theme.colors.gray[5] }}
-        >
-          GitHub query
-        </Label>
+        <Label htmlFor="update-board-query">GitHub query</Label>
         <Input
           as="textarea"
           id="update-board-query"
@@ -88,8 +74,6 @@ const UpdateColumnForm: React.FC<UpdateColumnFormProps> = ({
             }
           }}
           css={{
-            backgroundColor: theme.colors.gray[8],
-            boxShadow: theme.shadows.small,
             resize: 'vertical',
           }}
         />
@@ -98,7 +82,7 @@ const UpdateColumnForm: React.FC<UpdateColumnFormProps> = ({
           css={{
             marginTop: theme.space[2],
             fontSize: theme.fontSizes[1],
-            color: theme.colors.gray[5],
+            color: theme.colors.gray[7],
           }}
         >
           <ExternalLinkIcon
@@ -116,21 +100,13 @@ const UpdateColumnForm: React.FC<UpdateColumnFormProps> = ({
             },
           }}
         >
-          <Button
+          <SecondaryButton
             type="button"
             onClick={() => onReset()}
-            css={{
-              flexGrow: 1,
-              color: theme.colors.white,
-              backgroundColor: theme.colors.gray[8],
-              boxShadow: theme.shadows.small,
-              '&:hover:enabled': {
-                backgroundColor: theme.colors.gray[7],
-              },
-            }}
+            css={{ flexGrow: 1 }}
           >
             Reset
-          </Button>
+          </SecondaryButton>
           <PrimaryButton css={{ flexGrow: 1 }}>Apply</PrimaryButton>
         </div>
       ) : null}

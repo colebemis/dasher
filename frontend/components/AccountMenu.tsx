@@ -35,7 +35,7 @@ const AccountMenu: React.FC = () => {
                   <span
                     css={{
                       fontSize: theme.fontSizes[1],
-                      color: theme.colors.gray[4],
+                      color: theme.colors.gray[7],
                     }}
                   >
                     {data.viewer.login}

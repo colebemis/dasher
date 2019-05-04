@@ -19,7 +19,9 @@ const Input: React.FC<InputProps & React.HTMLProps<any>> = ({
         fontSize: theme.fontSizes[2],
         lineHeight: theme.lineHeights.normal,
         color: 'inherit',
+        backgroundColor: theme.colors.gray[0],
         border: 0,
+        boxShadow: `inset 0 0 0 1px ${theme.colors.gray[3]}`,
         borderRadius: theme.radii[1],
       }}
       {...props}
