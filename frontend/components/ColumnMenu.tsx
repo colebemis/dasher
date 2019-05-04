@@ -70,8 +70,11 @@ const BoardMenu: React.FC<
                   }
                 }}
                 css={{
-                  '&:hover svg': {
-                    color: theme.colors.red[6],
+                  '&:hover': {
+                    color: theme.colors.red[8],
+                    svg: {
+                      color: theme.colors.red[6],
+                    },
                   },
                 }}
               >

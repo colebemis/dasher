@@ -1,12 +1,12 @@
 import React from 'react'
 import theme from '../theme'
-import Button from './Button'
 import ExternalLink from './ExternalLink'
 import FormGroup from './FormGroup'
 import { ExternalLinkIcon } from './Icon'
 import Input from './Input'
 import Label from './Label'
 import PrimaryButton from './PrimaryButton'
+import SecondaryButton from './SecondaryButton'
 
 interface CreateBoardFormValues {
   name: string
@@ -64,7 +64,6 @@ const CreateBoardForm: React.FC<CreateBoardFormProps> = ({
           onChange={event =>
             setValues({ ...values, name: event.currentTarget.value })
           }
-          css={{ border: `1px solid ${theme.colors.gray[4]}` }}
         />
       </FormGroup>
       <FormGroup>
@@ -82,10 +81,7 @@ const CreateBoardForm: React.FC<CreateBoardFormProps> = ({
               handleSubmit(event)
             }
           }}
-          css={{
-            border: ` 1px solid ${theme.colors.gray[4]}`,
-            resize: 'vertical',
-          }}
+          css={{ resize: 'vertical' }}
         />
         <ExternalLink
           href="https://help.github.com/en/articles/searching-issues-and-pull-requests"
@@ -111,20 +107,10 @@ const CreateBoardForm: React.FC<CreateBoardFormProps> = ({
           },
         }}
       >
-        <PrimaryButton>Create board</PrimaryButton>
-        <Button
-          type="button"
-          onClick={() => onCancel()}
-          css={{
-            color: theme.colors.gray[7],
-            backgroundColor: 'transparent',
-            '&:hover:enabled': {
-              backgroundColor: theme.colors.gray[1],
-            },
-          }}
-        >
+        <SecondaryButton type="button" onClick={() => onCancel()}>
           Cancel
-        </Button>
+        </SecondaryButton>
+        <PrimaryButton>Create board</PrimaryButton>
       </div>
     </form>
   )

@@ -7,8 +7,8 @@ const Menu: React.FC<TippyProps> = props => {
     <Tippy
       trigger="click"
       interactive={true}
-      arrow={true}
-      arrowType="round"
+      animateFill={false}
+      distance={4}
       duration={150}
       placement="bottom"
       appendTo="parent"
@@ -23,12 +23,10 @@ const Menu: React.FC<TippyProps> = props => {
         padding: `${theme.space[2]} 0`,
         textAlign: 'left',
         lineHeight: theme.lineHeights.normal,
-        backgroundColor: theme.colors.gray[9],
+        color: 'inherit',
+        backgroundColor: theme.colors.white,
         borderRadius: theme.radii[2],
-        boxShadow: theme.shadows.medium,
-        '.tippy-roundarrow': {
-          fill: theme.colors.gray[9],
-        },
+        boxShadow: `0 0 0 1px rgba(0, 0, 0, 0.1), ${theme.shadows.large}`,
       }}
       {...props}
     />
@@ -50,7 +48,7 @@ export const MenuItem: React.FC<React.HTMLProps<HTMLButtonElement>> = props => {
         appearance: 'none',
         cursor: 'pointer',
         '&:hover': {
-          backgroundColor: theme.colors.gray[8],
+          backgroundColor: theme.colors.gray[1],
         },
       }}
       {...props}
@@ -63,7 +61,7 @@ export const MenuDivider: React.FC = () => {
     <div
       css={{
         margin: `${theme.space[2]} 0`,
-        borderTop: `1px solid ${theme.colors.gray[7]}`,
+        borderTop: `1px solid ${theme.colors.gray[2]}`,
       }}
     />
   )

@@ -10,7 +10,7 @@ const PrimaryButton: React.FC<React.HTMLProps<HTMLButtonElement>> = props => {
         backgroundColor: theme.colors.primary[7],
         boxShadow: theme.shadows.small,
         '&:hover:enabled': {
-          backgroundColor: theme.colors.primary[6],
+          backgroundColor: theme.colors.primary[8],
         },
       }}
       {...props}
