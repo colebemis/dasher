@@ -26,7 +26,7 @@ const Menu: React.FC<TippyProps> = props => {
         color: 'inherit',
         backgroundColor: theme.colors.white,
         borderRadius: theme.radii[2],
-        boxShadow: `0 0 0 1px rgba(0, 0, 0, 0.1), ${theme.shadows.large}`,
+        boxShadow: `0 0 1px 1px rgba(0, 0, 0, 0.1), ${theme.shadows.large}`,
       }}
       {...props}
     />
