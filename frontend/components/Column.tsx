@@ -130,20 +130,34 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
           },
         }}
       >
-        {issues.map(issue => (
-          <Issue issue={issue} />
-        ))}
-        {hasNextPage ? (
-          <div css={{ padding: theme.space[4] }}>
-            <SecondaryButton
-              onClick={() => loadMore()}
-              disabled={loadingMore}
-              css={{ width: '100%' }}
-            >
-              {loadingMore ? 'Loading...' : 'Load more'}
-            </SecondaryButton>
+        {!loading && issueCount === 0 ? (
+          <div
+            css={{
+              padding: theme.space[6],
+              textAlign: 'center',
+              color: theme.colors.gray[7],
+            }}
+          >
+            No results
           </div>
-        ) : null}
+        ) : (
+          <>
+            {issues.map(issue => (
+              <Issue issue={issue} />
+            ))}
+            {hasNextPage ? (
+              <div css={{ padding: theme.space[4] }}>
+                <SecondaryButton
+                  onClick={() => loadMore()}
+                  disabled={loadingMore}
+                  css={{ width: '100%' }}
+                >
+                  {loadingMore ? 'Loading...' : 'Load more'}
+                </SecondaryButton>
+              </div>
+            ) : null}
+          </>
+        )}
       </div>
     </div>
   )
