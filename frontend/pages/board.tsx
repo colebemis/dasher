@@ -61,7 +61,6 @@ const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
                 <div
                   css={{
                     display: 'flex',
-                    alignItems: 'flex-start',
                     padding: theme.space[5],
                     '& > :not(:last-child)': {
                       marginRight: theme.space[4],
