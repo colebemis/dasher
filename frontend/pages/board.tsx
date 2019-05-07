@@ -76,6 +76,7 @@ const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
                         <Column
                           key={column.id}
                           boardId={board.id}
+                          boardQuery={board.query}
                           id={column.id}
                           name={column.name}
                           query={column.query}

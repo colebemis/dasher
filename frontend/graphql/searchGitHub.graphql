@@ -1,0 +1,47 @@
+query searchGitHub($query: String!, $endCursor: String) {
+  search(first: 10, type: ISSUE, query: $query, after: $endCursor) {
+    issueCount
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+    issues: nodes {
+      ... on GitHubIssue {
+        title
+        url
+        repository {
+          nameWithOwner
+          url
+        }
+        author {
+          login
+          url
+        }
+        labels(first: 10) {
+          nodes {
+            name
+            color
+          }
+        }
+      }
+      ... on GitHubPullRequest {
+        title
+        url
+        repository {
+          nameWithOwner
+          url
+        }
+        author {
+          login
+          url
+        }
+        labels(first: 10) {
+          nodes {
+            name
+            color
+          }
+        }
+      }
+    }
+  }
+}

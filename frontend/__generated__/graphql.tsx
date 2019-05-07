@@ -2270,6 +2270,127 @@ export type GetViewerViewer = {
   avatarUrl: GitHubUri;
 };
 
+export type SearchGitHubVariables = {
+  query: string;
+  endCursor?: Maybe<string>;
+};
+
+export type SearchGitHubQuery = {
+  __typename?: "Query";
+
+  search: SearchGitHubSearch;
+};
+
+export type SearchGitHubSearch = {
+  __typename?: "GitHubSearchResultItemConnection";
+
+  issueCount: number;
+
+  pageInfo: SearchGitHubPageInfo;
+
+  issues: Maybe<SearchGitHubIssues[]>;
+};
+
+export type SearchGitHubPageInfo = {
+  __typename?: "GitHubPageInfo";
+
+  endCursor: Maybe<string>;
+
+  hasNextPage: boolean;
+};
+
+export type SearchGitHubIssues =
+  | SearchGitHubGitHubIssueInlineFragment
+  | SearchGitHubGitHubPullRequestInlineFragment;
+
+export type SearchGitHubGitHubIssueInlineFragment = {
+  __typename?: "GitHubIssue";
+
+  title: string;
+
+  url: GitHubUri;
+
+  repository: SearchGitHubRepository;
+
+  author: Maybe<SearchGitHubAuthor>;
+
+  labels: Maybe<SearchGitHubLabels>;
+};
+
+export type SearchGitHubRepository = {
+  __typename?: "GitHubRepository";
+
+  nameWithOwner: string;
+
+  url: GitHubUri;
+};
+
+export type SearchGitHubAuthor = {
+  __typename?: "GitHubActor";
+
+  login: string;
+
+  url: GitHubUri;
+};
+
+export type SearchGitHubLabels = {
+  __typename?: "GitHubLabelConnection";
+
+  nodes: Maybe<SearchGitHubNodes[]>;
+};
+
+export type SearchGitHubNodes = {
+  __typename?: "GitHubLabel";
+
+  name: string;
+
+  color: string;
+};
+
+export type SearchGitHubGitHubPullRequestInlineFragment = {
+  __typename?: "GitHubPullRequest";
+
+  title: string;
+
+  url: GitHubUri;
+
+  repository: SearchGitHub_Repository;
+
+  author: Maybe<SearchGitHub_Author>;
+
+  labels: Maybe<SearchGitHub_Labels>;
+};
+
+export type SearchGitHub_Repository = {
+  __typename?: "GitHubRepository";
+
+  nameWithOwner: string;
+
+  url: GitHubUri;
+};
+
+export type SearchGitHub_Author = {
+  __typename?: "GitHubActor";
+
+  login: string;
+
+  url: GitHubUri;
+};
+
+export type SearchGitHub_Labels = {
+  __typename?: "GitHubLabelConnection";
+
+  nodes: Maybe<SearchGitHub_Nodes[]>;
+};
+
+export type SearchGitHub_Nodes = {
+  __typename?: "GitHubLabel";
+
+  name: string;
+
+  color: string;
+};
+
 export type SignInVariables = {
   gitHubCode: string;
 };
@@ -2703,6 +2824,88 @@ export function GetViewerHOC<TProps, TChildProps = any>(
     GetViewerVariables,
     GetViewerProps<TChildProps>
   >(GetViewerDocument, operationOptions);
+}
+export const SearchGitHubDocument = gql`
+  query searchGitHub($query: String!, $endCursor: String) {
+    search(first: 10, type: ISSUE, query: $query, after: $endCursor) {
+      issueCount
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      issues: nodes {
+        ... on GitHubIssue {
+          title
+          url
+          repository {
+            nameWithOwner
+            url
+          }
+          author {
+            login
+            url
+          }
+          labels(first: 10) {
+            nodes {
+              name
+              color
+            }
+          }
+        }
+        ... on GitHubPullRequest {
+          title
+          url
+          repository {
+            nameWithOwner
+            url
+          }
+          author {
+            login
+            url
+          }
+          labels(first: 10) {
+            nodes {
+              name
+              color
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+export class SearchGitHubComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<SearchGitHubQuery, SearchGitHubVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<SearchGitHubQuery, SearchGitHubVariables>
+        query={SearchGitHubDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type SearchGitHubProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<SearchGitHubQuery, SearchGitHubVariables>
+> &
+  TChildProps;
+export function SearchGitHubHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        SearchGitHubQuery,
+        SearchGitHubVariables,
+        SearchGitHubProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    SearchGitHubQuery,
+    SearchGitHubVariables,
+    SearchGitHubProps<TChildProps>
+  >(SearchGitHubDocument, operationOptions);
 }
 export const SignInDocument = gql`
   mutation signIn($gitHubCode: String!) {
