@@ -15,6 +15,7 @@ const AccountMenu: React.FC = () => {
         if (!data) return null
         return (
           <Menu
+            placement="bottom-end"
             content={
               <>
                 <div
