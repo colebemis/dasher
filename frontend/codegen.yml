@@ -3,9 +3,7 @@ schema: http://localhost:4000
 documents: '**/*.graphql'
 generates:
   ./__generated__/graphql.tsx:
-    config:
-      noNamespaces: true
     plugins:
-      - typescript-common
-      - typescript-client
+      - typescript
+      - typescript-operations
       - typescript-react-apollo
