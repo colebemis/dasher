@@ -1,11 +1,11 @@
+import Color from 'color'
 import React from 'react'
 import theme from '../theme'
+import { SearchGitHubQuery } from '../__generated__/graphql'
 import ExternalLink from './ExternalLink'
-import { SearchGitHubIssues } from '../__generated__/graphql'
-import Color from 'color'
 
 interface IssueProps {
-  issue: SearchGitHubIssues
+  issue: NonNullable<NonNullable<SearchGitHubQuery['search']['issues']>[0]>
 }
 
 const Issue: React.FC<IssueProps> = ({ issue }) => {
@@ -56,6 +56,9 @@ const Issue: React.FC<IssueProps> = ({ issue }) => {
             }}
           >
             {issue.labels.nodes.map(label => (
+              // Using `!` below to remove null from label's type because
+              // there will never (I think) be any null elements in the list.
+              // This seems like a mistake in GitHub's GraphQL schema.
               <div
                 css={{
                   margin: `${theme.space[1]} ${theme.space[1]} 0 0`,
@@ -63,14 +66,14 @@ const Issue: React.FC<IssueProps> = ({ issue }) => {
                   fontSize: theme.fontSizes[0],
                   fontWeight: theme.fontWeights.semibold,
                   lineHeight: theme.lineHeights.none,
-                  color: Color(`#${label.color}`).isDark()
+                  color: Color(`#${label!.color}`).isDark()
                     ? theme.colors.white
                     : theme.colors.black,
-                  backgroundColor: `#${label.color}`,
+                  backgroundColor: `#${label!.color}`,
                   borderRadius: theme.radii[1],
                 }}
               >
-                {label.name}
+                {label!.name}
               </div>
             ))}
           </div>

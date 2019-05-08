@@ -3,7 +3,6 @@ import { withApollo, WithApolloClient } from 'react-apollo'
 import theme from '../theme'
 import {
   SearchGitHubDocument,
-  SearchGitHubIssues,
   SearchGitHubQuery,
 } from '../__generated__/graphql'
 import ColumnMenu from './ColumnMenu'
@@ -30,9 +29,13 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
   const [loading, setLoading] = React.useState(true)
   const [loadingMore, setLoadingMore] = React.useState(false)
   const [issueCount, setIssueCount] = React.useState(0)
-  const [issues, setIssues] = React.useState<SearchGitHubIssues[]>([])
+  const [issues, setIssues] = React.useState<
+    NonNullable<SearchGitHubQuery['search']['issues']>
+  >([])
   const [hasNextPage, setHasNextPage] = React.useState(false)
-  const [endCursor, setEndCursor] = React.useState<string | null>(null)
+  const [endCursor, setEndCursor] = React.useState<
+    SearchGitHubQuery['search']['pageInfo']['endCursor']
+  >(null)
 
   React.useEffect(() => {
     setLoading(true)
@@ -143,7 +146,10 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
         ) : (
           <>
             {issues.map(issue => (
-              <Issue issue={issue} />
+              // Using `!` below to remove null from issue's type because
+              // there will never (I think) be any null elements in the list.
+              // This seems like a mistake in GitHub's GraphQL schema.
+              <Issue issue={issue!} />
             ))}
             {hasNextPage ? (
               <div css={{ padding: theme.space[4] }}>
