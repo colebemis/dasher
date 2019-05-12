@@ -3,6 +3,7 @@ import React from 'react'
 import theme from '../theme'
 import { SearchGitHubQuery } from '../__generated__/graphql'
 import ExternalLink from './ExternalLink'
+import StateIcon from './StateIcon'
 
 interface IssueProps {
   issue: NonNullable<NonNullable<SearchGitHubQuery['search']['issues']>[0]>
@@ -16,6 +17,9 @@ const Issue: React.FC<IssueProps> = ({ issue }) => {
         padding: theme.space[4],
       }}
     >
+      <div css={{ marginRight: theme.space[3], flexShrink: 0 }}>
+        <StateIcon issue={issue} css={{ verticalAlign: 'baseline' }} />
+      </div>
       <div
         css={{
           display: 'flex',

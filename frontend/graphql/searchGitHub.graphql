@@ -9,6 +9,7 @@ query searchGitHub($query: String!, $endCursor: String) {
       ... on GitHubIssue {
         title
         url
+        issueState: state
         repository {
           nameWithOwner
           url
@@ -27,6 +28,7 @@ query searchGitHub($query: String!, $endCursor: String) {
       ... on GitHubPullRequest {
         title
         url
+        pullRequestState: state
         repository {
           nameWithOwner
           url

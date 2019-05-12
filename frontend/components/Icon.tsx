@@ -60,6 +60,35 @@ export const ChevronLeftIcon: React.FC<
   )
 }
 
+export const IssueIcon: React.FC<React.SVGProps<SVGSVGElement>> = props => {
+  return (
+    <Icon {...props}>
+      <path
+        d="M8,16A8,8,0,1,0,0,8,8,8,0,0,0,8,16Zm0-2A6,6,0,1,0,2,8,6,6,0,0,0,8,14ZM7,5A1,1,0,0,1,9,5V8A1,1,0,0,1,7,8Zm0,6a1,1,0,1,1,1,1A1,1,0,0,1,7,11Z"
+        fill-rule="evenodd"
+      />
+    </Icon>
+  )
+}
+
+export const PullRequestIcon: React.FC<
+  React.SVGProps<SVGSVGElement>
+> = props => {
+  return (
+    <Icon {...props}>
+      <path d="M4.85,4.65l3.3-3.3A.5.5,0,0,1,9,1.71V4h3a3,3,0,0,1,3,3v7a1,1,0,0,1-2,0V7a1,1,0,0,0-1-1H9V8.29a.5.5,0,0,1-.85.36l-3.3-3.3A.5.5,0,0,1,4.85,4.65ZM3,14V2A1,1,0,0,0,1,2V14a1,1,0,0,0,2,0Z" />
+    </Icon>
+  )
+}
+
+export const MergeIcon: React.FC<React.SVGProps<SVGSVGElement>> = props => {
+  return (
+    <Icon {...props}>
+      <path d="M5.71,11.29a1,1,0,0,1,0,1.42l-2,2a1,1,0,0,1-1.42-1.42l2-2A1,1,0,0,1,5.71,11.29Zm8,2L9,8.59V5h2.29a.5.5,0,0,0,.36-.85L8.35.85a.5.5,0,0,0-.7,0l-3.3,3.3A.5.5,0,0,0,4.71,5H7V9a1,1,0,0,0,.29.71l5,5a1,1,0,0,0,1.42-1.42Z" />
+    </Icon>
+  )
+}
+
 export const SpinnerIcon: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
     <Icon {...props}>
