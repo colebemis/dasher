@@ -91,41 +91,58 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
       <div
         css={{
           flexShrink: 0,
-          display: 'flex',
-          alignItems: 'center',
           padding: theme.space[2],
           borderBottom: `1px solid ${theme.colors.gray[1]}`,
         }}
       >
-        <h2
+        <div
           css={{
-            margin: `0 ${theme.space[2]}`,
-            fontSize: theme.fontSizes[3],
-            fontWeight: theme.fontWeights.semibold,
-            lineHeight: theme.lineHeights.tight,
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
-          {name}
-        </h2>
-
-        {loading ? (
-          <Spinner css={{ color: theme.colors.gray[5] }} />
-        ) : (
-          <span
+          <h2
             css={{
-              padding: `0 6px`,
-              fontSize: theme.fontSizes[0],
+              margin: `0 ${theme.space[2]}`,
+              fontSize: theme.fontSizes[3],
               fontWeight: theme.fontWeights.semibold,
-              color: theme.colors.gray[7],
-              backgroundColor: theme.colors.gray[1],
-              borderRadius: 999,
+              lineHeight: theme.lineHeights.tight,
             }}
           >
-            {issueCount}
-          </span>
-        )}
-        <div css={{ margin: '0 auto' }} />
-        <ColumnMenu boardId={boardId} id={id} name={name} query={query} />
+            {name}
+          </h2>
+
+          {loading ? (
+            <Spinner css={{ color: theme.colors.gray[5] }} />
+          ) : (
+            <span
+              css={{
+                padding: `0 6px`,
+                fontSize: theme.fontSizes[0],
+                fontWeight: theme.fontWeights.semibold,
+                color: theme.colors.gray[7],
+                backgroundColor: theme.colors.gray[1],
+                borderRadius: 999,
+              }}
+            >
+              {issueCount}
+            </span>
+          )}
+          <div css={{ margin: '0 auto' }} />
+          <ColumnMenu boardId={boardId} id={id} name={name} query={query} />
+        </div>
+        {query ? (
+          <div
+            css={{
+              margin: `${theme.space[1]} ${theme.space[2]} ${theme.space[2]}`,
+              fontFamily: theme.fonts.monospace,
+              fontSize: theme.fontSizes[1],
+              color: theme.colors.gray[7],
+            }}
+          >
+            {query}
+          </div>
+        ) : null}
       </div>
       <div
         css={{
