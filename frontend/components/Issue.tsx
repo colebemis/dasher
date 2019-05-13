@@ -1,5 +1,6 @@
 import Color from 'color'
 import React from 'react'
+import timeDifference from '../lib/timeDifference'
 import theme from '../theme'
 import { SearchGitHubQuery } from '../__generated__/graphql'
 import ExternalLink from './ExternalLink'
@@ -50,6 +51,8 @@ const Issue: React.FC<IssueProps> = ({ issue }) => {
               </ExternalLink>
             </>
           ) : null}
+          <span css={{ margin: `0 ${theme.space[1]}` }}>·</span>
+          {timeDifference(new Date(issue.createdAt))}
         </span>
         {issue.labels && issue.labels.nodes && issue.labels.nodes.length > 0 ? (
           <div
