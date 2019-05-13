@@ -6,9 +6,9 @@ import {
   SearchGitHubQuery,
 } from '../__generated__/graphql'
 import ColumnMenu from './ColumnMenu'
-import { SpinnerIcon } from './Icon'
 import Issue from './Issue'
 import SecondaryButton from './SecondaryButton'
+import Spinner from './Spinner'
 
 interface ColumnProps {
   boardId: string
@@ -106,8 +106,9 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
         >
           {name}
         </h2>
+
         {loading ? (
-          <SpinnerIcon css={{ color: theme.colors.gray[4] }} />
+          <Spinner css={{ color: theme.colors.gray[5] }} />
         ) : (
           <span
             css={{
