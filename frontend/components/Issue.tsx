@@ -38,7 +38,11 @@ const Issue: React.FC<IssueProps> = ({ issue }) => {
           {issue.title}
         </ExternalLink>
         <span
-          css={{ fontSize: theme.fontSizes[1], color: theme.colors.gray[7] }}
+          css={{
+            fontSize: theme.fontSizes[1],
+            wordBreak: 'break-word',
+            color: theme.colors.gray[7],
+          }}
         >
           <ExternalLink href={issue.repository.url}>
             {issue.repository.nameWithOwner}
