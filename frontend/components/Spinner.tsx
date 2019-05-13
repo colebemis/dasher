@@ -3,7 +3,7 @@ import React from 'react'
 
 const spinnerSize = 14
 
-const spinnerAnimation = keyframes({
+const spinnerKeyframes = keyframes({
   '0%': {
     transform: 'rotate(0deg)',
     strokeDashoffset: (Math.PI * spinnerSize) / 8,
@@ -36,9 +36,9 @@ const Spinner: React.FC<React.SVGProps<SVGSVGElement>> = props => {
           stroke: 'currentColor',
           strokeWidth: 2,
           strokeLinecap: 'round',
-          strokeDasharray: Math.PI * spinnerSize,
+          strokeDasharray: Math.PI * spinnerSize, // Circumference of spinner
           transformOrigin: 'center center',
-          animation: `${spinnerAnimation} 2s linear infinite`,
+          animation: `${spinnerKeyframes} 2s linear infinite`,
         }}
       />
     </svg>
