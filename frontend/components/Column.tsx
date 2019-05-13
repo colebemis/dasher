@@ -92,7 +92,7 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
         css={{
           flexShrink: 0,
           padding: theme.space[2],
-          borderBottom: `1px solid ${theme.colors.gray[1]}`,
+          borderBottom: `1px solid ${theme.colors.gray[2]}`,
         }}
       >
         <div
@@ -134,7 +134,7 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
         {query ? (
           <div
             css={{
-              margin: `${theme.space[1]} ${theme.space[2]} ${theme.space[2]}`,
+              margin: `${theme.space[1]} ${theme.space[2]}`,
               fontFamily: theme.fonts.monospace,
               fontSize: theme.fontSizes[1],
               color: theme.colors.gray[7],

@@ -16,6 +16,7 @@ const Issue: React.FC<IssueProps> = ({ issue }) => {
       css={{
         display: 'flex',
         padding: theme.space[4],
+        paddingRight: theme.space[5],
       }}
     >
       <div css={{ marginRight: theme.space[3], flexShrink: 0 }}>
@@ -37,10 +38,11 @@ const Issue: React.FC<IssueProps> = ({ issue }) => {
         >
           {issue.title}
         </ExternalLink>
-        <span
+        <div
           css={{
+            display: 'flex',
+            flexWrap: 'wrap',
             fontSize: theme.fontSizes[1],
-            wordBreak: 'break-word',
             color: theme.colors.gray[7],
           }}
         >
@@ -57,7 +59,7 @@ const Issue: React.FC<IssueProps> = ({ issue }) => {
           ) : null}
           <span css={{ margin: `0 ${theme.space[1]}` }}>·</span>
           {timeDifference(new Date(issue.createdAt))}
-        </span>
+        </div>
         {issue.labels && issue.labels.nodes && issue.labels.nodes.length > 0 ? (
           <div
             css={{
