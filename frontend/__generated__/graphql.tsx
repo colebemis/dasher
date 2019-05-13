@@ -9801,7 +9801,7 @@ export type SearchGitHubQuery = { __typename?: "Query" } & {
 
               | ({ __typename?: "GitHubIssue" } & Pick<
                   GitHubIssue,
-                  "title" | "url"
+                  "title" | "url" | "createdAt"
                 > & { issueState: GitHubIssue["state"] } & {
                     repository: { __typename?: "GitHubRepository" } & Pick<
                       GitHubRepository,
@@ -9833,7 +9833,7 @@ export type SearchGitHubQuery = { __typename?: "Query" } & {
                   })
               | ({ __typename?: "GitHubPullRequest" } & Pick<
                   GitHubPullRequest,
-                  "title" | "url"
+                  "title" | "url" | "createdAt"
                 > & { pullRequestState: GitHubPullRequest["state"] } & {
                     repository: { __typename?: "GitHubRepository" } & Pick<
                       GitHubRepository,
@@ -10330,6 +10330,7 @@ export const SearchGitHubDocument = gql`
         ... on GitHubIssue {
           title
           url
+          createdAt
           issueState: state
           repository {
             nameWithOwner
@@ -10349,6 +10350,7 @@ export const SearchGitHubDocument = gql`
         ... on GitHubPullRequest {
           title
           url
+          createdAt
           pullRequestState: state
           repository {
             nameWithOwner
