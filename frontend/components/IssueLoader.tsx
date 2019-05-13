@@ -7,8 +7,8 @@ const IssueLoader = () => {
       width={300}
       height={36}
       speed={2}
-      primaryColor={theme.colors.gray[1]}
-      secondaryColor={theme.colors.gray[2]}
+      primaryColor={theme.colors.gray[2]}
+      secondaryColor={theme.colors.gray[3]}
       css={{ width: 300 }}
     >
       <circle cx="8" cy="8" r="8" />
