@@ -7,6 +7,7 @@ import {
 } from '../__generated__/graphql'
 import ColumnMenu from './ColumnMenu'
 import Issue from './Issue'
+import IssueLoader from './IssueLoader'
 import SecondaryButton from './SecondaryButton'
 import Spinner from './Spinner'
 
@@ -146,6 +147,12 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
           </div>
         ) : (
           <>
+            {/* Show IssueLoader on initial load. */}
+            {loading && issues.length === 0 ? (
+              <div css={{ padding: theme.space[4] }}>
+                <IssueLoader />
+              </div>
+            ) : null}
             {issues.map(issue => (
               // Using `!` below to remove null from issue's type because
               // there will never (I think) be any null elements in the list.
