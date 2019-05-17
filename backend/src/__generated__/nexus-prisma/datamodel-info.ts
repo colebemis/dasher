@@ -4759,6 +4759,16 @@ export default {
         "fields": null,
         "inputFields": [
           {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "gitHubId",
             "description": null,
             "type": {
@@ -4840,6 +4850,16 @@ export default {
         "description": null,
         "fields": null,
         "inputFields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
           {
             "name": "name",
             "description": null,
@@ -4936,6 +4956,16 @@ export default {
         "description": null,
         "fields": null,
         "inputFields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
           {
             "name": "name",
             "description": null,
@@ -7257,6 +7287,16 @@ export default {
         "fields": null,
         "inputFields": [
           {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "owner",
             "description": null,
             "type": {
@@ -7350,6 +7390,16 @@ export default {
         "description": null,
         "fields": null,
         "inputFields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
           {
             "name": "gitHubId",
             "description": null,
@@ -7569,6 +7619,16 @@ export default {
         "fields": null,
         "inputFields": [
           {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "board",
             "description": null,
             "type": {
@@ -7652,6 +7712,16 @@ export default {
         "description": null,
         "fields": null,
         "inputFields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
           {
             "name": "owner",
             "description": null,

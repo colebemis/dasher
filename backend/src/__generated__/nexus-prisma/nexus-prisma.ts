@@ -2225,11 +2225,13 @@ export type ColumnWhereUniqueInputInputObject =
   | { name: 'id', alias?: string  } 
   
 export interface UserCreateInput {
+  id?: string | null
   gitHubId?: string
   boards?: BoardCreateManyWithoutOwnerInput | null
 }
 export type UserCreateInputInputObject =
   | Extract<keyof UserCreateInput, string>
+  | { name: 'id', alias?: string  } 
   | { name: 'gitHubId', alias?: string  } 
   | { name: 'boards', alias?: string  } 
   
@@ -2243,12 +2245,14 @@ export type BoardCreateManyWithoutOwnerInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface BoardCreateWithoutOwnerInput {
+  id?: string | null
   name?: string
   query?: string
   columns?: ColumnCreateManyWithoutBoardInput | null
 }
 export type BoardCreateWithoutOwnerInputInputObject =
   | Extract<keyof BoardCreateWithoutOwnerInput, string>
+  | { name: 'id', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
   | { name: 'columns', alias?: string  } 
@@ -2263,11 +2267,13 @@ export type ColumnCreateManyWithoutBoardInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface ColumnCreateWithoutBoardInput {
+  id?: string | null
   name?: string
   query?: string
 }
 export type ColumnCreateWithoutBoardInputInputObject =
   | Extract<keyof ColumnCreateWithoutBoardInput, string>
+  | { name: 'id', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
   
@@ -2684,6 +2690,7 @@ export type UserUpdateManyMutationInputInputObject =
   | { name: 'gitHubId', alias?: string  } 
   
 export interface BoardCreateInput {
+  id?: string | null
   owner?: UserCreateOneWithoutBoardsInput
   name?: string
   query?: string
@@ -2691,6 +2698,7 @@ export interface BoardCreateInput {
 }
 export type BoardCreateInputInputObject =
   | Extract<keyof BoardCreateInput, string>
+  | { name: 'id', alias?: string  } 
   | { name: 'owner', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
@@ -2706,10 +2714,12 @@ export type UserCreateOneWithoutBoardsInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface UserCreateWithoutBoardsInput {
+  id?: string | null
   gitHubId?: string
 }
 export type UserCreateWithoutBoardsInputInputObject =
   | Extract<keyof UserCreateWithoutBoardsInput, string>
+  | { name: 'id', alias?: string  } 
   | { name: 'gitHubId', alias?: string  } 
   
 export interface BoardUpdateInput {
@@ -2764,12 +2774,14 @@ export type BoardUpdateManyMutationInputInputObject =
   | { name: 'query', alias?: string  } 
   
 export interface ColumnCreateInput {
+  id?: string | null
   board?: BoardCreateOneWithoutColumnsInput
   name?: string
   query?: string
 }
 export type ColumnCreateInputInputObject =
   | Extract<keyof ColumnCreateInput, string>
+  | { name: 'id', alias?: string  } 
   | { name: 'board', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
@@ -2784,12 +2796,14 @@ export type BoardCreateOneWithoutColumnsInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface BoardCreateWithoutColumnsInput {
+  id?: string | null
   owner?: UserCreateOneWithoutBoardsInput
   name?: string
   query?: string
 }
 export type BoardCreateWithoutColumnsInputInputObject =
   | Extract<keyof BoardCreateWithoutColumnsInput, string>
+  | { name: 'id', alias?: string  } 
   | { name: 'owner', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 

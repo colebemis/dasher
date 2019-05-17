@@ -1,15 +1,15 @@
 type User {
-  id: ID! @unique
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
   gitHubId: ID! @unique
   boards: [Board!]! @relation(name: "UserBoards", onDelete: CASCADE)
 }
 
 type Board {
-  id: ID! @unique
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
   owner: User! @relation(name: "UserBoards")
   name: String!
   query: String!
@@ -17,9 +17,9 @@ type Board {
 }
 
 type Column {
-  id: ID! @unique
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
   board: Board! @relation(name: "BoardColumns")
   name: String!
   query: String!
