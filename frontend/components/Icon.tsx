@@ -65,7 +65,7 @@ export const IssueIcon: React.FC<React.SVGProps<SVGSVGElement>> = props => {
     <Icon {...props}>
       <path
         d="M8,16A8,8,0,1,0,0,8,8,8,0,0,0,8,16Zm0-2A6,6,0,1,0,2,8,6,6,0,0,0,8,14ZM7,5A1,1,0,0,1,9,5V8A1,1,0,0,1,7,8Zm0,6a1,1,0,1,1,1,1A1,1,0,0,1,7,11Z"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       />
     </Icon>
   )
