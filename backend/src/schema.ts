@@ -34,6 +34,7 @@ const Query = prismaObjectType({
     })
     t.field('signedInUser', {
       type: 'User',
+      nullable: true,
       resolve: (root, args, context) => {
         const { userId } = getTokenPayload(context)
         return context.prisma.user({ id: userId })

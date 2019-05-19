@@ -483,7 +483,7 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     board: NexusGenRootTypes['Board'] | null; // Board
     isSignedIn: boolean; // Boolean!
-    signedInUser: NexusGenRootTypes['User']; // User!
+    signedInUser: NexusGenRootTypes['User'] | null; // User
   }
   SignInPayload: { // field return type
     token: string; // String!
