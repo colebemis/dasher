@@ -36,8 +36,12 @@ const Query = prismaObjectType({
       type: 'User',
       nullable: true,
       resolve: (root, args, context) => {
-        const { userId } = getTokenPayload(context)
-        return context.prisma.user({ id: userId })
+        try {
+          const { userId } = getTokenPayload(context)
+          return context.prisma.user({ id: userId })
+        } catch (error) {
+          return null
+        }
       },
     })
   },

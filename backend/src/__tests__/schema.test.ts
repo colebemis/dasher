@@ -68,23 +68,23 @@ describe('signedInUser', () => {
     expect(result.data).toEqual({ signedInUser: { id: user.id } })
   })
 
-  test('returns an error if token is invalid', async () => {
+  test('returns null if token is invalid', async () => {
     const token = 'bad_token'
     const document = `query { signedInUser { id } }`
     const context = { request: { cookies: { token } } }
     const result = await graphql(schema, document, null, context, {})
 
-    expect(result.data).toBeFalsy()
-    expect(result.errors).toBeTruthy()
+    expect(result.data).toEqual({ signedInUser: null })
+    expect(result.errors).toBeFalsy()
   })
 
-  test('returns an error if token is undefined', async () => {
+  test('returns null if token is undefined', async () => {
     const document = `query { signedInUser { id } }`
     const context = { request: { cookies: {} } }
     const result = await graphql(schema, document, null, context, {})
 
-    expect(result.data).toBeFalsy()
-    expect(result.errors).toBeTruthy()
+    expect(result.data).toEqual({ signedInUser: null })
+    expect(result.errors).toBeFalsy()
   })
 })
 
