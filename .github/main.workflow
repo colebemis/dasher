@@ -61,12 +61,12 @@ action "GitHub Action for Zeit" {
   secrets = [
     "GITHUB_TOKEN",
     "ZEIT_TOKEN",
-    "GITHUB_CLIENT_SECRET",
     "APP_SECRET",
     "PRISMA_SECRET",
+    "GH_CLIENT_SECRET",
   ]
   env = {
-    GITHUB_CLIENT_ID = "6394b4fd5f4f0606b2f7"
     PRISMA_ENDPOINT = "https://dasher-9598c5ecbe.herokuapp.com/dasher/prod"
+    GH_CLIENT_ID = "6394b4fd5f4f0606b2f7"
   }
 }
