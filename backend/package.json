@@ -5,6 +5,7 @@
     "dev": "ts-node-dev --no-notify --transpileOnly src/index.ts",
     "test": "jest",
     "lint": "tslint ./**/*.ts",
+    "generate:nexus": "ts-node src/schema.ts",
     "generate:prisma": "prisma generate",
     "deploy:prisma": "prisma deploy"
   },
@@ -27,6 +28,7 @@
     "prisma": "1.32.2",
     "prisma-client-lib": "1.33.0",
     "ts-jest": "24.0.2",
+    "ts-node": "^8.2.0",
     "ts-node-dev": "1.0.0-pre.39",
     "tslint": "5.16.0",
     "tslint-config-prettier": "1.18.0",
