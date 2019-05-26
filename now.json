@@ -2,6 +2,12 @@
   "version": 2,
   "name": "dasher",
   "alias": "dasher.sh",
-  "builds": [{ "src": "backend/src/index.ts", "use": "@now/node-server" }],
-  "routes": [{ "src": "/graphql", "dest": "backend/src/index.ts" }]
+  "builds": [
+    { "src": "backend/src/index.ts", "use": "@now/node-server" },
+    { "src": "frontend/next.config.js", "use": "@now/next" }
+  ],
+  "routes": [
+    { "src": "/graphql", "dest": "backend/src/index.ts" },
+    { "src": "/(.*)", "dest": "/frontend/$1" }
+  ]
 }
