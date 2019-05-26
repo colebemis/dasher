@@ -1,6 +1,3 @@
-// tslint:disable-next-line:no-var-requires
-require('dotenv').config()
-
 import cookieParser from 'cookie-parser'
 import {
   FilterRootFields,
@@ -33,6 +30,7 @@ makeGitHubSchema().then(gitHubSchema => {
 
   server.start(
     {
+      endpoint: '/graphql',
       cors: {
         credentials: true,
         origin: 'http://localhost:3000',
