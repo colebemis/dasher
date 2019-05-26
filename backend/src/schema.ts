@@ -27,7 +27,7 @@ const Query = prismaObjectType({
           // an error if the token is undefined or invalid.
           getTokenPayload(context)
           return true
-        } catch {
+        } catch (error) {
           return false
         }
       },
