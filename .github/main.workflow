@@ -9,7 +9,7 @@ workflow "Lint and test" {
 workflow "Deploy" {
   resolves = [
     "deploy prisma service",
-    "deploy",
+    "alias",
   ]
   on = "push"
 }
@@ -55,7 +55,7 @@ action "deploy prisma service" {
   }
 }
 
-action "deploy" {
+action "deploy backend" {
   uses = "actions/zeit-now@5c51b26db987d15a0133e4c760924896b4f1512f"
   needs = ["install"]
   secrets = [
@@ -70,4 +70,11 @@ action "deploy" {
     GH_CLIENT_ID = "6394b4fd5f4f0606b2f7"
   }
   args = "-e GITHUB_TOKEN -e GH_CLIENT_ID -e GH_CLIENT_SECRET -e APP_SECRET -e PRISMA_ENDPOINT -e PRISMA_SECRET"
+}
+
+action "alias" {
+  uses = "actions/zeit-now@5c51b26db987d15a0133e4c760924896b4f1512f"
+  needs = ["deploy backend"]
+  args = "alias"
+  secrets = ["ZEIT_TOKEN"]
 }
