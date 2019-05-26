@@ -70,4 +70,5 @@ action "GitHub Action for Zeit" {
     PRISMA_ENDPOINT = "https://dasher-9598c5ecbe.herokuapp.com/dasher/prod"
     GH_CLIENT_ID = "6394b4fd5f4f0606b2f7"
   }
+  args = "-e GH_TOKEN -e GH_CLIENT_SECRET -e GH_CLIENT_ID -e APP_SECRET -e PRISMA_SECRET -e PRISMA_ENDPOINT"
 }
