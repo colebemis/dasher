@@ -55,7 +55,7 @@ action "deploy prisma service" {
   }
 }
 
-action "deploy backend" {
+action "deploy frontend and backend" {
   uses = "actions/zeit-now@5c51b26db987d15a0133e4c760924896b4f1512f"
   needs = ["install"]
   secrets = [
@@ -67,14 +67,15 @@ action "deploy backend" {
   ]
   env = {
     PRISMA_ENDPOINT = "https://dasher-9598c5ecbe.herokuapp.com/dasher/prod"
-    GH_CLIENT_ID = "6394b4fd5f4f0606b2f7"
+    GH_REDIRECT_URI = "https://dasher.sh/callback"
+    GH_CLIENT_ID = "ce81313fd76342793cb2"
   }
-  args = "-e GITHUB_TOKEN -e GH_CLIENT_ID -e GH_CLIENT_SECRET -e APP_SECRET -e PRISMA_ENDPOINT -e PRISMA_SECRET"
+  args = "-e GITHUB_TOKEN -e GH_CLIENT_ID -e GH_CLIENT_SECRET -e GH_REDIRECT_URI -e APP_SECRET -e PRISMA_ENDPOINT -e PRISMA_SECRET"
 }
 
 action "alias" {
   uses = "actions/zeit-now@5c51b26db987d15a0133e4c760924896b4f1512f"
-  needs = ["deploy backend"]
   args = "alias"
   secrets = ["ZEIT_TOKEN"]
+  needs = ["deploy frontend and backend"]
 }
