@@ -7,6 +7,7 @@ query searchGitHub($query: String!, $endCursor: String) {
     }
     issues: nodes {
       ... on GitHubIssue {
+        id
         title
         url
         createdAt
@@ -21,12 +22,14 @@ query searchGitHub($query: String!, $endCursor: String) {
         }
         labels(first: 10) {
           nodes {
+            id
             name
             color
           }
         }
       }
       ... on GitHubPullRequest {
+        id
         title
         url
         createdAt
@@ -41,6 +44,7 @@ query searchGitHub($query: String!, $endCursor: String) {
         }
         labels(first: 10) {
           nodes {
+            id
             name
             color
           }

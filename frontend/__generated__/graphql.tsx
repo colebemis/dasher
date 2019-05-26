@@ -46,6 +46,7 @@ export type BoardColumnsArgs = {
 };
 
 export type BoardCreateInput = {
+  id?: Maybe<Scalars["ID"]>;
   name: Scalars["String"];
   query: Scalars["String"];
   columns?: Maybe<ColumnCreateManyWithoutBoardInput>;
@@ -57,6 +58,7 @@ export type BoardCreateOneWithoutColumnsInput = {
 };
 
 export type BoardCreateWithoutColumnsInput = {
+  id?: Maybe<Scalars["ID"]>;
   owner: UserCreateOneWithoutBoardsInput;
   name: Scalars["String"];
   query: Scalars["String"];
@@ -182,6 +184,7 @@ export type Column = {
 };
 
 export type ColumnCreateInput = {
+  id?: Maybe<Scalars["ID"]>;
   board: BoardCreateOneWithoutColumnsInput;
   name: Scalars["String"];
   query: Scalars["String"];
@@ -193,6 +196,7 @@ export type ColumnCreateManyWithoutBoardInput = {
 };
 
 export type ColumnCreateWithoutBoardInput = {
+  id?: Maybe<Scalars["ID"]>;
   name: Scalars["String"];
   query: Scalars["String"];
 };
@@ -4849,12 +4853,14 @@ export type GitHubPinnableItemEdge = {
   node?: Maybe<GitHubPinnableItem>;
 };
 
-/** Represents items that can be pinned to a profile page. */
+/** Represents items that can be pinned to a profile page or dashboard. */
 export enum GitHubPinnableItemType {
   /** A repository. */
   Repository = "REPOSITORY",
   /** A gist. */
-  Gist = "GIST"
+  Gist = "GIST",
+  /** An issue. */
+  Issue = "ISSUE"
 }
 
 /** Represents a 'pinned' event on a given issue or pull request. */
@@ -7795,6 +7801,8 @@ export type GitHubSecurityAdvisory = GitHubNode & {
   id: Scalars["ID"];
   /** A list of identifiers for this advisory */
   identifiers: Array<GitHubSecurityAdvisoryIdentifier>;
+  /** The organization that originated the advisory */
+  origin: Scalars["String"];
   /** When the advisory was published */
   publishedAt: Scalars["GitHubDateTime"];
   /** A list of references for this advisory */
@@ -9577,7 +9585,7 @@ export type MutationCreateBoardArgs = {
 export type Query = {
   board?: Maybe<Board>;
   isSignedIn: Scalars["Boolean"];
-  signedInUser: User;
+  signedInUser?: Maybe<User>;
   /** Perform a search across resources. */
   search: GitHubSearchResultItemConnection;
   /** The currently authenticated user. */
@@ -9625,6 +9633,7 @@ export type UserCreateOneWithoutBoardsInput = {
 };
 
 export type UserCreateWithoutBoardsInput = {
+  id?: Maybe<Scalars["ID"]>;
   gitHubId: Scalars["ID"];
 };
 
@@ -9758,11 +9767,13 @@ export type GetBoardQuery = { __typename?: "Query" } & {
 export type GetBoardsQueryVariables = {};
 
 export type GetBoardsQuery = { __typename?: "Query" } & {
-  signedInUser: { __typename?: "User" } & {
-    boards: Maybe<
-      Array<{ __typename?: "Board" } & Pick<Board, "id" | "name" | "query">>
-    >;
-  };
+  signedInUser: Maybe<
+    { __typename?: "User" } & {
+      boards: Maybe<
+        Array<{ __typename?: "Board" } & Pick<Board, "id" | "name" | "query">>
+      >;
+    }
+  >;
 };
 
 export type GetIsSignedInQueryVariables = {};
@@ -9801,7 +9812,7 @@ export type SearchGitHubQuery = { __typename?: "Query" } & {
 
               | ({ __typename?: "GitHubIssue" } & Pick<
                   GitHubIssue,
-                  "title" | "url" | "createdAt"
+                  "id" | "title" | "url" | "createdAt"
                 > & { issueState: GitHubIssue["state"] } & {
                     repository: { __typename?: "GitHubRepository" } & Pick<
                       GitHubRepository,
@@ -9823,7 +9834,7 @@ export type SearchGitHubQuery = { __typename?: "Query" } & {
                             Maybe<
                               { __typename?: "GitHubLabel" } & Pick<
                                 GitHubLabel,
-                                "name" | "color"
+                                "id" | "name" | "color"
                               >
                             >
                           >
@@ -9833,7 +9844,7 @@ export type SearchGitHubQuery = { __typename?: "Query" } & {
                   })
               | ({ __typename?: "GitHubPullRequest" } & Pick<
                   GitHubPullRequest,
-                  "title" | "url" | "createdAt"
+                  "id" | "title" | "url" | "createdAt"
                 > & { pullRequestState: GitHubPullRequest["state"] } & {
                     repository: { __typename?: "GitHubRepository" } & Pick<
                       GitHubRepository,
@@ -9855,7 +9866,7 @@ export type SearchGitHubQuery = { __typename?: "Query" } & {
                             Maybe<
                               { __typename?: "GitHubLabel" } & Pick<
                                 GitHubLabel,
-                                "name" | "color"
+                                "id" | "name" | "color"
                               >
                             >
                           >
@@ -10328,6 +10339,7 @@ export const SearchGitHubDocument = gql`
       }
       issues: nodes {
         ... on GitHubIssue {
+          id
           title
           url
           createdAt
@@ -10342,12 +10354,14 @@ export const SearchGitHubDocument = gql`
           }
           labels(first: 10) {
             nodes {
+              id
               name
               color
             }
           }
         }
         ... on GitHubPullRequest {
+          id
           title
           url
           createdAt
@@ -10362,6 +10376,7 @@ export const SearchGitHubDocument = gql`
           }
           labels(first: 10) {
             nodes {
+              id
               name
               color
             }
