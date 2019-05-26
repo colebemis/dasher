@@ -64,6 +64,7 @@ action "GitHub Action for Zeit" {
     "APP_SECRET",
     "PRISMA_SECRET",
     "GH_CLIENT_SECRET",
+    "GH_TOKEN",
   ]
   env = {
     PRISMA_ENDPOINT = "https://dasher-9598c5ecbe.herokuapp.com/dasher/prod"
