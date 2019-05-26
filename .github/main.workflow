@@ -70,7 +70,7 @@ action "deploy frontend and backend" {
     GH_REDIRECT_URI = "https://dasher.sh/callback"
     GH_CLIENT_ID = "ce81313fd76342793cb2"
   }
-  args = "-e GITHUB_TOKEN -e GH_CLIENT_ID -e GH_CLIENT_SECRET -e GH_REDIRECT_URI -e APP_SECRET -e PRISMA_ENDPOINT -e PRISMA_SECRET"
+  args = "-e GITHUB_TOKEN -e GH_CLIENT_ID -e GH_CLIENT_SECRET -e APP_SECRET -e PRISMA_ENDPOINT -e PRISMA_SECRET -b GH_CLIENT_ID -b GH_REDIRECT_URI"
 }
 
 action "alias" {
