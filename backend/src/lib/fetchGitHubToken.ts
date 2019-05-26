@@ -6,8 +6,8 @@ async function fetchGitHubToken(gitHubCode: string): Promise<string> {
     method: 'post',
     url: 'https://github.com/login/oauth/access_token',
     data: {
-      client_id: process.env.GITHUB_CLIENT_ID,
-      client_secret: process.env.GITHUB_CLIENT_SECRET,
+      client_id: process.env.GH_CLIENT_ID,
+      client_secret: process.env.GH_CLIENT_SECRET,
       code: gitHubCode,
     },
     headers: {
