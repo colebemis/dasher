@@ -27,7 +27,7 @@ async function introspectionFetcher(operation: Operation) {
       'Content-Type': 'application/json',
       // Because introspection occurs before the user's GitHub access token
       // is accessible, we have to use a personal access token instead.
-      Authorization: `Bearer ${getEnv('GH_TOKEN')}`,
+      Authorization: `Bearer ${getEnv('GITHUB_TOKEN')}`,
     },
     data: {
       query: print(operation.query),
