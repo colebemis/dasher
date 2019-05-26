@@ -9,7 +9,7 @@ workflow "Lint and test" {
 workflow "Deploy" {
   resolves = [
     "deploy prisma service",
-    "GitHub Action for Zeit",
+    "deploy",
   ]
   on = "push"
 }
@@ -55,7 +55,7 @@ action "deploy prisma service" {
   }
 }
 
-action "GitHub Action for Zeit" {
+action "deploy" {
   uses = "actions/zeit-now@5c51b26db987d15a0133e4c760924896b4f1512f"
   needs = ["install"]
   secrets = [
@@ -64,11 +64,10 @@ action "GitHub Action for Zeit" {
     "APP_SECRET",
     "PRISMA_SECRET",
     "GH_CLIENT_SECRET",
-    "GH_TOKEN",
   ]
   env = {
     PRISMA_ENDPOINT = "https://dasher-9598c5ecbe.herokuapp.com/dasher/prod"
     GH_CLIENT_ID = "6394b4fd5f4f0606b2f7"
   }
-  args = "-e GH_TOKEN -e GH_CLIENT_SECRET -e GH_CLIENT_ID -e APP_SECRET -e PRISMA_SECRET -e PRISMA_ENDPOINT"
+  args = "-e GITHUB_TOKEN -e GH_CLIENT_ID -e GH_CLIENT_SECRET -e APP_SECRET -e PRISMA_ENDPOINT -e PRISMA_SECRET"
 }
