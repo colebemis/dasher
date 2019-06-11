@@ -55,7 +55,7 @@ action "deploy prisma service" {
   }
 }
 
-action "deploy frontend and backend" {
+action "deploy" {
   uses = "actions/zeit-now@5c51b26db987d15a0133e4c760924896b4f1512f"
   needs = ["install"]
   secrets = [
