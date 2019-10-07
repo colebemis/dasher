@@ -20,4 +20,8 @@ jobs:
       run: yarn workspace backend lint
     - name: Test backend
       run: yarn workspace backend test
+    - name: Deploy Prisma service
+      run: yarn workspace backend deploy:prisma
+      env: 
+        PRISMA_ENDPOINT: "https://dasher-9598c5ecbe.herokuapp.com/dasher/prod"
     
