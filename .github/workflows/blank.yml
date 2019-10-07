@@ -16,4 +16,6 @@ jobs:
       run: yarn
     - name: Lint frontend
       run: yarn workspace frontend lint
+    - name: Lint backend
+      run: yarn workspace backend lint
     
