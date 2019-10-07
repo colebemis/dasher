@@ -18,4 +18,6 @@ jobs:
       run: yarn workspace frontend lint
     - name: Lint backend
       run: yarn workspace backend lint
+    - name: Test backend
+      run: yarn workspace backend test
     
