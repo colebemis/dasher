@@ -12,5 +12,8 @@ jobs:
     - uses: actions/setup-node@master
       with:
         version: 10
-    - name: install
+    - name: Install
       run: yarn
+    - name: Lint frontend
+      run: yarn workspace frontend lint
+    
