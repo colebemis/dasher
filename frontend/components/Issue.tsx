@@ -73,6 +73,7 @@ const Issue: React.FC<IssueProps> = ({ issue }) => {
               // there will never (I think) be any null elements in the list.
               // This seems like a mistake in GitHub's GraphQL schema.
               <div
+                key={label!.id}
                 css={{
                   margin: `${theme.space[1]} ${theme.space[1]} 0 0`,
                   padding: `${theme.space[1]} 6px`,

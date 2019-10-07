@@ -174,7 +174,7 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
               // Using `!` below to remove null from issue's type because
               // there will never (I think) be any null elements in the list.
               // This seems like a mistake in GitHub's GraphQL schema.
-              <Issue issue={issue!} />
+              <Issue key={issue!.id} issue={issue!} />
             ))}
             {hasNextPage ? (
               <div css={{ padding: theme.space[4] }}>
