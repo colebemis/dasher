@@ -47,7 +47,7 @@ const Index: React.FC = () => {
             textTransform: 'uppercase',
             letterSpacing: 1,
             color: theme.colors.gray[7],
-            backgroundColor: theme.colors.gray[3],
+            backgroundColor: theme.colors.yellow[3],
             borderRadius: theme.radii[1],
           }}
         >
