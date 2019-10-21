@@ -133,6 +133,20 @@ const Index: React.FC = () => {
                     )}
                   </CreateBoardComponent>
                 ) : null}
+                {data.signedInUser.boards.length === 0 &&
+                !isCreateBoardFormVisible ? (
+                  <div
+                    css={{
+                      padding: theme.space[7],
+                      textAlign: 'center',
+                      backgroundColor: theme.colors.gray[2],
+                      borderRadius: theme.radii[2],
+                    }}
+                  >
+                    You haven't created any boards yet. Click "New board" to get
+                    started.
+                  </div>
+                ) : null}
                 {data.signedInUser.boards.map(board => (
                   <BoardCard
                     key={board.id}
