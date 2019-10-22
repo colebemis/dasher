@@ -23,4 +23,5 @@ type Column {
   board: Board! @relation(name: "BoardColumns")
   name: String!
   query: String!
+  index: Int!
 }
