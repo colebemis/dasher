@@ -67,7 +67,10 @@ const Columns: React.FC<ColumnsProps> = ({ board }) => {
                   ))
                 : null}
               {provided.placeholder}
-              <CreateColumnButton boardId={board.id} />
+              <CreateColumnButton
+                boardId={board.id}
+                index={board.columns ? board.columns.length : 0}
+              />
             </div>
           </div>
         )}

@@ -10,9 +10,13 @@ import {
 
 interface CreateColumnButtonProps {
   boardId: string
+  index: number
 }
 
-const CreateColumnButton: React.FC<CreateColumnButtonProps> = ({ boardId }) => {
+const CreateColumnButton: React.FC<CreateColumnButtonProps> = ({
+  boardId,
+  index,
+}) => {
   const [
     isCreateColumnFormVisible,
     setIsCreateColumnFormVisible,
@@ -42,6 +46,7 @@ const CreateColumnButton: React.FC<CreateColumnButtonProps> = ({ boardId }) => {
                 await createColumn({
                   variables: {
                     boardId,
+                    index,
                     ...values,
                   },
                 })
