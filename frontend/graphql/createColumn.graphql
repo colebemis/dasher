@@ -15,5 +15,6 @@ mutation createColumn(
     id
     name
     query
+    index
   }
 }

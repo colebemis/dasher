@@ -1,7 +1,11 @@
-mutation updateColumn($id: ID!, $name: String, $query: String) {
-  updateColumn(where: { id: $id }, data: { name: $name, query: $query }) {
+mutation updateColumn($id: ID!, $name: String, $query: String, $index: Int) {
+  updateColumn(
+    where: { id: $id }
+    data: { name: $name, query: $query, index: $index }
+  ) {
     id
     name
     query
+    index
   }
 }

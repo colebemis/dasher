@@ -16554,7 +16554,7 @@ export type CreateColumnMutationVariables = {
 export type CreateColumnMutation = { __typename?: 'Mutation' } & {
   createColumn: { __typename?: 'Column' } & Pick<
     Column,
-    'id' | 'name' | 'query'
+    'id' | 'name' | 'query' | 'index'
   >
 }
 
@@ -16583,7 +16583,10 @@ export type GetBoardQuery = { __typename?: 'Query' } & {
     { __typename?: 'Board' } & Pick<Board, 'id' | 'name' | 'query'> & {
         columns: Maybe<
           Array<
-            { __typename?: 'Column' } & Pick<Column, 'id' | 'name' | 'query'>
+            { __typename?: 'Column' } & Pick<
+              Column,
+              'id' | 'name' | 'query' | 'index'
+            >
           >
         >
       }
@@ -16737,11 +16740,12 @@ export type UpdateColumnMutationVariables = {
   id: Scalars['ID']
   name?: Maybe<Scalars['String']>
   query?: Maybe<Scalars['String']>
+  index?: Maybe<Scalars['Int']>
 }
 
 export type UpdateColumnMutation = { __typename?: 'Mutation' } & {
   updateColumn: Maybe<
-    { __typename?: 'Column' } & Pick<Column, 'id' | 'name' | 'query'>
+    { __typename?: 'Column' } & Pick<Column, 'id' | 'name' | 'query' | 'index'>
   >
 }
 
@@ -16822,6 +16826,7 @@ export const CreateColumnDocument = gql`
       id
       name
       query
+      index
     }
   }
 `
@@ -16984,6 +16989,7 @@ export const GetBoardDocument = gql`
         id
         name
         query
+        index
       }
     }
   }
@@ -17407,11 +17413,15 @@ export function withUpdateBoard<TProps, TChildProps = {}>(
   })
 }
 export const UpdateColumnDocument = gql`
-  mutation updateColumn($id: ID!, $name: String, $query: String) {
-    updateColumn(where: { id: $id }, data: { name: $name, query: $query }) {
+  mutation updateColumn($id: ID!, $name: String, $query: String, $index: Int) {
+    updateColumn(
+      where: { id: $id }
+      data: { name: $name, query: $query, index: $index }
+    ) {
       id
       name
       query
+      index
     }
   }
 `
