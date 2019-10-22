@@ -1,7 +1,18 @@
 import React from 'react'
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
+import { withApollo, WithApolloClient } from 'react-apollo'
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  DropResult,
+} from 'react-beautiful-dnd'
 import theme from '../theme'
-import { GetBoardQuery } from '../__generated__/graphql'
+import {
+  GetBoardQuery,
+  UpdateColumnMutation,
+  UpdateColumnDocument,
+  GetBoardDocument,
+} from '../__generated__/graphql'
 import Column from './Column'
 import CreateColumnButton from './CreateColumnButton'
 
@@ -9,9 +20,43 @@ interface ColumnsProps {
   board: NonNullable<GetBoardQuery['board']>
 }
 
-const Columns: React.FC<ColumnsProps> = ({ board }) => {
+const Columns: React.FC<WithApolloClient<ColumnsProps>> = ({
+  board,
+  client,
+}) => {
+  function handleDragEnd(result: DropResult) {
+    if (!board.columns || !result.destination) return
+
+    const columns = reorder(
+      board.columns,
+      result.source.index,
+      result.destination.index,
+    ).map((column, index) => ({ ...column, index }))
+
+    columns.forEach(column => {
+      client.mutate<UpdateColumnMutation>({
+        mutation: UpdateColumnDocument,
+        variables: {
+          id: column.id,
+          index: column.index,
+        },
+      })
+    })
+
+    const data = client.readQuery({
+      query: GetBoardDocument,
+      variables: { id: board.id },
+    })
+
+    client.writeQuery({
+      query: GetBoardDocument,
+      variables: { id: board.id },
+      data: { ...data, board: { ...data.board, columns } },
+    })
+  }
+
   return (
-    <DragDropContext onDragEnd={console.log}>
+    <DragDropContext onDragEnd={handleDragEnd}>
       <Droppable droppableId="droppable" direction="horizontal">
         {(provided, snapshot) => (
           <div
@@ -79,4 +124,11 @@ const Columns: React.FC<ColumnsProps> = ({ board }) => {
   )
 }
 
-export default Columns
+function reorder<T>(list: T[], from: number, to: number) {
+  const listCopy = [...list]
+  const [removed] = listCopy.splice(from, 1)
+  listCopy.splice(to, 0, removed)
+  return listCopy
+}
+
+export default withApollo(Columns)
