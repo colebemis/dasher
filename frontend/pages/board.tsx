@@ -87,7 +87,6 @@ const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
                                   <div
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
                                     css={{
                                       display: 'flex',
                                       alignItems: 'stretch',
@@ -99,6 +98,8 @@ const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
                                       id={column.id}
                                       name={column.name}
                                       query={column.query}
+                                      isDragging={snapshot.isDragging}
+                                      dragHandleProps={provided.dragHandleProps}
                                     />
                                   </div>
                                 )}

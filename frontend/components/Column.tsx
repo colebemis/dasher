@@ -10,6 +10,7 @@ import Issue from './Issue'
 import IssueLoader from './IssueLoader'
 import SecondaryButton from './SecondaryButton'
 import Spinner from './Spinner'
+import { DraggableProvidedDragHandleProps } from 'react-beautiful-dnd'
 
 interface ColumnProps {
   boardId: string
@@ -17,6 +18,8 @@ interface ColumnProps {
   id: string
   name: string
   query: string
+  isDragging: boolean
+  dragHandleProps: DraggableProvidedDragHandleProps | null
 }
 
 const Column: React.FC<WithApolloClient<ColumnProps>> = ({
@@ -26,6 +29,8 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
   name,
   query,
   client,
+  isDragging,
+  dragHandleProps,
 }) => {
   const [loading, setLoading] = React.useState(true)
   const [loadingMore, setLoadingMore] = React.useState(false)
@@ -82,13 +87,15 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
         maxHeight: '100%',
         backgroundColor: theme.colors.white,
         borderRadius: theme.radii[2],
-        boxShadow: theme.shadows.small,
+        boxShadow: isDragging ? theme.shadows.large : theme.shadows.small,
+        transition: '150ms box-shadow',
         [theme.mediaQueries.medium]: {
           width: 360,
         },
       }}
     >
       <div
+        {...dragHandleProps}
         css={{
           flexShrink: 0,
           padding: theme.space[2],
