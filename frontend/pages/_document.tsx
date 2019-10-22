@@ -8,7 +8,7 @@ import Document, {
 import { resetServerContext } from 'react-beautiful-dnd'
 
 class MyDocument extends Document {
-  static async getInitialProps(context: NextDocumentContext) {
+  public static async getInitialProps(context: NextDocumentContext) {
     // Ensures react-beatiful-dnd context state does not persist across multiple
     // renders on the server which would result in client/server markup
     // mismatches after multiple requests are rendered on the server.
@@ -18,7 +18,7 @@ class MyDocument extends Document {
     return { ...initialProps }
   }
 
-  render() {
+  public render() {
     return (
       <Html>
         <Head />
