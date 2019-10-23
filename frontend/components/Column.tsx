@@ -1,5 +1,6 @@
 import React from 'react'
 import { withApollo, WithApolloClient } from 'react-apollo'
+import { DraggableProvidedDragHandleProps } from 'react-beautiful-dnd'
 import theme from '../theme'
 import {
   SearchGitHubDocument,
@@ -10,7 +11,6 @@ import Issue from './Issue'
 import IssueLoader from './IssueLoader'
 import SecondaryButton from './SecondaryButton'
 import Spinner from './Spinner'
-import { DraggableProvidedDragHandleProps } from 'react-beautiful-dnd'
 
 interface ColumnProps {
   boardId: string
