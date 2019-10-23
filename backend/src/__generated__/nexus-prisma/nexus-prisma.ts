@@ -514,6 +514,7 @@ type ColumnObject =
   | { name: 'board', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
   | { name: 'query', args?: [] | false, alias?: string  } 
+  | { name: 'index', args?: [] | false, alias?: string  } 
 
 type ColumnFields =
   | 'id'
@@ -522,6 +523,7 @@ type ColumnFields =
   | 'board'
   | 'name'
   | 'query'
+  | 'index'
 
 
 
@@ -575,6 +577,14 @@ export interface ColumnFieldDetails {
   }
   query: {
     type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  index: {
+    type: 'Int'
     args: {}
     description: string
     list: undefined
@@ -1775,6 +1785,7 @@ type ColumnPreviousValuesObject =
   | { name: 'updatedAt', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
   | { name: 'query', args?: [] | false, alias?: string  } 
+  | { name: 'index', args?: [] | false, alias?: string  } 
 
 type ColumnPreviousValuesFields =
   | 'id'
@@ -1782,6 +1793,7 @@ type ColumnPreviousValuesFields =
   | 'updatedAt'
   | 'name'
   | 'query'
+  | 'index'
 
 
 
@@ -1822,6 +1834,14 @@ export interface ColumnPreviousValuesFieldDetails {
   }
   query: {
     type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  index: {
+    type: 'Int'
     args: {}
     description: string
     list: undefined
@@ -2141,6 +2161,14 @@ export interface ColumnWhereInput {
   query_not_starts_with?: string | null
   query_ends_with?: string | null
   query_not_ends_with?: string | null
+  index?: number | null
+  index_not?: number | null
+  index_in?: number[]
+  index_not_in?: number[]
+  index_lt?: number | null
+  index_lte?: number | null
+  index_gt?: number | null
+  index_gte?: number | null
   AND?: ColumnWhereInput[]
   OR?: ColumnWhereInput[]
   NOT?: ColumnWhereInput[]
@@ -2206,6 +2234,14 @@ export type ColumnWhereInputInputObject =
   | { name: 'query_not_starts_with', alias?: string  } 
   | { name: 'query_ends_with', alias?: string  } 
   | { name: 'query_not_ends_with', alias?: string  } 
+  | { name: 'index', alias?: string  } 
+  | { name: 'index_not', alias?: string  } 
+  | { name: 'index_in', alias?: string  } 
+  | { name: 'index_not_in', alias?: string  } 
+  | { name: 'index_lt', alias?: string  } 
+  | { name: 'index_lte', alias?: string  } 
+  | { name: 'index_gt', alias?: string  } 
+  | { name: 'index_gte', alias?: string  } 
   | { name: 'AND', alias?: string  } 
   | { name: 'OR', alias?: string  } 
   | { name: 'NOT', alias?: string  } 
@@ -2270,12 +2306,14 @@ export interface ColumnCreateWithoutBoardInput {
   id?: string | null
   name?: string
   query?: string
+  index?: number
 }
 export type ColumnCreateWithoutBoardInputInputObject =
   | Extract<keyof ColumnCreateWithoutBoardInput, string>
   | { name: 'id', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
+  | { name: 'index', alias?: string  } 
   
 export interface UserUpdateInput {
   gitHubId?: string | null
@@ -2364,11 +2402,13 @@ export type ColumnUpdateWithWhereUniqueWithoutBoardInputInputObject =
 export interface ColumnUpdateWithoutBoardDataInput {
   name?: string | null
   query?: string | null
+  index?: number | null
 }
 export type ColumnUpdateWithoutBoardDataInputInputObject =
   | Extract<keyof ColumnUpdateWithoutBoardDataInput, string>
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
+  | { name: 'index', alias?: string  } 
   
 export interface ColumnUpsertWithWhereUniqueWithoutBoardInput {
   where?: ColumnWhereUniqueInput
@@ -2440,6 +2480,14 @@ export interface ColumnScalarWhereInput {
   query_not_starts_with?: string | null
   query_ends_with?: string | null
   query_not_ends_with?: string | null
+  index?: number | null
+  index_not?: number | null
+  index_in?: number[]
+  index_not_in?: number[]
+  index_lt?: number | null
+  index_lte?: number | null
+  index_gt?: number | null
+  index_gte?: number | null
   AND?: ColumnScalarWhereInput[]
   OR?: ColumnScalarWhereInput[]
   NOT?: ColumnScalarWhereInput[]
@@ -2504,6 +2552,14 @@ export type ColumnScalarWhereInputInputObject =
   | { name: 'query_not_starts_with', alias?: string  } 
   | { name: 'query_ends_with', alias?: string  } 
   | { name: 'query_not_ends_with', alias?: string  } 
+  | { name: 'index', alias?: string  } 
+  | { name: 'index_not', alias?: string  } 
+  | { name: 'index_in', alias?: string  } 
+  | { name: 'index_not_in', alias?: string  } 
+  | { name: 'index_lt', alias?: string  } 
+  | { name: 'index_lte', alias?: string  } 
+  | { name: 'index_gt', alias?: string  } 
+  | { name: 'index_gte', alias?: string  } 
   | { name: 'AND', alias?: string  } 
   | { name: 'OR', alias?: string  } 
   | { name: 'NOT', alias?: string  } 
@@ -2520,11 +2576,13 @@ export type ColumnUpdateManyWithWhereNestedInputInputObject =
 export interface ColumnUpdateManyDataInput {
   name?: string | null
   query?: string | null
+  index?: number | null
 }
 export type ColumnUpdateManyDataInputInputObject =
   | Extract<keyof ColumnUpdateManyDataInput, string>
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
+  | { name: 'index', alias?: string  } 
   
 export interface BoardUpsertWithWhereUniqueWithoutOwnerInput {
   where?: BoardWhereUniqueInput
@@ -2778,6 +2836,7 @@ export interface ColumnCreateInput {
   board?: BoardCreateOneWithoutColumnsInput
   name?: string
   query?: string
+  index?: number
 }
 export type ColumnCreateInputInputObject =
   | Extract<keyof ColumnCreateInput, string>
@@ -2785,6 +2844,7 @@ export type ColumnCreateInputInputObject =
   | { name: 'board', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
+  | { name: 'index', alias?: string  } 
   
 export interface BoardCreateOneWithoutColumnsInput {
   create?: BoardCreateWithoutColumnsInput | null
@@ -2812,12 +2872,14 @@ export interface ColumnUpdateInput {
   board?: BoardUpdateOneRequiredWithoutColumnsInput | null
   name?: string | null
   query?: string | null
+  index?: number | null
 }
 export type ColumnUpdateInputInputObject =
   | Extract<keyof ColumnUpdateInput, string>
   | { name: 'board', alias?: string  } 
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
+  | { name: 'index', alias?: string  } 
   
 export interface BoardUpdateOneRequiredWithoutColumnsInput {
   create?: BoardCreateWithoutColumnsInput | null
@@ -2855,11 +2917,13 @@ export type BoardUpsertWithoutColumnsInputInputObject =
 export interface ColumnUpdateManyMutationInput {
   name?: string | null
   query?: string | null
+  index?: number | null
 }
 export type ColumnUpdateManyMutationInputInputObject =
   | Extract<keyof ColumnUpdateManyMutationInput, string>
   | { name: 'name', alias?: string  } 
   | { name: 'query', alias?: string  } 
+  | { name: 'index', alias?: string  } 
   
 export interface UserSubscriptionWhereInput {
   mutation_in?: prisma.MutationType[]
@@ -2948,6 +3012,8 @@ export type ColumnOrderByInputValues =
   | 'name_DESC'
   | 'query_ASC'
   | 'query_DESC'
+  | 'index_ASC'
+  | 'index_DESC'
   
 export type UserOrderByInputValues =
   | 'id_ASC'

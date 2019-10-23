@@ -121,6 +121,7 @@ export interface NexusGenInputs {
   ColumnCreateInput: { // input type
     board: NexusGenInputs['BoardCreateOneWithoutColumnsInput']; // BoardCreateOneWithoutColumnsInput!
     id?: string | null; // ID
+    index: number; // Int!
     name: string; // String!
     query: string; // String!
   }
@@ -130,6 +131,7 @@ export interface NexusGenInputs {
   }
   ColumnCreateWithoutBoardInput: { // input type
     id?: string | null; // ID
+    index: number; // Int!
     name: string; // String!
     query: string; // String!
   }
@@ -157,6 +159,14 @@ export interface NexusGenInputs {
     id_not_in?: string[] | null; // [ID!]
     id_not_starts_with?: string | null; // ID
     id_starts_with?: string | null; // ID
+    index?: number | null; // Int
+    index_gt?: number | null; // Int
+    index_gte?: number | null; // Int
+    index_in?: number[] | null; // [Int!]
+    index_lt?: number | null; // Int
+    index_lte?: number | null; // Int
+    index_not?: number | null; // Int
+    index_not_in?: number[] | null; // [Int!]
     name?: string | null; // String
     name_contains?: string | null; // String
     name_ends_with?: string | null; // String
@@ -198,10 +208,12 @@ export interface NexusGenInputs {
   }
   ColumnUpdateInput: { // input type
     board?: NexusGenInputs['BoardUpdateOneRequiredWithoutColumnsInput'] | null; // BoardUpdateOneRequiredWithoutColumnsInput
+    index?: number | null; // Int
     name?: string | null; // String
     query?: string | null; // String
   }
   ColumnUpdateManyDataInput: { // input type
+    index?: number | null; // Int
     name?: string | null; // String
     query?: string | null; // String
   }
@@ -225,6 +237,7 @@ export interface NexusGenInputs {
     where: NexusGenInputs['ColumnWhereUniqueInput']; // ColumnWhereUniqueInput!
   }
   ColumnUpdateWithoutBoardDataInput: { // input type
+    index?: number | null; // Int
     name?: string | null; // String
     query?: string | null; // String
   }
@@ -258,6 +271,14 @@ export interface NexusGenInputs {
     id_not_in?: string[] | null; // [ID!]
     id_not_starts_with?: string | null; // ID
     id_starts_with?: string | null; // ID
+    index?: number | null; // Int
+    index_gt?: number | null; // Int
+    index_gte?: number | null; // Int
+    index_in?: number[] | null; // [Int!]
+    index_lt?: number | null; // Int
+    index_lte?: number | null; // Int
+    index_not?: number | null; // Int
+    index_not_in?: number[] | null; // [Int!]
     name?: string | null; // String
     name_contains?: string | null; // String
     name_ends_with?: string | null; // String
@@ -381,7 +402,7 @@ export interface NexusGenInputs {
 
 export interface NexusGenEnums {
   BoardOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "query_ASC" | "query_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
-  ColumnOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "query_ASC" | "query_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
+  ColumnOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "index_ASC" | "index_DESC" | "name_ASC" | "name_DESC" | "query_ASC" | "query_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
 }
 
 export interface NexusGenRootTypes {
@@ -395,6 +416,7 @@ export interface NexusGenRootTypes {
   Column: { // root type
     createdAt: any; // DateTime!
     id: string; // ID!
+    index: number; // Int!
     name: string; // String!
     query: string; // String!
     updatedAt: any; // DateTime!
@@ -466,6 +488,7 @@ export interface NexusGenFieldTypes {
     board: NexusGenRootTypes['Board']; // Board!
     createdAt: any; // DateTime!
     id: string; // ID!
+    index: number; // Int!
     name: string; // String!
     query: string; // String!
     updatedAt: any; // DateTime!

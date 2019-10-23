@@ -1,724 +1,854 @@
-export type Maybe<T> = T | null;
+export type Maybe<T> = T | null
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
-  DateTime: any;
+  ID: string
+  String: string
+  Boolean: boolean
+  Int: number
+  Float: number
+  DateTime: any
   /** An RFC 3986, RFC 3987, and RFC 6570 (level 4) compliant URI string. */
-  GitHubURI: any;
+  GitHubURI: any
   /** An ISO-8601 encoded UTC date string. */
-  GitHubDateTime: any;
+  GitHubDateTime: any
   /** A string containing HTML code. */
-  GitHubHTML: any;
+  GitHubHTML: any
   /** A Git object ID. */
-  GitHubGitObjectID: any;
+  GitHubGitObjectID: any
+  /** An ISO-8601 encoded UTC date string with millisecond precison. */
+  GitHubPreciseDateTime: any
   /** A valid x509 certificate string */
-  GitHubX509Certificate: any;
+  GitHubX509Certificate: any
   /** An ISO-8601 encoded date string. Unlike the DateTime type, GitTimestamp is not converted in UTC. */
-  GitHubGitTimestamp: any;
+  GitHubGitTimestamp: any
   /** Git SSH string */
-  GitHubGitSSHRemote: any;
+  GitHubGitSSHRemote: any
   /** An ISO-8601 encoded date string. */
-  GitHubDate: any;
-};
+  GitHubDate: any
+}
 
 export type Board = {
-  id: Scalars["ID"];
-  createdAt: Scalars["DateTime"];
-  updatedAt: Scalars["DateTime"];
-  owner: User;
-  name: Scalars["String"];
-  query: Scalars["String"];
-  columns?: Maybe<Array<Column>>;
-};
+  id: Scalars['ID']
+  createdAt: Scalars['DateTime']
+  updatedAt: Scalars['DateTime']
+  owner: User
+  name: Scalars['String']
+  query: Scalars['String']
+  columns?: Maybe<Array<Column>>
+}
 
 export type BoardColumnsArgs = {
-  where?: Maybe<ColumnWhereInput>;
-  orderBy?: Maybe<ColumnOrderByInput>;
-  skip?: Maybe<Scalars["Int"]>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  where?: Maybe<ColumnWhereInput>
+  orderBy?: Maybe<ColumnOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 export type BoardCreateInput = {
-  name: Scalars["String"];
-  query: Scalars["String"];
-  columns?: Maybe<ColumnCreateManyWithoutBoardInput>;
-};
+  id?: Maybe<Scalars['ID']>
+  name: Scalars['String']
+  query: Scalars['String']
+  columns?: Maybe<ColumnCreateManyWithoutBoardInput>
+}
 
 export type BoardCreateOneWithoutColumnsInput = {
-  create?: Maybe<BoardCreateWithoutColumnsInput>;
-  connect?: Maybe<BoardWhereUniqueInput>;
-};
+  create?: Maybe<BoardCreateWithoutColumnsInput>
+  connect?: Maybe<BoardWhereUniqueInput>
+}
 
 export type BoardCreateWithoutColumnsInput = {
-  owner: UserCreateOneWithoutBoardsInput;
-  name: Scalars["String"];
-  query: Scalars["String"];
-};
+  id?: Maybe<Scalars['ID']>
+  owner: UserCreateOneWithoutBoardsInput
+  name: Scalars['String']
+  query: Scalars['String']
+}
 
 export enum BoardOrderByInput {
-  IdAsc = "id_ASC",
-  IdDesc = "id_DESC",
-  CreatedAtAsc = "createdAt_ASC",
-  CreatedAtDesc = "createdAt_DESC",
-  UpdatedAtAsc = "updatedAt_ASC",
-  UpdatedAtDesc = "updatedAt_DESC",
-  NameAsc = "name_ASC",
-  NameDesc = "name_DESC",
-  QueryAsc = "query_ASC",
-  QueryDesc = "query_DESC"
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  QueryAsc = 'query_ASC',
+  QueryDesc = 'query_DESC',
 }
 
 export type BoardUpdateInput = {
-  owner?: Maybe<UserUpdateOneRequiredWithoutBoardsInput>;
-  name?: Maybe<Scalars["String"]>;
-  query?: Maybe<Scalars["String"]>;
-  columns?: Maybe<ColumnUpdateManyWithoutBoardInput>;
-};
+  owner?: Maybe<UserUpdateOneRequiredWithoutBoardsInput>
+  name?: Maybe<Scalars['String']>
+  query?: Maybe<Scalars['String']>
+  columns?: Maybe<ColumnUpdateManyWithoutBoardInput>
+}
 
 export type BoardUpdateOneRequiredWithoutColumnsInput = {
-  create?: Maybe<BoardCreateWithoutColumnsInput>;
-  update?: Maybe<BoardUpdateWithoutColumnsDataInput>;
-  upsert?: Maybe<BoardUpsertWithoutColumnsInput>;
-  connect?: Maybe<BoardWhereUniqueInput>;
-};
+  create?: Maybe<BoardCreateWithoutColumnsInput>
+  update?: Maybe<BoardUpdateWithoutColumnsDataInput>
+  upsert?: Maybe<BoardUpsertWithoutColumnsInput>
+  connect?: Maybe<BoardWhereUniqueInput>
+}
 
 export type BoardUpdateWithoutColumnsDataInput = {
-  owner?: Maybe<UserUpdateOneRequiredWithoutBoardsInput>;
-  name?: Maybe<Scalars["String"]>;
-  query?: Maybe<Scalars["String"]>;
-};
+  owner?: Maybe<UserUpdateOneRequiredWithoutBoardsInput>
+  name?: Maybe<Scalars['String']>
+  query?: Maybe<Scalars['String']>
+}
 
 export type BoardUpsertWithoutColumnsInput = {
-  update: BoardUpdateWithoutColumnsDataInput;
-  create: BoardCreateWithoutColumnsInput;
-};
+  update: BoardUpdateWithoutColumnsDataInput
+  create: BoardCreateWithoutColumnsInput
+}
 
 export type BoardWhereInput = {
-  id?: Maybe<Scalars["ID"]>;
-  id_not?: Maybe<Scalars["ID"]>;
-  id_in?: Maybe<Array<Scalars["ID"]>>;
-  id_not_in?: Maybe<Array<Scalars["ID"]>>;
-  id_lt?: Maybe<Scalars["ID"]>;
-  id_lte?: Maybe<Scalars["ID"]>;
-  id_gt?: Maybe<Scalars["ID"]>;
-  id_gte?: Maybe<Scalars["ID"]>;
-  id_contains?: Maybe<Scalars["ID"]>;
-  id_not_contains?: Maybe<Scalars["ID"]>;
-  id_starts_with?: Maybe<Scalars["ID"]>;
-  id_not_starts_with?: Maybe<Scalars["ID"]>;
-  id_ends_with?: Maybe<Scalars["ID"]>;
-  id_not_ends_with?: Maybe<Scalars["ID"]>;
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  createdAt_not?: Maybe<Scalars["DateTime"]>;
-  createdAt_in?: Maybe<Array<Scalars["DateTime"]>>;
-  createdAt_not_in?: Maybe<Array<Scalars["DateTime"]>>;
-  createdAt_lt?: Maybe<Scalars["DateTime"]>;
-  createdAt_lte?: Maybe<Scalars["DateTime"]>;
-  createdAt_gt?: Maybe<Scalars["DateTime"]>;
-  createdAt_gte?: Maybe<Scalars["DateTime"]>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
-  updatedAt_not?: Maybe<Scalars["DateTime"]>;
-  updatedAt_in?: Maybe<Array<Scalars["DateTime"]>>;
-  updatedAt_not_in?: Maybe<Array<Scalars["DateTime"]>>;
-  updatedAt_lt?: Maybe<Scalars["DateTime"]>;
-  updatedAt_lte?: Maybe<Scalars["DateTime"]>;
-  updatedAt_gt?: Maybe<Scalars["DateTime"]>;
-  updatedAt_gte?: Maybe<Scalars["DateTime"]>;
-  owner?: Maybe<UserWhereInput>;
-  name?: Maybe<Scalars["String"]>;
-  name_not?: Maybe<Scalars["String"]>;
-  name_in?: Maybe<Array<Scalars["String"]>>;
-  name_not_in?: Maybe<Array<Scalars["String"]>>;
-  name_lt?: Maybe<Scalars["String"]>;
-  name_lte?: Maybe<Scalars["String"]>;
-  name_gt?: Maybe<Scalars["String"]>;
-  name_gte?: Maybe<Scalars["String"]>;
-  name_contains?: Maybe<Scalars["String"]>;
-  name_not_contains?: Maybe<Scalars["String"]>;
-  name_starts_with?: Maybe<Scalars["String"]>;
-  name_not_starts_with?: Maybe<Scalars["String"]>;
-  name_ends_with?: Maybe<Scalars["String"]>;
-  name_not_ends_with?: Maybe<Scalars["String"]>;
-  query?: Maybe<Scalars["String"]>;
-  query_not?: Maybe<Scalars["String"]>;
-  query_in?: Maybe<Array<Scalars["String"]>>;
-  query_not_in?: Maybe<Array<Scalars["String"]>>;
-  query_lt?: Maybe<Scalars["String"]>;
-  query_lte?: Maybe<Scalars["String"]>;
-  query_gt?: Maybe<Scalars["String"]>;
-  query_gte?: Maybe<Scalars["String"]>;
-  query_contains?: Maybe<Scalars["String"]>;
-  query_not_contains?: Maybe<Scalars["String"]>;
-  query_starts_with?: Maybe<Scalars["String"]>;
-  query_not_starts_with?: Maybe<Scalars["String"]>;
-  query_ends_with?: Maybe<Scalars["String"]>;
-  query_not_ends_with?: Maybe<Scalars["String"]>;
-  columns_every?: Maybe<ColumnWhereInput>;
-  columns_some?: Maybe<ColumnWhereInput>;
-  columns_none?: Maybe<ColumnWhereInput>;
-  AND?: Maybe<Array<BoardWhereInput>>;
-  OR?: Maybe<Array<BoardWhereInput>>;
-  NOT?: Maybe<Array<BoardWhereInput>>;
-};
+  id?: Maybe<Scalars['ID']>
+  id_not?: Maybe<Scalars['ID']>
+  id_in?: Maybe<Array<Scalars['ID']>>
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  id_lt?: Maybe<Scalars['ID']>
+  id_lte?: Maybe<Scalars['ID']>
+  id_gt?: Maybe<Scalars['ID']>
+  id_gte?: Maybe<Scalars['ID']>
+  id_contains?: Maybe<Scalars['ID']>
+  id_not_contains?: Maybe<Scalars['ID']>
+  id_starts_with?: Maybe<Scalars['ID']>
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  id_ends_with?: Maybe<Scalars['ID']>
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  owner?: Maybe<UserWhereInput>
+  name?: Maybe<Scalars['String']>
+  name_not?: Maybe<Scalars['String']>
+  name_in?: Maybe<Array<Scalars['String']>>
+  name_not_in?: Maybe<Array<Scalars['String']>>
+  name_lt?: Maybe<Scalars['String']>
+  name_lte?: Maybe<Scalars['String']>
+  name_gt?: Maybe<Scalars['String']>
+  name_gte?: Maybe<Scalars['String']>
+  name_contains?: Maybe<Scalars['String']>
+  name_not_contains?: Maybe<Scalars['String']>
+  name_starts_with?: Maybe<Scalars['String']>
+  name_not_starts_with?: Maybe<Scalars['String']>
+  name_ends_with?: Maybe<Scalars['String']>
+  name_not_ends_with?: Maybe<Scalars['String']>
+  query?: Maybe<Scalars['String']>
+  query_not?: Maybe<Scalars['String']>
+  query_in?: Maybe<Array<Scalars['String']>>
+  query_not_in?: Maybe<Array<Scalars['String']>>
+  query_lt?: Maybe<Scalars['String']>
+  query_lte?: Maybe<Scalars['String']>
+  query_gt?: Maybe<Scalars['String']>
+  query_gte?: Maybe<Scalars['String']>
+  query_contains?: Maybe<Scalars['String']>
+  query_not_contains?: Maybe<Scalars['String']>
+  query_starts_with?: Maybe<Scalars['String']>
+  query_not_starts_with?: Maybe<Scalars['String']>
+  query_ends_with?: Maybe<Scalars['String']>
+  query_not_ends_with?: Maybe<Scalars['String']>
+  columns_every?: Maybe<ColumnWhereInput>
+  columns_some?: Maybe<ColumnWhereInput>
+  columns_none?: Maybe<ColumnWhereInput>
+  AND?: Maybe<Array<BoardWhereInput>>
+  OR?: Maybe<Array<BoardWhereInput>>
+  NOT?: Maybe<Array<BoardWhereInput>>
+}
 
 export type BoardWhereUniqueInput = {
-  id?: Maybe<Scalars["ID"]>;
-};
+  id?: Maybe<Scalars['ID']>
+}
 
 export type Column = {
-  id: Scalars["ID"];
-  createdAt: Scalars["DateTime"];
-  updatedAt: Scalars["DateTime"];
-  board: Board;
-  name: Scalars["String"];
-  query: Scalars["String"];
-};
+  id: Scalars['ID']
+  createdAt: Scalars['DateTime']
+  updatedAt: Scalars['DateTime']
+  board: Board
+  name: Scalars['String']
+  query: Scalars['String']
+  index: Scalars['Int']
+}
 
 export type ColumnCreateInput = {
-  board: BoardCreateOneWithoutColumnsInput;
-  name: Scalars["String"];
-  query: Scalars["String"];
-};
+  id?: Maybe<Scalars['ID']>
+  board: BoardCreateOneWithoutColumnsInput
+  name: Scalars['String']
+  query: Scalars['String']
+  index: Scalars['Int']
+}
 
 export type ColumnCreateManyWithoutBoardInput = {
-  create?: Maybe<Array<ColumnCreateWithoutBoardInput>>;
-  connect?: Maybe<Array<ColumnWhereUniqueInput>>;
-};
+  create?: Maybe<Array<ColumnCreateWithoutBoardInput>>
+  connect?: Maybe<Array<ColumnWhereUniqueInput>>
+}
 
 export type ColumnCreateWithoutBoardInput = {
-  name: Scalars["String"];
-  query: Scalars["String"];
-};
+  id?: Maybe<Scalars['ID']>
+  name: Scalars['String']
+  query: Scalars['String']
+  index: Scalars['Int']
+}
 
 export enum ColumnOrderByInput {
-  IdAsc = "id_ASC",
-  IdDesc = "id_DESC",
-  CreatedAtAsc = "createdAt_ASC",
-  CreatedAtDesc = "createdAt_DESC",
-  UpdatedAtAsc = "updatedAt_ASC",
-  UpdatedAtDesc = "updatedAt_DESC",
-  NameAsc = "name_ASC",
-  NameDesc = "name_DESC",
-  QueryAsc = "query_ASC",
-  QueryDesc = "query_DESC"
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  QueryAsc = 'query_ASC',
+  QueryDesc = 'query_DESC',
+  IndexAsc = 'index_ASC',
+  IndexDesc = 'index_DESC',
 }
 
 export type ColumnScalarWhereInput = {
-  id?: Maybe<Scalars["ID"]>;
-  id_not?: Maybe<Scalars["ID"]>;
-  id_in?: Maybe<Array<Scalars["ID"]>>;
-  id_not_in?: Maybe<Array<Scalars["ID"]>>;
-  id_lt?: Maybe<Scalars["ID"]>;
-  id_lte?: Maybe<Scalars["ID"]>;
-  id_gt?: Maybe<Scalars["ID"]>;
-  id_gte?: Maybe<Scalars["ID"]>;
-  id_contains?: Maybe<Scalars["ID"]>;
-  id_not_contains?: Maybe<Scalars["ID"]>;
-  id_starts_with?: Maybe<Scalars["ID"]>;
-  id_not_starts_with?: Maybe<Scalars["ID"]>;
-  id_ends_with?: Maybe<Scalars["ID"]>;
-  id_not_ends_with?: Maybe<Scalars["ID"]>;
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  createdAt_not?: Maybe<Scalars["DateTime"]>;
-  createdAt_in?: Maybe<Array<Scalars["DateTime"]>>;
-  createdAt_not_in?: Maybe<Array<Scalars["DateTime"]>>;
-  createdAt_lt?: Maybe<Scalars["DateTime"]>;
-  createdAt_lte?: Maybe<Scalars["DateTime"]>;
-  createdAt_gt?: Maybe<Scalars["DateTime"]>;
-  createdAt_gte?: Maybe<Scalars["DateTime"]>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
-  updatedAt_not?: Maybe<Scalars["DateTime"]>;
-  updatedAt_in?: Maybe<Array<Scalars["DateTime"]>>;
-  updatedAt_not_in?: Maybe<Array<Scalars["DateTime"]>>;
-  updatedAt_lt?: Maybe<Scalars["DateTime"]>;
-  updatedAt_lte?: Maybe<Scalars["DateTime"]>;
-  updatedAt_gt?: Maybe<Scalars["DateTime"]>;
-  updatedAt_gte?: Maybe<Scalars["DateTime"]>;
-  name?: Maybe<Scalars["String"]>;
-  name_not?: Maybe<Scalars["String"]>;
-  name_in?: Maybe<Array<Scalars["String"]>>;
-  name_not_in?: Maybe<Array<Scalars["String"]>>;
-  name_lt?: Maybe<Scalars["String"]>;
-  name_lte?: Maybe<Scalars["String"]>;
-  name_gt?: Maybe<Scalars["String"]>;
-  name_gte?: Maybe<Scalars["String"]>;
-  name_contains?: Maybe<Scalars["String"]>;
-  name_not_contains?: Maybe<Scalars["String"]>;
-  name_starts_with?: Maybe<Scalars["String"]>;
-  name_not_starts_with?: Maybe<Scalars["String"]>;
-  name_ends_with?: Maybe<Scalars["String"]>;
-  name_not_ends_with?: Maybe<Scalars["String"]>;
-  query?: Maybe<Scalars["String"]>;
-  query_not?: Maybe<Scalars["String"]>;
-  query_in?: Maybe<Array<Scalars["String"]>>;
-  query_not_in?: Maybe<Array<Scalars["String"]>>;
-  query_lt?: Maybe<Scalars["String"]>;
-  query_lte?: Maybe<Scalars["String"]>;
-  query_gt?: Maybe<Scalars["String"]>;
-  query_gte?: Maybe<Scalars["String"]>;
-  query_contains?: Maybe<Scalars["String"]>;
-  query_not_contains?: Maybe<Scalars["String"]>;
-  query_starts_with?: Maybe<Scalars["String"]>;
-  query_not_starts_with?: Maybe<Scalars["String"]>;
-  query_ends_with?: Maybe<Scalars["String"]>;
-  query_not_ends_with?: Maybe<Scalars["String"]>;
-  AND?: Maybe<Array<ColumnScalarWhereInput>>;
-  OR?: Maybe<Array<ColumnScalarWhereInput>>;
-  NOT?: Maybe<Array<ColumnScalarWhereInput>>;
-};
+  id?: Maybe<Scalars['ID']>
+  id_not?: Maybe<Scalars['ID']>
+  id_in?: Maybe<Array<Scalars['ID']>>
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  id_lt?: Maybe<Scalars['ID']>
+  id_lte?: Maybe<Scalars['ID']>
+  id_gt?: Maybe<Scalars['ID']>
+  id_gte?: Maybe<Scalars['ID']>
+  id_contains?: Maybe<Scalars['ID']>
+  id_not_contains?: Maybe<Scalars['ID']>
+  id_starts_with?: Maybe<Scalars['ID']>
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  id_ends_with?: Maybe<Scalars['ID']>
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  name?: Maybe<Scalars['String']>
+  name_not?: Maybe<Scalars['String']>
+  name_in?: Maybe<Array<Scalars['String']>>
+  name_not_in?: Maybe<Array<Scalars['String']>>
+  name_lt?: Maybe<Scalars['String']>
+  name_lte?: Maybe<Scalars['String']>
+  name_gt?: Maybe<Scalars['String']>
+  name_gte?: Maybe<Scalars['String']>
+  name_contains?: Maybe<Scalars['String']>
+  name_not_contains?: Maybe<Scalars['String']>
+  name_starts_with?: Maybe<Scalars['String']>
+  name_not_starts_with?: Maybe<Scalars['String']>
+  name_ends_with?: Maybe<Scalars['String']>
+  name_not_ends_with?: Maybe<Scalars['String']>
+  query?: Maybe<Scalars['String']>
+  query_not?: Maybe<Scalars['String']>
+  query_in?: Maybe<Array<Scalars['String']>>
+  query_not_in?: Maybe<Array<Scalars['String']>>
+  query_lt?: Maybe<Scalars['String']>
+  query_lte?: Maybe<Scalars['String']>
+  query_gt?: Maybe<Scalars['String']>
+  query_gte?: Maybe<Scalars['String']>
+  query_contains?: Maybe<Scalars['String']>
+  query_not_contains?: Maybe<Scalars['String']>
+  query_starts_with?: Maybe<Scalars['String']>
+  query_not_starts_with?: Maybe<Scalars['String']>
+  query_ends_with?: Maybe<Scalars['String']>
+  query_not_ends_with?: Maybe<Scalars['String']>
+  index?: Maybe<Scalars['Int']>
+  index_not?: Maybe<Scalars['Int']>
+  index_in?: Maybe<Array<Scalars['Int']>>
+  index_not_in?: Maybe<Array<Scalars['Int']>>
+  index_lt?: Maybe<Scalars['Int']>
+  index_lte?: Maybe<Scalars['Int']>
+  index_gt?: Maybe<Scalars['Int']>
+  index_gte?: Maybe<Scalars['Int']>
+  AND?: Maybe<Array<ColumnScalarWhereInput>>
+  OR?: Maybe<Array<ColumnScalarWhereInput>>
+  NOT?: Maybe<Array<ColumnScalarWhereInput>>
+}
 
 export type ColumnUpdateInput = {
-  board?: Maybe<BoardUpdateOneRequiredWithoutColumnsInput>;
-  name?: Maybe<Scalars["String"]>;
-  query?: Maybe<Scalars["String"]>;
-};
+  board?: Maybe<BoardUpdateOneRequiredWithoutColumnsInput>
+  name?: Maybe<Scalars['String']>
+  query?: Maybe<Scalars['String']>
+  index?: Maybe<Scalars['Int']>
+}
 
 export type ColumnUpdateManyDataInput = {
-  name?: Maybe<Scalars["String"]>;
-  query?: Maybe<Scalars["String"]>;
-};
+  name?: Maybe<Scalars['String']>
+  query?: Maybe<Scalars['String']>
+  index?: Maybe<Scalars['Int']>
+}
 
 export type ColumnUpdateManyWithoutBoardInput = {
-  create?: Maybe<Array<ColumnCreateWithoutBoardInput>>;
-  delete?: Maybe<Array<ColumnWhereUniqueInput>>;
-  connect?: Maybe<Array<ColumnWhereUniqueInput>>;
-  set?: Maybe<Array<ColumnWhereUniqueInput>>;
-  disconnect?: Maybe<Array<ColumnWhereUniqueInput>>;
-  update?: Maybe<Array<ColumnUpdateWithWhereUniqueWithoutBoardInput>>;
-  upsert?: Maybe<Array<ColumnUpsertWithWhereUniqueWithoutBoardInput>>;
-  deleteMany?: Maybe<Array<ColumnScalarWhereInput>>;
-  updateMany?: Maybe<Array<ColumnUpdateManyWithWhereNestedInput>>;
-};
+  create?: Maybe<Array<ColumnCreateWithoutBoardInput>>
+  delete?: Maybe<Array<ColumnWhereUniqueInput>>
+  connect?: Maybe<Array<ColumnWhereUniqueInput>>
+  set?: Maybe<Array<ColumnWhereUniqueInput>>
+  disconnect?: Maybe<Array<ColumnWhereUniqueInput>>
+  update?: Maybe<Array<ColumnUpdateWithWhereUniqueWithoutBoardInput>>
+  upsert?: Maybe<Array<ColumnUpsertWithWhereUniqueWithoutBoardInput>>
+  deleteMany?: Maybe<Array<ColumnScalarWhereInput>>
+  updateMany?: Maybe<Array<ColumnUpdateManyWithWhereNestedInput>>
+}
 
 export type ColumnUpdateManyWithWhereNestedInput = {
-  where: ColumnScalarWhereInput;
-  data: ColumnUpdateManyDataInput;
-};
+  where: ColumnScalarWhereInput
+  data: ColumnUpdateManyDataInput
+}
 
 export type ColumnUpdateWithoutBoardDataInput = {
-  name?: Maybe<Scalars["String"]>;
-  query?: Maybe<Scalars["String"]>;
-};
+  name?: Maybe<Scalars['String']>
+  query?: Maybe<Scalars['String']>
+  index?: Maybe<Scalars['Int']>
+}
 
 export type ColumnUpdateWithWhereUniqueWithoutBoardInput = {
-  where: ColumnWhereUniqueInput;
-  data: ColumnUpdateWithoutBoardDataInput;
-};
+  where: ColumnWhereUniqueInput
+  data: ColumnUpdateWithoutBoardDataInput
+}
 
 export type ColumnUpsertWithWhereUniqueWithoutBoardInput = {
-  where: ColumnWhereUniqueInput;
-  update: ColumnUpdateWithoutBoardDataInput;
-  create: ColumnCreateWithoutBoardInput;
-};
+  where: ColumnWhereUniqueInput
+  update: ColumnUpdateWithoutBoardDataInput
+  create: ColumnCreateWithoutBoardInput
+}
 
 export type ColumnWhereInput = {
-  id?: Maybe<Scalars["ID"]>;
-  id_not?: Maybe<Scalars["ID"]>;
-  id_in?: Maybe<Array<Scalars["ID"]>>;
-  id_not_in?: Maybe<Array<Scalars["ID"]>>;
-  id_lt?: Maybe<Scalars["ID"]>;
-  id_lte?: Maybe<Scalars["ID"]>;
-  id_gt?: Maybe<Scalars["ID"]>;
-  id_gte?: Maybe<Scalars["ID"]>;
-  id_contains?: Maybe<Scalars["ID"]>;
-  id_not_contains?: Maybe<Scalars["ID"]>;
-  id_starts_with?: Maybe<Scalars["ID"]>;
-  id_not_starts_with?: Maybe<Scalars["ID"]>;
-  id_ends_with?: Maybe<Scalars["ID"]>;
-  id_not_ends_with?: Maybe<Scalars["ID"]>;
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  createdAt_not?: Maybe<Scalars["DateTime"]>;
-  createdAt_in?: Maybe<Array<Scalars["DateTime"]>>;
-  createdAt_not_in?: Maybe<Array<Scalars["DateTime"]>>;
-  createdAt_lt?: Maybe<Scalars["DateTime"]>;
-  createdAt_lte?: Maybe<Scalars["DateTime"]>;
-  createdAt_gt?: Maybe<Scalars["DateTime"]>;
-  createdAt_gte?: Maybe<Scalars["DateTime"]>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
-  updatedAt_not?: Maybe<Scalars["DateTime"]>;
-  updatedAt_in?: Maybe<Array<Scalars["DateTime"]>>;
-  updatedAt_not_in?: Maybe<Array<Scalars["DateTime"]>>;
-  updatedAt_lt?: Maybe<Scalars["DateTime"]>;
-  updatedAt_lte?: Maybe<Scalars["DateTime"]>;
-  updatedAt_gt?: Maybe<Scalars["DateTime"]>;
-  updatedAt_gte?: Maybe<Scalars["DateTime"]>;
-  board?: Maybe<BoardWhereInput>;
-  name?: Maybe<Scalars["String"]>;
-  name_not?: Maybe<Scalars["String"]>;
-  name_in?: Maybe<Array<Scalars["String"]>>;
-  name_not_in?: Maybe<Array<Scalars["String"]>>;
-  name_lt?: Maybe<Scalars["String"]>;
-  name_lte?: Maybe<Scalars["String"]>;
-  name_gt?: Maybe<Scalars["String"]>;
-  name_gte?: Maybe<Scalars["String"]>;
-  name_contains?: Maybe<Scalars["String"]>;
-  name_not_contains?: Maybe<Scalars["String"]>;
-  name_starts_with?: Maybe<Scalars["String"]>;
-  name_not_starts_with?: Maybe<Scalars["String"]>;
-  name_ends_with?: Maybe<Scalars["String"]>;
-  name_not_ends_with?: Maybe<Scalars["String"]>;
-  query?: Maybe<Scalars["String"]>;
-  query_not?: Maybe<Scalars["String"]>;
-  query_in?: Maybe<Array<Scalars["String"]>>;
-  query_not_in?: Maybe<Array<Scalars["String"]>>;
-  query_lt?: Maybe<Scalars["String"]>;
-  query_lte?: Maybe<Scalars["String"]>;
-  query_gt?: Maybe<Scalars["String"]>;
-  query_gte?: Maybe<Scalars["String"]>;
-  query_contains?: Maybe<Scalars["String"]>;
-  query_not_contains?: Maybe<Scalars["String"]>;
-  query_starts_with?: Maybe<Scalars["String"]>;
-  query_not_starts_with?: Maybe<Scalars["String"]>;
-  query_ends_with?: Maybe<Scalars["String"]>;
-  query_not_ends_with?: Maybe<Scalars["String"]>;
-  AND?: Maybe<Array<ColumnWhereInput>>;
-  OR?: Maybe<Array<ColumnWhereInput>>;
-  NOT?: Maybe<Array<ColumnWhereInput>>;
-};
+  id?: Maybe<Scalars['ID']>
+  id_not?: Maybe<Scalars['ID']>
+  id_in?: Maybe<Array<Scalars['ID']>>
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  id_lt?: Maybe<Scalars['ID']>
+  id_lte?: Maybe<Scalars['ID']>
+  id_gt?: Maybe<Scalars['ID']>
+  id_gte?: Maybe<Scalars['ID']>
+  id_contains?: Maybe<Scalars['ID']>
+  id_not_contains?: Maybe<Scalars['ID']>
+  id_starts_with?: Maybe<Scalars['ID']>
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  id_ends_with?: Maybe<Scalars['ID']>
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  board?: Maybe<BoardWhereInput>
+  name?: Maybe<Scalars['String']>
+  name_not?: Maybe<Scalars['String']>
+  name_in?: Maybe<Array<Scalars['String']>>
+  name_not_in?: Maybe<Array<Scalars['String']>>
+  name_lt?: Maybe<Scalars['String']>
+  name_lte?: Maybe<Scalars['String']>
+  name_gt?: Maybe<Scalars['String']>
+  name_gte?: Maybe<Scalars['String']>
+  name_contains?: Maybe<Scalars['String']>
+  name_not_contains?: Maybe<Scalars['String']>
+  name_starts_with?: Maybe<Scalars['String']>
+  name_not_starts_with?: Maybe<Scalars['String']>
+  name_ends_with?: Maybe<Scalars['String']>
+  name_not_ends_with?: Maybe<Scalars['String']>
+  query?: Maybe<Scalars['String']>
+  query_not?: Maybe<Scalars['String']>
+  query_in?: Maybe<Array<Scalars['String']>>
+  query_not_in?: Maybe<Array<Scalars['String']>>
+  query_lt?: Maybe<Scalars['String']>
+  query_lte?: Maybe<Scalars['String']>
+  query_gt?: Maybe<Scalars['String']>
+  query_gte?: Maybe<Scalars['String']>
+  query_contains?: Maybe<Scalars['String']>
+  query_not_contains?: Maybe<Scalars['String']>
+  query_starts_with?: Maybe<Scalars['String']>
+  query_not_starts_with?: Maybe<Scalars['String']>
+  query_ends_with?: Maybe<Scalars['String']>
+  query_not_ends_with?: Maybe<Scalars['String']>
+  index?: Maybe<Scalars['Int']>
+  index_not?: Maybe<Scalars['Int']>
+  index_in?: Maybe<Array<Scalars['Int']>>
+  index_not_in?: Maybe<Array<Scalars['Int']>>
+  index_lt?: Maybe<Scalars['Int']>
+  index_lte?: Maybe<Scalars['Int']>
+  index_gt?: Maybe<Scalars['Int']>
+  index_gte?: Maybe<Scalars['Int']>
+  AND?: Maybe<Array<ColumnWhereInput>>
+  OR?: Maybe<Array<ColumnWhereInput>>
+  NOT?: Maybe<Array<ColumnWhereInput>>
+}
 
 export type ColumnWhereUniqueInput = {
-  id?: Maybe<Scalars["ID"]>;
-};
+  id?: Maybe<Scalars['ID']>
+}
+
+/** Autogenerated input type of AcceptEnterpriseAdministratorInvitation */
+export type GitHubAcceptEnterpriseAdministratorInvitationInput = {
+  /** The id of the invitation being accepted */
+  invitationId: Scalars['ID']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of AcceptEnterpriseAdministratorInvitation */
+export type GitHubAcceptEnterpriseAdministratorInvitationPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The invitation that was accepted. */
+  invitation?: Maybe<GitHubEnterpriseAdministratorInvitation>
+  /** A message confirming the result of accepting an administrator invitation. */
+  message?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated input type of AcceptTopicSuggestion */
 export type GitHubAcceptTopicSuggestionInput = {
   /** The Node ID of the repository. */
-  repositoryId: Scalars["ID"];
+  repositoryId: Scalars['ID']
   /** The name of the suggested topic. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of AcceptTopicSuggestion */
 export type GitHubAcceptTopicSuggestionPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The accepted topic. */
-  topic?: Maybe<GitHubTopic>;
-};
+  topic?: Maybe<GitHubTopic>
+}
+
+/** The possible capabilities for action executions setting. */
+export enum GitHubActionExecutionCapabilitySetting {
+  /** All action executions are disabled. */
+  Disabled = 'DISABLED',
+  /** All action executions are enabled. */
+  AllActions = 'ALL_ACTIONS',
+  /** Only actions defined within the repo are allowed. */
+  LocalActionsOnly = 'LOCAL_ACTIONS_ONLY',
+  /** Organization administrators action execution capabilities. */
+  NoPolicy = 'NO_POLICY',
+}
 
 /** Represents an object which can take actions on GitHub. Typically a User or Bot. */
 export type GitHubActor = {
   /** A URL pointing to the actor's public avatar. */
-  avatarUrl: Scalars["GitHubURI"];
+  avatarUrl: Scalars['GitHubURI']
   /** The username of the actor. */
-  login: Scalars["String"];
+  login: Scalars['String']
   /** The HTTP path for this actor. */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** The HTTP URL for this actor. */
-  url: Scalars["GitHubURI"];
-};
+  url: Scalars['GitHubURI']
+}
 
 /** Represents an object which can take actions on GitHub. Typically a User or Bot. */
 export type GitHubActorAvatarUrlArgs = {
-  size?: Maybe<Scalars["Int"]>;
-};
+  size?: Maybe<Scalars['Int']>
+}
+
+/** Location information for an actor */
+export type GitHubActorLocation = {
+  /** City */
+  city?: Maybe<Scalars['String']>
+  /** Country name */
+  country?: Maybe<Scalars['String']>
+  /** Country code */
+  countryCode?: Maybe<Scalars['String']>
+  /** Region name */
+  region?: Maybe<Scalars['String']>
+  /** Region or state code */
+  regionCode?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated input type of AddAssigneesToAssignable */
 export type GitHubAddAssigneesToAssignableInput = {
   /** The id of the assignable object to add assignees to. */
-  assignableId: Scalars["ID"];
+  assignableId: Scalars['ID']
   /** The id of users to add as assignees. */
-  assigneeIds: Array<Scalars["ID"]>;
+  assigneeIds: Array<Scalars['ID']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of AddAssigneesToAssignable */
 export type GitHubAddAssigneesToAssignablePayload = {
   /** The item that was assigned. */
-  assignable?: Maybe<GitHubAssignable>;
+  assignable?: Maybe<GitHubAssignable>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated input type of AddComment */
 export type GitHubAddCommentInput = {
   /** The Node ID of the subject to modify. */
-  subjectId: Scalars["ID"];
+  subjectId: Scalars['ID']
   /** The contents of the comment. */
-  body: Scalars["String"];
+  body: Scalars['String']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of AddComment */
 export type GitHubAddCommentPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The edge from the subject's comment connection. */
-  commentEdge?: Maybe<GitHubIssueCommentEdge>;
+  commentEdge?: Maybe<GitHubIssueCommentEdge>
   /** The subject */
-  subject?: Maybe<GitHubNode>;
+  subject?: Maybe<GitHubNode>
   /** The edge from the subject's timeline connection. */
-  timelineEdge?: Maybe<GitHubIssueTimelineItemEdge>;
-};
+  timelineEdge?: Maybe<GitHubIssueTimelineItemEdge>
+}
 
 /** Represents a 'added_to_project' event on a given issue or pull request. */
 export type GitHubAddedToProjectEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
-  id: Scalars["ID"];
-};
+  databaseId?: Maybe<Scalars['Int']>
+  id: Scalars['ID']
+}
 
 /** Autogenerated input type of AddLabelsToLabelable */
 export type GitHubAddLabelsToLabelableInput = {
   /** The id of the labelable object to add labels to. */
-  labelableId: Scalars["ID"];
+  labelableId: Scalars['ID']
   /** The ids of the labels to add. */
-  labelIds: Array<Scalars["ID"]>;
+  labelIds: Array<Scalars['ID']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of AddLabelsToLabelable */
 export type GitHubAddLabelsToLabelablePayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The item that was labeled. */
-  labelable?: Maybe<GitHubLabelable>;
-};
+  labelable?: Maybe<GitHubLabelable>
+}
 
 /** Autogenerated input type of AddProjectCard */
 export type GitHubAddProjectCardInput = {
   /** The Node ID of the ProjectColumn. */
-  projectColumnId: Scalars["ID"];
+  projectColumnId: Scalars['ID']
   /** The content of the card. Must be a member of the ProjectCardItem union */
-  contentId?: Maybe<Scalars["ID"]>;
+  contentId?: Maybe<Scalars['ID']>
   /** The note on the card. */
-  note?: Maybe<Scalars["String"]>;
+  note?: Maybe<Scalars['String']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of AddProjectCard */
 export type GitHubAddProjectCardPayload = {
   /** The edge from the ProjectColumn's card connection. */
-  cardEdge?: Maybe<GitHubProjectCardEdge>;
+  cardEdge?: Maybe<GitHubProjectCardEdge>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The ProjectColumn */
-  projectColumn?: Maybe<GitHubProjectColumn>;
-};
+  projectColumn?: Maybe<GitHubProjectColumn>
+}
 
 /** Autogenerated input type of AddProjectColumn */
 export type GitHubAddProjectColumnInput = {
   /** The Node ID of the project. */
-  projectId: Scalars["ID"];
+  projectId: Scalars['ID']
   /** The name of the column. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of AddProjectColumn */
 export type GitHubAddProjectColumnPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The edge from the project's column connection. */
-  columnEdge?: Maybe<GitHubProjectColumnEdge>;
+  columnEdge?: Maybe<GitHubProjectColumnEdge>
   /** The project */
-  project?: Maybe<GitHubProject>;
-};
+  project?: Maybe<GitHubProject>
+}
 
 /** Autogenerated input type of AddPullRequestReviewComment */
 export type GitHubAddPullRequestReviewCommentInput = {
   /** The Node ID of the review to modify. */
-  pullRequestReviewId: Scalars["ID"];
+  pullRequestReviewId: Scalars['ID']
   /** The SHA of the commit to comment on. */
-  commitOID?: Maybe<Scalars["GitHubGitObjectID"]>;
+  commitOID?: Maybe<Scalars['GitHubGitObjectID']>
   /** The text of the comment. */
-  body: Scalars["String"];
+  body: Scalars['String']
   /** The relative path of the file to comment on. */
-  path?: Maybe<Scalars["String"]>;
+  path?: Maybe<Scalars['String']>
   /** The line index in the diff to comment on. */
-  position?: Maybe<Scalars["Int"]>;
+  position?: Maybe<Scalars['Int']>
   /** The comment id to reply to. */
-  inReplyTo?: Maybe<Scalars["ID"]>;
+  inReplyTo?: Maybe<Scalars['ID']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of AddPullRequestReviewComment */
 export type GitHubAddPullRequestReviewCommentPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The newly created comment. */
-  comment?: Maybe<GitHubPullRequestReviewComment>;
+  comment?: Maybe<GitHubPullRequestReviewComment>
   /** The edge from the review's comment connection. */
-  commentEdge?: Maybe<GitHubPullRequestReviewCommentEdge>;
-};
+  commentEdge?: Maybe<GitHubPullRequestReviewCommentEdge>
+}
 
 /** Autogenerated input type of AddPullRequestReview */
 export type GitHubAddPullRequestReviewInput = {
   /** The Node ID of the pull request to modify. */
-  pullRequestId: Scalars["ID"];
+  pullRequestId: Scalars['ID']
   /** The commit OID the review pertains to. */
-  commitOID?: Maybe<Scalars["GitHubGitObjectID"]>;
+  commitOID?: Maybe<Scalars['GitHubGitObjectID']>
   /** The contents of the review body comment. */
-  body?: Maybe<Scalars["String"]>;
+  body?: Maybe<Scalars['String']>
   /** The event to perform on the pull request review. */
-  event?: Maybe<GitHubPullRequestReviewEvent>;
+  event?: Maybe<GitHubPullRequestReviewEvent>
   /** The review line comments. */
-  comments?: Maybe<Array<Maybe<GitHubDraftPullRequestReviewComment>>>;
+  comments?: Maybe<Array<Maybe<GitHubDraftPullRequestReviewComment>>>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of AddPullRequestReview */
 export type GitHubAddPullRequestReviewPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The newly created pull request review. */
-  pullRequestReview?: Maybe<GitHubPullRequestReview>;
+  pullRequestReview?: Maybe<GitHubPullRequestReview>
   /** The edge from the pull request's review connection. */
-  reviewEdge?: Maybe<GitHubPullRequestReviewEdge>;
-};
+  reviewEdge?: Maybe<GitHubPullRequestReviewEdge>
+}
 
 /** Autogenerated input type of AddReaction */
 export type GitHubAddReactionInput = {
   /** The Node ID of the subject to modify. */
-  subjectId: Scalars["ID"];
+  subjectId: Scalars['ID']
   /** The name of the emoji to react with. */
-  content: GitHubReactionContent;
+  content: GitHubReactionContent
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of AddReaction */
 export type GitHubAddReactionPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The reaction object. */
-  reaction?: Maybe<GitHubReaction>;
+  reaction?: Maybe<GitHubReaction>
   /** The reactable subject. */
-  subject?: Maybe<GitHubReactable>;
-};
+  subject?: Maybe<GitHubReactable>
+}
 
 /** Autogenerated input type of AddStar */
 export type GitHubAddStarInput = {
   /** The Starrable ID to star. */
-  starrableId: Scalars["ID"];
+  starrableId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of AddStar */
 export type GitHubAddStarPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The starrable. */
-  starrable?: Maybe<GitHubStarrable>;
-};
+  starrable?: Maybe<GitHubStarrable>
+}
 
 /** A GitHub App. */
 export type GitHubApp = GitHubNode & {
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
+  databaseId?: Maybe<Scalars['Int']>
   /** The description of the app. */
-  description?: Maybe<Scalars["String"]>;
-  id: Scalars["ID"];
+  description?: Maybe<Scalars['String']>
+  id: Scalars['ID']
   /** The hex color code, without the leading '#', for the logo background. */
-  logoBackgroundColor: Scalars["String"];
+  logoBackgroundColor: Scalars['String']
   /** A URL pointing to the app's logo. */
-  logoUrl: Scalars["GitHubURI"];
+  logoUrl: Scalars['GitHubURI']
   /** The name of the app. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** A slug based on the name of the app for use in URLs. */
-  slug: Scalars["String"];
+  slug: Scalars['String']
   /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars["GitHubDateTime"];
+  updatedAt: Scalars['GitHubDateTime']
   /** The URL to the app's homepage. */
-  url: Scalars["GitHubURI"];
-};
+  url: Scalars['GitHubURI']
+}
 
 /** A GitHub App. */
 export type GitHubAppLogoUrlArgs = {
-  size?: Maybe<Scalars["Int"]>;
-};
+  size?: Maybe<Scalars['Int']>
+}
 
 /** An edge in a connection. */
 export type GitHubAppEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubApp>;
-};
+  node?: Maybe<GitHubApp>
+}
 
 /** An object that can have users assigned to it. */
 export type GitHubAssignable = {
   /** A list of Users assigned to this object. */
-  assignees: GitHubUserConnection;
-};
+  assignees: GitHubUserConnection
+}
 
 /** An object that can have users assigned to it. */
 export type GitHubAssignableAssigneesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** Represents an 'assigned' event on any assignable object. */
 export type GitHubAssignedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the assignable associated with the event. */
-  assignable: GitHubAssignable;
+  assignable: GitHubAssignable
+  /** Identifies the user or mannequin that was assigned. */
+  assignee?: Maybe<GitHubAssignee>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** Identifies the user who was assigned. */
-  user?: Maybe<GitHubUser>;
-};
+  user?: Maybe<GitHubUser>
+}
+
+/** Types that can be assigned to issues. */
+export type GitHubAssignee =
+  | GitHubBot
+  | GitHubMannequin
+  | GitHubOrganization
+  | GitHubUser
+
+/** An entry in the audit log. */
+export type GitHubAuditEntry = {
+  /** The action name */
+  action: Scalars['String']
+  /** The user who initiated the action */
+  actor?: Maybe<GitHubAuditEntryActor>
+  /** The IP address of the actor */
+  actorIp?: Maybe<Scalars['String']>
+  /** A readable representation of the actor's location */
+  actorLocation?: Maybe<GitHubActorLocation>
+  /** The username of the user who initiated the action */
+  actorLogin?: Maybe<Scalars['String']>
+  /** The HTTP path for the actor. */
+  actorResourcePath?: Maybe<Scalars['GitHubURI']>
+  /** The HTTP URL for the actor. */
+  actorUrl?: Maybe<Scalars['GitHubURI']>
+  /** The time the action was initiated */
+  createdAt: Scalars['GitHubPreciseDateTime']
+  /** The corresponding operation type for the action */
+  operationType?: Maybe<GitHubOperationType>
+  /** The user affected by the action */
+  user?: Maybe<GitHubUser>
+  /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+  userLogin?: Maybe<Scalars['String']>
+  /** The HTTP path for the user. */
+  userResourcePath?: Maybe<Scalars['GitHubURI']>
+  /** The HTTP URL for the user. */
+  userUrl?: Maybe<Scalars['GitHubURI']>
+}
+
+/** Types that can initiate an audit log event. */
+export type GitHubAuditEntryActor = GitHubBot | GitHubOrganization | GitHubUser
+
+/** Ordering options for Audit Log connections. */
+export type GitHubAuditLogOrder = {
+  /** The field to order Audit Logs by. */
+  field?: Maybe<GitHubAuditLogOrderField>
+  /** The ordering direction. */
+  direction?: Maybe<GitHubOrderDirection>
+}
+
+/** Properties by which Audit Log connections can be ordered. */
+export enum GitHubAuditLogOrderField {
+  /** Order audit log entries by timestamp */
+  CreatedAt = 'CREATED_AT',
+}
 
 /** Represents a 'base_ref_changed' event on a given issue or pull request. */
 export type GitHubBaseRefChangedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
-  id: Scalars["ID"];
-};
+  databaseId?: Maybe<Scalars['Int']>
+  id: Scalars['ID']
+}
 
 /** Represents a 'base_ref_force_pushed' event on a given pull request. */
 export type GitHubBaseRefForcePushedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the after commit SHA for the 'base_ref_force_pushed' event. */
-  afterCommit?: Maybe<GitHubCommit>;
+  afterCommit?: Maybe<GitHubCommit>
   /** Identifies the before commit SHA for the 'base_ref_force_pushed' event. */
-  beforeCommit?: Maybe<GitHubCommit>;
+  beforeCommit?: Maybe<GitHubCommit>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** PullRequest referenced by event. */
-  pullRequest: GitHubPullRequest;
+  pullRequest: GitHubPullRequest
   /** Identifies the fully qualified ref name for the 'base_ref_force_pushed' event. */
-  ref?: Maybe<GitHubRef>;
-};
+  ref?: Maybe<GitHubRef>
+}
 
 /** Represents a Git blame. */
 export type GitHubBlame = {
   /** The list of ranges from a Git blame. */
-  ranges: Array<GitHubBlameRange>;
-};
+  ranges: Array<GitHubBlameRange>
+}
 
 /** Represents a range of information from a Git blame. */
 export type GitHubBlameRange = {
@@ -727,433 +857,481 @@ export type GitHubBlameRange = {
    * median age of all the changes in the file and the recency of the current
    * range's change.
    */
-  age: Scalars["Int"];
+  age: Scalars['Int']
   /** Identifies the line author */
-  commit: GitHubCommit;
+  commit: GitHubCommit
   /** The ending line for the range */
-  endingLine: Scalars["Int"];
+  endingLine: Scalars['Int']
   /** The starting line for the range */
-  startingLine: Scalars["Int"];
-};
+  startingLine: Scalars['Int']
+}
 
 /** Represents a Git blob. */
 export type GitHubBlob = GitHubNode &
   GitHubGitObject & {
     /** An abbreviated version of the Git object ID */
-    abbreviatedOid: Scalars["String"];
+    abbreviatedOid: Scalars['String']
     /** Byte size of Blob object */
-    byteSize: Scalars["Int"];
+    byteSize: Scalars['Int']
     /** The HTTP path for this Git object */
-    commitResourcePath: Scalars["GitHubURI"];
+    commitResourcePath: Scalars['GitHubURI']
     /** The HTTP URL for this Git object */
-    commitUrl: Scalars["GitHubURI"];
-    id: Scalars["ID"];
+    commitUrl: Scalars['GitHubURI']
+    id: Scalars['ID']
     /** Indicates whether the Blob is binary or text */
-    isBinary: Scalars["Boolean"];
+    isBinary: Scalars['Boolean']
     /** Indicates whether the contents is truncated */
-    isTruncated: Scalars["Boolean"];
+    isTruncated: Scalars['Boolean']
     /** The Git object ID */
-    oid: Scalars["GitHubGitObjectID"];
+    oid: Scalars['GitHubGitObjectID']
     /** The Repository the Git object belongs to */
-    repository: GitHubRepository;
+    repository: GitHubRepository
     /** UTF8 text data or null if the Blob is binary */
-    text?: Maybe<Scalars["String"]>;
-  };
+    text?: Maybe<Scalars['String']>
+  }
 
 /** A special type of user which takes actions on behalf of GitHub Apps. */
 export type GitHubBot = GitHubNode &
   GitHubActor &
   GitHubUniformResourceLocatable & {
     /** A URL pointing to the GitHub App's public avatar. */
-    avatarUrl: Scalars["GitHubURI"];
+    avatarUrl: Scalars['GitHubURI']
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** Identifies the primary key from the database. */
-    databaseId?: Maybe<Scalars["Int"]>;
-    id: Scalars["ID"];
+    databaseId?: Maybe<Scalars['Int']>
+    id: Scalars['ID']
     /** The username of the actor. */
-    login: Scalars["String"];
+    login: Scalars['String']
     /** The HTTP path for this bot */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** Identifies the date and time when the object was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
     /** The HTTP URL for this bot */
-    url: Scalars["GitHubURI"];
-  };
+    url: Scalars['GitHubURI']
+  }
 
 /** A special type of user which takes actions on behalf of GitHub Apps. */
 export type GitHubBotAvatarUrlArgs = {
-  size?: Maybe<Scalars["Int"]>;
-};
+  size?: Maybe<Scalars['Int']>
+}
 
 /** A branch protection rule. */
 export type GitHubBranchProtectionRule = GitHubNode & {
   /** A list of conflicts matching branches protection rule and other branch protection rules */
-  branchProtectionRuleConflicts: GitHubBranchProtectionRuleConflictConnection;
+  branchProtectionRuleConflicts: GitHubBranchProtectionRuleConflictConnection
   /** The actor who created this branch protection rule. */
-  creator?: Maybe<GitHubActor>;
+  creator?: Maybe<GitHubActor>
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
+  databaseId?: Maybe<Scalars['Int']>
   /** Will new commits pushed to matching branches dismiss pull request review approvals. */
-  dismissesStaleReviews: Scalars["Boolean"];
-  id: Scalars["ID"];
+  dismissesStaleReviews: Scalars['Boolean']
+  id: Scalars['ID']
   /** Can admins overwrite branch protection. */
-  isAdminEnforced: Scalars["Boolean"];
+  isAdminEnforced: Scalars['Boolean']
   /** Repository refs that are protected by this rule */
-  matchingRefs: GitHubRefConnection;
+  matchingRefs: GitHubRefConnection
   /** Identifies the protection rule pattern. */
-  pattern: Scalars["String"];
+  pattern: Scalars['String']
   /** A list push allowances for this branch protection rule. */
-  pushAllowances: GitHubPushAllowanceConnection;
+  pushAllowances: GitHubPushAllowanceConnection
   /** The repository associated with this branch protection rule. */
-  repository?: Maybe<GitHubRepository>;
+  repository?: Maybe<GitHubRepository>
   /** Number of approving reviews required to update matching branches. */
-  requiredApprovingReviewCount?: Maybe<Scalars["Int"]>;
+  requiredApprovingReviewCount?: Maybe<Scalars['Int']>
   /** List of required status check contexts that must pass for commits to be accepted to matching branches. */
-  requiredStatusCheckContexts?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  requiredStatusCheckContexts?: Maybe<Array<Maybe<Scalars['String']>>>
   /** Are approving reviews required to update matching branches. */
-  requiresApprovingReviews: Scalars["Boolean"];
+  requiresApprovingReviews: Scalars['Boolean']
+  /** Are reviews from code owners required to update matching branches. */
+  requiresCodeOwnerReviews: Scalars['Boolean']
   /** Are commits required to be signed. */
-  requiresCommitSignatures: Scalars["Boolean"];
+  requiresCommitSignatures: Scalars['Boolean']
   /** Are status checks required to update matching branches. */
-  requiresStatusChecks: Scalars["Boolean"];
+  requiresStatusChecks: Scalars['Boolean']
   /** Are branches required to be up to date before merging. */
-  requiresStrictStatusChecks: Scalars["Boolean"];
+  requiresStrictStatusChecks: Scalars['Boolean']
   /** Is pushing to matching branches restricted. */
-  restrictsPushes: Scalars["Boolean"];
+  restrictsPushes: Scalars['Boolean']
   /** Is dismissal of pull request reviews restricted. */
-  restrictsReviewDismissals: Scalars["Boolean"];
+  restrictsReviewDismissals: Scalars['Boolean']
   /** A list review dismissal allowances for this branch protection rule. */
-  reviewDismissalAllowances: GitHubReviewDismissalAllowanceConnection;
-};
+  reviewDismissalAllowances: GitHubReviewDismissalAllowanceConnection
+}
 
 /** A branch protection rule. */
 export type GitHubBranchProtectionRuleBranchProtectionRuleConflictsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A branch protection rule. */
 export type GitHubBranchProtectionRuleMatchingRefsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A branch protection rule. */
 export type GitHubBranchProtectionRulePushAllowancesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A branch protection rule. */
 export type GitHubBranchProtectionRuleReviewDismissalAllowancesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A conflict between two branch protection rules. */
 export type GitHubBranchProtectionRuleConflict = {
   /** Identifies the branch protection rule. */
-  branchProtectionRule?: Maybe<GitHubBranchProtectionRule>;
+  branchProtectionRule?: Maybe<GitHubBranchProtectionRule>
   /** Identifies the conflicting branch protection rule. */
-  conflictingBranchProtectionRule?: Maybe<GitHubBranchProtectionRule>;
+  conflictingBranchProtectionRule?: Maybe<GitHubBranchProtectionRule>
   /** Identifies the branch ref that has conflicting rules */
-  ref?: Maybe<GitHubRef>;
-};
+  ref?: Maybe<GitHubRef>
+}
 
 /** The connection type for BranchProtectionRuleConflict. */
 export type GitHubBranchProtectionRuleConflictConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubBranchProtectionRuleConflictEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubBranchProtectionRuleConflictEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubBranchProtectionRuleConflict>>>;
+  nodes?: Maybe<Array<Maybe<GitHubBranchProtectionRuleConflict>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubBranchProtectionRuleConflictEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubBranchProtectionRuleConflict>;
-};
+  node?: Maybe<GitHubBranchProtectionRuleConflict>
+}
 
 /** The connection type for BranchProtectionRule. */
 export type GitHubBranchProtectionRuleConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubBranchProtectionRuleEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubBranchProtectionRuleEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubBranchProtectionRule>>>;
+  nodes?: Maybe<Array<Maybe<GitHubBranchProtectionRule>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubBranchProtectionRuleEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubBranchProtectionRule>;
-};
+  node?: Maybe<GitHubBranchProtectionRule>
+}
+
+/** Autogenerated input type of CancelEnterpriseAdminInvitation */
+export type GitHubCancelEnterpriseAdminInvitationInput = {
+  /** The Node ID of the pending enterprise administrator invitation. */
+  invitationId: Scalars['ID']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of CancelEnterpriseAdminInvitation */
+export type GitHubCancelEnterpriseAdminInvitationPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The invitation that was canceled. */
+  invitation?: Maybe<GitHubEnterpriseAdministratorInvitation>
+  /** A message confirming the result of canceling an administrator invitation. */
+  message?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated input type of ChangeUserStatus */
 export type GitHubChangeUserStatusInput = {
   /** The emoji to represent your status. Can either be a native Unicode emoji or an emoji name with colons, e.g., :grinning:. */
-  emoji?: Maybe<Scalars["String"]>;
+  emoji?: Maybe<Scalars['String']>
   /** A short description of your current status. */
-  message?: Maybe<Scalars["String"]>;
+  message?: Maybe<Scalars['String']>
   /** The ID of the organization whose members will be allowed to see the status. If
    * omitted, the status will be publicly visible.
    */
-  organizationId?: Maybe<Scalars["ID"]>;
+  organizationId?: Maybe<Scalars['ID']>
   /** Whether this status should indicate you are not fully available on GitHub, e.g., you are away. */
-  limitedAvailability?: Maybe<Scalars["Boolean"]>;
+  limitedAvailability?: Maybe<Scalars['Boolean']>
+  /** If set, the user status will not be shown after this date. */
+  expiresAt?: Maybe<Scalars['GitHubDateTime']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of ChangeUserStatus */
 export type GitHubChangeUserStatusPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** Your updated status. */
-  status?: Maybe<GitHubUserStatus>;
-};
+  status?: Maybe<GitHubUserStatus>
+}
 
 /** Autogenerated input type of ClearLabelsFromLabelable */
 export type GitHubClearLabelsFromLabelableInput = {
   /** The id of the labelable object to clear the labels from. */
-  labelableId: Scalars["ID"];
+  labelableId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of ClearLabelsFromLabelable */
 export type GitHubClearLabelsFromLabelablePayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The item that was unlabeled. */
-  labelable?: Maybe<GitHubLabelable>;
-};
+  labelable?: Maybe<GitHubLabelable>
+}
 
 /** Autogenerated input type of CloneProject */
 export type GitHubCloneProjectInput = {
   /** The owner ID to create the project under. */
-  targetOwnerId: Scalars["ID"];
+  targetOwnerId: Scalars['ID']
   /** The source project to clone. */
-  sourceId: Scalars["ID"];
+  sourceId: Scalars['ID']
   /** Whether or not to clone the source project's workflows. */
-  includeWorkflows: Scalars["Boolean"];
+  includeWorkflows: Scalars['Boolean']
   /** The name of the project. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** The description of the project. */
-  body?: Maybe<Scalars["String"]>;
+  body?: Maybe<Scalars['String']>
   /** The visibility of the project, defaults to false (private). */
-  public?: Maybe<Scalars["Boolean"]>;
+  public?: Maybe<Scalars['Boolean']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of CloneProject */
 export type GitHubCloneProjectPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The id of the JobStatus for populating cloned fields. */
-  jobStatusId?: Maybe<Scalars["String"]>;
+  jobStatusId?: Maybe<Scalars['String']>
   /** The new cloned project. */
-  project?: Maybe<GitHubProject>;
-};
+  project?: Maybe<GitHubProject>
+}
+
+/** Autogenerated input type of CloneTemplateRepository */
+export type GitHubCloneTemplateRepositoryInput = {
+  /** The Node ID of the template repository. */
+  repositoryId: Scalars['ID']
+  /** The name of the new repository. */
+  name: Scalars['String']
+  /** The ID of the owner for the new repository. */
+  ownerId: Scalars['ID']
+  /** A short description of the new repository. */
+  description?: Maybe<Scalars['String']>
+  /** Indicates the repository's visibility level. */
+  visibility: GitHubRepositoryVisibility
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of CloneTemplateRepository */
+export type GitHubCloneTemplateRepositoryPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The new repository. */
+  repository?: Maybe<GitHubRepository>
+}
 
 /** An object that can be closed */
 export type GitHubClosable = {
   /** `true` if the object is closed (definition of closed may depend on type) */
-  closed: Scalars["Boolean"];
+  closed: Scalars['Boolean']
   /** Identifies the date and time when the object was closed. */
-  closedAt?: Maybe<Scalars["GitHubDateTime"]>;
-};
+  closedAt?: Maybe<Scalars['GitHubDateTime']>
+}
 
 /** Represents a 'closed' event on any `Closable`. */
 export type GitHubClosedEvent = GitHubNode &
   GitHubUniformResourceLocatable & {
     /** Identifies the actor who performed the event. */
-    actor?: Maybe<GitHubActor>;
+    actor?: Maybe<GitHubActor>
     /** Object that was closed. */
-    closable: GitHubClosable;
+    closable: GitHubClosable
     /** Object which triggered the creation of this event. */
-    closer?: Maybe<GitHubCloser>;
+    closer?: Maybe<GitHubCloser>
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
-    id: Scalars["ID"];
+    createdAt: Scalars['GitHubDateTime']
+    id: Scalars['ID']
     /** The HTTP path for this closed event. */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** The HTTP URL for this closed event. */
-    url: Scalars["GitHubURI"];
-  };
+    url: Scalars['GitHubURI']
+  }
 
 /** Autogenerated input type of CloseIssue */
 export type GitHubCloseIssueInput = {
   /** ID of the issue to be closed. */
-  issueId: Scalars["ID"];
+  issueId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of CloseIssue */
 export type GitHubCloseIssuePayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The issue that was closed. */
-  issue?: Maybe<GitHubIssue>;
-};
+  issue?: Maybe<GitHubIssue>
+}
 
 /** Autogenerated input type of ClosePullRequest */
 export type GitHubClosePullRequestInput = {
   /** ID of the pull request to be closed. */
-  pullRequestId: Scalars["ID"];
+  pullRequestId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of ClosePullRequest */
 export type GitHubClosePullRequestPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The pull request that was closed. */
-  pullRequest?: Maybe<GitHubPullRequest>;
-};
+  pullRequest?: Maybe<GitHubPullRequest>
+}
 
 /** The object which triggered a `ClosedEvent`. */
-export type GitHubCloser = GitHubCommit | GitHubPullRequest;
+export type GitHubCloser = GitHubCommit | GitHubPullRequest
 
 /** The Code of Conduct for a repository */
 export type GitHubCodeOfConduct = GitHubNode & {
   /** The body of the Code of Conduct */
-  body?: Maybe<Scalars["String"]>;
-  id: Scalars["ID"];
+  body?: Maybe<Scalars['String']>
+  id: Scalars['ID']
   /** The key for the Code of Conduct */
-  key: Scalars["String"];
+  key: Scalars['String']
   /** The formal name of the Code of Conduct */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** The HTTP path for this Code of Conduct */
-  resourcePath?: Maybe<Scalars["GitHubURI"]>;
+  resourcePath?: Maybe<Scalars['GitHubURI']>
   /** The HTTP URL for this Code of Conduct */
-  url?: Maybe<Scalars["GitHubURI"]>;
-};
+  url?: Maybe<Scalars['GitHubURI']>
+}
 
 /** Collaborators affiliation level with a subject. */
 export enum GitHubCollaboratorAffiliation {
   /** All outside collaborators of an organization-owned subject. */
-  Outside = "OUTSIDE",
+  Outside = 'OUTSIDE',
   /** All collaborators with permissions to an organization-owned subject, regardless of organization membership status. */
-  Direct = "DIRECT",
+  Direct = 'DIRECT',
   /** All collaborators the authenticated user can see. */
-  All = "ALL"
+  All = 'ALL',
 }
 
 /** Types that can be inside Collection Items. */
 export type GitHubCollectionItemContent =
   | GitHubRepository
   | GitHubOrganization
-  | GitHubUser;
+  | GitHubUser
 
 /** Represents a comment. */
 export type GitHubComment = {
   /** The actor who authored the comment. */
-  author?: Maybe<GitHubActor>;
+  author?: Maybe<GitHubActor>
   /** Author's association with the subject of the comment. */
-  authorAssociation: GitHubCommentAuthorAssociation;
+  authorAssociation: GitHubCommentAuthorAssociation
   /** The body as Markdown. */
-  body: Scalars["String"];
+  body: Scalars['String']
   /** The body rendered to HTML. */
-  bodyHTML: Scalars["GitHubHTML"];
+  bodyHTML: Scalars['GitHubHTML']
   /** The body rendered to text. */
-  bodyText: Scalars["String"];
+  bodyText: Scalars['String']
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Check if this comment was created via an email reply. */
-  createdViaEmail: Scalars["Boolean"];
+  createdViaEmail: Scalars['Boolean']
   /** The actor who edited the comment. */
-  editor?: Maybe<GitHubActor>;
-  id: Scalars["ID"];
+  editor?: Maybe<GitHubActor>
+  id: Scalars['ID']
   /** Check if this comment was edited and includes an edit with the creation data */
-  includesCreatedEdit: Scalars["Boolean"];
+  includesCreatedEdit: Scalars['Boolean']
   /** The moment the editor made the last edit */
-  lastEditedAt?: Maybe<Scalars["GitHubDateTime"]>;
+  lastEditedAt?: Maybe<Scalars['GitHubDateTime']>
   /** Identifies when the comment was published at. */
-  publishedAt?: Maybe<Scalars["GitHubDateTime"]>;
+  publishedAt?: Maybe<Scalars['GitHubDateTime']>
   /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars["GitHubDateTime"];
+  updatedAt: Scalars['GitHubDateTime']
   /** A list of edits to this content. */
-  userContentEdits?: Maybe<GitHubUserContentEditConnection>;
+  userContentEdits?: Maybe<GitHubUserContentEditConnection>
   /** Did the viewer author this comment. */
-  viewerDidAuthor: Scalars["Boolean"];
-};
+  viewerDidAuthor: Scalars['Boolean']
+}
 
 /** Represents a comment. */
 export type GitHubCommentUserContentEditsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A comment author association with repository. */
 export enum GitHubCommentAuthorAssociation {
   /** Author is a member of the organization that owns the repository. */
-  Member = "MEMBER",
+  Member = 'MEMBER',
   /** Author is the owner of the repository. */
-  Owner = "OWNER",
+  Owner = 'OWNER',
   /** Author has been invited to collaborate on the repository. */
-  Collaborator = "COLLABORATOR",
+  Collaborator = 'COLLABORATOR',
   /** Author has previously committed to the repository. */
-  Contributor = "CONTRIBUTOR",
+  Contributor = 'CONTRIBUTOR',
   /** Author has not previously committed to the repository. */
-  FirstTimeContributor = "FIRST_TIME_CONTRIBUTOR",
+  FirstTimeContributor = 'FIRST_TIME_CONTRIBUTOR',
   /** Author has not previously committed to GitHub. */
-  FirstTimer = "FIRST_TIMER",
+  FirstTimer = 'FIRST_TIMER',
   /** Author has no association with the repository. */
-  None = "NONE"
+  None = 'NONE',
 }
 
 /** The possible errors that will prevent a user from updating a comment. */
 export enum GitHubCommentCannotUpdateReason {
+  /** Unable to create comment because repository is archived. */
+  Archived = 'ARCHIVED',
   /** You must be the author or have write access to this repository to update this comment. */
-  InsufficientAccess = "INSUFFICIENT_ACCESS",
+  InsufficientAccess = 'INSUFFICIENT_ACCESS',
   /** Unable to create comment because issue is locked. */
-  Locked = "LOCKED",
+  Locked = 'LOCKED',
   /** You must be logged in to update this comment. */
-  LoginRequired = "LOGIN_REQUIRED",
+  LoginRequired = 'LOGIN_REQUIRED',
   /** Repository is under maintenance. */
-  Maintenance = "MAINTENANCE",
+  Maintenance = 'MAINTENANCE',
   /** At least one email address must be verified to update this comment. */
-  VerifiedEmailRequired = "VERIFIED_EMAIL_REQUIRED",
+  VerifiedEmailRequired = 'VERIFIED_EMAIL_REQUIRED',
   /** You cannot update this comment */
-  Denied = "DENIED"
+  Denied = 'DENIED',
 }
 
 /** Represents a 'comment_deleted' event on a given issue or pull request. */
 export type GitHubCommentDeletedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
-  id: Scalars["ID"];
-};
+  databaseId?: Maybe<Scalars['Int']>
+  id: Scalars['ID']
+}
 
 /** Represents a Git commit. */
 export type GitHubCommit = GitHubNode &
@@ -1161,147 +1339,147 @@ export type GitHubCommit = GitHubNode &
   GitHubSubscribable &
   GitHubUniformResourceLocatable & {
     /** An abbreviated version of the Git object ID */
-    abbreviatedOid: Scalars["String"];
+    abbreviatedOid: Scalars['String']
     /** The number of additions in this commit. */
-    additions: Scalars["Int"];
+    additions: Scalars['Int']
     /** The pull requests associated with a commit */
-    associatedPullRequests?: Maybe<GitHubPullRequestConnection>;
+    associatedPullRequests?: Maybe<GitHubPullRequestConnection>
     /** Authorship details of the commit. */
-    author?: Maybe<GitHubGitActor>;
+    author?: Maybe<GitHubGitActor>
     /** Check if the committer and the author match. */
-    authoredByCommitter: Scalars["Boolean"];
+    authoredByCommitter: Scalars['Boolean']
     /** The datetime when this commit was authored. */
-    authoredDate: Scalars["GitHubDateTime"];
+    authoredDate: Scalars['GitHubDateTime']
     /** Fetches `git blame` information. */
-    blame: GitHubBlame;
+    blame: GitHubBlame
     /** The number of changed files in this commit. */
-    changedFiles: Scalars["Int"];
+    changedFiles: Scalars['Int']
     /** Comments made on the commit. */
-    comments: GitHubCommitCommentConnection;
+    comments: GitHubCommitCommentConnection
     /** The HTTP path for this Git object */
-    commitResourcePath: Scalars["GitHubURI"];
+    commitResourcePath: Scalars['GitHubURI']
     /** The HTTP URL for this Git object */
-    commitUrl: Scalars["GitHubURI"];
+    commitUrl: Scalars['GitHubURI']
     /** The datetime when this commit was committed. */
-    committedDate: Scalars["GitHubDateTime"];
+    committedDate: Scalars['GitHubDateTime']
     /** Check if commited via GitHub web UI. */
-    committedViaWeb: Scalars["Boolean"];
+    committedViaWeb: Scalars['Boolean']
     /** Committership details of the commit. */
-    committer?: Maybe<GitHubGitActor>;
+    committer?: Maybe<GitHubGitActor>
     /** The number of deletions in this commit. */
-    deletions: Scalars["Int"];
+    deletions: Scalars['Int']
     /** The deployments associated with a commit. */
-    deployments?: Maybe<GitHubDeploymentConnection>;
+    deployments?: Maybe<GitHubDeploymentConnection>
     /** The linear commit history starting from (and including) this commit, in the same order as `git log`. */
-    history: GitHubCommitHistoryConnection;
-    id: Scalars["ID"];
+    history: GitHubCommitHistoryConnection
+    id: Scalars['ID']
     /** The Git commit message */
-    message: Scalars["String"];
+    message: Scalars['String']
     /** The Git commit message body */
-    messageBody: Scalars["String"];
+    messageBody: Scalars['String']
     /** The commit message body rendered to HTML. */
-    messageBodyHTML: Scalars["GitHubHTML"];
+    messageBodyHTML: Scalars['GitHubHTML']
     /** The Git commit message headline */
-    messageHeadline: Scalars["String"];
+    messageHeadline: Scalars['String']
     /** The commit message headline rendered to HTML. */
-    messageHeadlineHTML: Scalars["GitHubHTML"];
+    messageHeadlineHTML: Scalars['GitHubHTML']
     /** The Git object ID */
-    oid: Scalars["GitHubGitObjectID"];
+    oid: Scalars['GitHubGitObjectID']
     /** The parents of a commit. */
-    parents: GitHubCommitConnection;
+    parents: GitHubCommitConnection
     /** The datetime when this commit was pushed. */
-    pushedDate?: Maybe<Scalars["GitHubDateTime"]>;
+    pushedDate?: Maybe<Scalars['GitHubDateTime']>
     /** The Repository this commit belongs to */
-    repository: GitHubRepository;
+    repository: GitHubRepository
     /** The HTTP path for this commit */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** Commit signing information, if present. */
-    signature?: Maybe<GitHubGitSignature>;
+    signature?: Maybe<GitHubGitSignature>
     /** Status information for this commit */
-    status?: Maybe<GitHubStatus>;
+    status?: Maybe<GitHubStatus>
     /** Returns a URL to download a tarball archive for a repository.
      * Note: For private repositories, these links are temporary and expire after five minutes.
      */
-    tarballUrl: Scalars["GitHubURI"];
+    tarballUrl: Scalars['GitHubURI']
     /** Commit's root Tree */
-    tree: GitHubTree;
+    tree: GitHubTree
     /** The HTTP path for the tree of this commit */
-    treeResourcePath: Scalars["GitHubURI"];
+    treeResourcePath: Scalars['GitHubURI']
     /** The HTTP URL for the tree of this commit */
-    treeUrl: Scalars["GitHubURI"];
+    treeUrl: Scalars['GitHubURI']
     /** The HTTP URL for this commit */
-    url: Scalars["GitHubURI"];
+    url: Scalars['GitHubURI']
     /** Check if the viewer is able to change their subscription status for the repository. */
-    viewerCanSubscribe: Scalars["Boolean"];
+    viewerCanSubscribe: Scalars['Boolean']
     /** Identifies if the viewer is watching, not watching, or ignoring the subscribable entity. */
-    viewerSubscription?: Maybe<GitHubSubscriptionState>;
+    viewerSubscription?: Maybe<GitHubSubscriptionState>
     /** Returns a URL to download a zipball archive for a repository.
      * Note: For private repositories, these links are temporary and expire after five minutes.
      */
-    zipballUrl: Scalars["GitHubURI"];
-  };
+    zipballUrl: Scalars['GitHubURI']
+  }
 
 /** Represents a Git commit. */
 export type GitHubCommitAssociatedPullRequestsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  orderBy?: Maybe<GitHubPullRequestOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy: GitHubPullRequestOrder
+}
 
 /** Represents a Git commit. */
 export type GitHubCommitBlameArgs = {
-  path: Scalars["String"];
-};
+  path: Scalars['String']
+}
 
 /** Represents a Git commit. */
 export type GitHubCommitCommentsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** Represents a Git commit. */
 export type GitHubCommitDeploymentsArgs = {
-  environments?: Maybe<Array<Scalars["String"]>>;
-  orderBy?: Maybe<GitHubDeploymentOrder>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  environments?: Maybe<Array<Scalars['String']>>
+  orderBy: GitHubDeploymentOrder
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** Represents a Git commit. */
 export type GitHubCommitHistoryArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  path?: Maybe<Scalars["String"]>;
-  author?: Maybe<GitHubCommitAuthor>;
-  since?: Maybe<Scalars["GitHubGitTimestamp"]>;
-  until?: Maybe<Scalars["GitHubGitTimestamp"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  path?: Maybe<Scalars['String']>
+  author?: Maybe<GitHubCommitAuthor>
+  since?: Maybe<Scalars['GitHubGitTimestamp']>
+  until?: Maybe<Scalars['GitHubGitTimestamp']>
+}
 
 /** Represents a Git commit. */
 export type GitHubCommitParentsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** Specifies an author for filtering Git commits. */
 export type GitHubCommitAuthor = {
   /** ID of a User to filter by. If non-null, only commits authored by this user
    * will be returned. This field takes precedence over emails.
    */
-  id?: Maybe<Scalars["ID"]>;
+  id?: Maybe<Scalars['ID']>
   /** Email addresses to filter by. Commits authored by any of the specified email addresses will be returned. */
-  emails?: Maybe<Array<Scalars["String"]>>;
-};
+  emails?: Maybe<Array<Scalars['String']>>
+}
 
 /** Represents a comment on a given Commit. */
 export type GitHubCommitComment = GitHubNode &
@@ -1312,220 +1490,220 @@ export type GitHubCommitComment = GitHubNode &
   GitHubReactable &
   GitHubRepositoryNode & {
     /** The actor who authored the comment. */
-    author?: Maybe<GitHubActor>;
+    author?: Maybe<GitHubActor>
     /** Author's association with the subject of the comment. */
-    authorAssociation: GitHubCommentAuthorAssociation;
+    authorAssociation: GitHubCommentAuthorAssociation
     /** Identifies the comment body. */
-    body: Scalars["String"];
-    /** Identifies the comment body rendered to HTML. */
-    bodyHTML: Scalars["GitHubHTML"];
+    body: Scalars['String']
+    /** The body rendered to HTML. */
+    bodyHTML: Scalars['GitHubHTML']
     /** The body rendered to text. */
-    bodyText: Scalars["String"];
+    bodyText: Scalars['String']
     /** Identifies the commit associated with the comment, if the commit exists. */
-    commit?: Maybe<GitHubCommit>;
+    commit?: Maybe<GitHubCommit>
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** Check if this comment was created via an email reply. */
-    createdViaEmail: Scalars["Boolean"];
+    createdViaEmail: Scalars['Boolean']
     /** Identifies the primary key from the database. */
-    databaseId?: Maybe<Scalars["Int"]>;
+    databaseId?: Maybe<Scalars['Int']>
     /** The actor who edited the comment. */
-    editor?: Maybe<GitHubActor>;
-    id: Scalars["ID"];
+    editor?: Maybe<GitHubActor>
+    id: Scalars['ID']
     /** Check if this comment was edited and includes an edit with the creation data */
-    includesCreatedEdit: Scalars["Boolean"];
+    includesCreatedEdit: Scalars['Boolean']
     /** Returns whether or not a comment has been minimized. */
-    isMinimized: Scalars["Boolean"];
+    isMinimized: Scalars['Boolean']
     /** The moment the editor made the last edit */
-    lastEditedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    lastEditedAt?: Maybe<Scalars['GitHubDateTime']>
     /** Returns why the comment was minimized. */
-    minimizedReason?: Maybe<Scalars["String"]>;
+    minimizedReason?: Maybe<Scalars['String']>
     /** Identifies the file path associated with the comment. */
-    path?: Maybe<Scalars["String"]>;
+    path?: Maybe<Scalars['String']>
     /** Identifies the line position associated with the comment. */
-    position?: Maybe<Scalars["Int"]>;
+    position?: Maybe<Scalars['Int']>
     /** Identifies when the comment was published at. */
-    publishedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    publishedAt?: Maybe<Scalars['GitHubDateTime']>
     /** A list of reactions grouped by content left on the subject. */
-    reactionGroups?: Maybe<Array<GitHubReactionGroup>>;
+    reactionGroups?: Maybe<Array<GitHubReactionGroup>>
     /** A list of Reactions left on the Issue. */
-    reactions: GitHubReactionConnection;
+    reactions: GitHubReactionConnection
     /** The repository associated with this node. */
-    repository: GitHubRepository;
+    repository: GitHubRepository
     /** The HTTP path permalink for this commit comment. */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** Identifies the date and time when the object was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
     /** The HTTP URL permalink for this commit comment. */
-    url: Scalars["GitHubURI"];
+    url: Scalars['GitHubURI']
     /** A list of edits to this content. */
-    userContentEdits?: Maybe<GitHubUserContentEditConnection>;
+    userContentEdits?: Maybe<GitHubUserContentEditConnection>
     /** Check if the current viewer can delete this object. */
-    viewerCanDelete: Scalars["Boolean"];
+    viewerCanDelete: Scalars['Boolean']
     /** Check if the current viewer can minimize this object. */
-    viewerCanMinimize: Scalars["Boolean"];
+    viewerCanMinimize: Scalars['Boolean']
     /** Can user react to this subject */
-    viewerCanReact: Scalars["Boolean"];
+    viewerCanReact: Scalars['Boolean']
     /** Check if the current viewer can update this object. */
-    viewerCanUpdate: Scalars["Boolean"];
+    viewerCanUpdate: Scalars['Boolean']
     /** Reasons why the current viewer can not update this comment. */
-    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>;
+    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>
     /** Did the viewer author this comment. */
-    viewerDidAuthor: Scalars["Boolean"];
-  };
+    viewerDidAuthor: Scalars['Boolean']
+  }
 
 /** Represents a comment on a given Commit. */
 export type GitHubCommitCommentReactionsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  content?: Maybe<GitHubReactionContent>;
-  orderBy?: Maybe<GitHubReactionOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  content?: Maybe<GitHubReactionContent>
+  orderBy?: Maybe<GitHubReactionOrder>
+}
 
 /** Represents a comment on a given Commit. */
 export type GitHubCommitCommentUserContentEditsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** The connection type for CommitComment. */
 export type GitHubCommitCommentConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubCommitCommentEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubCommitCommentEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubCommitComment>>>;
+  nodes?: Maybe<Array<Maybe<GitHubCommitComment>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubCommitCommentEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubCommitComment>;
-};
+  node?: Maybe<GitHubCommitComment>
+}
 
 /** A thread of comments on a commit. */
 export type GitHubCommitCommentThread = GitHubNode &
   GitHubRepositoryNode & {
     /** The comments that exist in this thread. */
-    comments: GitHubCommitCommentConnection;
+    comments: GitHubCommitCommentConnection
     /** The commit the comments were made on. */
-    commit: GitHubCommit;
-    id: Scalars["ID"];
+    commit?: Maybe<GitHubCommit>
+    id: Scalars['ID']
     /** The file the comments were made on. */
-    path?: Maybe<Scalars["String"]>;
+    path?: Maybe<Scalars['String']>
     /** The position in the diff for the commit that the comment was made on. */
-    position?: Maybe<Scalars["Int"]>;
+    position?: Maybe<Scalars['Int']>
     /** The repository associated with this node. */
-    repository: GitHubRepository;
-  };
+    repository: GitHubRepository
+  }
 
 /** A thread of comments on a commit. */
 export type GitHubCommitCommentThreadCommentsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** The connection type for Commit. */
 export type GitHubCommitConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubCommitEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubCommitEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubCommit>>>;
+  nodes?: Maybe<Array<Maybe<GitHubCommit>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** Ordering options for commit contribution connections. */
 export type GitHubCommitContributionOrder = {
   /** The field by which to order commit contributions. */
-  field: GitHubCommitContributionOrderField;
+  field: GitHubCommitContributionOrderField
   /** The ordering direction. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which commit contribution connections can be ordered. */
 export enum GitHubCommitContributionOrderField {
   /** Order commit contributions by when they were made. */
-  OccurredAt = "OCCURRED_AT",
+  OccurredAt = 'OCCURRED_AT',
   /** Order commit contributions by how many commits they represent. */
-  CommitCount = "COMMIT_COUNT"
+  CommitCount = 'COMMIT_COUNT',
 }
 
 /** This aggregates commits made by a user within one repository. */
 export type GitHubCommitContributionsByRepository = {
   /** The commit contributions, each representing a day. */
-  contributions: GitHubCreatedCommitContributionConnection;
+  contributions: GitHubCreatedCommitContributionConnection
   /** The repository in which the commits were made. */
-  repository: GitHubRepository;
+  repository: GitHubRepository
   /** The HTTP path for the user's commits to the repository in this time range. */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** The HTTP URL for the user's commits to the repository in this time range. */
-  url: Scalars["GitHubURI"];
-};
+  url: Scalars['GitHubURI']
+}
 
 /** This aggregates commits made by a user within one repository. */
 export type GitHubCommitContributionsByRepositoryContributionsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  orderBy?: Maybe<GitHubCommitContributionOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy: GitHubCommitContributionOrder
+}
 
 /** An edge in a connection. */
 export type GitHubCommitEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubCommit>;
-};
+  node?: Maybe<GitHubCommit>
+}
 
 /** The connection type for Commit. */
 export type GitHubCommitHistoryConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubCommitEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubCommitEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubCommit>>>;
+  nodes?: Maybe<Array<Maybe<GitHubCommit>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** A content attachment */
 export type GitHubContentAttachment = {
   /** The body text of the content attachment. This parameter supports markdown. */
-  body: Scalars["String"];
+  body: Scalars['String']
   /** The content reference that the content attachment is attached to. */
-  contentReference: GitHubContentReference;
+  contentReference: GitHubContentReference
   /** Identifies the primary key from the database. */
-  databaseId: Scalars["Int"];
-  id: Scalars["ID"];
+  databaseId: Scalars['Int']
+  id: Scalars['ID']
   /** The title of the content attachment. */
-  title: Scalars["String"];
-};
+  title: Scalars['String']
+}
 
 /** A content reference */
 export type GitHubContentReference = {
   /** Identifies the primary key from the database. */
-  databaseId: Scalars["Int"];
-  id: Scalars["ID"];
+  databaseId: Scalars['Int']
+  id: Scalars['ID']
   /** The reference of the content reference. */
-  reference: Scalars["String"];
-};
+  reference: Scalars['String']
+}
 
 /** Represents a contribution a user made on GitHub, such as opening an issue. */
 export type GitHubContribution = {
@@ -1533,99 +1711,104 @@ export type GitHubContribution = {
    * example, your own 'first issue' contribution may have been made on a repository you can no
    * longer access.
    */
-  isRestricted: Scalars["Boolean"];
+  isRestricted: Scalars['Boolean']
   /** When this contribution was made. */
-  occurredAt: Scalars["GitHubDateTime"];
+  occurredAt: Scalars['GitHubDateTime']
   /** The HTTP path for this contribution. */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** The HTTP URL for this contribution. */
-  url: Scalars["GitHubURI"];
+  url: Scalars['GitHubURI']
   /** The user who made this contribution. */
-  user: GitHubUser;
-};
+  user: GitHubUser
+}
 
 /** A calendar of contributions made on GitHub by a user. */
 export type GitHubContributionCalendar = {
   /** A list of hex color codes used in this calendar. The darker the color, the more contributions it represents. */
-  colors: Array<Scalars["String"]>;
+  colors: Array<Scalars['String']>
   /** Determine if the color set was chosen because it's currently Halloween. */
-  isHalloween: Scalars["Boolean"];
+  isHalloween: Scalars['Boolean']
   /** A list of the months of contributions in this calendar. */
-  months: Array<GitHubContributionCalendarMonth>;
+  months: Array<GitHubContributionCalendarMonth>
   /** The count of total contributions in the calendar. */
-  totalContributions: Scalars["Int"];
+  totalContributions: Scalars['Int']
   /** A list of the weeks of contributions in this calendar. */
-  weeks: Array<GitHubContributionCalendarWeek>;
-};
+  weeks: Array<GitHubContributionCalendarWeek>
+}
 
 /** Represents a single day of contributions on GitHub by a user. */
 export type GitHubContributionCalendarDay = {
   /** The hex color code that represents how many contributions were made on this day compared to others in the calendar. */
-  color: Scalars["String"];
+  color: Scalars['String']
   /** How many contributions were made by the user on this day. */
-  contributionCount: Scalars["Int"];
+  contributionCount: Scalars['Int']
   /** The day this square represents. */
-  date: Scalars["GitHubDate"];
+  date: Scalars['GitHubDate']
   /** A number representing which day of the week this square represents, e.g., 1 is Monday. */
-  weekday: Scalars["Int"];
-};
+  weekday: Scalars['Int']
+}
 
 /** A month of contributions in a user's contribution graph. */
 export type GitHubContributionCalendarMonth = {
   /** The date of the first day of this month. */
-  firstDay: Scalars["GitHubDate"];
+  firstDay: Scalars['GitHubDate']
   /** The name of the month. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** How many weeks started in this month. */
-  totalWeeks: Scalars["Int"];
+  totalWeeks: Scalars['Int']
   /** The year the month occurred in. */
-  year: Scalars["Int"];
-};
+  year: Scalars['Int']
+}
 
 /** A week of contributions in a user's contribution graph. */
 export type GitHubContributionCalendarWeek = {
   /** The days of contributions in this week. */
-  contributionDays: Array<GitHubContributionCalendarDay>;
+  contributionDays: Array<GitHubContributionCalendarDay>
   /** The date of the earliest square in this week. */
-  firstDay: Scalars["GitHubDate"];
-};
+  firstDay: Scalars['GitHubDate']
+}
 
 /** Ordering options for contribution connections. */
 export type GitHubContributionOrder = {
-  /** The field by which to order contributions. */
-  field: GitHubContributionOrderField;
+  /** The field by which to order contributions.
+   *
+   * **Upcoming Change on 2019-10-01 UTC**
+   * **Description:** `field` will be removed. Only one order field is supported.
+   * **Reason:** `field` will be removed.
+   */
+  field?: Maybe<GitHubContributionOrderField>
   /** The ordering direction. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which contribution connections can be ordered. */
 export enum GitHubContributionOrderField {
   /** Order contributions by when they were made. */
-  OccurredAt = "OCCURRED_AT"
+  OccurredAt = 'OCCURRED_AT',
 }
 
 /** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
 export type GitHubContributionsCollection = {
   /** Commit contributions made by the user, grouped by repository. */
-  commitContributionsByRepository: Array<GitHubCommitContributionsByRepository>;
+  commitContributionsByRepository: Array<GitHubCommitContributionsByRepository>
   /** A calendar of this user's contributions on GitHub. */
-  contributionCalendar: GitHubContributionCalendar;
+  contributionCalendar: GitHubContributionCalendar
   /** The years the user has been making contributions with the most recent year first. */
-  contributionYears: Array<Scalars["Int"]>;
+  contributionYears: Array<Scalars['Int']>
   /** Determine if this collection's time span ends in the current month. */
-  doesEndInCurrentMonth: Scalars["Boolean"];
+  doesEndInCurrentMonth: Scalars['Boolean']
   /** The date of the first restricted contribution the user made in this time
    * period. Can only be non-null when the user has enabled private contribution counts.
    */
-  earliestRestrictedContributionDate?: Maybe<Scalars["GitHubDate"]>;
+  earliestRestrictedContributionDate?: Maybe<Scalars['GitHubDate']>
   /** The ending date and time of this collection. */
-  endedAt: Scalars["GitHubDateTime"];
+  endedAt: Scalars['GitHubDateTime']
   /** The first issue the user opened on GitHub. This will be null if that issue was
    * opened outside the collection's time range and ignoreTimeRange is false. If
    * the issue is not visible but the user has opted to show private contributions,
    * a RestrictedContribution will be returned.
    */
-  firstIssueContribution?: Maybe<GitHubCreatedIssueOrRestrictedContribution>;
+  firstIssueContribution?: Maybe<GitHubCreatedIssueOrRestrictedContribution>
   /** The first pull request the user opened on GitHub. This will be null if that
    * pull request was opened outside the collection's time range and
    * ignoreTimeRange is not true. If the pull request is not visible but the user
@@ -1633,7 +1816,7 @@ export type GitHubContributionsCollection = {
    */
   firstPullRequestContribution?: Maybe<
     GitHubCreatedPullRequestOrRestrictedContribution
-  >;
+  >
   /** The first repository the user created on GitHub. This will be null if that
    * first repository was created outside the collection's time range and
    * ignoreTimeRange is false. If the repository is not visible, then a
@@ -1641,331 +1824,311 @@ export type GitHubContributionsCollection = {
    */
   firstRepositoryContribution?: Maybe<
     GitHubCreatedRepositoryOrRestrictedContribution
-  >;
+  >
   /** Does the user have any more activity in the timeline that occurred prior to the collection's time range? */
-  hasActivityInThePast: Scalars["Boolean"];
+  hasActivityInThePast: Scalars['Boolean']
   /** Determine if there are any contributions in this collection. */
-  hasAnyContributions: Scalars["Boolean"];
+  hasAnyContributions: Scalars['Boolean']
   /** Determine if the user made any contributions in this time frame whose details
    * are not visible because they were made in a private repository. Can only be
    * true if the user enabled private contribution counts.
    */
-  hasAnyRestrictedContributions: Scalars["Boolean"];
+  hasAnyRestrictedContributions: Scalars['Boolean']
   /** Whether or not the collector's time span is all within the same day. */
-  isSingleDay: Scalars["Boolean"];
+  isSingleDay: Scalars['Boolean']
   /** A list of issues the user opened. */
-  issueContributions: GitHubCreatedIssueContributionConnection;
+  issueContributions: GitHubCreatedIssueContributionConnection
   /** Issue contributions made by the user, grouped by repository. */
-  issueContributionsByRepository: Array<GitHubIssueContributionsByRepository>;
+  issueContributionsByRepository: Array<GitHubIssueContributionsByRepository>
   /** When the user signed up for GitHub. This will be null if that sign up date
    * falls outside the collection's time range and ignoreTimeRange is false.
    */
-  joinedGitHubContribution?: Maybe<GitHubJoinedGitHubContribution>;
+  joinedGitHubContribution?: Maybe<GitHubJoinedGitHubContribution>
   /** The date of the most recent restricted contribution the user made in this time
    * period. Can only be non-null when the user has enabled private contribution counts.
    */
-  latestRestrictedContributionDate?: Maybe<Scalars["GitHubDate"]>;
+  latestRestrictedContributionDate?: Maybe<Scalars['GitHubDate']>
   /** When this collection's time range does not include any activity from the user, use this
    * to get a different collection from an earlier time range that does have activity.
    */
-  mostRecentCollectionWithActivity?: Maybe<GitHubContributionsCollection>;
+  mostRecentCollectionWithActivity?: Maybe<GitHubContributionsCollection>
   /** Returns a different contributions collection from an earlier time range than this one
    * that does not have any contributions.
    */
-  mostRecentCollectionWithoutActivity?: Maybe<GitHubContributionsCollection>;
+  mostRecentCollectionWithoutActivity?: Maybe<GitHubContributionsCollection>
   /** The issue the user opened on GitHub that received the most comments in the specified
    * time frame.
    */
-  popularIssueContribution?: Maybe<GitHubCreatedIssueContribution>;
+  popularIssueContribution?: Maybe<GitHubCreatedIssueContribution>
   /** The pull request the user opened on GitHub that received the most comments in the
    * specified time frame.
    */
-  popularPullRequestContribution?: Maybe<GitHubCreatedPullRequestContribution>;
+  popularPullRequestContribution?: Maybe<GitHubCreatedPullRequestContribution>
   /** Pull request contributions made by the user. */
-  pullRequestContributions: GitHubCreatedPullRequestContributionConnection;
+  pullRequestContributions: GitHubCreatedPullRequestContributionConnection
   /** Pull request contributions made by the user, grouped by repository. */
   pullRequestContributionsByRepository: Array<
     GitHubPullRequestContributionsByRepository
-  >;
+  >
   /** Pull request review contributions made by the user. */
-  pullRequestReviewContributions: GitHubCreatedPullRequestReviewContributionConnection;
+  pullRequestReviewContributions: GitHubCreatedPullRequestReviewContributionConnection
   /** Pull request review contributions made by the user, grouped by repository. */
   pullRequestReviewContributionsByRepository: Array<
     GitHubPullRequestReviewContributionsByRepository
-  >;
+  >
   /** A list of repositories owned by the user that the user created in this time range. */
-  repositoryContributions: GitHubCreatedRepositoryContributionConnection;
+  repositoryContributions: GitHubCreatedRepositoryContributionConnection
   /** A count of contributions made by the user that the viewer cannot access. Only
    * non-zero when the user has chosen to share their private contribution counts.
    */
-  restrictedContributionsCount: Scalars["Int"];
+  restrictedContributionsCount: Scalars['Int']
   /** The beginning date and time of this collection. */
-  startedAt: Scalars["GitHubDateTime"];
+  startedAt: Scalars['GitHubDateTime']
   /** How many commits were made by the user in this time span. */
-  totalCommitContributions: Scalars["Int"];
+  totalCommitContributions: Scalars['Int']
   /** How many issues the user opened. */
-  totalIssueContributions: Scalars["Int"];
+  totalIssueContributions: Scalars['Int']
   /** How many pull requests the user opened. */
-  totalPullRequestContributions: Scalars["Int"];
+  totalPullRequestContributions: Scalars['Int']
   /** How many pull request reviews the user left. */
-  totalPullRequestReviewContributions: Scalars["Int"];
+  totalPullRequestReviewContributions: Scalars['Int']
   /** How many different repositories the user committed to. */
-  totalRepositoriesWithContributedCommits: Scalars["Int"];
+  totalRepositoriesWithContributedCommits: Scalars['Int']
   /** How many different repositories the user opened issues in. */
-  totalRepositoriesWithContributedIssues: Scalars["Int"];
+  totalRepositoriesWithContributedIssues: Scalars['Int']
   /** How many different repositories the user left pull request reviews in. */
-  totalRepositoriesWithContributedPullRequestReviews: Scalars["Int"];
+  totalRepositoriesWithContributedPullRequestReviews: Scalars['Int']
   /** How many different repositories the user opened pull requests in. */
-  totalRepositoriesWithContributedPullRequests: Scalars["Int"];
+  totalRepositoriesWithContributedPullRequests: Scalars['Int']
   /** How many repositories the user created. */
-  totalRepositoryContributions: Scalars["Int"];
+  totalRepositoryContributions: Scalars['Int']
   /** The user who made the contributions in this collection. */
-  user: GitHubUser;
-};
+  user: GitHubUser
+}
 
 /** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
 export type GitHubContributionsCollectionCommitContributionsByRepositoryArgs = {
-  maxRepositories: Scalars["Int"];
-};
-
-/** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
-export type GitHubContributionsCollectionFirstIssueContributionArgs = {
-  ignoreTimeRange: Scalars["Boolean"];
-};
-
-/** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
-export type GitHubContributionsCollectionFirstPullRequestContributionArgs = {
-  ignoreTimeRange: Scalars["Boolean"];
-};
-
-/** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
-export type GitHubContributionsCollectionFirstRepositoryContributionArgs = {
-  ignoreTimeRange: Scalars["Boolean"];
-};
+  maxRepositories: Scalars['Int']
+}
 
 /** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
 export type GitHubContributionsCollectionIssueContributionsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  excludeFirst: Scalars["Boolean"];
-  excludePopular: Scalars["Boolean"];
-  orderBy?: Maybe<GitHubContributionOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  excludeFirst: Scalars['Boolean']
+  excludePopular: Scalars['Boolean']
+  orderBy: GitHubContributionOrder
+}
 
 /** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
 export type GitHubContributionsCollectionIssueContributionsByRepositoryArgs = {
-  maxRepositories: Scalars["Int"];
-  excludeFirst: Scalars["Boolean"];
-  excludePopular: Scalars["Boolean"];
-};
-
-/** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
-export type GitHubContributionsCollectionJoinedGitHubContributionArgs = {
-  ignoreTimeRange: Scalars["Boolean"];
-};
+  maxRepositories: Scalars['Int']
+  excludeFirst: Scalars['Boolean']
+  excludePopular: Scalars['Boolean']
+}
 
 /** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
 export type GitHubContributionsCollectionPullRequestContributionsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  excludeFirst: Scalars["Boolean"];
-  excludePopular: Scalars["Boolean"];
-  orderBy?: Maybe<GitHubContributionOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  excludeFirst: Scalars['Boolean']
+  excludePopular: Scalars['Boolean']
+  orderBy: GitHubContributionOrder
+}
 
 /** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
 export type GitHubContributionsCollectionPullRequestContributionsByRepositoryArgs = {
-  maxRepositories: Scalars["Int"];
-  excludeFirst: Scalars["Boolean"];
-  excludePopular: Scalars["Boolean"];
-};
+  maxRepositories: Scalars['Int']
+  excludeFirst: Scalars['Boolean']
+  excludePopular: Scalars['Boolean']
+}
 
 /** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
 export type GitHubContributionsCollectionPullRequestReviewContributionsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  orderBy?: Maybe<GitHubContributionOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy: GitHubContributionOrder
+}
 
 /** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
 export type GitHubContributionsCollectionPullRequestReviewContributionsByRepositoryArgs = {
-  maxRepositories: Scalars["Int"];
-};
+  maxRepositories: Scalars['Int']
+}
 
 /** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
 export type GitHubContributionsCollectionRepositoryContributionsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  excludeFirst: Scalars["Boolean"];
-  orderBy?: Maybe<GitHubContributionOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  excludeFirst: Scalars['Boolean']
+  orderBy: GitHubContributionOrder
+}
 
 /** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
 export type GitHubContributionsCollectionTotalIssueContributionsArgs = {
-  excludeFirst: Scalars["Boolean"];
-  excludePopular: Scalars["Boolean"];
-};
+  excludeFirst: Scalars['Boolean']
+  excludePopular: Scalars['Boolean']
+}
 
 /** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
 export type GitHubContributionsCollectionTotalPullRequestContributionsArgs = {
-  excludeFirst: Scalars["Boolean"];
-  excludePopular: Scalars["Boolean"];
-};
+  excludeFirst: Scalars['Boolean']
+  excludePopular: Scalars['Boolean']
+}
 
 /** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
 export type GitHubContributionsCollectionTotalRepositoriesWithContributedIssuesArgs = {
-  excludeFirst: Scalars["Boolean"];
-  excludePopular: Scalars["Boolean"];
-};
+  excludeFirst: Scalars['Boolean']
+  excludePopular: Scalars['Boolean']
+}
 
 /** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
 export type GitHubContributionsCollectionTotalRepositoriesWithContributedPullRequestsArgs = {
-  excludeFirst: Scalars["Boolean"];
-  excludePopular: Scalars["Boolean"];
-};
+  excludeFirst: Scalars['Boolean']
+  excludePopular: Scalars['Boolean']
+}
 
 /** A contributions collection aggregates contributions such as opened issues and commits created by a user. */
 export type GitHubContributionsCollectionTotalRepositoryContributionsArgs = {
-  excludeFirst: Scalars["Boolean"];
-};
+  excludeFirst: Scalars['Boolean']
+}
 
 /** Represents a 'converted_note_to_issue' event on a given issue or pull request. */
 export type GitHubConvertedNoteToIssueEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
-  id: Scalars["ID"];
-};
+  databaseId?: Maybe<Scalars['Int']>
+  id: Scalars['ID']
+}
 
 /** Autogenerated input type of ConvertProjectCardNoteToIssue */
 export type GitHubConvertProjectCardNoteToIssueInput = {
   /** The ProjectCard ID to convert. */
-  projectCardId: Scalars["ID"];
+  projectCardId: Scalars['ID']
   /** The ID of the repository to create the issue in. */
-  repositoryId: Scalars["ID"];
+  repositoryId: Scalars['ID']
   /** The title of the newly created issue. Defaults to the card's note text. */
-  title?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars['String']>
   /** The body of the newly created issue. */
-  body?: Maybe<Scalars["String"]>;
+  body?: Maybe<Scalars['String']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of ConvertProjectCardNoteToIssue */
 export type GitHubConvertProjectCardNoteToIssuePayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The updated ProjectCard. */
-  projectCard?: Maybe<GitHubProjectCard>;
-};
+  projectCard?: Maybe<GitHubProjectCard>
+}
 
 /** Autogenerated input type of CreateBranchProtectionRule */
 export type GitHubCreateBranchProtectionRuleInput = {
   /** The global relay id of the repository in which a new branch protection rule should be created in. */
-  repositoryId: Scalars["ID"];
+  repositoryId: Scalars['ID']
   /** The glob-like pattern used to determine matching branches. */
-  pattern: Scalars["String"];
+  pattern: Scalars['String']
   /** Are approving reviews required to update matching branches. */
-  requiresApprovingReviews?: Maybe<Scalars["Boolean"]>;
+  requiresApprovingReviews?: Maybe<Scalars['Boolean']>
   /** Number of approving reviews required to update matching branches. */
-  requiredApprovingReviewCount?: Maybe<Scalars["Int"]>;
+  requiredApprovingReviewCount?: Maybe<Scalars['Int']>
   /** Are commits required to be signed. */
-  requiresCommitSignatures?: Maybe<Scalars["Boolean"]>;
+  requiresCommitSignatures?: Maybe<Scalars['Boolean']>
   /** Can admins overwrite branch protection. */
-  isAdminEnforced?: Maybe<Scalars["Boolean"]>;
+  isAdminEnforced?: Maybe<Scalars['Boolean']>
   /** Are status checks required to update matching branches. */
-  requiresStatusChecks?: Maybe<Scalars["Boolean"]>;
+  requiresStatusChecks?: Maybe<Scalars['Boolean']>
   /** Are branches required to be up to date before merging. */
-  requiresStrictStatusChecks?: Maybe<Scalars["Boolean"]>;
+  requiresStrictStatusChecks?: Maybe<Scalars['Boolean']>
   /** Are reviews from code owners required to update matching branches. */
-  requiresCodeOwnerReviews?: Maybe<Scalars["Boolean"]>;
+  requiresCodeOwnerReviews?: Maybe<Scalars['Boolean']>
   /** Will new commits pushed to matching branches dismiss pull request review approvals. */
-  dismissesStaleReviews?: Maybe<Scalars["Boolean"]>;
+  dismissesStaleReviews?: Maybe<Scalars['Boolean']>
   /** Is dismissal of pull request reviews restricted. */
-  restrictsReviewDismissals?: Maybe<Scalars["Boolean"]>;
+  restrictsReviewDismissals?: Maybe<Scalars['Boolean']>
   /** A list of User or Team IDs allowed to dismiss reviews on pull requests targeting matching branches. */
-  reviewDismissalActorIds?: Maybe<Array<Scalars["ID"]>>;
+  reviewDismissalActorIds?: Maybe<Array<Scalars['ID']>>
   /** Is pushing to matching branches restricted. */
-  restrictsPushes?: Maybe<Scalars["Boolean"]>;
-  /** A list of User or Team IDs allowed to push to matching branches. */
-  pushActorIds?: Maybe<Array<Scalars["ID"]>>;
+  restrictsPushes?: Maybe<Scalars['Boolean']>
+  /** A list of User, Team or App IDs allowed to push to matching branches. */
+  pushActorIds?: Maybe<Array<Scalars['ID']>>
   /** List of required status check contexts that must pass for commits to be accepted to matching branches. */
-  requiredStatusCheckContexts?: Maybe<Array<Scalars["String"]>>;
+  requiredStatusCheckContexts?: Maybe<Array<Scalars['String']>>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of CreateBranchProtectionRule */
 export type GitHubCreateBranchProtectionRulePayload = {
   /** The newly created BranchProtectionRule. */
-  branchProtectionRule?: Maybe<GitHubBranchProtectionRule>;
+  branchProtectionRule?: Maybe<GitHubBranchProtectionRule>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated input type of CreateContentAttachment */
 export type GitHubCreateContentAttachmentInput = {
   /** The node ID of the content_reference. */
-  contentReferenceId: Scalars["ID"];
+  contentReferenceId: Scalars['ID']
   /** The title of the content attachment. */
-  title: Scalars["String"];
+  title: Scalars['String']
   /** The body of the content attachment, which may contain markdown. */
-  body: Scalars["String"];
+  body: Scalars['String']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Represents the contribution a user made by committing to a repository. */
 export type GitHubCreatedCommitContribution = GitHubContribution & {
   /** How many commits were made on this day to this repository by the user. */
-  commitCount: Scalars["Int"];
+  commitCount: Scalars['Int']
   /** Whether this contribution is associated with a record you do not have access to. For
    * example, your own 'first issue' contribution may have been made on a repository you can no
    * longer access.
    */
-  isRestricted: Scalars["Boolean"];
+  isRestricted: Scalars['Boolean']
   /** When this contribution was made. */
-  occurredAt: Scalars["GitHubDateTime"];
+  occurredAt: Scalars['GitHubDateTime']
   /** The repository the user made a commit in. */
-  repository: GitHubRepository;
+  repository: GitHubRepository
   /** The HTTP path for this contribution. */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** The HTTP URL for this contribution. */
-  url: Scalars["GitHubURI"];
+  url: Scalars['GitHubURI']
   /** The user who made this contribution. */
-  user: GitHubUser;
-};
+  user: GitHubUser
+}
 
 /** The connection type for CreatedCommitContribution. */
 export type GitHubCreatedCommitContributionConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubCreatedCommitContributionEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubCreatedCommitContributionEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubCreatedCommitContribution>>>;
+  nodes?: Maybe<Array<Maybe<GitHubCreatedCommitContribution>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of commits across days and repositories in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubCreatedCommitContributionEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubCreatedCommitContribution>;
-};
+  node?: Maybe<GitHubCreatedCommitContribution>
+}
 
 /** Represents the contribution a user made on GitHub by opening an issue. */
 export type GitHubCreatedIssueContribution = GitHubContribution & {
@@ -1973,43 +2136,43 @@ export type GitHubCreatedIssueContribution = GitHubContribution & {
    * example, your own 'first issue' contribution may have been made on a repository you can no
    * longer access.
    */
-  isRestricted: Scalars["Boolean"];
+  isRestricted: Scalars['Boolean']
   /** The issue that was opened. */
-  issue: GitHubIssue;
+  issue: GitHubIssue
   /** When this contribution was made. */
-  occurredAt: Scalars["GitHubDateTime"];
+  occurredAt: Scalars['GitHubDateTime']
   /** The HTTP path for this contribution. */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** The HTTP URL for this contribution. */
-  url: Scalars["GitHubURI"];
+  url: Scalars['GitHubURI']
   /** The user who made this contribution. */
-  user: GitHubUser;
-};
+  user: GitHubUser
+}
 
 /** The connection type for CreatedIssueContribution. */
 export type GitHubCreatedIssueContributionConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubCreatedIssueContributionEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubCreatedIssueContributionEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubCreatedIssueContribution>>>;
+  nodes?: Maybe<Array<Maybe<GitHubCreatedIssueContribution>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubCreatedIssueContributionEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubCreatedIssueContribution>;
-};
+  node?: Maybe<GitHubCreatedIssueContribution>
+}
 
 /** Represents either a issue the viewer can access or a restricted contribution. */
 export type GitHubCreatedIssueOrRestrictedContribution =
   | GitHubCreatedIssueContribution
-  | GitHubRestrictedContribution;
+  | GitHubRestrictedContribution
 
 /** Represents the contribution a user made on GitHub by opening a pull request. */
 export type GitHubCreatedPullRequestContribution = GitHubContribution & {
@@ -2017,43 +2180,43 @@ export type GitHubCreatedPullRequestContribution = GitHubContribution & {
    * example, your own 'first issue' contribution may have been made on a repository you can no
    * longer access.
    */
-  isRestricted: Scalars["Boolean"];
+  isRestricted: Scalars['Boolean']
   /** When this contribution was made. */
-  occurredAt: Scalars["GitHubDateTime"];
+  occurredAt: Scalars['GitHubDateTime']
   /** The pull request that was opened. */
-  pullRequest: GitHubPullRequest;
+  pullRequest: GitHubPullRequest
   /** The HTTP path for this contribution. */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** The HTTP URL for this contribution. */
-  url: Scalars["GitHubURI"];
+  url: Scalars['GitHubURI']
   /** The user who made this contribution. */
-  user: GitHubUser;
-};
+  user: GitHubUser
+}
 
 /** The connection type for CreatedPullRequestContribution. */
 export type GitHubCreatedPullRequestContributionConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubCreatedPullRequestContributionEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubCreatedPullRequestContributionEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubCreatedPullRequestContribution>>>;
+  nodes?: Maybe<Array<Maybe<GitHubCreatedPullRequestContribution>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubCreatedPullRequestContributionEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubCreatedPullRequestContribution>;
-};
+  node?: Maybe<GitHubCreatedPullRequestContribution>
+}
 
 /** Represents either a pull request the viewer can access or a restricted contribution. */
 export type GitHubCreatedPullRequestOrRestrictedContribution =
   | GitHubCreatedPullRequestContribution
-  | GitHubRestrictedContribution;
+  | GitHubRestrictedContribution
 
 /** Represents the contribution a user made by leaving a review on a pull request. */
 export type GitHubCreatedPullRequestReviewContribution = GitHubContribution & {
@@ -2061,42 +2224,42 @@ export type GitHubCreatedPullRequestReviewContribution = GitHubContribution & {
    * example, your own 'first issue' contribution may have been made on a repository you can no
    * longer access.
    */
-  isRestricted: Scalars["Boolean"];
+  isRestricted: Scalars['Boolean']
   /** When this contribution was made. */
-  occurredAt: Scalars["GitHubDateTime"];
+  occurredAt: Scalars['GitHubDateTime']
   /** The pull request the user reviewed. */
-  pullRequest: GitHubPullRequest;
+  pullRequest: GitHubPullRequest
   /** The review the user left on the pull request. */
-  pullRequestReview: GitHubPullRequestReview;
+  pullRequestReview: GitHubPullRequestReview
   /** The repository containing the pull request that the user reviewed. */
-  repository: GitHubRepository;
+  repository: GitHubRepository
   /** The HTTP path for this contribution. */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** The HTTP URL for this contribution. */
-  url: Scalars["GitHubURI"];
+  url: Scalars['GitHubURI']
   /** The user who made this contribution. */
-  user: GitHubUser;
-};
+  user: GitHubUser
+}
 
 /** The connection type for CreatedPullRequestReviewContribution. */
 export type GitHubCreatedPullRequestReviewContributionConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubCreatedPullRequestReviewContributionEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubCreatedPullRequestReviewContributionEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubCreatedPullRequestReviewContribution>>>;
+  nodes?: Maybe<Array<Maybe<GitHubCreatedPullRequestReviewContribution>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubCreatedPullRequestReviewContributionEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubCreatedPullRequestReviewContribution>;
-};
+  node?: Maybe<GitHubCreatedPullRequestReviewContribution>
+}
 
 /** Represents the contribution a user made on GitHub by creating a repository. */
 export type GitHubCreatedRepositoryContribution = GitHubContribution & {
@@ -2104,699 +2267,2057 @@ export type GitHubCreatedRepositoryContribution = GitHubContribution & {
    * example, your own 'first issue' contribution may have been made on a repository you can no
    * longer access.
    */
-  isRestricted: Scalars["Boolean"];
+  isRestricted: Scalars['Boolean']
   /** When this contribution was made. */
-  occurredAt: Scalars["GitHubDateTime"];
+  occurredAt: Scalars['GitHubDateTime']
   /** The repository that was created. */
-  repository: GitHubRepository;
+  repository: GitHubRepository
   /** The HTTP path for this contribution. */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** The HTTP URL for this contribution. */
-  url: Scalars["GitHubURI"];
+  url: Scalars['GitHubURI']
   /** The user who made this contribution. */
-  user: GitHubUser;
-};
+  user: GitHubUser
+}
 
 /** The connection type for CreatedRepositoryContribution. */
 export type GitHubCreatedRepositoryContributionConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubCreatedRepositoryContributionEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubCreatedRepositoryContributionEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubCreatedRepositoryContribution>>>;
+  nodes?: Maybe<Array<Maybe<GitHubCreatedRepositoryContribution>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubCreatedRepositoryContributionEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubCreatedRepositoryContribution>;
-};
+  node?: Maybe<GitHubCreatedRepositoryContribution>
+}
 
 /** Represents either a repository the viewer can access or a restricted contribution. */
 export type GitHubCreatedRepositoryOrRestrictedContribution =
   | GitHubCreatedRepositoryContribution
-  | GitHubRestrictedContribution;
+  | GitHubRestrictedContribution
+
+/** Autogenerated input type of CreateEnterpriseOrganization */
+export type GitHubCreateEnterpriseOrganizationInput = {
+  /** The ID of the enterprise owning the new organization. */
+  enterpriseId: Scalars['ID']
+  /** The login of the new organization. */
+  login: Scalars['String']
+  /** The profile name of the new organization. */
+  profileName: Scalars['String']
+  /** The email used for sending billing receipts. */
+  billingEmail: Scalars['String']
+  /** The logins for the administrators of the new organization. */
+  adminLogins: Array<Scalars['String']>
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of CreateEnterpriseOrganization */
+export type GitHubCreateEnterpriseOrganizationPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise that owns the created organization. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** The organization that was created. */
+  organization?: Maybe<GitHubOrganization>
+}
 
 /** Autogenerated input type of CreateIssue */
 export type GitHubCreateIssueInput = {
   /** The Node ID of the repository. */
-  repositoryId: Scalars["ID"];
+  repositoryId: Scalars['ID']
   /** The title for the issue. */
-  title: Scalars["String"];
+  title: Scalars['String']
   /** The body for the issue description. */
-  body?: Maybe<Scalars["String"]>;
+  body?: Maybe<Scalars['String']>
   /** The Node ID for the user assignee for this issue. */
-  assigneeIds?: Maybe<Array<Scalars["ID"]>>;
+  assigneeIds?: Maybe<Array<Scalars['ID']>>
   /** The Node ID of the milestone for this issue. */
-  milestoneId?: Maybe<Scalars["ID"]>;
+  milestoneId?: Maybe<Scalars['ID']>
   /** An array of Node IDs of labels for this issue. */
-  labelIds?: Maybe<Array<Scalars["ID"]>>;
+  labelIds?: Maybe<Array<Scalars['ID']>>
   /** An array of Node IDs for projects associated with this issue. */
-  projectIds?: Maybe<Array<Scalars["ID"]>>;
+  projectIds?: Maybe<Array<Scalars['ID']>>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of CreateIssue */
 export type GitHubCreateIssuePayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The new issue. */
-  issue?: Maybe<GitHubIssue>;
-};
+  issue?: Maybe<GitHubIssue>
+}
 
 /** Autogenerated input type of CreateProject */
 export type GitHubCreateProjectInput = {
   /** The owner ID to create the project under. */
-  ownerId: Scalars["ID"];
+  ownerId: Scalars['ID']
   /** The name of project. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** The description of project. */
-  body?: Maybe<Scalars["String"]>;
+  body?: Maybe<Scalars['String']>
+  /** The name of the GitHub-provided template. */
+  template?: Maybe<GitHubProjectTemplate>
+  /** A list of repository IDs to create as linked repositories for the project */
+  repositoryIds?: Maybe<Array<Scalars['ID']>>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of CreateProject */
 export type GitHubCreateProjectPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The new project. */
-  project?: Maybe<GitHubProject>;
-};
+  project?: Maybe<GitHubProject>
+}
 
 /** Autogenerated input type of CreatePullRequest */
 export type GitHubCreatePullRequestInput = {
   /** The Node ID of the repository. */
-  repositoryId: Scalars["ID"];
+  repositoryId: Scalars['ID']
   /** The name of the branch you want your changes pulled into. This should be an existing branch
    * on the current repository. You cannot update the base branch on a pull request to point
    * to another repository.
    */
-  baseRefName: Scalars["String"];
+  baseRefName: Scalars['String']
   /** The name of the branch where your changes are implemented. For cross-repository pull requests
    * in the same network, namespace `head_ref_name` with a user like this: `username:branch`.
    */
-  headRefName: Scalars["String"];
+  headRefName: Scalars['String']
   /** The title of the pull request. */
-  title: Scalars["String"];
+  title: Scalars['String']
   /** The contents of the pull request. */
-  body?: Maybe<Scalars["String"]>;
+  body?: Maybe<Scalars['String']>
   /** Indicates whether maintainers can modify the pull request. */
-  maintainerCanModify?: Maybe<Scalars["Boolean"]>;
+  maintainerCanModify?: Maybe<Scalars['Boolean']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of CreatePullRequest */
 export type GitHubCreatePullRequestPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The new pull request. */
-  pullRequest?: Maybe<GitHubPullRequest>;
-};
+  pullRequest?: Maybe<GitHubPullRequest>
+}
+
+/** Autogenerated input type of CreateRef */
+export type GitHubCreateRefInput = {
+  /** The Node ID of the Repository to create the Ref in. */
+  repositoryId: Scalars['ID']
+  /** The fully qualified name of the new Ref (ie: `refs/heads/my_new_branch`). */
+  name: Scalars['String']
+  /** The GitObjectID that the new Ref shall target. Must point to a commit. */
+  oid: Scalars['GitHubGitObjectID']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of CreateRef */
+export type GitHubCreateRefPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The newly created ref. */
+  ref?: Maybe<GitHubRef>
+}
+
+/** Autogenerated input type of CreateRepository */
+export type GitHubCreateRepositoryInput = {
+  /** The name of the new repository. */
+  name: Scalars['String']
+  /** The ID of the owner for the new repository. */
+  ownerId?: Maybe<Scalars['ID']>
+  /** A short description of the new repository. */
+  description?: Maybe<Scalars['String']>
+  /** Indicates the repository's visibility level. */
+  visibility: GitHubRepositoryVisibility
+  /** Whether this repository should be marked as a template such that anyone who
+   * can access it can create new repositories with the same files and directory structure.
+   */
+  template?: Maybe<Scalars['Boolean']>
+  /** The URL for a web page about this repository. */
+  homepageUrl?: Maybe<Scalars['GitHubURI']>
+  /** Indicates if the repository should have the wiki feature enabled. */
+  hasWikiEnabled?: Maybe<Scalars['Boolean']>
+  /** Indicates if the repository should have the issues feature enabled. */
+  hasIssuesEnabled?: Maybe<Scalars['Boolean']>
+  /** When an organization is specified as the owner, this ID identifies the team
+   * that should be granted access to the new repository.
+   */
+  teamId?: Maybe<Scalars['ID']>
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of CreateRepository */
+export type GitHubCreateRepositoryPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The new repository. */
+  repository?: Maybe<GitHubRepository>
+}
+
+/** Autogenerated input type of CreateTeamDiscussionComment */
+export type GitHubCreateTeamDiscussionCommentInput = {
+  /** The ID of the discussion to which the comment belongs. */
+  discussionId: Scalars['ID']
+  /** The content of the comment. */
+  body: Scalars['String']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of CreateTeamDiscussionComment */
+export type GitHubCreateTeamDiscussionCommentPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The new comment. */
+  teamDiscussionComment?: Maybe<GitHubTeamDiscussionComment>
+}
+
+/** Autogenerated input type of CreateTeamDiscussion */
+export type GitHubCreateTeamDiscussionInput = {
+  /** The ID of the team to which the discussion belongs. */
+  teamId: Scalars['ID']
+  /** The title of the discussion. */
+  title: Scalars['String']
+  /** The content of the discussion. */
+  body: Scalars['String']
+  /** If true, restricts the visiblity of this discussion to team members and
+   * organization admins. If false or not specified, allows any organization member
+   * to view this discussion.
+   */
+  private?: Maybe<Scalars['Boolean']>
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of CreateTeamDiscussion */
+export type GitHubCreateTeamDiscussionPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The new discussion. */
+  teamDiscussion?: Maybe<GitHubTeamDiscussion>
+}
 
 /** Represents a mention made by one issue or pull request to another. */
 export type GitHubCrossReferencedEvent = GitHubNode &
   GitHubUniformResourceLocatable & {
     /** Identifies the actor who performed the event. */
-    actor?: Maybe<GitHubActor>;
+    actor?: Maybe<GitHubActor>
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
-    id: Scalars["ID"];
+    createdAt: Scalars['GitHubDateTime']
+    id: Scalars['ID']
     /** Reference originated in a different repository. */
-    isCrossRepository: Scalars["Boolean"];
+    isCrossRepository: Scalars['Boolean']
     /** Identifies when the reference was made. */
-    referencedAt: Scalars["GitHubDateTime"];
+    referencedAt: Scalars['GitHubDateTime']
     /** The HTTP path for this pull request. */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** Issue or pull request that made the reference. */
-    source: GitHubReferencedSubject;
+    source: GitHubReferencedSubject
     /** Issue or pull request to which the reference was made. */
-    target: GitHubReferencedSubject;
+    target: GitHubReferencedSubject
     /** The HTTP URL for this pull request. */
-    url: Scalars["GitHubURI"];
+    url: Scalars['GitHubURI']
     /** Checks if the target will be closed when the source is merged. */
-    willCloseTarget: Scalars["Boolean"];
-  };
+    willCloseTarget: Scalars['Boolean']
+  }
 
 /** Autogenerated input type of DeclineTopicSuggestion */
 export type GitHubDeclineTopicSuggestionInput = {
   /** The Node ID of the repository. */
-  repositoryId: Scalars["ID"];
+  repositoryId: Scalars['ID']
   /** The name of the suggested topic. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** The reason why the suggested topic is declined. */
-  reason: GitHubTopicSuggestionDeclineReason;
+  reason: GitHubTopicSuggestionDeclineReason
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of DeclineTopicSuggestion */
 export type GitHubDeclineTopicSuggestionPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The declined topic. */
-  topic?: Maybe<GitHubTopic>;
-};
+  topic?: Maybe<GitHubTopic>
+}
 
 /** The possible default permissions for repositories. */
 export enum GitHubDefaultRepositoryPermissionField {
   /** No access */
-  None = "NONE",
+  None = 'NONE',
   /** Can read repos by default */
-  Read = "READ",
+  Read = 'READ',
   /** Can read and write repos by default */
-  Write = "WRITE",
+  Write = 'WRITE',
   /** Can read, write, and administrate repos by default */
-  Admin = "ADMIN"
+  Admin = 'ADMIN',
 }
 
 /** Entities that can be deleted. */
 export type GitHubDeletable = {
   /** Check if the current viewer can delete this object. */
-  viewerCanDelete: Scalars["Boolean"];
-};
+  viewerCanDelete: Scalars['Boolean']
+}
 
 /** Autogenerated input type of DeleteBranchProtectionRule */
 export type GitHubDeleteBranchProtectionRuleInput = {
   /** The global relay id of the branch protection rule to be deleted. */
-  branchProtectionRuleId: Scalars["ID"];
+  branchProtectionRuleId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of DeleteBranchProtectionRule */
 export type GitHubDeleteBranchProtectionRulePayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated input type of DeleteIssueComment */
 export type GitHubDeleteIssueCommentInput = {
   /** The ID of the comment to delete. */
-  id: Scalars["ID"];
+  id: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of DeleteIssueComment */
 export type GitHubDeleteIssueCommentPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated input type of DeleteIssue */
 export type GitHubDeleteIssueInput = {
   /** The ID of the issue to delete. */
-  issueId: Scalars["ID"];
+  issueId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of DeleteIssue */
 export type GitHubDeleteIssuePayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The repository the issue belonged to */
-  repository?: Maybe<GitHubRepository>;
-};
+  repository?: Maybe<GitHubRepository>
+}
+
+/** Autogenerated input type of DeletePackageVersion */
+export type GitHubDeletePackageVersionInput = {
+  /** The ID of the package version to be deleted. */
+  packageVersionId: Scalars['ID']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated input type of DeleteProjectCard */
 export type GitHubDeleteProjectCardInput = {
   /** The id of the card to delete. */
-  cardId: Scalars["ID"];
+  cardId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of DeleteProjectCard */
 export type GitHubDeleteProjectCardPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The column the deleted card was in. */
-  column?: Maybe<GitHubProjectColumn>;
+  column?: Maybe<GitHubProjectColumn>
   /** The deleted card ID. */
-  deletedCardId?: Maybe<Scalars["ID"]>;
-};
+  deletedCardId?: Maybe<Scalars['ID']>
+}
 
 /** Autogenerated input type of DeleteProjectColumn */
 export type GitHubDeleteProjectColumnInput = {
   /** The id of the column to delete. */
-  columnId: Scalars["ID"];
+  columnId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of DeleteProjectColumn */
 export type GitHubDeleteProjectColumnPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The deleted column ID. */
-  deletedColumnId?: Maybe<Scalars["ID"]>;
+  deletedColumnId?: Maybe<Scalars['ID']>
   /** The project the deleted column was in. */
-  project?: Maybe<GitHubProject>;
-};
+  project?: Maybe<GitHubProject>
+}
 
 /** Autogenerated input type of DeleteProject */
 export type GitHubDeleteProjectInput = {
   /** The Project ID to update. */
-  projectId: Scalars["ID"];
+  projectId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of DeleteProject */
 export type GitHubDeleteProjectPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The repository or organization the project was removed from. */
-  owner?: Maybe<GitHubProjectOwner>;
-};
+  owner?: Maybe<GitHubProjectOwner>
+}
 
 /** Autogenerated input type of DeletePullRequestReviewComment */
 export type GitHubDeletePullRequestReviewCommentInput = {
   /** The ID of the comment to delete. */
-  id: Scalars["ID"];
+  id: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of DeletePullRequestReviewComment */
 export type GitHubDeletePullRequestReviewCommentPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The pull request review the deleted comment belonged to. */
-  pullRequestReview?: Maybe<GitHubPullRequestReview>;
-};
+  pullRequestReview?: Maybe<GitHubPullRequestReview>
+}
 
 /** Autogenerated input type of DeletePullRequestReview */
 export type GitHubDeletePullRequestReviewInput = {
   /** The Node ID of the pull request review to delete. */
-  pullRequestReviewId: Scalars["ID"];
+  pullRequestReviewId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of DeletePullRequestReview */
 export type GitHubDeletePullRequestReviewPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The deleted pull request review. */
-  pullRequestReview?: Maybe<GitHubPullRequestReview>;
-};
+  pullRequestReview?: Maybe<GitHubPullRequestReview>
+}
+
+/** Autogenerated input type of DeleteRef */
+export type GitHubDeleteRefInput = {
+  /** The Node ID of the Ref to be deleted. */
+  refId: Scalars['ID']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of DeleteRef */
+export type GitHubDeleteRefPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of DeleteTeamDiscussionComment */
+export type GitHubDeleteTeamDiscussionCommentInput = {
+  /** The ID of the comment to delete. */
+  id: Scalars['ID']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of DeleteTeamDiscussionComment */
+export type GitHubDeleteTeamDiscussionCommentPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of DeleteTeamDiscussion */
+export type GitHubDeleteTeamDiscussionInput = {
+  /** The discussion ID to delete. */
+  id: Scalars['ID']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of DeleteTeamDiscussion */
+export type GitHubDeleteTeamDiscussionPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Represents a 'demilestoned' event on a given issue or pull request. */
 export type GitHubDemilestonedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** Identifies the milestone title associated with the 'demilestoned' event. */
-  milestoneTitle: Scalars["String"];
+  milestoneTitle: Scalars['String']
   /** Object referenced by event. */
-  subject: GitHubMilestoneItem;
-};
+  subject: GitHubMilestoneItem
+}
 
 /** Represents a 'deployed' event on a given pull request. */
 export type GitHubDeployedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
+  databaseId?: Maybe<Scalars['Int']>
   /** The deployment associated with the 'deployed' event. */
-  deployment: GitHubDeployment;
-  id: Scalars["ID"];
+  deployment: GitHubDeployment
+  id: Scalars['ID']
   /** PullRequest referenced by event. */
-  pullRequest: GitHubPullRequest;
+  pullRequest: GitHubPullRequest
   /** The ref associated with the 'deployed' event. */
-  ref?: Maybe<GitHubRef>;
-};
+  ref?: Maybe<GitHubRef>
+}
 
 /** A repository deploy key. */
 export type GitHubDeployKey = GitHubNode & {
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** The deploy key. */
-  key: Scalars["String"];
+  key: Scalars['String']
   /** Whether or not the deploy key is read only. */
-  readOnly: Scalars["Boolean"];
+  readOnly: Scalars['Boolean']
   /** The deploy key title. */
-  title: Scalars["String"];
+  title: Scalars['String']
   /** Whether or not the deploy key has been verified. */
-  verified: Scalars["Boolean"];
-};
+  verified: Scalars['Boolean']
+}
 
 /** The connection type for DeployKey. */
 export type GitHubDeployKeyConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubDeployKeyEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubDeployKeyEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubDeployKey>>>;
+  nodes?: Maybe<Array<Maybe<GitHubDeployKey>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubDeployKeyEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubDeployKey>;
-};
+  node?: Maybe<GitHubDeployKey>
+}
 
 /** Represents triggered deployment instance. */
 export type GitHubDeployment = GitHubNode & {
   /** Identifies the commit sha of the deployment. */
-  commit?: Maybe<GitHubCommit>;
+  commit?: Maybe<GitHubCommit>
   /** Identifies the oid of the deployment commit, even if the commit has been deleted. */
-  commitOid: Scalars["String"];
+  commitOid: Scalars['String']
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the actor who triggered the deployment. */
-  creator?: Maybe<GitHubActor>;
+  creator?: Maybe<GitHubActor>
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
+  databaseId?: Maybe<Scalars['Int']>
   /** The deployment description. */
-  description?: Maybe<Scalars["String"]>;
+  description?: Maybe<Scalars['String']>
   /** The environment to which this deployment was made. */
-  environment?: Maybe<Scalars["String"]>;
-  id: Scalars["ID"];
+  environment?: Maybe<Scalars['String']>
+  id: Scalars['ID']
   /** The latest status of this deployment. */
-  latestStatus?: Maybe<GitHubDeploymentStatus>;
+  latestStatus?: Maybe<GitHubDeploymentStatus>
   /** Extra information that a deployment system might need. */
-  payload?: Maybe<Scalars["String"]>;
+  payload?: Maybe<Scalars['String']>
   /** Identifies the Ref of the deployment, if the deployment was created by ref. */
-  ref?: Maybe<GitHubRef>;
+  ref?: Maybe<GitHubRef>
   /** Identifies the repository associated with the deployment. */
-  repository: GitHubRepository;
+  repository: GitHubRepository
   /** The current state of the deployment. */
-  state?: Maybe<GitHubDeploymentState>;
+  state?: Maybe<GitHubDeploymentState>
   /** A list of statuses associated with the deployment. */
-  statuses?: Maybe<GitHubDeploymentStatusConnection>;
+  statuses?: Maybe<GitHubDeploymentStatusConnection>
   /** The deployment task. */
-  task?: Maybe<Scalars["String"]>;
+  task?: Maybe<Scalars['String']>
   /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars["GitHubDateTime"];
-};
+  updatedAt: Scalars['GitHubDateTime']
+}
 
 /** Represents triggered deployment instance. */
 export type GitHubDeploymentStatusesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** The connection type for Deployment. */
 export type GitHubDeploymentConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubDeploymentEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubDeploymentEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubDeployment>>>;
+  nodes?: Maybe<Array<Maybe<GitHubDeployment>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubDeploymentEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubDeployment>;
-};
+  node?: Maybe<GitHubDeployment>
+}
 
 /** Represents a 'deployment_environment_changed' event on a given pull request. */
 export type GitHubDeploymentEnvironmentChangedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** The deployment status that updated the deployment environment. */
-  deploymentStatus: GitHubDeploymentStatus;
-  id: Scalars["ID"];
+  deploymentStatus: GitHubDeploymentStatus
+  id: Scalars['ID']
   /** PullRequest referenced by event. */
-  pullRequest: GitHubPullRequest;
-};
+  pullRequest: GitHubPullRequest
+}
 
 /** Ordering options for deployment connections */
 export type GitHubDeploymentOrder = {
   /** The field to order deployments by. */
-  field: GitHubDeploymentOrderField;
+  field: GitHubDeploymentOrderField
   /** The ordering direction. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which deployment connections can be ordered. */
 export enum GitHubDeploymentOrderField {
   /** Order collection by creation time */
-  CreatedAt = "CREATED_AT"
+  CreatedAt = 'CREATED_AT',
 }
 
 /** The possible states in which a deployment can be. */
 export enum GitHubDeploymentState {
   /** The pending deployment was not updated after 30 minutes. */
-  Abandoned = "ABANDONED",
+  Abandoned = 'ABANDONED',
   /** The deployment is currently active. */
-  Active = "ACTIVE",
+  Active = 'ACTIVE',
   /** An inactive transient deployment. */
-  Destroyed = "DESTROYED",
+  Destroyed = 'DESTROYED',
   /** The deployment experienced an error. */
-  Error = "ERROR",
+  Error = 'ERROR',
   /** The deployment has failed. */
-  Failure = "FAILURE",
+  Failure = 'FAILURE',
   /** The deployment is inactive. */
-  Inactive = "INACTIVE",
+  Inactive = 'INACTIVE',
   /** The deployment is pending. */
-  Pending = "PENDING",
+  Pending = 'PENDING',
   /** The deployment has queued */
-  Queued = "QUEUED",
+  Queued = 'QUEUED',
   /** The deployment is in progress. */
-  InProgress = "IN_PROGRESS"
+  InProgress = 'IN_PROGRESS',
 }
 
 /** Describes the status of a given deployment attempt. */
 export type GitHubDeploymentStatus = GitHubNode & {
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the actor who triggered the deployment. */
-  creator?: Maybe<GitHubActor>;
+  creator?: Maybe<GitHubActor>
   /** Identifies the deployment associated with status. */
-  deployment: GitHubDeployment;
+  deployment: GitHubDeployment
   /** Identifies the description of the deployment. */
-  description?: Maybe<Scalars["String"]>;
+  description?: Maybe<Scalars['String']>
   /** Identifies the environment URL of the deployment. */
-  environmentUrl?: Maybe<Scalars["GitHubURI"]>;
-  id: Scalars["ID"];
+  environmentUrl?: Maybe<Scalars['GitHubURI']>
+  id: Scalars['ID']
   /** Identifies the log URL of the deployment. */
-  logUrl?: Maybe<Scalars["GitHubURI"]>;
+  logUrl?: Maybe<Scalars['GitHubURI']>
   /** Identifies the current state of the deployment. */
-  state: GitHubDeploymentStatusState;
+  state: GitHubDeploymentStatusState
   /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars["GitHubDateTime"];
-};
+  updatedAt: Scalars['GitHubDateTime']
+}
 
 /** The connection type for DeploymentStatus. */
 export type GitHubDeploymentStatusConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubDeploymentStatusEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubDeploymentStatusEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubDeploymentStatus>>>;
+  nodes?: Maybe<Array<Maybe<GitHubDeploymentStatus>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubDeploymentStatusEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubDeploymentStatus>;
-};
+  node?: Maybe<GitHubDeploymentStatus>
+}
 
 /** The possible states for a deployment status. */
 export enum GitHubDeploymentStatusState {
   /** The deployment is pending. */
-  Pending = "PENDING",
+  Pending = 'PENDING',
   /** The deployment was successful. */
-  Success = "SUCCESS",
+  Success = 'SUCCESS',
   /** The deployment has failed. */
-  Failure = "FAILURE",
+  Failure = 'FAILURE',
   /** The deployment is inactive. */
-  Inactive = "INACTIVE",
+  Inactive = 'INACTIVE',
   /** The deployment experienced an error. */
-  Error = "ERROR",
+  Error = 'ERROR',
   /** The deployment is queued */
-  Queued = "QUEUED",
+  Queued = 'QUEUED',
   /** The deployment is in progress. */
-  InProgress = "IN_PROGRESS"
+  InProgress = 'IN_PROGRESS',
 }
 
 /** Autogenerated input type of DismissPullRequestReview */
 export type GitHubDismissPullRequestReviewInput = {
   /** The Node ID of the pull request review to modify. */
-  pullRequestReviewId: Scalars["ID"];
+  pullRequestReviewId: Scalars['ID']
   /** The contents of the pull request review dismissal message. */
-  message: Scalars["String"];
+  message: Scalars['String']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of DismissPullRequestReview */
 export type GitHubDismissPullRequestReviewPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The dismissed pull request review. */
-  pullRequestReview?: Maybe<GitHubPullRequestReview>;
-};
+  pullRequestReview?: Maybe<GitHubPullRequestReview>
+}
 
 /** Specifies a review comment to be left with a Pull Request Review. */
 export type GitHubDraftPullRequestReviewComment = {
   /** Path to the file being commented on. */
-  path: Scalars["String"];
+  path: Scalars['String']
   /** Position in the file to leave a comment on. */
-  position: Scalars["Int"];
+  position: Scalars['Int']
   /** Body of the comment to leave. */
-  body: Scalars["String"];
-};
+  body: Scalars['String']
+}
+
+/** An account to manage multiple organizations with consolidated policy and billing. */
+export type GitHubEnterprise = GitHubNode & {
+  /** A URL pointing to the enterprise's public avatar. */
+  avatarUrl: Scalars['GitHubURI']
+  /** Enterprise billing information visible to enterprise billing managers. */
+  billingInfo?: Maybe<GitHubEnterpriseBillingInfo>
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['GitHubDateTime']
+  /** Identifies the primary key from the database. */
+  databaseId?: Maybe<Scalars['Int']>
+  /** The description of the enterprise. */
+  description?: Maybe<Scalars['String']>
+  /** The description of the enterprise as HTML. */
+  descriptionHTML: Scalars['GitHubHTML']
+  id: Scalars['ID']
+  /** The location of the enterprise. */
+  location?: Maybe<Scalars['String']>
+  /** A list of users who are members of this enterprise. */
+  members: GitHubEnterpriseMemberConnection
+  /** The name of the enterprise. */
+  name: Scalars['String']
+  /** A list of organizations that belong to this enterprise. */
+  organizations: GitHubOrganizationConnection
+  /** Enterprise information only visible to enterprise owners. */
+  ownerInfo?: Maybe<GitHubEnterpriseOwnerInfo>
+  /** The HTTP path for this enterprise. */
+  resourcePath: Scalars['GitHubURI']
+  /** The HTTP URL for this enterprise. */
+  url: Scalars['GitHubURI']
+  /** A list of user accounts on this enterprise. */
+  userAccounts: GitHubEnterpriseUserAccountConnection
+  /** Is the current viewer an admin of this enterprise? */
+  viewerIsAdmin: Scalars['Boolean']
+  /** The URL of the enterprise website. */
+  websiteUrl?: Maybe<Scalars['GitHubURI']>
+}
+
+/** An account to manage multiple organizations with consolidated policy and billing. */
+export type GitHubEnterpriseAvatarUrlArgs = {
+  size?: Maybe<Scalars['Int']>
+}
+
+/** An account to manage multiple organizations with consolidated policy and billing. */
+export type GitHubEnterpriseMembersArgs = {
+  organizationLogins?: Maybe<Array<Scalars['String']>>
+  query?: Maybe<Scalars['String']>
+  orderBy: GitHubEnterpriseMemberOrder
+  role?: Maybe<GitHubEnterpriseUserAccountMembershipRole>
+  deployment?: Maybe<GitHubEnterpriseUserDeployment>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** An account to manage multiple organizations with consolidated policy and billing. */
+export type GitHubEnterpriseOrganizationsArgs = {
+  query?: Maybe<Scalars['String']>
+  orderBy: GitHubOrganizationOrder
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** An account to manage multiple organizations with consolidated policy and billing. */
+export type GitHubEnterpriseUserAccountsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** The connection type for User. */
+export type GitHubEnterpriseAdministratorConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubEnterpriseAdministratorEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubUser>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** A User who is an administrator of an enterprise. */
+export type GitHubEnterpriseAdministratorEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubUser>
+  /** The role of the administrator. */
+  role: GitHubEnterpriseAdministratorRole
+}
+
+/** An invitation for a user to become an owner or billing manager of an enterprise. */
+export type GitHubEnterpriseAdministratorInvitation = GitHubNode & {
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['GitHubDateTime']
+  /** The email of the person who was invited to the enterprise. */
+  email?: Maybe<Scalars['String']>
+  /** The enterprise the invitation is for. */
+  enterprise: GitHubEnterprise
+  id: Scalars['ID']
+  /** The user who was invited to the enterprise. */
+  invitee?: Maybe<GitHubUser>
+  /** The user who created the invitation. */
+  inviter?: Maybe<GitHubUser>
+  /** The invitee's pending role in the enterprise (owner or billing_manager). */
+  role: GitHubEnterpriseAdministratorRole
+}
+
+/** The connection type for EnterpriseAdministratorInvitation. */
+export type GitHubEnterpriseAdministratorInvitationConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubEnterpriseAdministratorInvitationEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubEnterpriseAdministratorInvitation>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubEnterpriseAdministratorInvitationEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubEnterpriseAdministratorInvitation>
+}
+
+/** Ordering options for enterprise administrator invitation connections */
+export type GitHubEnterpriseAdministratorInvitationOrder = {
+  /** The field to order enterprise administrator invitations by. */
+  field: GitHubEnterpriseAdministratorInvitationOrderField
+  /** The ordering direction. */
+  direction: GitHubOrderDirection
+}
+
+/** Properties by which enterprise administrator invitation connections can be ordered. */
+export enum GitHubEnterpriseAdministratorInvitationOrderField {
+  /** Order enterprise administrator member invitations by creation time */
+  CreatedAt = 'CREATED_AT',
+}
+
+/** The possible administrator roles in an enterprise account. */
+export enum GitHubEnterpriseAdministratorRole {
+  /** Represents an owner of the enterprise account. */
+  Owner = 'OWNER',
+  /** Represents a billing manager of the enterprise account. */
+  BillingManager = 'BILLING_MANAGER',
+}
+
+/** Metadata for an audit entry containing enterprise account information. */
+export type GitHubEnterpriseAuditEntryData = {
+  /** The HTTP path for this enterprise. */
+  enterpriseResourcePath?: Maybe<Scalars['GitHubURI']>
+  /** The slug of the enterprise. */
+  enterpriseSlug?: Maybe<Scalars['String']>
+  /** The HTTP URL for this enterprise. */
+  enterpriseUrl?: Maybe<Scalars['GitHubURI']>
+}
+
+/** Enterprise billing information visible to enterprise billing managers and owners. */
+export type GitHubEnterpriseBillingInfo = {
+  /** The number of licenseable users/emails across the enterprise. */
+  allLicensableUsersCount: Scalars['Int']
+  /** The number of data packs used by all organizations owned by the enterprise. */
+  assetPacks: Scalars['Int']
+  /** The number of available seats across all owned organizations based on the unique number of billable users. */
+  availableSeats: Scalars['Int']
+  /** The bandwidth quota in GB for all organizations owned by the enterprise. */
+  bandwidthQuota: Scalars['Float']
+  /** The bandwidth usage in GB for all organizations owned by the enterprise. */
+  bandwidthUsage: Scalars['Float']
+  /** The bandwidth usage as a percentage of the bandwidth quota. */
+  bandwidthUsagePercentage: Scalars['Int']
+  /** The total seats across all organizations owned by the enterprise. */
+  seats: Scalars['Int']
+  /** The storage quota in GB for all organizations owned by the enterprise. */
+  storageQuota: Scalars['Float']
+  /** The storage usage in GB for all organizations owned by the enterprise. */
+  storageUsage: Scalars['Float']
+  /** The storage usage as a percentage of the storage quota. */
+  storageUsagePercentage: Scalars['Int']
+  /** The number of available licenses across all owned organizations based on the unique number of billable users. */
+  totalAvailableLicenses: Scalars['Int']
+  /** The total number of licenses allocated. */
+  totalLicenses: Scalars['Int']
+}
+
+/** The possible values for the enterprise default repository permission setting. */
+export enum GitHubEnterpriseDefaultRepositoryPermissionSettingValue {
+  /** Organizations in the enterprise choose default repository permissions for their members. */
+  NoPolicy = 'NO_POLICY',
+  /** Organization members will be able to clone, pull, push, and add new collaborators to all organization repositories. */
+  Admin = 'ADMIN',
+  /** Organization members will be able to clone, pull, and push all organization repositories. */
+  Write = 'WRITE',
+  /** Organization members will be able to clone and pull all organization repositories. */
+  Read = 'READ',
+  /** Organization members will only be able to clone and pull public repositories. */
+  None = 'NONE',
+}
+
+/** An edge in a connection. */
+export type GitHubEnterpriseEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubEnterprise>
+}
+
+/** The possible values for an enabled/disabled enterprise setting. */
+export enum GitHubEnterpriseEnabledDisabledSettingValue {
+  /** The setting is enabled for organizations in the enterprise. */
+  Enabled = 'ENABLED',
+  /** The setting is disabled for organizations in the enterprise. */
+  Disabled = 'DISABLED',
+  /** There is no policy set for organizations in the enterprise. */
+  NoPolicy = 'NO_POLICY',
+}
+
+/** The possible values for an enabled/no policy enterprise setting. */
+export enum GitHubEnterpriseEnabledSettingValue {
+  /** The setting is enabled for organizations in the enterprise. */
+  Enabled = 'ENABLED',
+  /** There is no policy set for organizations in the enterprise. */
+  NoPolicy = 'NO_POLICY',
+}
+
+/** An identity provider configured to provision identities for an enterprise. */
+export type GitHubEnterpriseIdentityProvider = GitHubNode & {
+  /** The digest algorithm used to sign SAML requests for the identity provider. */
+  digestMethod?: Maybe<GitHubSamlDigestAlgorithm>
+  /** The enterprise this identity provider belongs to. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** ExternalIdentities provisioned by this identity provider. */
+  externalIdentities: GitHubExternalIdentityConnection
+  id: Scalars['ID']
+  /** The x509 certificate used by the identity provider to sign assertions and responses. */
+  idpCertificate?: Maybe<Scalars['GitHubX509Certificate']>
+  /** The Issuer Entity ID for the SAML identity provider. */
+  issuer?: Maybe<Scalars['String']>
+  /** Recovery codes that can be used by admins to access the enterprise if the identity provider is unavailable. */
+  recoveryCodes?: Maybe<Array<Scalars['String']>>
+  /** The signature algorithm used to sign SAML requests for the identity provider. */
+  signatureMethod?: Maybe<GitHubSamlSignatureAlgorithm>
+  /** The URL endpoint for the identity provider's SAML SSO. */
+  ssoUrl?: Maybe<Scalars['GitHubURI']>
+}
+
+/** An identity provider configured to provision identities for an enterprise. */
+export type GitHubEnterpriseIdentityProviderExternalIdentitiesArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** An object that is a member of an enterprise. */
+export type GitHubEnterpriseMember = GitHubUser | GitHubEnterpriseUserAccount
+
+/** The connection type for EnterpriseMember. */
+export type GitHubEnterpriseMemberConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubEnterpriseMemberEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubEnterpriseMember>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** A User who is a member of an enterprise through one or more organizations. */
+export type GitHubEnterpriseMemberEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** Whether the user does not have a license for the enterprise. */
+  isUnlicensed: Scalars['Boolean']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubEnterpriseMember>
+}
+
+/** Ordering options for enterprise member connections. */
+export type GitHubEnterpriseMemberOrder = {
+  /** The field to order enterprise members by. */
+  field: GitHubEnterpriseMemberOrderField
+  /** The ordering direction. */
+  direction: GitHubOrderDirection
+}
+
+/** Properties by which enterprise member connections can be ordered. */
+export enum GitHubEnterpriseMemberOrderField {
+  /** Order enterprise members by login */
+  Login = 'LOGIN',
+  /** Order enterprise members by creation time */
+  CreatedAt = 'CREATED_AT',
+}
+
+/** The possible values for the enterprise members can create repositories setting. */
+export enum GitHubEnterpriseMembersCanCreateRepositoriesSettingValue {
+  /** Organization administrators choose whether to allow members to create repositories. */
+  NoPolicy = 'NO_POLICY',
+  /** Members will be able to create public and private repositories. */
+  All = 'ALL',
+  /** Members will be able to create only public repositories. */
+  Public = 'PUBLIC',
+  /** Members will be able to create only private repositories. */
+  Private = 'PRIVATE',
+  /** Members will not be able to create public or private repositories. */
+  Disabled = 'DISABLED',
+}
+
+/** The possible values for the members can make purchases setting. */
+export enum GitHubEnterpriseMembersCanMakePurchasesSettingValue {
+  /** The setting is enabled for organizations in the enterprise. */
+  Enabled = 'ENABLED',
+  /** The setting is disabled for organizations in the enterprise. */
+  Disabled = 'DISABLED',
+}
+
+/** The possible values we have for filtering Platform::Objects::User#enterprises. */
+export enum GitHubEnterpriseMembershipType {
+  /** Returns all enterprises in which the user is a member, admin, or billing manager. */
+  All = 'ALL',
+  /** Returns all enterprises in which the user is an admin. */
+  Admin = 'ADMIN',
+  /** Returns all enterprises in which the user is a billing manager. */
+  BillingManager = 'BILLING_MANAGER',
+  /** Returns all enterprises in which the user is a member of an org that is owned by the enterprise. */
+  OrgMembership = 'ORG_MEMBERSHIP',
+}
+
+/** Ordering options for enterprises. */
+export type GitHubEnterpriseOrder = {
+  /** The field to order enterprises by. */
+  field: GitHubEnterpriseOrderField
+  /** The ordering direction. */
+  direction: GitHubOrderDirection
+}
+
+/** Properties by which enterprise connections can be ordered. */
+export enum GitHubEnterpriseOrderField {
+  /** Order enterprises by name */
+  Name = 'NAME',
+}
+
+/** The connection type for Organization. */
+export type GitHubEnterpriseOrganizationMembershipConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubEnterpriseOrganizationMembershipEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubOrganization>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An enterprise organization that a user is a member of. */
+export type GitHubEnterpriseOrganizationMembershipEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubOrganization>
+  /** The role of the user in the enterprise membership. */
+  role: GitHubEnterpriseUserAccountMembershipRole
+}
+
+/** The connection type for User. */
+export type GitHubEnterpriseOutsideCollaboratorConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubEnterpriseOutsideCollaboratorEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubUser>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** A User who is an outside collaborator of an enterprise through one or more organizations. */
+export type GitHubEnterpriseOutsideCollaboratorEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** Whether the outside collaborator does not have a license for the enterprise. */
+  isUnlicensed: Scalars['Boolean']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubUser>
+  /** The enterprise organization repositories this user is a member of. */
+  repositories: GitHubEnterpriseRepositoryInfoConnection
+}
+
+/** A User who is an outside collaborator of an enterprise through one or more organizations. */
+export type GitHubEnterpriseOutsideCollaboratorEdgeRepositoriesArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy: GitHubRepositoryOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfo = {
+  /** A list of enterprise organizations configured with the provided action execution capabilities setting value. */
+  actionExecutionCapabilitySettingOrganizations: GitHubOrganizationConnection
+  /** A list of all of the administrators for this enterprise. */
+  admins: GitHubEnterpriseAdministratorConnection
+  /** A list of users in the enterprise who currently have two-factor authentication disabled. */
+  affiliatedUsersWithTwoFactorDisabled: GitHubUserConnection
+  /** Whether or not affiliated users with two-factor authentication disabled exist in the enterprise. */
+  affiliatedUsersWithTwoFactorDisabledExist: Scalars['Boolean']
+  /** The setting value for whether private repository forking is enabled for repositories in organizations in this enterprise. */
+  allowPrivateRepositoryForkingSetting: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A list of enterprise organizations configured with the provided private repository forking setting value. */
+  allowPrivateRepositoryForkingSettingOrganizations: GitHubOrganizationConnection
+  /** The setting value for base repository permissions for organizations in this enterprise. */
+  defaultRepositoryPermissionSetting: GitHubEnterpriseDefaultRepositoryPermissionSettingValue
+  /** A list of enterprise organizations configured with the provided default repository permission. */
+  defaultRepositoryPermissionSettingOrganizations: GitHubOrganizationConnection
+  /** Enterprise Server installations owned by the enterprise. */
+  enterpriseServerInstallations: GitHubEnterpriseServerInstallationConnection
+  /** Whether or not the default repository permission is currently being updated. */
+  isUpdatingDefaultRepositoryPermission: Scalars['Boolean']
+  /** Whether the two-factor authentication requirement is currently being enforced. */
+  isUpdatingTwoFactorRequirement: Scalars['Boolean']
+  /** The setting value for whether organization members with admin permissions on a
+   * repository can change repository visibility.
+   */
+  membersCanChangeRepositoryVisibilitySetting: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A list of enterprise organizations configured with the provided can change repository visibility setting value. */
+  membersCanChangeRepositoryVisibilitySettingOrganizations: GitHubOrganizationConnection
+  /** The setting value for whether members of organizations in the enterprise can create internal repositories. */
+  membersCanCreateInternalRepositoriesSetting?: Maybe<Scalars['Boolean']>
+  /** The setting value for whether members of organizations in the enterprise can create private repositories. */
+  membersCanCreatePrivateRepositoriesSetting?: Maybe<Scalars['Boolean']>
+  /** The setting value for whether members of organizations in the enterprise can create public repositories. */
+  membersCanCreatePublicRepositoriesSetting?: Maybe<Scalars['Boolean']>
+  /** The setting value for whether members of organizations in the enterprise can create repositories. */
+  membersCanCreateRepositoriesSetting?: Maybe<
+    GitHubEnterpriseMembersCanCreateRepositoriesSettingValue
+  >
+  /** A list of enterprise organizations configured with the provided repository creation setting value. */
+  membersCanCreateRepositoriesSettingOrganizations: GitHubOrganizationConnection
+  /** The setting value for whether members with admin permissions for repositories can delete issues. */
+  membersCanDeleteIssuesSetting: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A list of enterprise organizations configured with the provided members can delete issues setting value. */
+  membersCanDeleteIssuesSettingOrganizations: GitHubOrganizationConnection
+  /** The setting value for whether members with admin permissions for repositories can delete or transfer repositories. */
+  membersCanDeleteRepositoriesSetting: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A list of enterprise organizations configured with the provided members can delete repositories setting value. */
+  membersCanDeleteRepositoriesSettingOrganizations: GitHubOrganizationConnection
+  /** The setting value for whether members of organizations in the enterprise can invite outside collaborators. */
+  membersCanInviteCollaboratorsSetting: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A list of enterprise organizations configured with the provided members can invite collaborators setting value. */
+  membersCanInviteCollaboratorsSettingOrganizations: GitHubOrganizationConnection
+  /** Indicates whether members of this enterprise's organizations can purchase additional services for those organizations. */
+  membersCanMakePurchasesSetting: GitHubEnterpriseMembersCanMakePurchasesSettingValue
+  /** The setting value for whether members with admin permissions for repositories can update protected branches. */
+  membersCanUpdateProtectedBranchesSetting: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A list of enterprise organizations configured with the provided members can update protected branches setting value. */
+  membersCanUpdateProtectedBranchesSettingOrganizations: GitHubOrganizationConnection
+  /** The setting value for whether members can view dependency insights. */
+  membersCanViewDependencyInsightsSetting: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A list of enterprise organizations configured with the provided members can view dependency insights setting value. */
+  membersCanViewDependencyInsightsSettingOrganizations: GitHubOrganizationConnection
+  /** The setting value for whether organization projects are enabled for organizations in this enterprise. */
+  organizationProjectsSetting: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A list of enterprise organizations configured with the provided organization projects setting value. */
+  organizationProjectsSettingOrganizations: GitHubOrganizationConnection
+  /** A list of outside collaborators across the repositories in the enterprise. */
+  outsideCollaborators: GitHubEnterpriseOutsideCollaboratorConnection
+  /** A list of pending administrator invitations for the enterprise. */
+  pendingAdminInvitations: GitHubEnterpriseAdministratorInvitationConnection
+  /** A list of pending collaborators across the repositories in the enterprise. */
+  pendingCollaborators: GitHubEnterprisePendingCollaboratorConnection
+  /** A list of pending member invitations for organizations in the enterprise. */
+  pendingMemberInvitations: GitHubEnterprisePendingMemberInvitationConnection
+  /** The setting value for whether repository projects are enabled in this enterprise. */
+  repositoryProjectsSetting: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A list of enterprise organizations configured with the provided repository projects setting value. */
+  repositoryProjectsSettingOrganizations: GitHubOrganizationConnection
+  /** The SAML Identity Provider for the enterprise. */
+  samlIdentityProvider?: Maybe<GitHubEnterpriseIdentityProvider>
+  /** A list of enterprise organizations configured with the SAML single sign-on setting value. */
+  samlIdentityProviderSettingOrganizations: GitHubOrganizationConnection
+  /** The setting value for whether team discussions are enabled for organizations in this enterprise. */
+  teamDiscussionsSetting: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A list of enterprise organizations configured with the provided team discussions setting value. */
+  teamDiscussionsSettingOrganizations: GitHubOrganizationConnection
+  /** The setting value for whether the enterprise requires two-factor authentication for its organizations and users. */
+  twoFactorRequiredSetting: GitHubEnterpriseEnabledSettingValue
+  /** A list of enterprise organizations configured with the two-factor authentication setting value. */
+  twoFactorRequiredSettingOrganizations: GitHubOrganizationConnection
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoActionExecutionCapabilitySettingOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy: GitHubOrganizationOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoAdminsArgs = {
+  query?: Maybe<Scalars['String']>
+  role?: Maybe<GitHubEnterpriseAdministratorRole>
+  orderBy: GitHubEnterpriseMemberOrder
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoAffiliatedUsersWithTwoFactorDisabledArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoAllowPrivateRepositoryForkingSettingOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  value: Scalars['Boolean']
+  orderBy: GitHubOrganizationOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoDefaultRepositoryPermissionSettingOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  value: GitHubDefaultRepositoryPermissionField
+  orderBy: GitHubOrganizationOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoEnterpriseServerInstallationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  connectedOnly: Scalars['Boolean']
+  orderBy: GitHubEnterpriseServerInstallationOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoMembersCanChangeRepositoryVisibilitySettingOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  value: Scalars['Boolean']
+  orderBy: GitHubOrganizationOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoMembersCanCreateRepositoriesSettingOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  value: GitHubOrganizationMembersCanCreateRepositoriesSettingValue
+  orderBy: GitHubOrganizationOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoMembersCanDeleteIssuesSettingOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  value: Scalars['Boolean']
+  orderBy: GitHubOrganizationOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoMembersCanDeleteRepositoriesSettingOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  value: Scalars['Boolean']
+  orderBy: GitHubOrganizationOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoMembersCanInviteCollaboratorsSettingOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  value: Scalars['Boolean']
+  orderBy: GitHubOrganizationOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoMembersCanUpdateProtectedBranchesSettingOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  value: Scalars['Boolean']
+  orderBy: GitHubOrganizationOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoMembersCanViewDependencyInsightsSettingOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  value: Scalars['Boolean']
+  orderBy: GitHubOrganizationOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoOrganizationProjectsSettingOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  value: Scalars['Boolean']
+  orderBy: GitHubOrganizationOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoOutsideCollaboratorsArgs = {
+  login?: Maybe<Scalars['String']>
+  query?: Maybe<Scalars['String']>
+  orderBy: GitHubEnterpriseMemberOrder
+  visibility?: Maybe<GitHubRepositoryVisibility>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoPendingAdminInvitationsArgs = {
+  query?: Maybe<Scalars['String']>
+  orderBy: GitHubEnterpriseAdministratorInvitationOrder
+  role?: Maybe<GitHubEnterpriseAdministratorRole>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoPendingCollaboratorsArgs = {
+  query?: Maybe<Scalars['String']>
+  orderBy: GitHubRepositoryInvitationOrder
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoPendingMemberInvitationsArgs = {
+  query?: Maybe<Scalars['String']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoRepositoryProjectsSettingOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  value: Scalars['Boolean']
+  orderBy: GitHubOrganizationOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoSamlIdentityProviderSettingOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  value: GitHubIdentityProviderConfigurationState
+  orderBy: GitHubOrganizationOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoTeamDiscussionsSettingOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  value: Scalars['Boolean']
+  orderBy: GitHubOrganizationOrder
+}
+
+/** Enterprise information only visible to enterprise owners. */
+export type GitHubEnterpriseOwnerInfoTwoFactorRequiredSettingOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  value: Scalars['Boolean']
+  orderBy: GitHubOrganizationOrder
+}
+
+/** The connection type for User. */
+export type GitHubEnterprisePendingCollaboratorConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubEnterprisePendingCollaboratorEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubUser>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** A user with an invitation to be a collaborator on a repository owned by an organization in an enterprise. */
+export type GitHubEnterprisePendingCollaboratorEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** Whether the invited collaborator does not have a license for the enterprise. */
+  isUnlicensed: Scalars['Boolean']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubUser>
+  /** The enterprise organization repositories this user is a member of. */
+  repositories: GitHubEnterpriseRepositoryInfoConnection
+}
+
+/** A user with an invitation to be a collaborator on a repository owned by an organization in an enterprise. */
+export type GitHubEnterprisePendingCollaboratorEdgeRepositoriesArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy: GitHubRepositoryOrder
+}
+
+/** The connection type for OrganizationInvitation. */
+export type GitHubEnterprisePendingMemberInvitationConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubEnterprisePendingMemberInvitationEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubOrganizationInvitation>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+  /** Identifies the total count of unique users in the connection. */
+  totalUniqueUserCount: Scalars['Int']
+}
+
+/** An invitation to be a member in an enterprise organization. */
+export type GitHubEnterprisePendingMemberInvitationEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** Whether the invitation has a license for the enterprise. */
+  isUnlicensed: Scalars['Boolean']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubOrganizationInvitation>
+}
+
+/** A subset of repository information queryable from an enterprise. */
+export type GitHubEnterpriseRepositoryInfo = GitHubNode & {
+  id: Scalars['ID']
+  /** Identifies if the repository is private. */
+  isPrivate: Scalars['Boolean']
+  /** The repository's name. */
+  name: Scalars['String']
+  /** The repository's name with owner. */
+  nameWithOwner: Scalars['String']
+}
+
+/** The connection type for EnterpriseRepositoryInfo. */
+export type GitHubEnterpriseRepositoryInfoConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubEnterpriseRepositoryInfoEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubEnterpriseRepositoryInfo>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubEnterpriseRepositoryInfoEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubEnterpriseRepositoryInfo>
+}
+
+/** An Enterprise Server installation. */
+export type GitHubEnterpriseServerInstallation = GitHubNode & {
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['GitHubDateTime']
+  /** The customer name to which the Enterprise Server installation belongs. */
+  customerName: Scalars['String']
+  /** The host name of the Enterprise Server installation. */
+  hostName: Scalars['String']
+  id: Scalars['ID']
+  /** Whether or not the installation is connected to an Enterprise Server installation via GitHub Connect. */
+  isConnected: Scalars['Boolean']
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['GitHubDateTime']
+  /** User accounts on this Enterprise Server installation. */
+  userAccounts: GitHubEnterpriseServerUserAccountConnection
+  /** User accounts uploads for the Enterprise Server installation. */
+  userAccountsUploads: GitHubEnterpriseServerUserAccountsUploadConnection
+}
+
+/** An Enterprise Server installation. */
+export type GitHubEnterpriseServerInstallationUserAccountsArgs = {
+  orderBy: GitHubEnterpriseServerUserAccountOrder
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** An Enterprise Server installation. */
+export type GitHubEnterpriseServerInstallationUserAccountsUploadsArgs = {
+  orderBy: GitHubEnterpriseServerUserAccountsUploadOrder
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** The connection type for EnterpriseServerInstallation. */
+export type GitHubEnterpriseServerInstallationConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubEnterpriseServerInstallationEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubEnterpriseServerInstallation>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubEnterpriseServerInstallationEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubEnterpriseServerInstallation>
+}
+
+/** Ordering options for Enterprise Server installation connections. */
+export type GitHubEnterpriseServerInstallationOrder = {
+  /** The field to order Enterprise Server installations by. */
+  field: GitHubEnterpriseServerInstallationOrderField
+  /** The ordering direction. */
+  direction: GitHubOrderDirection
+}
+
+/** Properties by which Enterprise Server installation connections can be ordered. */
+export enum GitHubEnterpriseServerInstallationOrderField {
+  /** Order Enterprise Server installations by host name */
+  HostName = 'HOST_NAME',
+  /** Order Enterprise Server installations by customer name */
+  CustomerName = 'CUSTOMER_NAME',
+  /** Order Enterprise Server installations by creation time */
+  CreatedAt = 'CREATED_AT',
+}
+
+/** A user account on an Enterprise Server installation. */
+export type GitHubEnterpriseServerUserAccount = GitHubNode & {
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['GitHubDateTime']
+  /** User emails belonging to this user account. */
+  emails: GitHubEnterpriseServerUserAccountEmailConnection
+  /** The Enterprise Server installation on which this user account exists. */
+  enterpriseServerInstallation: GitHubEnterpriseServerInstallation
+  id: Scalars['ID']
+  /** Whether the user account is a site administrator on the Enterprise Server installation. */
+  isSiteAdmin: Scalars['Boolean']
+  /** The login of the user account on the Enterprise Server installation. */
+  login: Scalars['String']
+  /** The profile name of the user account on the Enterprise Server installation. */
+  profileName?: Maybe<Scalars['String']>
+  /** The date and time when the user account was created on the Enterprise Server installation. */
+  remoteCreatedAt: Scalars['GitHubDateTime']
+  /** The ID of the user account on the Enterprise Server installation. */
+  remoteUserId: Scalars['Int']
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['GitHubDateTime']
+}
+
+/** A user account on an Enterprise Server installation. */
+export type GitHubEnterpriseServerUserAccountEmailsArgs = {
+  orderBy: GitHubEnterpriseServerUserAccountEmailOrder
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** The connection type for EnterpriseServerUserAccount. */
+export type GitHubEnterpriseServerUserAccountConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubEnterpriseServerUserAccountEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubEnterpriseServerUserAccount>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubEnterpriseServerUserAccountEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubEnterpriseServerUserAccount>
+}
+
+/** An email belonging to a user account on an Enterprise Server installation. */
+export type GitHubEnterpriseServerUserAccountEmail = GitHubNode & {
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['GitHubDateTime']
+  /** The email address. */
+  email: Scalars['String']
+  id: Scalars['ID']
+  /** Indicates whether this is the primary email of the associated user account. */
+  isPrimary: Scalars['Boolean']
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['GitHubDateTime']
+  /** The user account to which the email belongs. */
+  userAccount: GitHubEnterpriseServerUserAccount
+}
+
+/** The connection type for EnterpriseServerUserAccountEmail. */
+export type GitHubEnterpriseServerUserAccountEmailConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubEnterpriseServerUserAccountEmailEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubEnterpriseServerUserAccountEmail>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubEnterpriseServerUserAccountEmailEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubEnterpriseServerUserAccountEmail>
+}
+
+/** Ordering options for Enterprise Server user account email connections. */
+export type GitHubEnterpriseServerUserAccountEmailOrder = {
+  /** The field to order emails by. */
+  field: GitHubEnterpriseServerUserAccountEmailOrderField
+  /** The ordering direction. */
+  direction: GitHubOrderDirection
+}
+
+/** Properties by which Enterprise Server user account email connections can be ordered. */
+export enum GitHubEnterpriseServerUserAccountEmailOrderField {
+  /** Order emails by email */
+  Email = 'EMAIL',
+}
+
+/** Ordering options for Enterprise Server user account connections. */
+export type GitHubEnterpriseServerUserAccountOrder = {
+  /** The field to order user accounts by. */
+  field: GitHubEnterpriseServerUserAccountOrderField
+  /** The ordering direction. */
+  direction: GitHubOrderDirection
+}
+
+/** Properties by which Enterprise Server user account connections can be ordered. */
+export enum GitHubEnterpriseServerUserAccountOrderField {
+  /** Order user accounts by login */
+  Login = 'LOGIN',
+  /** Order user accounts by creation time on the Enterprise Server installation */
+  RemoteCreatedAt = 'REMOTE_CREATED_AT',
+}
+
+/** A user accounts upload from an Enterprise Server installation. */
+export type GitHubEnterpriseServerUserAccountsUpload = GitHubNode & {
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['GitHubDateTime']
+  /** The enterprise to which this upload belongs. */
+  enterprise: GitHubEnterprise
+  /** The Enterprise Server installation for which this upload was generated. */
+  enterpriseServerInstallation: GitHubEnterpriseServerInstallation
+  id: Scalars['ID']
+  /** The name of the file uploaded. */
+  name: Scalars['String']
+  /** The synchronization state of the upload */
+  syncState: GitHubEnterpriseServerUserAccountsUploadSyncState
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['GitHubDateTime']
+}
+
+/** The connection type for EnterpriseServerUserAccountsUpload. */
+export type GitHubEnterpriseServerUserAccountsUploadConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubEnterpriseServerUserAccountsUploadEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubEnterpriseServerUserAccountsUpload>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubEnterpriseServerUserAccountsUploadEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubEnterpriseServerUserAccountsUpload>
+}
+
+/** Ordering options for Enterprise Server user accounts upload connections. */
+export type GitHubEnterpriseServerUserAccountsUploadOrder = {
+  /** The field to order user accounts uploads by. */
+  field: GitHubEnterpriseServerUserAccountsUploadOrderField
+  /** The ordering direction. */
+  direction: GitHubOrderDirection
+}
+
+/** Properties by which Enterprise Server user accounts upload connections can be ordered. */
+export enum GitHubEnterpriseServerUserAccountsUploadOrderField {
+  /** Order user accounts uploads by creation time */
+  CreatedAt = 'CREATED_AT',
+}
+
+/** Synchronization state of the Enterprise Server user accounts upload */
+export enum GitHubEnterpriseServerUserAccountsUploadSyncState {
+  /** The synchronization of the upload is pending. */
+  Pending = 'PENDING',
+  /** The synchronization of the upload succeeded. */
+  Success = 'SUCCESS',
+  /** The synchronization of the upload failed. */
+  Failure = 'FAILURE',
+}
+
+/** An account for a user who is an admin of an enterprise or a member of an enterprise through one or more organizations. */
+export type GitHubEnterpriseUserAccount = GitHubNode &
+  GitHubActor & {
+    /** A URL pointing to the enterprise user account's public avatar. */
+    avatarUrl: Scalars['GitHubURI']
+    /** Identifies the date and time when the object was created. */
+    createdAt: Scalars['GitHubDateTime']
+    /** The enterprise in which this user account exists. */
+    enterprise: GitHubEnterprise
+    id: Scalars['ID']
+    /** An identifier for the enterprise user account, a login or email address */
+    login: Scalars['String']
+    /** The name of the enterprise user account */
+    name?: Maybe<Scalars['String']>
+    /** A list of enterprise organizations this user is a member of. */
+    organizations: GitHubEnterpriseOrganizationMembershipConnection
+    /** The HTTP path for this actor. */
+    resourcePath: Scalars['GitHubURI']
+    /** Identifies the date and time when the object was last updated. */
+    updatedAt: Scalars['GitHubDateTime']
+    /** The HTTP URL for this actor. */
+    url: Scalars['GitHubURI']
+    /** The user within the enterprise. */
+    user?: Maybe<GitHubUser>
+  }
+
+/** An account for a user who is an admin of an enterprise or a member of an enterprise through one or more organizations. */
+export type GitHubEnterpriseUserAccountAvatarUrlArgs = {
+  size?: Maybe<Scalars['Int']>
+}
+
+/** An account for a user who is an admin of an enterprise or a member of an enterprise through one or more organizations. */
+export type GitHubEnterpriseUserAccountOrganizationsArgs = {
+  query?: Maybe<Scalars['String']>
+  orderBy: GitHubOrganizationOrder
+  role?: Maybe<GitHubEnterpriseUserAccountMembershipRole>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** The connection type for EnterpriseUserAccount. */
+export type GitHubEnterpriseUserAccountConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubEnterpriseUserAccountEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubEnterpriseUserAccount>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubEnterpriseUserAccountEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubEnterpriseUserAccount>
+}
+
+/** The possible roles for enterprise membership. */
+export enum GitHubEnterpriseUserAccountMembershipRole {
+  /** The user is a member of the enterprise membership. */
+  Member = 'MEMBER',
+  /** The user is an owner of the enterprise membership. */
+  Owner = 'OWNER',
+}
+
+/** The possible GitHub Enterprise deployments where this user can exist. */
+export enum GitHubEnterpriseUserDeployment {
+  /** The user is part of a GitHub Enterprise Cloud deployment. */
+  Cloud = 'CLOUD',
+  /** The user is part of a GitHub Enterprise Server deployment. */
+  Server = 'SERVER',
+}
 
 /** An external identity provisioned by SAML SSO or SCIM. */
 export type GitHubExternalIdentity = GitHubNode & {
   /** The GUID for this identity */
-  guid: Scalars["String"];
-  id: Scalars["ID"];
+  guid: Scalars['String']
+  id: Scalars['ID']
   /** Organization invitation for this SCIM-provisioned external identity */
-  organizationInvitation?: Maybe<GitHubOrganizationInvitation>;
+  organizationInvitation?: Maybe<GitHubOrganizationInvitation>
   /** SAML Identity attributes */
-  samlIdentity?: Maybe<GitHubExternalIdentitySamlAttributes>;
+  samlIdentity?: Maybe<GitHubExternalIdentitySamlAttributes>
   /** SCIM Identity attributes */
-  scimIdentity?: Maybe<GitHubExternalIdentityScimAttributes>;
+  scimIdentity?: Maybe<GitHubExternalIdentityScimAttributes>
   /** User linked to this external identity. Will be NULL if this identity has not been claimed by an organization member. */
-  user?: Maybe<GitHubUser>;
-};
+  user?: Maybe<GitHubUser>
+}
 
 /** The connection type for ExternalIdentity. */
 export type GitHubExternalIdentityConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubExternalIdentityEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubExternalIdentityEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubExternalIdentity>>>;
+  nodes?: Maybe<Array<Maybe<GitHubExternalIdentity>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubExternalIdentityEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubExternalIdentity>;
-};
+  node?: Maybe<GitHubExternalIdentity>
+}
 
 /** SAML attributes for the External Identity */
 export type GitHubExternalIdentitySamlAttributes = {
   /** The NameID of the SAML identity */
-  nameId?: Maybe<Scalars["String"]>;
-};
+  nameId?: Maybe<Scalars['String']>
+}
 
 /** SCIM attributes for the External Identity */
 export type GitHubExternalIdentityScimAttributes = {
   /** The userName of the SCIM identity */
-  username?: Maybe<Scalars["String"]>;
-};
+  username?: Maybe<Scalars['String']>
+}
 
 /** The connection type for User. */
 export type GitHubFollowerConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubUserEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubUserEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubUser>>>;
+  nodes?: Maybe<Array<Maybe<GitHubUser>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** The connection type for User. */
 export type GitHubFollowingConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubUserEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubUserEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubUser>>>;
+  nodes?: Maybe<Array<Maybe<GitHubUser>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
+
+/** Autogenerated input type of FollowUser */
+export type GitHubFollowUserInput = {
+  /** ID of the user to follow. */
+  userId: Scalars['ID']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of FollowUser */
+export type GitHubFollowUserPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The user that was followed. */
+  user?: Maybe<GitHubUser>
+}
+
+/** A generic hovercard context with a message and icon */
+export type GitHubGenericHovercardContext = GitHubHovercardContext & {
+  /** A string describing this context */
+  message: Scalars['String']
+  /** An octicon to accompany this context */
+  octicon: Scalars['String']
+}
 
 /** A Gist. */
 export type GitHubGist = GitHubNode &
-  GitHubStarrable & {
+  GitHubStarrable &
+  GitHubUniformResourceLocatable & {
     /** A list of comments associated with the gist */
-    comments: GitHubGistCommentConnection;
+    comments: GitHubGistCommentConnection
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** The gist description. */
-    description?: Maybe<Scalars["String"]>;
+    description?: Maybe<Scalars['String']>
     /** The files in this gist. */
-    files?: Maybe<Array<Maybe<GitHubGistFile>>>;
-    id: Scalars["ID"];
+    files?: Maybe<Array<Maybe<GitHubGistFile>>>
+    /** A list of forks associated with the gist */
+    forks: GitHubGistConnection
+    id: Scalars['ID']
     /** Identifies if the gist is a fork. */
-    isFork: Scalars["Boolean"];
+    isFork: Scalars['Boolean']
     /** Whether the gist is public or not. */
-    isPublic: Scalars["Boolean"];
+    isPublic: Scalars['Boolean']
     /** The gist name. */
-    name: Scalars["String"];
+    name: Scalars['String']
     /** The gist owner. */
-    owner?: Maybe<GitHubRepositoryOwner>;
+    owner?: Maybe<GitHubRepositoryOwner>
     /** Identifies when the gist was last pushed to. */
-    pushedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    pushedAt?: Maybe<Scalars['GitHubDateTime']>
+    /** The HTML path to this resource. */
+    resourcePath: Scalars['GitHubURI']
     /** A list of users who have starred this starrable. */
-    stargazers: GitHubStargazerConnection;
+    stargazers: GitHubStargazerConnection
     /** Identifies the date and time when the object was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
+    /** The HTTP URL for this Gist. */
+    url: Scalars['GitHubURI']
     /** Returns a boolean indicating whether the viewing user has starred this starrable. */
-    viewerHasStarred: Scalars["Boolean"];
-  };
+    viewerHasStarred: Scalars['Boolean']
+  }
 
 /** A Gist. */
 export type GitHubGistCommentsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A Gist. */
 export type GitHubGistFilesArgs = {
-  limit: Scalars["Int"];
-};
+  limit: Scalars['Int']
+  oid?: Maybe<Scalars['GitHubGitObjectID']>
+}
+
+/** A Gist. */
+export type GitHubGistForksArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy?: Maybe<GitHubGistOrder>
+}
 
 /** A Gist. */
 export type GitHubGistStargazersArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  orderBy?: Maybe<GitHubStarOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy?: Maybe<GitHubStarOrder>
+}
 
 /** Represents a comment on an Gist. */
 export type GitHubGistComment = GitHubNode &
@@ -2805,353 +4326,389 @@ export type GitHubGistComment = GitHubNode &
   GitHubUpdatable &
   GitHubUpdatableComment & {
     /** The actor who authored the comment. */
-    author?: Maybe<GitHubActor>;
+    author?: Maybe<GitHubActor>
     /** Author's association with the gist. */
-    authorAssociation: GitHubCommentAuthorAssociation;
+    authorAssociation: GitHubCommentAuthorAssociation
     /** Identifies the comment body. */
-    body: Scalars["String"];
-    /** The comment body rendered to HTML. */
-    bodyHTML: Scalars["GitHubHTML"];
+    body: Scalars['String']
+    /** The body rendered to HTML. */
+    bodyHTML: Scalars['GitHubHTML']
     /** The body rendered to text. */
-    bodyText: Scalars["String"];
+    bodyText: Scalars['String']
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** Check if this comment was created via an email reply. */
-    createdViaEmail: Scalars["Boolean"];
+    createdViaEmail: Scalars['Boolean']
     /** Identifies the primary key from the database. */
-    databaseId?: Maybe<Scalars["Int"]>;
+    databaseId?: Maybe<Scalars['Int']>
     /** The actor who edited the comment. */
-    editor?: Maybe<GitHubActor>;
+    editor?: Maybe<GitHubActor>
     /** The associated gist. */
-    gist: GitHubGist;
-    id: Scalars["ID"];
+    gist: GitHubGist
+    id: Scalars['ID']
     /** Check if this comment was edited and includes an edit with the creation data */
-    includesCreatedEdit: Scalars["Boolean"];
+    includesCreatedEdit: Scalars['Boolean']
     /** Returns whether or not a comment has been minimized. */
-    isMinimized: Scalars["Boolean"];
+    isMinimized: Scalars['Boolean']
     /** The moment the editor made the last edit */
-    lastEditedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    lastEditedAt?: Maybe<Scalars['GitHubDateTime']>
     /** Returns why the comment was minimized. */
-    minimizedReason?: Maybe<Scalars["String"]>;
+    minimizedReason?: Maybe<Scalars['String']>
     /** Identifies when the comment was published at. */
-    publishedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    publishedAt?: Maybe<Scalars['GitHubDateTime']>
     /** Identifies the date and time when the object was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
     /** A list of edits to this content. */
-    userContentEdits?: Maybe<GitHubUserContentEditConnection>;
+    userContentEdits?: Maybe<GitHubUserContentEditConnection>
     /** Check if the current viewer can delete this object. */
-    viewerCanDelete: Scalars["Boolean"];
+    viewerCanDelete: Scalars['Boolean']
     /** Check if the current viewer can minimize this object. */
-    viewerCanMinimize: Scalars["Boolean"];
+    viewerCanMinimize: Scalars['Boolean']
     /** Check if the current viewer can update this object. */
-    viewerCanUpdate: Scalars["Boolean"];
+    viewerCanUpdate: Scalars['Boolean']
     /** Reasons why the current viewer can not update this comment. */
-    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>;
+    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>
     /** Did the viewer author this comment. */
-    viewerDidAuthor: Scalars["Boolean"];
-  };
+    viewerDidAuthor: Scalars['Boolean']
+  }
 
 /** Represents a comment on an Gist. */
 export type GitHubGistCommentUserContentEditsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** The connection type for GistComment. */
 export type GitHubGistCommentConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubGistCommentEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubGistCommentEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubGistComment>>>;
+  nodes?: Maybe<Array<Maybe<GitHubGistComment>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubGistCommentEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubGistComment>;
-};
+  node?: Maybe<GitHubGistComment>
+}
 
 /** The connection type for Gist. */
 export type GitHubGistConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubGistEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubGistEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubGist>>>;
+  nodes?: Maybe<Array<Maybe<GitHubGist>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubGistEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubGist>;
-};
+  node?: Maybe<GitHubGist>
+}
 
 /** A file in a gist. */
 export type GitHubGistFile = {
   /** The file name encoded to remove characters that are invalid in URL paths. */
-  encodedName?: Maybe<Scalars["String"]>;
+  encodedName?: Maybe<Scalars['String']>
   /** The gist file encoding. */
-  encoding?: Maybe<Scalars["String"]>;
+  encoding?: Maybe<Scalars['String']>
   /** The file extension from the file name. */
-  extension?: Maybe<Scalars["String"]>;
+  extension?: Maybe<Scalars['String']>
   /** Indicates if this file is an image. */
-  isImage: Scalars["Boolean"];
+  isImage: Scalars['Boolean']
   /** Whether the file's contents were truncated. */
-  isTruncated: Scalars["Boolean"];
+  isTruncated: Scalars['Boolean']
   /** The programming language this file is written in. */
-  language?: Maybe<GitHubLanguage>;
+  language?: Maybe<GitHubLanguage>
   /** The gist file name. */
-  name?: Maybe<Scalars["String"]>;
+  name?: Maybe<Scalars['String']>
   /** The gist file size in bytes. */
-  size?: Maybe<Scalars["Int"]>;
+  size?: Maybe<Scalars['Int']>
   /** UTF8 text data or null if the file is binary */
-  text?: Maybe<Scalars["String"]>;
-};
+  text?: Maybe<Scalars['String']>
+}
 
 /** A file in a gist. */
 export type GitHubGistFileTextArgs = {
-  truncate?: Maybe<Scalars["Int"]>;
-};
+  truncate?: Maybe<Scalars['Int']>
+}
 
 /** Ordering options for gist connections */
 export type GitHubGistOrder = {
   /** The field to order repositories by. */
-  field: GitHubGistOrderField;
+  field: GitHubGistOrderField
   /** The ordering direction. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which gist connections can be ordered. */
 export enum GitHubGistOrderField {
   /** Order gists by creation time */
-  CreatedAt = "CREATED_AT",
+  CreatedAt = 'CREATED_AT',
   /** Order gists by update time */
-  UpdatedAt = "UPDATED_AT",
+  UpdatedAt = 'UPDATED_AT',
   /** Order gists by push time */
-  PushedAt = "PUSHED_AT"
+  PushedAt = 'PUSHED_AT',
 }
 
 /** The privacy of a Gist */
 export enum GitHubGistPrivacy {
   /** Public */
-  Public = "PUBLIC",
+  Public = 'PUBLIC',
   /** Secret */
-  Secret = "SECRET",
+  Secret = 'SECRET',
   /** Gists that are public and secret */
-  All = "ALL"
+  All = 'ALL',
 }
 
 /** Represents an actor in a Git commit (ie. an author or committer). */
 export type GitHubGitActor = {
   /** A URL pointing to the author's public avatar. */
-  avatarUrl: Scalars["GitHubURI"];
+  avatarUrl: Scalars['GitHubURI']
   /** The timestamp of the Git action (authoring or committing). */
-  date?: Maybe<Scalars["GitHubGitTimestamp"]>;
+  date?: Maybe<Scalars['GitHubGitTimestamp']>
   /** The email in the Git commit. */
-  email?: Maybe<Scalars["String"]>;
+  email?: Maybe<Scalars['String']>
   /** The name in the Git commit. */
-  name?: Maybe<Scalars["String"]>;
+  name?: Maybe<Scalars['String']>
   /** The GitHub user corresponding to the email field. Null if no such user exists. */
-  user?: Maybe<GitHubUser>;
-};
+  user?: Maybe<GitHubUser>
+}
 
 /** Represents an actor in a Git commit (ie. an author or committer). */
 export type GitHubGitActorAvatarUrlArgs = {
-  size?: Maybe<Scalars["Int"]>;
-};
+  size?: Maybe<Scalars['Int']>
+}
 
 /** Represents information about the GitHub instance. */
 export type GitHubGitHubMetadata = {
   /** Returns a String that's a SHA of `github-services` */
-  gitHubServicesSha: Scalars["GitHubGitObjectID"];
+  gitHubServicesSha: Scalars['GitHubGitObjectID']
   /** IP addresses that users connect to for git operations */
-  gitIpAddresses?: Maybe<Array<Scalars["String"]>>;
+  gitIpAddresses?: Maybe<Array<Scalars['String']>>
   /** IP addresses that service hooks are sent from */
-  hookIpAddresses?: Maybe<Array<Scalars["String"]>>;
+  hookIpAddresses?: Maybe<Array<Scalars['String']>>
   /** IP addresses that the importer connects from */
-  importerIpAddresses?: Maybe<Array<Scalars["String"]>>;
+  importerIpAddresses?: Maybe<Array<Scalars['String']>>
   /** Whether or not users are verified */
-  isPasswordAuthenticationVerifiable: Scalars["Boolean"];
+  isPasswordAuthenticationVerifiable: Scalars['Boolean']
   /** IP addresses for GitHub Pages' A records */
-  pagesIpAddresses?: Maybe<Array<Scalars["String"]>>;
-};
+  pagesIpAddresses?: Maybe<Array<Scalars['String']>>
+}
 
 /** Represents a Git object. */
 export type GitHubGitObject = {
   /** An abbreviated version of the Git object ID */
-  abbreviatedOid: Scalars["String"];
+  abbreviatedOid: Scalars['String']
   /** The HTTP path for this Git object */
-  commitResourcePath: Scalars["GitHubURI"];
+  commitResourcePath: Scalars['GitHubURI']
   /** The HTTP URL for this Git object */
-  commitUrl: Scalars["GitHubURI"];
-  id: Scalars["ID"];
+  commitUrl: Scalars['GitHubURI']
+  id: Scalars['ID']
   /** The Git object ID */
-  oid: Scalars["GitHubGitObjectID"];
+  oid: Scalars['GitHubGitObjectID']
   /** The Repository the Git object belongs to */
-  repository: GitHubRepository;
-};
+  repository: GitHubRepository
+}
 
 /** Information about a signature (GPG or S/MIME) on a Commit or Tag. */
 export type GitHubGitSignature = {
   /** Email used to sign this object. */
-  email: Scalars["String"];
+  email: Scalars['String']
   /** True if the signature is valid and verified by GitHub. */
-  isValid: Scalars["Boolean"];
+  isValid: Scalars['Boolean']
   /** Payload for GPG signing object. Raw ODB object without the signature header. */
-  payload: Scalars["String"];
+  payload: Scalars['String']
   /** ASCII-armored signature header from object. */
-  signature: Scalars["String"];
+  signature: Scalars['String']
   /** GitHub user corresponding to the email signing this commit. */
-  signer?: Maybe<GitHubUser>;
+  signer?: Maybe<GitHubUser>
   /** The state of this signature. `VALID` if signature is valid and verified by
    * GitHub, otherwise represents reason why signature is considered invalid.
    */
-  state: GitHubGitSignatureState;
+  state: GitHubGitSignatureState
   /** True if the signature was made with GitHub's signing key. */
-  wasSignedByGitHub: Scalars["Boolean"];
-};
+  wasSignedByGitHub: Scalars['Boolean']
+}
 
 /** The state of a Git signature. */
 export enum GitHubGitSignatureState {
   /** Valid signature and verified by GitHub */
-  Valid = "VALID",
+  Valid = 'VALID',
   /** Invalid signature */
-  Invalid = "INVALID",
+  Invalid = 'INVALID',
   /** Malformed signature */
-  MalformedSig = "MALFORMED_SIG",
+  MalformedSig = 'MALFORMED_SIG',
   /** Key used for signing not known to GitHub */
-  UnknownKey = "UNKNOWN_KEY",
+  UnknownKey = 'UNKNOWN_KEY',
   /** Invalid email used for signing */
-  BadEmail = "BAD_EMAIL",
+  BadEmail = 'BAD_EMAIL',
   /** Email used for signing unverified on GitHub */
-  UnverifiedEmail = "UNVERIFIED_EMAIL",
+  UnverifiedEmail = 'UNVERIFIED_EMAIL',
   /** Email used for signing not known to GitHub */
-  NoUser = "NO_USER",
+  NoUser = 'NO_USER',
   /** Unknown signature type */
-  UnknownSigType = "UNKNOWN_SIG_TYPE",
+  UnknownSigType = 'UNKNOWN_SIG_TYPE',
   /** Unsigned */
-  Unsigned = "UNSIGNED",
+  Unsigned = 'UNSIGNED',
   /** Internal error - the GPG verification service is unavailable at the moment */
-  GpgverifyUnavailable = "GPGVERIFY_UNAVAILABLE",
+  GpgverifyUnavailable = 'GPGVERIFY_UNAVAILABLE',
   /** Internal error - the GPG verification service misbehaved */
-  GpgverifyError = "GPGVERIFY_ERROR",
+  GpgverifyError = 'GPGVERIFY_ERROR',
   /** The usage flags for the key that signed this don't allow signing */
-  NotSigningKey = "NOT_SIGNING_KEY",
+  NotSigningKey = 'NOT_SIGNING_KEY',
   /** Signing key expired */
-  ExpiredKey = "EXPIRED_KEY",
+  ExpiredKey = 'EXPIRED_KEY',
   /** Valid signature, pending certificate revocation checking */
-  OcspPending = "OCSP_PENDING",
+  OcspPending = 'OCSP_PENDING',
   /** Valid siganture, though certificate revocation check failed */
-  OcspError = "OCSP_ERROR",
+  OcspError = 'OCSP_ERROR',
   /** The signing certificate or its chain could not be verified */
-  BadCert = "BAD_CERT",
+  BadCert = 'BAD_CERT',
   /** One or more certificates in chain has been revoked */
-  OcspRevoked = "OCSP_REVOKED"
+  OcspRevoked = 'OCSP_REVOKED',
 }
 
 /** Represents a GPG signature on a Commit or Tag. */
 export type GitHubGpgSignature = GitHubGitSignature & {
   /** Email used to sign this object. */
-  email: Scalars["String"];
+  email: Scalars['String']
   /** True if the signature is valid and verified by GitHub. */
-  isValid: Scalars["Boolean"];
+  isValid: Scalars['Boolean']
   /** Hex-encoded ID of the key that signed this object. */
-  keyId?: Maybe<Scalars["String"]>;
+  keyId?: Maybe<Scalars['String']>
   /** Payload for GPG signing object. Raw ODB object without the signature header. */
-  payload: Scalars["String"];
+  payload: Scalars['String']
   /** ASCII-armored signature header from object. */
-  signature: Scalars["String"];
+  signature: Scalars['String']
   /** GitHub user corresponding to the email signing this commit. */
-  signer?: Maybe<GitHubUser>;
+  signer?: Maybe<GitHubUser>
   /** The state of this signature. `VALID` if signature is valid and verified by
    * GitHub, otherwise represents reason why signature is considered invalid.
    */
-  state: GitHubGitSignatureState;
+  state: GitHubGitSignatureState
   /** True if the signature was made with GitHub's signing key. */
-  wasSignedByGitHub: Scalars["Boolean"];
-};
+  wasSignedByGitHub: Scalars['Boolean']
+}
 
 /** Represents a 'head_ref_deleted' event on a given pull request. */
 export type GitHubHeadRefDeletedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the Ref associated with the `head_ref_deleted` event. */
-  headRef?: Maybe<GitHubRef>;
+  headRef?: Maybe<GitHubRef>
   /** Identifies the name of the Ref associated with the `head_ref_deleted` event. */
-  headRefName: Scalars["String"];
-  id: Scalars["ID"];
+  headRefName: Scalars['String']
+  id: Scalars['ID']
   /** PullRequest referenced by event. */
-  pullRequest: GitHubPullRequest;
-};
+  pullRequest: GitHubPullRequest
+}
 
 /** Represents a 'head_ref_force_pushed' event on a given pull request. */
 export type GitHubHeadRefForcePushedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the after commit SHA for the 'head_ref_force_pushed' event. */
-  afterCommit?: Maybe<GitHubCommit>;
+  afterCommit?: Maybe<GitHubCommit>
   /** Identifies the before commit SHA for the 'head_ref_force_pushed' event. */
-  beforeCommit?: Maybe<GitHubCommit>;
+  beforeCommit?: Maybe<GitHubCommit>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** PullRequest referenced by event. */
-  pullRequest: GitHubPullRequest;
+  pullRequest: GitHubPullRequest
   /** Identifies the fully qualified ref name for the 'head_ref_force_pushed' event. */
-  ref?: Maybe<GitHubRef>;
-};
+  ref?: Maybe<GitHubRef>
+}
 
 /** Represents a 'head_ref_restored' event on a given pull request. */
 export type GitHubHeadRefRestoredEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** PullRequest referenced by event. */
-  pullRequest: GitHubPullRequest;
-};
+  pullRequest: GitHubPullRequest
+}
+
+/** Detail needed to display a hovercard for a user */
+export type GitHubHovercard = {
+  /** Each of the contexts for this hovercard */
+  contexts: Array<GitHubHovercardContext>
+}
+
+/** An individual line of a hovercard */
+export type GitHubHovercardContext = {
+  /** A string describing this context */
+  message: Scalars['String']
+  /** An octicon to accompany this context */
+  octicon: Scalars['String']
+}
 
 /** The possible states in which authentication can be configured with an identity provider. */
 export enum GitHubIdentityProviderConfigurationState {
   /** Authentication with an identity provider is configured and enforced. */
-  Enforced = "ENFORCED",
+  Enforced = 'ENFORCED',
   /** Authentication with an identity provider is configured but not enforced. */
-  Configured = "CONFIGURED",
+  Configured = 'CONFIGURED',
   /** Authentication with an identity provider is not configured. */
-  Unconfigured = "UNCONFIGURED"
+  Unconfigured = 'UNCONFIGURED',
 }
 
 /** Autogenerated input type of ImportProject */
 export type GitHubImportProjectInput = {
   /** The name of the Organization or User to create the Project under. */
-  ownerName: Scalars["String"];
+  ownerName: Scalars['String']
   /** The name of Project. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** The description of Project. */
-  body?: Maybe<Scalars["String"]>;
+  body?: Maybe<Scalars['String']>
   /** Whether the Project is public or not. */
-  public?: Maybe<Scalars["Boolean"]>;
+  public?: Maybe<Scalars['Boolean']>
   /** A list of columns containing issues and pull requests. */
-  columnImports: Array<GitHubProjectColumnImport>;
+  columnImports: Array<GitHubProjectColumnImport>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of InviteEnterpriseAdmin */
+export type GitHubInviteEnterpriseAdminInput = {
+  /** The ID of the enterprise to which you want to invite an administrator. */
+  enterpriseId: Scalars['ID']
+  /** The login of a user to invite as an administrator. */
+  invitee?: Maybe<Scalars['String']>
+  /** The email of the person to invite as an administrator. */
+  email?: Maybe<Scalars['String']>
+  /** The role of the administrator. */
+  role?: Maybe<GitHubEnterpriseAdministratorRole>
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of InviteEnterpriseAdmin */
+export type GitHubInviteEnterpriseAdminPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The created enterprise administrator invitation. */
+  invitation?: Maybe<GitHubEnterpriseAdministratorInvitation>
+}
 
 /** An Issue is a place to discuss ideas, enhancements, tasks, and bugs for a project. */
 export type GitHubIssue = GitHubNode &
@@ -3167,166 +4724,173 @@ export type GitHubIssue = GitHubNode &
   GitHubSubscribable &
   GitHubUniformResourceLocatable & {
     /** Reason that the conversation was locked. */
-    activeLockReason?: Maybe<GitHubLockReason>;
+    activeLockReason?: Maybe<GitHubLockReason>
     /** A list of Users assigned to this object. */
-    assignees: GitHubUserConnection;
+    assignees: GitHubUserConnection
     /** The actor who authored the comment. */
-    author?: Maybe<GitHubActor>;
+    author?: Maybe<GitHubActor>
     /** Author's association with the subject of the comment. */
-    authorAssociation: GitHubCommentAuthorAssociation;
+    authorAssociation: GitHubCommentAuthorAssociation
     /** Identifies the body of the issue. */
-    body: Scalars["String"];
-    /** Identifies the body of the issue rendered to HTML. */
-    bodyHTML: Scalars["GitHubHTML"];
+    body: Scalars['String']
+    /** The body rendered to HTML. */
+    bodyHTML: Scalars['GitHubHTML']
     /** Identifies the body of the issue rendered to text. */
-    bodyText: Scalars["String"];
+    bodyText: Scalars['String']
     /** `true` if the object is closed (definition of closed may depend on type) */
-    closed: Scalars["Boolean"];
+    closed: Scalars['Boolean']
     /** Identifies the date and time when the object was closed. */
-    closedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    closedAt?: Maybe<Scalars['GitHubDateTime']>
     /** A list of comments associated with the Issue. */
-    comments: GitHubIssueCommentConnection;
+    comments: GitHubIssueCommentConnection
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** Check if this comment was created via an email reply. */
-    createdViaEmail: Scalars["Boolean"];
+    createdViaEmail: Scalars['Boolean']
     /** Identifies the primary key from the database. */
-    databaseId?: Maybe<Scalars["Int"]>;
+    databaseId?: Maybe<Scalars['Int']>
     /** The actor who edited the comment. */
-    editor?: Maybe<GitHubActor>;
-    id: Scalars["ID"];
+    editor?: Maybe<GitHubActor>
+    /** The hovercard information for this issue */
+    hovercard: GitHubHovercard
+    id: Scalars['ID']
     /** Check if this comment was edited and includes an edit with the creation data */
-    includesCreatedEdit: Scalars["Boolean"];
+    includesCreatedEdit: Scalars['Boolean']
     /** A list of labels associated with the object. */
-    labels?: Maybe<GitHubLabelConnection>;
+    labels?: Maybe<GitHubLabelConnection>
     /** The moment the editor made the last edit */
-    lastEditedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    lastEditedAt?: Maybe<Scalars['GitHubDateTime']>
     /** `true` if the object is locked */
-    locked: Scalars["Boolean"];
+    locked: Scalars['Boolean']
     /** Identifies the milestone associated with the issue. */
-    milestone?: Maybe<GitHubMilestone>;
+    milestone?: Maybe<GitHubMilestone>
     /** Identifies the issue number. */
-    number: Scalars["Int"];
+    number: Scalars['Int']
     /** A list of Users that are participating in the Issue conversation. */
-    participants: GitHubUserConnection;
+    participants: GitHubUserConnection
     /** List of project cards associated with this issue. */
-    projectCards: GitHubProjectCardConnection;
+    projectCards: GitHubProjectCardConnection
     /** Identifies when the comment was published at. */
-    publishedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    publishedAt?: Maybe<Scalars['GitHubDateTime']>
     /** A list of reactions grouped by content left on the subject. */
-    reactionGroups?: Maybe<Array<GitHubReactionGroup>>;
+    reactionGroups?: Maybe<Array<GitHubReactionGroup>>
     /** A list of Reactions left on the Issue. */
-    reactions: GitHubReactionConnection;
+    reactions: GitHubReactionConnection
     /** The repository associated with this node. */
-    repository: GitHubRepository;
+    repository: GitHubRepository
     /** The HTTP path for this issue */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** Identifies the state of the issue. */
-    state: GitHubIssueState;
+    state: GitHubIssueState
     /** A list of events, comments, commits, etc. associated with the issue. */
-    timeline: GitHubIssueTimelineConnection;
+    timeline: GitHubIssueTimelineConnection
     /** A list of events, comments, commits, etc. associated with the issue. */
-    timelineItems: GitHubIssueTimelineItemsConnection;
+    timelineItems: GitHubIssueTimelineItemsConnection
     /** Identifies the issue title. */
-    title: Scalars["String"];
+    title: Scalars['String']
     /** Identifies the date and time when the object was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
     /** The HTTP URL for this issue */
-    url: Scalars["GitHubURI"];
+    url: Scalars['GitHubURI']
     /** A list of edits to this content. */
-    userContentEdits?: Maybe<GitHubUserContentEditConnection>;
+    userContentEdits?: Maybe<GitHubUserContentEditConnection>
     /** Can user react to this subject */
-    viewerCanReact: Scalars["Boolean"];
+    viewerCanReact: Scalars['Boolean']
     /** Check if the viewer is able to change their subscription status for the repository. */
-    viewerCanSubscribe: Scalars["Boolean"];
+    viewerCanSubscribe: Scalars['Boolean']
     /** Check if the current viewer can update this object. */
-    viewerCanUpdate: Scalars["Boolean"];
+    viewerCanUpdate: Scalars['Boolean']
     /** Reasons why the current viewer can not update this comment. */
-    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>;
+    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>
     /** Did the viewer author this comment. */
-    viewerDidAuthor: Scalars["Boolean"];
+    viewerDidAuthor: Scalars['Boolean']
     /** Identifies if the viewer is watching, not watching, or ignoring the subscribable entity. */
-    viewerSubscription?: Maybe<GitHubSubscriptionState>;
-  };
+    viewerSubscription?: Maybe<GitHubSubscriptionState>
+  }
 
 /** An Issue is a place to discuss ideas, enhancements, tasks, and bugs for a project. */
 export type GitHubIssueAssigneesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** An Issue is a place to discuss ideas, enhancements, tasks, and bugs for a project. */
 export type GitHubIssueCommentsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** An Issue is a place to discuss ideas, enhancements, tasks, and bugs for a project. */
+export type GitHubIssueHovercardArgs = {
+  includeNotificationContexts: Scalars['Boolean']
+}
 
 /** An Issue is a place to discuss ideas, enhancements, tasks, and bugs for a project. */
 export type GitHubIssueLabelsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** An Issue is a place to discuss ideas, enhancements, tasks, and bugs for a project. */
 export type GitHubIssueParticipantsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** An Issue is a place to discuss ideas, enhancements, tasks, and bugs for a project. */
 export type GitHubIssueProjectCardsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  archivedStates?: Maybe<Array<Maybe<GitHubProjectCardArchivedState>>>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  archivedStates: Array<Maybe<GitHubProjectCardArchivedState>>
+}
 
 /** An Issue is a place to discuss ideas, enhancements, tasks, and bugs for a project. */
 export type GitHubIssueReactionsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  content?: Maybe<GitHubReactionContent>;
-  orderBy?: Maybe<GitHubReactionOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  content?: Maybe<GitHubReactionContent>
+  orderBy?: Maybe<GitHubReactionOrder>
+}
 
 /** An Issue is a place to discuss ideas, enhancements, tasks, and bugs for a project. */
 export type GitHubIssueTimelineArgs = {
-  since?: Maybe<Scalars["GitHubDateTime"]>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  since?: Maybe<Scalars['GitHubDateTime']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** An Issue is a place to discuss ideas, enhancements, tasks, and bugs for a project. */
 export type GitHubIssueTimelineItemsArgs = {
-  since?: Maybe<Scalars["GitHubDateTime"]>;
-  skip?: Maybe<Scalars["Int"]>;
-  itemTypes?: Maybe<Array<GitHubIssueTimelineItemsItemType>>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  since?: Maybe<Scalars['GitHubDateTime']>
+  skip?: Maybe<Scalars['Int']>
+  itemTypes?: Maybe<Array<GitHubIssueTimelineItemsItemType>>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** An Issue is a place to discuss ideas, enhancements, tasks, and bugs for a project. */
 export type GitHubIssueUserContentEditsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** Represents a comment on an Issue. */
 export type GitHubIssueComment = GitHubNode &
@@ -3337,220 +4901,228 @@ export type GitHubIssueComment = GitHubNode &
   GitHubReactable &
   GitHubRepositoryNode & {
     /** The actor who authored the comment. */
-    author?: Maybe<GitHubActor>;
+    author?: Maybe<GitHubActor>
     /** Author's association with the subject of the comment. */
-    authorAssociation: GitHubCommentAuthorAssociation;
+    authorAssociation: GitHubCommentAuthorAssociation
     /** The body as Markdown. */
-    body: Scalars["String"];
+    body: Scalars['String']
     /** The body rendered to HTML. */
-    bodyHTML: Scalars["GitHubHTML"];
+    bodyHTML: Scalars['GitHubHTML']
     /** The body rendered to text. */
-    bodyText: Scalars["String"];
+    bodyText: Scalars['String']
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** Check if this comment was created via an email reply. */
-    createdViaEmail: Scalars["Boolean"];
+    createdViaEmail: Scalars['Boolean']
     /** Identifies the primary key from the database. */
-    databaseId?: Maybe<Scalars["Int"]>;
+    databaseId?: Maybe<Scalars['Int']>
     /** The actor who edited the comment. */
-    editor?: Maybe<GitHubActor>;
-    id: Scalars["ID"];
+    editor?: Maybe<GitHubActor>
+    id: Scalars['ID']
     /** Check if this comment was edited and includes an edit with the creation data */
-    includesCreatedEdit: Scalars["Boolean"];
+    includesCreatedEdit: Scalars['Boolean']
     /** Returns whether or not a comment has been minimized. */
-    isMinimized: Scalars["Boolean"];
+    isMinimized: Scalars['Boolean']
     /** Identifies the issue associated with the comment. */
-    issue: GitHubIssue;
+    issue: GitHubIssue
     /** The moment the editor made the last edit */
-    lastEditedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    lastEditedAt?: Maybe<Scalars['GitHubDateTime']>
     /** Returns why the comment was minimized. */
-    minimizedReason?: Maybe<Scalars["String"]>;
+    minimizedReason?: Maybe<Scalars['String']>
     /** Identifies when the comment was published at. */
-    publishedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    publishedAt?: Maybe<Scalars['GitHubDateTime']>
     /** Returns the pull request associated with the comment, if this comment was made on a
      * pull request.
      */
-    pullRequest?: Maybe<GitHubPullRequest>;
+    pullRequest?: Maybe<GitHubPullRequest>
     /** A list of reactions grouped by content left on the subject. */
-    reactionGroups?: Maybe<Array<GitHubReactionGroup>>;
+    reactionGroups?: Maybe<Array<GitHubReactionGroup>>
     /** A list of Reactions left on the Issue. */
-    reactions: GitHubReactionConnection;
+    reactions: GitHubReactionConnection
     /** The repository associated with this node. */
-    repository: GitHubRepository;
+    repository: GitHubRepository
     /** The HTTP path for this issue comment */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** Identifies the date and time when the object was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
     /** The HTTP URL for this issue comment */
-    url: Scalars["GitHubURI"];
+    url: Scalars['GitHubURI']
     /** A list of edits to this content. */
-    userContentEdits?: Maybe<GitHubUserContentEditConnection>;
+    userContentEdits?: Maybe<GitHubUserContentEditConnection>
     /** Check if the current viewer can delete this object. */
-    viewerCanDelete: Scalars["Boolean"];
+    viewerCanDelete: Scalars['Boolean']
     /** Check if the current viewer can minimize this object. */
-    viewerCanMinimize: Scalars["Boolean"];
+    viewerCanMinimize: Scalars['Boolean']
     /** Can user react to this subject */
-    viewerCanReact: Scalars["Boolean"];
+    viewerCanReact: Scalars['Boolean']
     /** Check if the current viewer can update this object. */
-    viewerCanUpdate: Scalars["Boolean"];
+    viewerCanUpdate: Scalars['Boolean']
     /** Reasons why the current viewer can not update this comment. */
-    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>;
+    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>
     /** Did the viewer author this comment. */
-    viewerDidAuthor: Scalars["Boolean"];
-  };
+    viewerDidAuthor: Scalars['Boolean']
+  }
 
 /** Represents a comment on an Issue. */
 export type GitHubIssueCommentReactionsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  content?: Maybe<GitHubReactionContent>;
-  orderBy?: Maybe<GitHubReactionOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  content?: Maybe<GitHubReactionContent>
+  orderBy?: Maybe<GitHubReactionOrder>
+}
 
 /** Represents a comment on an Issue. */
 export type GitHubIssueCommentUserContentEditsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** The connection type for IssueComment. */
 export type GitHubIssueCommentConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubIssueCommentEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubIssueCommentEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubIssueComment>>>;
+  nodes?: Maybe<Array<Maybe<GitHubIssueComment>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubIssueCommentEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubIssueComment>;
-};
+  node?: Maybe<GitHubIssueComment>
+}
 
 /** The connection type for Issue. */
 export type GitHubIssueConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubIssueEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubIssueEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubIssue>>>;
+  nodes?: Maybe<Array<Maybe<GitHubIssue>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** This aggregates issues opened by a user within one repository. */
 export type GitHubIssueContributionsByRepository = {
   /** The issue contributions. */
-  contributions: GitHubCreatedIssueContributionConnection;
+  contributions: GitHubCreatedIssueContributionConnection
   /** The repository in which the issues were opened. */
-  repository: GitHubRepository;
-};
+  repository: GitHubRepository
+}
 
 /** This aggregates issues opened by a user within one repository. */
 export type GitHubIssueContributionsByRepositoryContributionsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  orderBy?: Maybe<GitHubContributionOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy: GitHubContributionOrder
+}
 
 /** An edge in a connection. */
 export type GitHubIssueEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubIssue>;
-};
+  node?: Maybe<GitHubIssue>
+}
 
 /** Ways in which to filter lists of issues. */
 export type GitHubIssueFilters = {
   /** List issues assigned to given name. Pass in `null` for issues with no assigned
    * user, and `*` for issues assigned to any user.
    */
-  assignee?: Maybe<Scalars["String"]>;
+  assignee?: Maybe<Scalars['String']>
   /** List issues created by given name. */
-  createdBy?: Maybe<Scalars["String"]>;
+  createdBy?: Maybe<Scalars['String']>
   /** List issues where the list of label names exist on the issue. */
-  labels?: Maybe<Array<Scalars["String"]>>;
+  labels?: Maybe<Array<Scalars['String']>>
   /** List issues where the given name is mentioned in the issue. */
-  mentioned?: Maybe<Scalars["String"]>;
+  mentioned?: Maybe<Scalars['String']>
   /** List issues by given milestone argument. If an string representation of an
    * integer is passed, it should refer to a milestone by its number field. Pass in
    * `null` for issues with no milestone, and `*` for issues that are assigned to any milestone.
    */
-  milestone?: Maybe<Scalars["String"]>;
+  milestone?: Maybe<Scalars['String']>
   /** List issues that have been updated at or after the given date. */
-  since?: Maybe<Scalars["GitHubDateTime"]>;
+  since?: Maybe<Scalars['GitHubDateTime']>
   /** List issues filtered by the list of states given. */
-  states?: Maybe<Array<GitHubIssueState>>;
+  states?: Maybe<Array<GitHubIssueState>>
   /** List issues subscribed to by viewer. */
-  viewerSubscribed?: Maybe<Scalars["Boolean"]>;
-};
+  viewerSubscribed?: Maybe<Scalars['Boolean']>
+}
 
 /** Ways in which lists of issues can be ordered upon return. */
 export type GitHubIssueOrder = {
   /** The field in which to order issues by. */
-  field: GitHubIssueOrderField;
+  field: GitHubIssueOrderField
   /** The direction in which to order issues by the specified field. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which issue connections can be ordered. */
 export enum GitHubIssueOrderField {
   /** Order issues by creation time */
-  CreatedAt = "CREATED_AT",
+  CreatedAt = 'CREATED_AT',
   /** Order issues by update time */
-  UpdatedAt = "UPDATED_AT",
+  UpdatedAt = 'UPDATED_AT',
   /** Order issues by comment count */
-  Comments = "COMMENTS"
+  Comments = 'COMMENTS',
 }
 
 /** Used for return value of Repository.issueOrPullRequest. */
-export type GitHubIssueOrPullRequest = GitHubIssue | GitHubPullRequest;
+export type GitHubIssueOrPullRequest = GitHubIssue | GitHubPullRequest
+
+/** An edge in a connection. */
+export type GitHubIssueOrPullRequestEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubIssueOrPullRequest>
+}
 
 /** The possible PubSub channels for an issue. */
 export enum GitHubIssuePubSubTopic {
   /** The channel ID for observing issue updates. */
-  Updated = "UPDATED",
+  Updated = 'UPDATED',
   /** The channel ID for marking an issue as read. */
-  Markasread = "MARKASREAD",
+  Markasread = 'MARKASREAD',
   /** The channel ID for updating items on the issue timeline. */
-  Timeline = "TIMELINE",
+  Timeline = 'TIMELINE',
   /** The channel ID for observing issue state updates. */
-  State = "STATE"
+  State = 'STATE',
 }
 
 /** The possible states of an issue. */
 export enum GitHubIssueState {
   /** An issue that is still open */
-  Open = "OPEN",
+  Open = 'OPEN',
   /** An issue that has been closed */
-  Closed = "CLOSED"
+  Closed = 'CLOSED',
 }
 
 /** The connection type for IssueTimelineItem. */
 export type GitHubIssueTimelineConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubIssueTimelineItemEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubIssueTimelineItemEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubIssueTimelineItem>>>;
+  nodes?: Maybe<Array<Maybe<GitHubIssueTimelineItem>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An item in an issue timeline */
 export type GitHubIssueTimelineItem =
@@ -3572,15 +5144,15 @@ export type GitHubIssueTimelineItem =
   | GitHubRenamedTitleEvent
   | GitHubLockedEvent
   | GitHubUnlockedEvent
-  | GitHubTransferredEvent;
+  | GitHubTransferredEvent
 
 /** An edge in a connection. */
 export type GitHubIssueTimelineItemEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubIssueTimelineItem>;
-};
+  node?: Maybe<GitHubIssueTimelineItem>
+}
 
 /** An item in an issue timeline */
 export type GitHubIssueTimelineItems =
@@ -3594,6 +5166,7 @@ export type GitHubIssueTimelineItems =
   | GitHubDemilestonedEvent
   | GitHubLabeledEvent
   | GitHubLockedEvent
+  | GitHubMarkedAsDuplicateEvent
   | GitHubMentionedEvent
   | GitHubMilestonedEvent
   | GitHubMovedColumnsInProjectEvent
@@ -3609,88 +5182,90 @@ export type GitHubIssueTimelineItems =
   | GitHubUnlockedEvent
   | GitHubUserBlockedEvent
   | GitHubUnpinnedEvent
-  | GitHubUnsubscribedEvent;
+  | GitHubUnsubscribedEvent
 
 /** The connection type for IssueTimelineItems. */
 export type GitHubIssueTimelineItemsConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubIssueTimelineItemsEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubIssueTimelineItemsEdge>>>
   /** Identifies the count of items after applying `before` and `after` filters. */
-  filteredCount: Scalars["Int"];
+  filteredCount: Scalars['Int']
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubIssueTimelineItems>>>;
+  nodes?: Maybe<Array<Maybe<GitHubIssueTimelineItems>>>
   /** Identifies the count of items after applying `before`/`after` filters and `first`/`last`/`skip` slicing. */
-  pageCount: Scalars["Int"];
+  pageCount: Scalars['Int']
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
+  totalCount: Scalars['Int']
   /** Identifies the date and time when the timeline was last updated. */
-  updatedAt: Scalars["GitHubDateTime"];
-};
+  updatedAt: Scalars['GitHubDateTime']
+}
 
 /** An edge in a connection. */
 export type GitHubIssueTimelineItemsEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubIssueTimelineItems>;
-};
+  node?: Maybe<GitHubIssueTimelineItems>
+}
 
 /** The possible item types found in a timeline. */
 export enum GitHubIssueTimelineItemsItemType {
   /** Represents a comment on an Issue. */
-  IssueComment = "ISSUE_COMMENT",
+  IssueComment = 'ISSUE_COMMENT',
   /** Represents a mention made by one issue or pull request to another. */
-  CrossReferencedEvent = "CROSS_REFERENCED_EVENT",
+  CrossReferencedEvent = 'CROSS_REFERENCED_EVENT',
   /** Represents a 'added_to_project' event on a given issue or pull request. */
-  AddedToProjectEvent = "ADDED_TO_PROJECT_EVENT",
+  AddedToProjectEvent = 'ADDED_TO_PROJECT_EVENT',
   /** Represents an 'assigned' event on any assignable object. */
-  AssignedEvent = "ASSIGNED_EVENT",
+  AssignedEvent = 'ASSIGNED_EVENT',
   /** Represents a 'closed' event on any `Closable`. */
-  ClosedEvent = "CLOSED_EVENT",
+  ClosedEvent = 'CLOSED_EVENT',
   /** Represents a 'comment_deleted' event on a given issue or pull request. */
-  CommentDeletedEvent = "COMMENT_DELETED_EVENT",
+  CommentDeletedEvent = 'COMMENT_DELETED_EVENT',
   /** Represents a 'converted_note_to_issue' event on a given issue or pull request. */
-  ConvertedNoteToIssueEvent = "CONVERTED_NOTE_TO_ISSUE_EVENT",
+  ConvertedNoteToIssueEvent = 'CONVERTED_NOTE_TO_ISSUE_EVENT',
   /** Represents a 'demilestoned' event on a given issue or pull request. */
-  DemilestonedEvent = "DEMILESTONED_EVENT",
+  DemilestonedEvent = 'DEMILESTONED_EVENT',
   /** Represents a 'labeled' event on a given issue or pull request. */
-  LabeledEvent = "LABELED_EVENT",
+  LabeledEvent = 'LABELED_EVENT',
   /** Represents a 'locked' event on a given issue or pull request. */
-  LockedEvent = "LOCKED_EVENT",
+  LockedEvent = 'LOCKED_EVENT',
+  /** Represents a 'marked_as_duplicate' event on a given issue or pull request. */
+  MarkedAsDuplicateEvent = 'MARKED_AS_DUPLICATE_EVENT',
   /** Represents a 'mentioned' event on a given issue or pull request. */
-  MentionedEvent = "MENTIONED_EVENT",
+  MentionedEvent = 'MENTIONED_EVENT',
   /** Represents a 'milestoned' event on a given issue or pull request. */
-  MilestonedEvent = "MILESTONED_EVENT",
+  MilestonedEvent = 'MILESTONED_EVENT',
   /** Represents a 'moved_columns_in_project' event on a given issue or pull request. */
-  MovedColumnsInProjectEvent = "MOVED_COLUMNS_IN_PROJECT_EVENT",
+  MovedColumnsInProjectEvent = 'MOVED_COLUMNS_IN_PROJECT_EVENT',
   /** Represents a 'pinned' event on a given issue or pull request. */
-  PinnedEvent = "PINNED_EVENT",
+  PinnedEvent = 'PINNED_EVENT',
   /** Represents a 'referenced' event on a given `ReferencedSubject`. */
-  ReferencedEvent = "REFERENCED_EVENT",
+  ReferencedEvent = 'REFERENCED_EVENT',
   /** Represents a 'removed_from_project' event on a given issue or pull request. */
-  RemovedFromProjectEvent = "REMOVED_FROM_PROJECT_EVENT",
+  RemovedFromProjectEvent = 'REMOVED_FROM_PROJECT_EVENT',
   /** Represents a 'renamed' event on a given issue or pull request */
-  RenamedTitleEvent = "RENAMED_TITLE_EVENT",
+  RenamedTitleEvent = 'RENAMED_TITLE_EVENT',
   /** Represents a 'reopened' event on any `Closable`. */
-  ReopenedEvent = "REOPENED_EVENT",
+  ReopenedEvent = 'REOPENED_EVENT',
   /** Represents a 'subscribed' event on a given `Subscribable`. */
-  SubscribedEvent = "SUBSCRIBED_EVENT",
+  SubscribedEvent = 'SUBSCRIBED_EVENT',
   /** Represents a 'transferred' event on a given issue or pull request. */
-  TransferredEvent = "TRANSFERRED_EVENT",
+  TransferredEvent = 'TRANSFERRED_EVENT',
   /** Represents an 'unassigned' event on any assignable object. */
-  UnassignedEvent = "UNASSIGNED_EVENT",
+  UnassignedEvent = 'UNASSIGNED_EVENT',
   /** Represents an 'unlabeled' event on a given issue or pull request. */
-  UnlabeledEvent = "UNLABELED_EVENT",
+  UnlabeledEvent = 'UNLABELED_EVENT',
   /** Represents an 'unlocked' event on a given issue or pull request. */
-  UnlockedEvent = "UNLOCKED_EVENT",
+  UnlockedEvent = 'UNLOCKED_EVENT',
   /** Represents a 'user_blocked' event on a given user. */
-  UserBlockedEvent = "USER_BLOCKED_EVENT",
+  UserBlockedEvent = 'USER_BLOCKED_EVENT',
   /** Represents an 'unpinned' event on a given issue or pull request. */
-  UnpinnedEvent = "UNPINNED_EVENT",
+  UnpinnedEvent = 'UNPINNED_EVENT',
   /** Represents an 'unsubscribed' event on a given `Subscribable`. */
-  UnsubscribedEvent = "UNSUBSCRIBED_EVENT"
+  UnsubscribedEvent = 'UNSUBSCRIBED_EVENT',
 }
 
 /** Represents a user signing up for a GitHub account. */
@@ -3699,253 +5274,273 @@ export type GitHubJoinedGitHubContribution = GitHubContribution & {
    * example, your own 'first issue' contribution may have been made on a repository you can no
    * longer access.
    */
-  isRestricted: Scalars["Boolean"];
+  isRestricted: Scalars['Boolean']
   /** When this contribution was made. */
-  occurredAt: Scalars["GitHubDateTime"];
+  occurredAt: Scalars['GitHubDateTime']
   /** The HTTP path for this contribution. */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** The HTTP URL for this contribution. */
-  url: Scalars["GitHubURI"];
+  url: Scalars['GitHubURI']
   /** The user who made this contribution. */
-  user: GitHubUser;
-};
+  user: GitHubUser
+}
 
 /** A label for categorizing Issues or Milestones with a given Repository. */
 export type GitHubLabel = GitHubNode & {
   /** Identifies the label color. */
-  color: Scalars["String"];
+  color: Scalars['String']
   /** Identifies the date and time when the label was created. */
-  createdAt?: Maybe<Scalars["GitHubDateTime"]>;
+  createdAt?: Maybe<Scalars['GitHubDateTime']>
   /** A brief description of this label. */
-  description?: Maybe<Scalars["String"]>;
-  id: Scalars["ID"];
+  description?: Maybe<Scalars['String']>
+  id: Scalars['ID']
   /** Indicates whether or not this is a default label. */
-  isDefault: Scalars["Boolean"];
+  isDefault: Scalars['Boolean']
   /** A list of issues associated with this label. */
-  issues: GitHubIssueConnection;
+  issues: GitHubIssueConnection
   /** Identifies the label name. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** A list of pull requests associated with this label. */
-  pullRequests: GitHubPullRequestConnection;
+  pullRequests: GitHubPullRequestConnection
   /** The repository associated with this label. */
-  repository: GitHubRepository;
+  repository: GitHubRepository
   /** The HTTP path for this label. */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** Identifies the date and time when the label was last updated. */
-  updatedAt?: Maybe<Scalars["GitHubDateTime"]>;
+  updatedAt?: Maybe<Scalars['GitHubDateTime']>
   /** The HTTP URL for this label. */
-  url: Scalars["GitHubURI"];
-};
+  url: Scalars['GitHubURI']
+}
 
 /** A label for categorizing Issues or Milestones with a given Repository. */
 export type GitHubLabelIssuesArgs = {
-  orderBy?: Maybe<GitHubIssueOrder>;
-  labels?: Maybe<Array<Scalars["String"]>>;
-  states?: Maybe<Array<GitHubIssueState>>;
-  filterBy?: Maybe<GitHubIssueFilters>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  orderBy?: Maybe<GitHubIssueOrder>
+  labels?: Maybe<Array<Scalars['String']>>
+  states?: Maybe<Array<GitHubIssueState>>
+  filterBy?: Maybe<GitHubIssueFilters>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A label for categorizing Issues or Milestones with a given Repository. */
 export type GitHubLabelPullRequestsArgs = {
-  states?: Maybe<Array<GitHubPullRequestState>>;
-  labels?: Maybe<Array<Scalars["String"]>>;
-  headRefName?: Maybe<Scalars["String"]>;
-  baseRefName?: Maybe<Scalars["String"]>;
-  orderBy?: Maybe<GitHubIssueOrder>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  states?: Maybe<Array<GitHubPullRequestState>>
+  labels?: Maybe<Array<Scalars['String']>>
+  headRefName?: Maybe<Scalars['String']>
+  baseRefName?: Maybe<Scalars['String']>
+  orderBy?: Maybe<GitHubIssueOrder>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** An object that can have labels assigned to it. */
 export type GitHubLabelable = {
   /** A list of labels associated with the object. */
-  labels?: Maybe<GitHubLabelConnection>;
-};
+  labels?: Maybe<GitHubLabelConnection>
+}
 
 /** An object that can have labels assigned to it. */
 export type GitHubLabelableLabelsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** The connection type for Label. */
 export type GitHubLabelConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubLabelEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubLabelEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubLabel>>>;
+  nodes?: Maybe<Array<Maybe<GitHubLabel>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** Represents a 'labeled' event on a given issue or pull request. */
 export type GitHubLabeledEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** Identifies the label associated with the 'labeled' event. */
-  label: GitHubLabel;
+  label: GitHubLabel
   /** Identifies the `Labelable` associated with the event. */
-  labelable: GitHubLabelable;
-};
+  labelable: GitHubLabelable
+}
 
 /** An edge in a connection. */
 export type GitHubLabelEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubLabel>;
-};
+  node?: Maybe<GitHubLabel>
+}
 
 /** Represents a given language found in repositories. */
 export type GitHubLanguage = GitHubNode & {
   /** The color defined for the current language. */
-  color?: Maybe<Scalars["String"]>;
-  id: Scalars["ID"];
+  color?: Maybe<Scalars['String']>
+  id: Scalars['ID']
   /** The name of the current language. */
-  name: Scalars["String"];
-};
+  name: Scalars['String']
+}
 
 /** A list of languages associated with the parent. */
 export type GitHubLanguageConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubLanguageEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubLanguageEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubLanguage>>>;
+  nodes?: Maybe<Array<Maybe<GitHubLanguage>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
+  totalCount: Scalars['Int']
   /** The total size in bytes of files written in that language. */
-  totalSize: Scalars["Int"];
-};
+  totalSize: Scalars['Int']
+}
 
 /** Represents the language of a repository. */
 export type GitHubLanguageEdge = {
-  cursor: Scalars["String"];
-  node: GitHubLanguage;
+  cursor: Scalars['String']
+  node: GitHubLanguage
   /** The number of bytes of code written in the language. */
-  size: Scalars["Int"];
-};
+  size: Scalars['Int']
+}
 
 /** Ordering options for language connections. */
 export type GitHubLanguageOrder = {
   /** The field to order languages by. */
-  field: GitHubLanguageOrderField;
+  field: GitHubLanguageOrderField
   /** The ordering direction. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which language connections can be ordered. */
 export enum GitHubLanguageOrderField {
   /** Order languages by the size of all files containing the language */
-  Size = "SIZE"
+  Size = 'SIZE',
 }
 
 /** A repository's open source license */
 export type GitHubLicense = GitHubNode & {
   /** The full text of the license */
-  body: Scalars["String"];
+  body: Scalars['String']
   /** The conditions set by the license */
-  conditions: Array<Maybe<GitHubLicenseRule>>;
+  conditions: Array<Maybe<GitHubLicenseRule>>
   /** A human-readable description of the license */
-  description?: Maybe<Scalars["String"]>;
+  description?: Maybe<Scalars['String']>
   /** Whether the license should be featured */
-  featured: Scalars["Boolean"];
+  featured: Scalars['Boolean']
   /** Whether the license should be displayed in license pickers */
-  hidden: Scalars["Boolean"];
-  id: Scalars["ID"];
+  hidden: Scalars['Boolean']
+  id: Scalars['ID']
   /** Instructions on how to implement the license */
-  implementation?: Maybe<Scalars["String"]>;
+  implementation?: Maybe<Scalars['String']>
   /** The lowercased SPDX ID of the license */
-  key: Scalars["String"];
+  key: Scalars['String']
   /** The limitations set by the license */
-  limitations: Array<Maybe<GitHubLicenseRule>>;
+  limitations: Array<Maybe<GitHubLicenseRule>>
   /** The license full name specified by <https://spdx.org/licenses> */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** Customary short name if applicable (e.g, GPLv3) */
-  nickname?: Maybe<Scalars["String"]>;
+  nickname?: Maybe<Scalars['String']>
   /** The permissions set by the license */
-  permissions: Array<Maybe<GitHubLicenseRule>>;
+  permissions: Array<Maybe<GitHubLicenseRule>>
   /** Whether the license is a pseudo-license placeholder (e.g., other, no-license) */
-  pseudoLicense: Scalars["Boolean"];
+  pseudoLicense: Scalars['Boolean']
   /** Short identifier specified by <https://spdx.org/licenses> */
-  spdxId?: Maybe<Scalars["String"]>;
+  spdxId?: Maybe<Scalars['String']>
   /** URL to the license on <https://choosealicense.com> */
-  url?: Maybe<Scalars["GitHubURI"]>;
-};
+  url?: Maybe<Scalars['GitHubURI']>
+}
 
 /** Describes a License's conditions, permissions, and limitations */
 export type GitHubLicenseRule = {
   /** A description of the rule */
-  description: Scalars["String"];
+  description: Scalars['String']
   /** The machine-readable rule key */
-  key: Scalars["String"];
+  key: Scalars['String']
   /** The human-readable rule label */
-  label: Scalars["String"];
-};
+  label: Scalars['String']
+}
+
+/** Autogenerated input type of LinkRepositoryToProject */
+export type GitHubLinkRepositoryToProjectInput = {
+  /** The ID of the Project to link to a Repository */
+  projectId: Scalars['ID']
+  /** The ID of the Repository to link to a Project. */
+  repositoryId: Scalars['ID']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of LinkRepositoryToProject */
+export type GitHubLinkRepositoryToProjectPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The linked Project. */
+  project?: Maybe<GitHubProject>
+  /** The linked Repository. */
+  repository?: Maybe<GitHubRepository>
+}
 
 /** An object that can be locked. */
 export type GitHubLockable = {
   /** Reason that the conversation was locked. */
-  activeLockReason?: Maybe<GitHubLockReason>;
+  activeLockReason?: Maybe<GitHubLockReason>
   /** `true` if the object is locked */
-  locked: Scalars["Boolean"];
-};
+  locked: Scalars['Boolean']
+}
 
 /** Represents a 'locked' event on a given issue or pull request. */
 export type GitHubLockedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** Reason that the conversation was locked (optional). */
-  lockReason?: Maybe<GitHubLockReason>;
+  lockReason?: Maybe<GitHubLockReason>
   /** Object that was locked. */
-  lockable: GitHubLockable;
-};
+  lockable: GitHubLockable
+}
 
 /** Autogenerated input type of LockLockable */
 export type GitHubLockLockableInput = {
   /** ID of the issue or pull request to be locked. */
-  lockableId: Scalars["ID"];
+  lockableId: Scalars['ID']
   /** A reason for why the issue or pull request will be locked. */
-  lockReason?: Maybe<GitHubLockReason>;
+  lockReason?: Maybe<GitHubLockReason>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of LockLockable */
 export type GitHubLockLockablePayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The item that was locked. */
-  lockedRecord?: Maybe<GitHubLockable>;
-};
+  lockedRecord?: Maybe<GitHubLockable>
+}
 
 /** The possible reasons that an issue or pull request was locked. */
 export enum GitHubLockReason {
   /** The issue or pull request was locked because the conversation was off-topic. */
-  OffTopic = "OFF_TOPIC",
+  OffTopic = 'OFF_TOPIC',
   /** The issue or pull request was locked because the conversation was too heated. */
-  TooHeated = "TOO_HEATED",
+  TooHeated = 'TOO_HEATED',
   /** The issue or pull request was locked because the conversation was resolved. */
-  Resolved = "RESOLVED",
+  Resolved = 'RESOLVED',
   /** The issue or pull request was locked because the conversation was spam. */
-  Spam = "SPAM"
+  Spam = 'SPAM',
 }
 
 /** A placeholder user for attribution of imported data on GitHub. */
@@ -3953,483 +5548,862 @@ export type GitHubMannequin = GitHubNode &
   GitHubActor &
   GitHubUniformResourceLocatable & {
     /** A URL pointing to the GitHub App's public avatar. */
-    avatarUrl: Scalars["GitHubURI"];
+    avatarUrl: Scalars['GitHubURI']
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** Identifies the primary key from the database. */
-    databaseId?: Maybe<Scalars["Int"]>;
-    id: Scalars["ID"];
+    databaseId?: Maybe<Scalars['Int']>
+    /** The mannequin's email on the source instance. */
+    email?: Maybe<Scalars['String']>
+    id: Scalars['ID']
     /** The username of the actor. */
-    login: Scalars["String"];
+    login: Scalars['String']
     /** The HTML path to this resource. */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** Identifies the date and time when the object was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
     /** The URL to this resource. */
-    url: Scalars["GitHubURI"];
-  };
+    url: Scalars['GitHubURI']
+  }
 
 /** A placeholder user for attribution of imported data on GitHub. */
 export type GitHubMannequinAvatarUrlArgs = {
-  size?: Maybe<Scalars["Int"]>;
-};
+  size?: Maybe<Scalars['Int']>
+}
+
+/** Represents a 'marked_as_duplicate' event on a given issue or pull request. */
+export type GitHubMarkedAsDuplicateEvent = GitHubNode & {
+  /** Identifies the actor who performed the event. */
+  actor?: Maybe<GitHubActor>
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
+}
 
 /** A public description of a Marketplace category. */
 export type GitHubMarketplaceCategory = GitHubNode & {
   /** The category's description. */
-  description?: Maybe<Scalars["String"]>;
+  description?: Maybe<Scalars['String']>
   /** The technical description of how apps listed in this category work with GitHub. */
-  howItWorks?: Maybe<Scalars["String"]>;
-  id: Scalars["ID"];
+  howItWorks?: Maybe<Scalars['String']>
+  id: Scalars['ID']
   /** The category's name. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** How many Marketplace listings have this as their primary category. */
-  primaryListingCount: Scalars["Int"];
+  primaryListingCount: Scalars['Int']
   /** The HTTP path for this Marketplace category. */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** How many Marketplace listings have this as their secondary category. */
-  secondaryListingCount: Scalars["Int"];
+  secondaryListingCount: Scalars['Int']
   /** The short name of the category used in its URL. */
-  slug: Scalars["String"];
+  slug: Scalars['String']
   /** The HTTP URL for this Marketplace category. */
-  url: Scalars["GitHubURI"];
-};
+  url: Scalars['GitHubURI']
+}
 
 /** A listing in the GitHub integration marketplace. */
 export type GitHubMarketplaceListing = GitHubNode & {
   /** The GitHub App this listing represents. */
-  app?: Maybe<GitHubApp>;
+  app?: Maybe<GitHubApp>
   /** URL to the listing owner's company site. */
-  companyUrl?: Maybe<Scalars["GitHubURI"]>;
+  companyUrl?: Maybe<Scalars['GitHubURI']>
   /** The HTTP path for configuring access to the listing's integration or OAuth app */
-  configurationResourcePath: Scalars["GitHubURI"];
+  configurationResourcePath: Scalars['GitHubURI']
   /** The HTTP URL for configuring access to the listing's integration or OAuth app */
-  configurationUrl: Scalars["GitHubURI"];
+  configurationUrl: Scalars['GitHubURI']
   /** URL to the listing's documentation. */
-  documentationUrl?: Maybe<Scalars["GitHubURI"]>;
+  documentationUrl?: Maybe<Scalars['GitHubURI']>
   /** The listing's detailed description. */
-  extendedDescription?: Maybe<Scalars["String"]>;
+  extendedDescription?: Maybe<Scalars['String']>
   /** The listing's detailed description rendered to HTML. */
-  extendedDescriptionHTML: Scalars["GitHubHTML"];
+  extendedDescriptionHTML: Scalars['GitHubHTML']
   /** The listing's introductory description. */
-  fullDescription: Scalars["String"];
+  fullDescription: Scalars['String']
   /** The listing's introductory description rendered to HTML. */
-  fullDescriptionHTML: Scalars["GitHubHTML"];
+  fullDescriptionHTML: Scalars['GitHubHTML']
   /** Whether this listing has been submitted for review from GitHub for approval to be displayed in the Marketplace. */
-  hasApprovalBeenRequested: Scalars["Boolean"];
+  hasApprovalBeenRequested: Scalars['Boolean']
   /** Does this listing have any plans with a free trial? */
-  hasPublishedFreeTrialPlans: Scalars["Boolean"];
+  hasPublishedFreeTrialPlans: Scalars['Boolean']
   /** Does this listing have a terms of service link? */
-  hasTermsOfService: Scalars["Boolean"];
+  hasTermsOfService: Scalars['Boolean']
   /** A technical description of how this app works with GitHub. */
-  howItWorks?: Maybe<Scalars["String"]>;
+  howItWorks?: Maybe<Scalars['String']>
   /** The listing's technical description rendered to HTML. */
-  howItWorksHTML: Scalars["GitHubHTML"];
-  id: Scalars["ID"];
+  howItWorksHTML: Scalars['GitHubHTML']
+  id: Scalars['ID']
   /** URL to install the product to the viewer's account or organization. */
-  installationUrl?: Maybe<Scalars["GitHubURI"]>;
+  installationUrl?: Maybe<Scalars['GitHubURI']>
   /** Whether this listing's app has been installed for the current viewer */
-  installedForViewer: Scalars["Boolean"];
+  installedForViewer: Scalars['Boolean']
   /** Whether this listing has been approved for display in the Marketplace. */
-  isApproved: Scalars["Boolean"];
+  isApproved: Scalars['Boolean']
   /** Whether this listing has been removed from the Marketplace. */
-  isArchived: Scalars["Boolean"];
+  isArchived: Scalars['Boolean']
   /** Whether this listing has been removed from the Marketplace. */
-  isDelisted: Scalars["Boolean"];
+  isDelisted: Scalars['Boolean']
   /** Whether this listing is still an editable draft that has not been submitted
    * for review and is not publicly visible in the Marketplace.
    */
-  isDraft: Scalars["Boolean"];
+  isDraft: Scalars['Boolean']
   /** Whether the product this listing represents is available as part of a paid plan. */
-  isPaid: Scalars["Boolean"];
+  isPaid: Scalars['Boolean']
   /** Whether this listing has been approved for display in the Marketplace. */
-  isPublic: Scalars["Boolean"];
+  isPublic: Scalars['Boolean']
   /** Whether this listing has been rejected by GitHub for display in the Marketplace. */
-  isRejected: Scalars["Boolean"];
+  isRejected: Scalars['Boolean']
   /** Whether this listing has been approved for unverified display in the Marketplace. */
-  isUnverified: Scalars["Boolean"];
+  isUnverified: Scalars['Boolean']
   /** Whether this draft listing has been submitted for review for approval to be unverified in the Marketplace. */
-  isUnverifiedPending: Scalars["Boolean"];
+  isUnverifiedPending: Scalars['Boolean']
   /** Whether this draft listing has been submitted for review from GitHub for approval to be verified in the Marketplace. */
-  isVerificationPendingFromDraft: Scalars["Boolean"];
+  isVerificationPendingFromDraft: Scalars['Boolean']
   /** Whether this unverified listing has been submitted for review from GitHub for approval to be verified in the Marketplace. */
-  isVerificationPendingFromUnverified: Scalars["Boolean"];
+  isVerificationPendingFromUnverified: Scalars['Boolean']
   /** Whether this listing has been approved for verified display in the Marketplace. */
-  isVerified: Scalars["Boolean"];
+  isVerified: Scalars['Boolean']
   /** The hex color code, without the leading '#', for the logo background. */
-  logoBackgroundColor: Scalars["String"];
+  logoBackgroundColor: Scalars['String']
   /** URL for the listing's logo image. */
-  logoUrl?: Maybe<Scalars["GitHubURI"]>;
+  logoUrl?: Maybe<Scalars['GitHubURI']>
   /** The listing's full name. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** The listing's very short description without a trailing period or ampersands. */
-  normalizedShortDescription: Scalars["String"];
+  normalizedShortDescription: Scalars['String']
   /** URL to the listing's detailed pricing. */
-  pricingUrl?: Maybe<Scalars["GitHubURI"]>;
+  pricingUrl?: Maybe<Scalars['GitHubURI']>
   /** The category that best describes the listing. */
-  primaryCategory: GitHubMarketplaceCategory;
+  primaryCategory: GitHubMarketplaceCategory
   /** URL to the listing's privacy policy, may return an empty string for listings that do not require a privacy policy URL. */
-  privacyPolicyUrl: Scalars["GitHubURI"];
+  privacyPolicyUrl: Scalars['GitHubURI']
   /** The HTTP path for the Marketplace listing. */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** The URLs for the listing's screenshots. */
-  screenshotUrls: Array<Maybe<Scalars["String"]>>;
+  screenshotUrls: Array<Maybe<Scalars['String']>>
   /** An alternate category that describes the listing. */
-  secondaryCategory?: Maybe<GitHubMarketplaceCategory>;
+  secondaryCategory?: Maybe<GitHubMarketplaceCategory>
   /** The listing's very short description. */
-  shortDescription: Scalars["String"];
+  shortDescription: Scalars['String']
   /** The short name of the listing used in its URL. */
-  slug: Scalars["String"];
+  slug: Scalars['String']
   /** URL to the listing's status page. */
-  statusUrl?: Maybe<Scalars["GitHubURI"]>;
+  statusUrl?: Maybe<Scalars['GitHubURI']>
   /** An email address for support for this listing's app. */
-  supportEmail?: Maybe<Scalars["String"]>;
+  supportEmail?: Maybe<Scalars['String']>
   /** Either a URL or an email address for support for this listing's app, may
    * return an empty string for listings that do not require a support URL.
    */
-  supportUrl: Scalars["GitHubURI"];
+  supportUrl: Scalars['GitHubURI']
   /** URL to the listing's terms of service. */
-  termsOfServiceUrl?: Maybe<Scalars["GitHubURI"]>;
+  termsOfServiceUrl?: Maybe<Scalars['GitHubURI']>
   /** The HTTP URL for the Marketplace listing. */
-  url: Scalars["GitHubURI"];
+  url: Scalars['GitHubURI']
   /** Can the current viewer add plans for this Marketplace listing. */
-  viewerCanAddPlans: Scalars["Boolean"];
+  viewerCanAddPlans: Scalars['Boolean']
   /** Can the current viewer approve this Marketplace listing. */
-  viewerCanApprove: Scalars["Boolean"];
+  viewerCanApprove: Scalars['Boolean']
   /** Can the current viewer delist this Marketplace listing. */
-  viewerCanDelist: Scalars["Boolean"];
+  viewerCanDelist: Scalars['Boolean']
   /** Can the current viewer edit this Marketplace listing. */
-  viewerCanEdit: Scalars["Boolean"];
+  viewerCanEdit: Scalars['Boolean']
   /** Can the current viewer edit the primary and secondary category of this
    * Marketplace listing.
    */
-  viewerCanEditCategories: Scalars["Boolean"];
+  viewerCanEditCategories: Scalars['Boolean']
   /** Can the current viewer edit the plans for this Marketplace listing. */
-  viewerCanEditPlans: Scalars["Boolean"];
+  viewerCanEditPlans: Scalars['Boolean']
   /** Can the current viewer return this Marketplace listing to draft state
    * so it becomes editable again.
    */
-  viewerCanRedraft: Scalars["Boolean"];
+  viewerCanRedraft: Scalars['Boolean']
   /** Can the current viewer reject this Marketplace listing by returning it to
    * an editable draft state or rejecting it entirely.
    */
-  viewerCanReject: Scalars["Boolean"];
+  viewerCanReject: Scalars['Boolean']
   /** Can the current viewer request this listing be reviewed for display in
    * the Marketplace as verified.
    */
-  viewerCanRequestApproval: Scalars["Boolean"];
+  viewerCanRequestApproval: Scalars['Boolean']
   /** Indicates whether the current user has an active subscription to this Marketplace listing. */
-  viewerHasPurchased: Scalars["Boolean"];
+  viewerHasPurchased: Scalars['Boolean']
   /** Indicates if the current user has purchased a subscription to this Marketplace listing
    * for all of the organizations the user owns.
    */
-  viewerHasPurchasedForAllOrganizations: Scalars["Boolean"];
+  viewerHasPurchasedForAllOrganizations: Scalars['Boolean']
   /** Does the current viewer role allow them to administer this Marketplace listing. */
-  viewerIsListingAdmin: Scalars["Boolean"];
-};
+  viewerIsListingAdmin: Scalars['Boolean']
+}
 
 /** A listing in the GitHub integration marketplace. */
 export type GitHubMarketplaceListingLogoUrlArgs = {
-  size: Scalars["Int"];
-};
+  size: Scalars['Int']
+}
 
 /** Look up Marketplace Listings */
 export type GitHubMarketplaceListingConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubMarketplaceListingEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubMarketplaceListingEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubMarketplaceListing>>>;
+  nodes?: Maybe<Array<Maybe<GitHubMarketplaceListing>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubMarketplaceListingEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubMarketplaceListing>;
-};
+  node?: Maybe<GitHubMarketplaceListing>
+}
+
+/** Audit log entry for a members_can_delete_repos.clear event. */
+export type GitHubMembersCanDeleteReposClearAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubEnterpriseAuditEntryData &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    /** The HTTP path for this enterprise. */
+    enterpriseResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The slug of the enterprise. */
+    enterpriseSlug?: Maybe<Scalars['String']>
+    /** The HTTP URL for this enterprise. */
+    enterpriseUrl?: Maybe<Scalars['GitHubURI']>
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a members_can_delete_repos.disable event. */
+export type GitHubMembersCanDeleteReposDisableAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubEnterpriseAuditEntryData &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    /** The HTTP path for this enterprise. */
+    enterpriseResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The slug of the enterprise. */
+    enterpriseSlug?: Maybe<Scalars['String']>
+    /** The HTTP URL for this enterprise. */
+    enterpriseUrl?: Maybe<Scalars['GitHubURI']>
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a members_can_delete_repos.enable event. */
+export type GitHubMembersCanDeleteReposEnableAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubEnterpriseAuditEntryData &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    /** The HTTP path for this enterprise. */
+    enterpriseResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The slug of the enterprise. */
+    enterpriseSlug?: Maybe<Scalars['String']>
+    /** The HTTP URL for this enterprise. */
+    enterpriseUrl?: Maybe<Scalars['GitHubURI']>
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
 
 /** Entities that have members who can set status messages. */
 export type GitHubMemberStatusable = {
   /** Get the status messages members of this entity have set that are either public or visible only to the organization. */
-  memberStatuses: GitHubUserStatusConnection;
-};
+  memberStatuses: GitHubUserStatusConnection
+}
 
 /** Entities that have members who can set status messages. */
 export type GitHubMemberStatusableMemberStatusesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  orderBy?: Maybe<GitHubUserStatusOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy: GitHubUserStatusOrder
+}
 
 /** Represents a 'mentioned' event on a given issue or pull request. */
 export type GitHubMentionedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
-  id: Scalars["ID"];
-};
+  databaseId?: Maybe<Scalars['Int']>
+  id: Scalars['ID']
+}
 
 /** Whether or not a PullRequest can be merged. */
 export enum GitHubMergeableState {
   /** The pull request can be merged. */
-  Mergeable = "MERGEABLE",
+  Mergeable = 'MERGEABLE',
   /** The pull request cannot be merged due to merge conflicts. */
-  Conflicting = "CONFLICTING",
+  Conflicting = 'CONFLICTING',
   /** The mergeability of the pull request is still being calculated. */
-  Unknown = "UNKNOWN"
+  Unknown = 'UNKNOWN',
+}
+
+/** Autogenerated input type of MergeBranch */
+export type GitHubMergeBranchInput = {
+  /** The Node ID of the Repository containing the base branch that will be modified. */
+  repositoryId: Scalars['ID']
+  /** The name of the base branch that the provided head will be merged into. */
+  base: Scalars['String']
+  /** The head to merge into the base branch. This can be a branch name or a commit GitObjectID. */
+  head: Scalars['String']
+  /** Message to use for the merge commit. If omitted, a default will be used. */
+  commitMessage?: Maybe<Scalars['String']>
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of MergeBranch */
+export type GitHubMergeBranchPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The resulting merge Commit. */
+  mergeCommit?: Maybe<GitHubCommit>
 }
 
 /** Represents a 'merged' event on a given pull request. */
 export type GitHubMergedEvent = GitHubNode &
   GitHubUniformResourceLocatable & {
     /** Identifies the actor who performed the event. */
-    actor?: Maybe<GitHubActor>;
+    actor?: Maybe<GitHubActor>
     /** Identifies the commit associated with the `merge` event. */
-    commit?: Maybe<GitHubCommit>;
+    commit?: Maybe<GitHubCommit>
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
-    id: Scalars["ID"];
+    createdAt: Scalars['GitHubDateTime']
+    id: Scalars['ID']
     /** Identifies the Ref associated with the `merge` event. */
-    mergeRef?: Maybe<GitHubRef>;
+    mergeRef?: Maybe<GitHubRef>
     /** Identifies the name of the Ref associated with the `merge` event. */
-    mergeRefName: Scalars["String"];
+    mergeRefName: Scalars['String']
     /** PullRequest referenced by event. */
-    pullRequest: GitHubPullRequest;
+    pullRequest: GitHubPullRequest
     /** The HTTP path for this merged event. */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** The HTTP URL for this merged event. */
-    url: Scalars["GitHubURI"];
-  };
+    url: Scalars['GitHubURI']
+  }
 
 /** Autogenerated input type of MergePullRequest */
 export type GitHubMergePullRequestInput = {
   /** ID of the pull request to be merged. */
-  pullRequestId: Scalars["ID"];
+  pullRequestId: Scalars['ID']
   /** Commit headline to use for the merge commit; if omitted, a default message will be used. */
-  commitHeadline?: Maybe<Scalars["String"]>;
+  commitHeadline?: Maybe<Scalars['String']>
   /** Commit body to use for the merge commit; if omitted, a default message will be used */
-  commitBody?: Maybe<Scalars["String"]>;
+  commitBody?: Maybe<Scalars['String']>
   /** OID that the pull request head ref must match to allow merge; if omitted, no check is performed. */
-  expectedHeadOid?: Maybe<Scalars["GitHubGitObjectID"]>;
+  expectedHeadOid?: Maybe<Scalars['GitHubGitObjectID']>
+  /** The merge method to use. If omitted, defaults to 'MERGE' */
+  mergeMethod?: Maybe<GitHubPullRequestMergeMethod>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of MergePullRequest */
 export type GitHubMergePullRequestPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The pull request that was merged. */
-  pullRequest?: Maybe<GitHubPullRequest>;
-};
+  pullRequest?: Maybe<GitHubPullRequest>
+}
 
 /** Represents a Milestone object on a given repository. */
 export type GitHubMilestone = GitHubNode &
   GitHubClosable &
   GitHubUniformResourceLocatable & {
     /** `true` if the object is closed (definition of closed may depend on type) */
-    closed: Scalars["Boolean"];
+    closed: Scalars['Boolean']
     /** Identifies the date and time when the object was closed. */
-    closedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    closedAt?: Maybe<Scalars['GitHubDateTime']>
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** Identifies the actor who created the milestone. */
-    creator?: Maybe<GitHubActor>;
+    creator?: Maybe<GitHubActor>
     /** Identifies the description of the milestone. */
-    description?: Maybe<Scalars["String"]>;
+    description?: Maybe<Scalars['String']>
     /** Identifies the due date of the milestone. */
-    dueOn?: Maybe<Scalars["GitHubDateTime"]>;
-    id: Scalars["ID"];
+    dueOn?: Maybe<Scalars['GitHubDateTime']>
+    id: Scalars['ID']
+    /** Just for debugging on review-lab */
+    issuePrioritiesDebug: Scalars['String']
     /** A list of issues associated with the milestone. */
-    issues: GitHubIssueConnection;
+    issues: GitHubIssueConnection
     /** Identifies the number of the milestone. */
-    number: Scalars["Int"];
+    number: Scalars['Int']
     /** A list of pull requests associated with the milestone. */
-    pullRequests: GitHubPullRequestConnection;
+    pullRequests: GitHubPullRequestConnection
     /** The repository associated with this milestone. */
-    repository: GitHubRepository;
+    repository: GitHubRepository
     /** The HTTP path for this milestone */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** Identifies the state of the milestone. */
-    state: GitHubMilestoneState;
+    state: GitHubMilestoneState
     /** Identifies the title of the milestone. */
-    title: Scalars["String"];
+    title: Scalars['String']
     /** Identifies the date and time when the object was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
     /** The HTTP URL for this milestone */
-    url: Scalars["GitHubURI"];
-  };
+    url: Scalars['GitHubURI']
+  }
 
 /** Represents a Milestone object on a given repository. */
 export type GitHubMilestoneIssuesArgs = {
-  orderBy?: Maybe<GitHubIssueOrder>;
-  labels?: Maybe<Array<Scalars["String"]>>;
-  states?: Maybe<Array<GitHubIssueState>>;
-  filterBy?: Maybe<GitHubIssueFilters>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  orderBy?: Maybe<GitHubIssueOrder>
+  labels?: Maybe<Array<Scalars['String']>>
+  states?: Maybe<Array<GitHubIssueState>>
+  filterBy?: Maybe<GitHubIssueFilters>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** Represents a Milestone object on a given repository. */
 export type GitHubMilestonePullRequestsArgs = {
-  states?: Maybe<Array<GitHubPullRequestState>>;
-  labels?: Maybe<Array<Scalars["String"]>>;
-  headRefName?: Maybe<Scalars["String"]>;
-  baseRefName?: Maybe<Scalars["String"]>;
-  orderBy?: Maybe<GitHubIssueOrder>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  states?: Maybe<Array<GitHubPullRequestState>>
+  labels?: Maybe<Array<Scalars['String']>>
+  headRefName?: Maybe<Scalars['String']>
+  baseRefName?: Maybe<Scalars['String']>
+  orderBy?: Maybe<GitHubIssueOrder>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** The connection type for Milestone. */
 export type GitHubMilestoneConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubMilestoneEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubMilestoneEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubMilestone>>>;
+  nodes?: Maybe<Array<Maybe<GitHubMilestone>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** Represents a 'milestoned' event on a given issue or pull request. */
 export type GitHubMilestonedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** Identifies the milestone title associated with the 'milestoned' event. */
-  milestoneTitle: Scalars["String"];
+  milestoneTitle: Scalars['String']
   /** Object referenced by event. */
-  subject: GitHubMilestoneItem;
-};
+  subject: GitHubMilestoneItem
+}
 
 /** An edge in a connection. */
 export type GitHubMilestoneEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubMilestone>;
-};
+  node?: Maybe<GitHubMilestone>
+}
 
 /** Types that can be inside a Milestone. */
-export type GitHubMilestoneItem = GitHubIssue | GitHubPullRequest;
+export type GitHubMilestoneItem = GitHubIssue | GitHubPullRequest
 
 /** Ordering options for milestone connections. */
 export type GitHubMilestoneOrder = {
   /** The field to order milestones by. */
-  field: GitHubMilestoneOrderField;
+  field: GitHubMilestoneOrderField
   /** The ordering direction. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which milestone connections can be ordered. */
 export enum GitHubMilestoneOrderField {
   /** Order milestones by when they are due. */
-  DueDate = "DUE_DATE",
+  DueDate = 'DUE_DATE',
   /** Order milestones by when they were created. */
-  CreatedAt = "CREATED_AT",
+  CreatedAt = 'CREATED_AT',
   /** Order milestones by when they were last updated. */
-  UpdatedAt = "UPDATED_AT",
+  UpdatedAt = 'UPDATED_AT',
   /** Order milestones by their number. */
-  Number = "NUMBER"
+  Number = 'NUMBER',
 }
 
 /** The possible states of a milestone. */
 export enum GitHubMilestoneState {
   /** A milestone that is still open. */
-  Open = "OPEN",
+  Open = 'OPEN',
   /** A milestone that has been closed. */
-  Closed = "CLOSED"
+  Closed = 'CLOSED',
 }
 
 /** Autogenerated input type of MinimizeComment */
 export type GitHubMinimizeCommentInput = {
   /** The Node ID of the subject to modify. */
-  subjectId: Scalars["ID"];
+  subjectId: Scalars['ID']
   /** The classification of comment */
-  classifier: GitHubReportedContentClassifiers;
+  classifier: GitHubReportedContentClassifiers
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Represents a 'moved_columns_in_project' event on a given issue or pull request. */
 export type GitHubMovedColumnsInProjectEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
-  id: Scalars["ID"];
-};
+  databaseId?: Maybe<Scalars['Int']>
+  id: Scalars['ID']
+}
 
 /** Autogenerated input type of MoveProjectCard */
 export type GitHubMoveProjectCardInput = {
   /** The id of the card to move. */
-  cardId: Scalars["ID"];
+  cardId: Scalars['ID']
   /** The id of the column to move it into. */
-  columnId: Scalars["ID"];
+  columnId: Scalars['ID']
   /** Place the new card after the card with this id. Pass null to place it at the top. */
-  afterCardId?: Maybe<Scalars["ID"]>;
+  afterCardId?: Maybe<Scalars['ID']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of MoveProjectCard */
 export type GitHubMoveProjectCardPayload = {
   /** The new edge of the moved card. */
-  cardEdge?: Maybe<GitHubProjectCardEdge>;
+  cardEdge?: Maybe<GitHubProjectCardEdge>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated input type of MoveProjectColumn */
 export type GitHubMoveProjectColumnInput = {
   /** The id of the column to move. */
-  columnId: Scalars["ID"];
+  columnId: Scalars['ID']
   /** Place the new column after the column with this id. Pass null to place it at the front. */
-  afterColumnId?: Maybe<Scalars["ID"]>;
+  afterColumnId?: Maybe<Scalars['ID']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of MoveProjectColumn */
 export type GitHubMoveProjectColumnPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The new edge of the moved column. */
-  columnEdge?: Maybe<GitHubProjectColumnEdge>;
-};
+  columnEdge?: Maybe<GitHubProjectColumnEdge>
+}
 
 /** An object with an ID. */
 export type GitHubNode = {
   /** ID of the object. */
-  id: Scalars["ID"];
-};
+  id: Scalars['ID']
+}
+
+/** Metadata for an audit entry with action oauth_application.* */
+export type GitHubOauthApplicationAuditEntryData = {
+  /** The name of the OAuth Application. */
+  oauthApplicationName?: Maybe<Scalars['String']>
+  /** The HTTP path for the OAuth Application */
+  oauthApplicationResourcePath?: Maybe<Scalars['GitHubURI']>
+  /** The HTTP URL for the OAuth Application */
+  oauthApplicationUrl?: Maybe<Scalars['GitHubURI']>
+}
+
+/** Audit log entry for a oauth_application.create event. */
+export type GitHubOauthApplicationCreateAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOauthApplicationAuditEntryData &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The application URL of the OAuth Application. */
+    applicationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The callback URL of the OAuth Application. */
+    callbackUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The name of the OAuth Application. */
+    oauthApplicationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the OAuth Application */
+    oauthApplicationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the OAuth Application */
+    oauthApplicationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The rate limit of the OAuth Application. */
+    rateLimit?: Maybe<Scalars['Int']>
+    /** The state of the OAuth Application. */
+    state?: Maybe<GitHubOauthApplicationCreateAuditEntryState>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** The state of an OAuth Application when it was created. */
+export enum GitHubOauthApplicationCreateAuditEntryState {
+  /** The OAuth Application was active and allowed to have OAuth Accesses. */
+  Active = 'ACTIVE',
+  /** The OAuth Application was suspended from generating OAuth Accesses due to abuse or security concerns. */
+  Suspended = 'SUSPENDED',
+  /** The OAuth Application was in the process of being deleted. */
+  PendingDeletion = 'PENDING_DELETION',
+}
+
+/** The state of an OAuth Application when its tokens were revoked. */
+export enum GitHubOauthApplicationRevokeTokensAuditEntryState {
+  /** The OAuth Application was active and allowed to have OAuth Accesses. */
+  Active = 'ACTIVE',
+  /** The OAuth Application was suspended from generating OAuth Accesses due to abuse or security concerns. */
+  Suspended = 'SUSPENDED',
+  /** The OAuth Application was in the process of being deleted. */
+  PendingDeletion = 'PENDING_DELETION',
+}
+
+/** The corresponding operation type for the action */
+export enum GitHubOperationType {
+  /** An existing resource was accessed */
+  Access = 'ACCESS',
+  /** A resource performed an authentication event */
+  Authentication = 'AUTHENTICATION',
+  /** A new resource was created */
+  Create = 'CREATE',
+  /** An existing resource was modified */
+  Modify = 'MODIFY',
+  /** An existing resource was removed */
+  Remove = 'REMOVE',
+  /** An existing resource was restored */
+  Restore = 'RESTORE',
+  /** An existing resource was transferred between multiple resources */
+  Transfer = 'TRANSFER',
+}
 
 /** Possible directions in which to order a list of items when provided an `orderBy` argument. */
 export enum GitHubOrderDirection {
   /** Specifies an ascending order for a given `orderBy` argument. */
-  Asc = "ASC",
+  Asc = 'ASC',
   /** Specifies a descending order for a given `orderBy` argument. */
-  Desc = "DESC"
+  Desc = 'DESC',
+}
+
+/** Audit log entry for a org.add_billing_manager */
+export type GitHubOrgAddBillingManagerAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The email address used to invite a billing manager for the organization. */
+    invitationEmail?: Maybe<Scalars['String']>
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.add_member */
+export type GitHubOrgAddMemberAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The permission level of the member added to the organization. */
+    permission?: Maybe<GitHubOrgAddMemberAuditEntryPermission>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** The permissions available to members on an Organization. */
+export enum GitHubOrgAddMemberAuditEntryPermission {
+  /** Can read and clone repositories. */
+  Read = 'READ',
+  /** Can read, clone, push, and add collaborators to repositories. */
+  Admin = 'ADMIN',
 }
 
 /** An account on GitHub, with one or more owners, that has repositories, members and teams. */
@@ -4441,565 +6415,2174 @@ export type GitHubOrganization = GitHubNode &
   GitHubRepositoryOwner &
   GitHubUniformResourceLocatable &
   GitHubMemberStatusable &
-  GitHubProfileOwner & {
+  GitHubProfileOwner &
+  GitHubSponsorable & {
     /** Determine if this repository owner has any items that can be pinned to their profile. */
-    anyPinnableItems: Scalars["Boolean"];
+    anyPinnableItems: Scalars['Boolean']
+    /** Audit log entries of the organization */
+    auditLog: GitHubOrganizationAuditEntryConnection
     /** A URL pointing to the organization's public avatar. */
-    avatarUrl: Scalars["GitHubURI"];
+    avatarUrl: Scalars['GitHubURI']
+    /** Identifies the date and time when the object was created. */
+    createdAt: Scalars['GitHubDateTime']
     /** Identifies the primary key from the database. */
-    databaseId?: Maybe<Scalars["Int"]>;
+    databaseId?: Maybe<Scalars['Int']>
     /** The organization's public profile description. */
-    description?: Maybe<Scalars["String"]>;
+    description?: Maybe<Scalars['String']>
+    /** The organization's public profile description rendered to HTML. */
+    descriptionHTML?: Maybe<Scalars['String']>
     /** The organization's public email. */
-    email?: Maybe<Scalars["String"]>;
-    id: Scalars["ID"];
+    email?: Maybe<Scalars['String']>
+    id: Scalars['ID']
     /** Whether the organization has verified its profile email and website. */
-    isVerified: Scalars["Boolean"];
+    isVerified: Scalars['Boolean']
     /** Showcases a selection of repositories and gists that the profile owner has
      * either curated or that have been selected automatically based on popularity.
      */
-    itemShowcase: GitHubProfileItemShowcase;
+    itemShowcase: GitHubProfileItemShowcase
     /** The organization's public profile location. */
-    location?: Maybe<Scalars["String"]>;
+    location?: Maybe<Scalars['String']>
     /** The organization's login name. */
-    login: Scalars["String"];
+    login: Scalars['String']
     /** Get the status messages members of this entity have set that are either public or visible only to the organization. */
-    memberStatuses: GitHubUserStatusConnection;
+    memberStatuses: GitHubUserStatusConnection
     /** A list of users who are members of this organization. */
-    membersWithRole: GitHubOrganizationMemberConnection;
+    membersWithRole: GitHubOrganizationMemberConnection
     /** The organization's public profile name. */
-    name?: Maybe<Scalars["String"]>;
+    name?: Maybe<Scalars['String']>
     /** The HTTP path creating a new team */
-    newTeamResourcePath: Scalars["GitHubURI"];
+    newTeamResourcePath: Scalars['GitHubURI']
     /** The HTTP URL creating a new team */
-    newTeamUrl: Scalars["GitHubURI"];
+    newTeamUrl: Scalars['GitHubURI']
     /** The billing email for the organization. */
-    organizationBillingEmail?: Maybe<Scalars["String"]>;
+    organizationBillingEmail?: Maybe<Scalars['String']>
     /** A list of users who have been invited to join this organization. */
-    pendingMembers: GitHubUserConnection;
+    pendingMembers: GitHubUserConnection
     /** A list of repositories and gists this profile owner can pin to their profile. */
-    pinnableItems: GitHubPinnableItemConnection;
+    pinnableItems: GitHubPinnableItemConnection
     /** A list of repositories and gists this profile owner has pinned to their profile */
-    pinnedItems: GitHubPinnableItemConnection;
+    pinnedItems: GitHubPinnableItemConnection
     /** Returns how many more items this profile owner can pin to their profile. */
-    pinnedItemsRemaining: Scalars["Int"];
+    pinnedItemsRemaining: Scalars['Int']
     /** A list of repositories this user has pinned to their profile */
-    pinnedRepositories: GitHubRepositoryConnection;
+    pinnedRepositories: GitHubRepositoryConnection
     /** Find project by number. */
-    project?: Maybe<GitHubProject>;
+    project?: Maybe<GitHubProject>
     /** A list of projects under the owner. */
-    projects: GitHubProjectConnection;
+    projects: GitHubProjectConnection
     /** The HTTP path listing organization's projects */
-    projectsResourcePath: Scalars["GitHubURI"];
+    projectsResourcePath: Scalars['GitHubURI']
     /** The HTTP URL listing organization's projects */
-    projectsUrl: Scalars["GitHubURI"];
+    projectsUrl: Scalars['GitHubURI']
+    /** A list of registry packages under the owner. */
+    registryPackages: GitHubRegistryPackageConnection
+    /** A list of registry packages for a particular search query. */
+    registryPackagesForQuery: GitHubRegistryPackageConnection
     /** A list of repositories that the user owns. */
-    repositories: GitHubRepositoryConnection;
+    repositories: GitHubRepositoryConnection
     /** Find Repository. */
-    repository?: Maybe<GitHubRepository>;
+    repository?: Maybe<GitHubRepository>
     /** When true the organization requires all members, billing managers, and outside
      * collaborators to enable two-factor authentication.
      */
-    requiresTwoFactorAuthentication?: Maybe<Scalars["Boolean"]>;
+    requiresTwoFactorAuthentication?: Maybe<Scalars['Boolean']>
     /** The HTTP path for this organization. */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** The Organization's SAML identity providers */
-    samlIdentityProvider?: Maybe<GitHubOrganizationIdentityProvider>;
+    samlIdentityProvider?: Maybe<GitHubOrganizationIdentityProvider>
+    /** This object's sponsorships as the maintainer. */
+    sponsorshipsAsMaintainer: GitHubSponsorshipConnection
+    /** This object's sponsorships as the sponsor. */
+    sponsorshipsAsSponsor: GitHubSponsorshipConnection
     /** Find an organization's team by its slug. */
-    team?: Maybe<GitHubTeam>;
+    team?: Maybe<GitHubTeam>
     /** A list of teams in this organization. */
-    teams: GitHubTeamConnection;
+    teams: GitHubTeamConnection
     /** The HTTP path listing organization's teams */
-    teamsResourcePath: Scalars["GitHubURI"];
+    teamsResourcePath: Scalars['GitHubURI']
     /** The HTTP URL listing organization's teams */
-    teamsUrl: Scalars["GitHubURI"];
+    teamsUrl: Scalars['GitHubURI']
+    /** Identifies the date and time when the object was last updated. */
+    updatedAt: Scalars['GitHubDateTime']
     /** The HTTP URL for this organization. */
-    url: Scalars["GitHubURI"];
+    url: Scalars['GitHubURI']
     /** Organization is adminable by the viewer. */
-    viewerCanAdminister: Scalars["Boolean"];
+    viewerCanAdminister: Scalars['Boolean']
     /** Can the viewer pin repositories and gists to the profile? */
-    viewerCanChangePinnedItems: Scalars["Boolean"];
+    viewerCanChangePinnedItems: Scalars['Boolean']
     /** Can the current viewer create new projects on this owner. */
-    viewerCanCreateProjects: Scalars["Boolean"];
+    viewerCanCreateProjects: Scalars['Boolean']
     /** Viewer can create repositories on this organization */
-    viewerCanCreateRepositories: Scalars["Boolean"];
+    viewerCanCreateRepositories: Scalars['Boolean']
     /** Viewer can create teams on this organization. */
-    viewerCanCreateTeams: Scalars["Boolean"];
+    viewerCanCreateTeams: Scalars['Boolean']
     /** Viewer is an active member of this organization. */
-    viewerIsAMember: Scalars["Boolean"];
+    viewerIsAMember: Scalars['Boolean']
     /** The organization's public profile URL. */
-    websiteUrl?: Maybe<Scalars["GitHubURI"]>;
-  };
+    websiteUrl?: Maybe<Scalars['GitHubURI']>
+  }
 
 /** An account on GitHub, with one or more owners, that has repositories, members and teams. */
 export type GitHubOrganizationAnyPinnableItemsArgs = {
-  type?: Maybe<GitHubPinnableItemType>;
-};
+  type?: Maybe<GitHubPinnableItemType>
+}
+
+/** An account on GitHub, with one or more owners, that has repositories, members and teams. */
+export type GitHubOrganizationAuditLogArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  query?: Maybe<Scalars['String']>
+  orderBy: GitHubAuditLogOrder
+}
 
 /** An account on GitHub, with one or more owners, that has repositories, members and teams. */
 export type GitHubOrganizationAvatarUrlArgs = {
-  size?: Maybe<Scalars["Int"]>;
-};
+  size?: Maybe<Scalars['Int']>
+}
 
 /** An account on GitHub, with one or more owners, that has repositories, members and teams. */
 export type GitHubOrganizationMemberStatusesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  orderBy?: Maybe<GitHubUserStatusOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy: GitHubUserStatusOrder
+}
 
 /** An account on GitHub, with one or more owners, that has repositories, members and teams. */
 export type GitHubOrganizationMembersWithRoleArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** An account on GitHub, with one or more owners, that has repositories, members and teams. */
 export type GitHubOrganizationPendingMembersArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** An account on GitHub, with one or more owners, that has repositories, members and teams. */
 export type GitHubOrganizationPinnableItemsArgs = {
-  types?: Maybe<Array<GitHubPinnableItemType>>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  types?: Maybe<Array<GitHubPinnableItemType>>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** An account on GitHub, with one or more owners, that has repositories, members and teams. */
 export type GitHubOrganizationPinnedItemsArgs = {
-  types?: Maybe<Array<GitHubPinnableItemType>>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  types?: Maybe<Array<GitHubPinnableItemType>>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** An account on GitHub, with one or more owners, that has repositories, members and teams. */
 export type GitHubOrganizationPinnedRepositoriesArgs = {
-  privacy?: Maybe<GitHubRepositoryPrivacy>;
-  orderBy?: Maybe<GitHubRepositoryOrder>;
-  affiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  ownerAffiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  isLocked?: Maybe<Scalars["Boolean"]>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  privacy?: Maybe<GitHubRepositoryPrivacy>
+  orderBy?: Maybe<GitHubRepositoryOrder>
+  affiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  ownerAffiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  isLocked?: Maybe<Scalars['Boolean']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** An account on GitHub, with one or more owners, that has repositories, members and teams. */
 export type GitHubOrganizationProjectArgs = {
-  number: Scalars["Int"];
-};
+  number: Scalars['Int']
+}
 
 /** An account on GitHub, with one or more owners, that has repositories, members and teams. */
 export type GitHubOrganizationProjectsArgs = {
-  orderBy?: Maybe<GitHubProjectOrder>;
-  search?: Maybe<Scalars["String"]>;
-  states?: Maybe<Array<GitHubProjectState>>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  orderBy?: Maybe<GitHubProjectOrder>
+  search?: Maybe<Scalars['String']>
+  states?: Maybe<Array<GitHubProjectState>>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** An account on GitHub, with one or more owners, that has repositories, members and teams. */
+export type GitHubOrganizationRegistryPackagesArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  name?: Maybe<Scalars['String']>
+  names?: Maybe<Array<Maybe<Scalars['String']>>>
+  repositoryId?: Maybe<Scalars['ID']>
+  packageType?: Maybe<GitHubRegistryPackageType>
+  registryPackageType?: Maybe<Scalars['String']>
+  publicOnly: Scalars['Boolean']
+}
+
+/** An account on GitHub, with one or more owners, that has repositories, members and teams. */
+export type GitHubOrganizationRegistryPackagesForQueryArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  query?: Maybe<Scalars['String']>
+  packageType?: Maybe<GitHubRegistryPackageType>
+}
 
 /** An account on GitHub, with one or more owners, that has repositories, members and teams. */
 export type GitHubOrganizationRepositoriesArgs = {
-  privacy?: Maybe<GitHubRepositoryPrivacy>;
-  orderBy?: Maybe<GitHubRepositoryOrder>;
-  affiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  ownerAffiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  isLocked?: Maybe<Scalars["Boolean"]>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  isFork?: Maybe<Scalars["Boolean"]>;
-};
+  privacy?: Maybe<GitHubRepositoryPrivacy>
+  orderBy?: Maybe<GitHubRepositoryOrder>
+  affiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  ownerAffiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  isLocked?: Maybe<Scalars['Boolean']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  isFork?: Maybe<Scalars['Boolean']>
+}
 
 /** An account on GitHub, with one or more owners, that has repositories, members and teams. */
 export type GitHubOrganizationRepositoryArgs = {
-  name: Scalars["String"];
-};
+  name: Scalars['String']
+}
+
+/** An account on GitHub, with one or more owners, that has repositories, members and teams. */
+export type GitHubOrganizationSponsorshipsAsMaintainerArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  includePrivate: Scalars['Boolean']
+  orderBy?: Maybe<GitHubSponsorshipOrder>
+}
+
+/** An account on GitHub, with one or more owners, that has repositories, members and teams. */
+export type GitHubOrganizationSponsorshipsAsSponsorArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy?: Maybe<GitHubSponsorshipOrder>
+}
 
 /** An account on GitHub, with one or more owners, that has repositories, members and teams. */
 export type GitHubOrganizationTeamArgs = {
-  slug: Scalars["String"];
-};
+  slug: Scalars['String']
+}
 
 /** An account on GitHub, with one or more owners, that has repositories, members and teams. */
 export type GitHubOrganizationTeamsArgs = {
-  privacy?: Maybe<GitHubTeamPrivacy>;
-  role?: Maybe<GitHubTeamRole>;
-  query?: Maybe<Scalars["String"]>;
-  userLogins?: Maybe<Array<Scalars["String"]>>;
-  orderBy?: Maybe<GitHubTeamOrder>;
-  ldapMapped?: Maybe<Scalars["Boolean"]>;
-  rootTeamsOnly: Scalars["Boolean"];
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  privacy?: Maybe<GitHubTeamPrivacy>
+  role?: Maybe<GitHubTeamRole>
+  query?: Maybe<Scalars['String']>
+  userLogins?: Maybe<Array<Scalars['String']>>
+  orderBy?: Maybe<GitHubTeamOrder>
+  ldapMapped?: Maybe<Scalars['Boolean']>
+  rootTeamsOnly: Scalars['Boolean']
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** An audit entry in an organization audit log. */
+export type GitHubOrganizationAuditEntry =
+  | GitHubMembersCanDeleteReposClearAuditEntry
+  | GitHubMembersCanDeleteReposDisableAuditEntry
+  | GitHubMembersCanDeleteReposEnableAuditEntry
+  | GitHubOauthApplicationCreateAuditEntry
+  | GitHubOrgAddBillingManagerAuditEntry
+  | GitHubOrgAddMemberAuditEntry
+  | GitHubOrgBlockUserAuditEntry
+  | GitHubOrgConfigDisableCollaboratorsOnlyAuditEntry
+  | GitHubOrgConfigEnableCollaboratorsOnlyAuditEntry
+  | GitHubOrgCreateAuditEntry
+  | GitHubOrgDisableOauthAppRestrictionsAuditEntry
+  | GitHubOrgDisableSamlAuditEntry
+  | GitHubOrgDisableTwoFactorRequirementAuditEntry
+  | GitHubOrgEnableOauthAppRestrictionsAuditEntry
+  | GitHubOrgEnableSamlAuditEntry
+  | GitHubOrgEnableTwoFactorRequirementAuditEntry
+  | GitHubOrgInviteMemberAuditEntry
+  | GitHubOrgInviteToBusinessAuditEntry
+  | GitHubOrgOauthAppAccessApprovedAuditEntry
+  | GitHubOrgOauthAppAccessDeniedAuditEntry
+  | GitHubOrgOauthAppAccessRequestedAuditEntry
+  | GitHubOrgRemoveBillingManagerAuditEntry
+  | GitHubOrgRemoveMemberAuditEntry
+  | GitHubOrgRemoveOutsideCollaboratorAuditEntry
+  | GitHubOrgRestoreMemberAuditEntry
+  | GitHubOrgUnblockUserAuditEntry
+  | GitHubOrgUpdateDefaultRepositoryPermissionAuditEntry
+  | GitHubOrgUpdateMemberAuditEntry
+  | GitHubOrgUpdateMemberRepositoryCreationPermissionAuditEntry
+  | GitHubOrgUpdateMemberRepositoryInvitationPermissionAuditEntry
+  | GitHubPrivateRepositoryForkingDisableAuditEntry
+  | GitHubPrivateRepositoryForkingEnableAuditEntry
+  | GitHubRepoAccessAuditEntry
+  | GitHubRepoAddMemberAuditEntry
+  | GitHubRepoAddTopicAuditEntry
+  | GitHubRepoArchivedAuditEntry
+  | GitHubRepoChangeMergeSettingAuditEntry
+  | GitHubRepoConfigDisableAnonymousGitAccessAuditEntry
+  | GitHubRepoConfigDisableCollaboratorsOnlyAuditEntry
+  | GitHubRepoConfigDisableContributorsOnlyAuditEntry
+  | GitHubRepoConfigDisableSockpuppetDisallowedAuditEntry
+  | GitHubRepoConfigEnableAnonymousGitAccessAuditEntry
+  | GitHubRepoConfigEnableCollaboratorsOnlyAuditEntry
+  | GitHubRepoConfigEnableContributorsOnlyAuditEntry
+  | GitHubRepoConfigEnableSockpuppetDisallowedAuditEntry
+  | GitHubRepoConfigLockAnonymousGitAccessAuditEntry
+  | GitHubRepoConfigUnlockAnonymousGitAccessAuditEntry
+  | GitHubRepoCreateAuditEntry
+  | GitHubRepoDestroyAuditEntry
+  | GitHubRepoRemoveMemberAuditEntry
+  | GitHubRepoRemoveTopicAuditEntry
+  | GitHubRepositoryVisibilityChangeDisableAuditEntry
+  | GitHubRepositoryVisibilityChangeEnableAuditEntry
+  | GitHubTeamAddMemberAuditEntry
+  | GitHubTeamAddRepositoryAuditEntry
+  | GitHubTeamChangeParentTeamAuditEntry
+  | GitHubTeamRemoveMemberAuditEntry
+  | GitHubTeamRemoveRepositoryAuditEntry
+
+/** The connection type for OrganizationAuditEntry. */
+export type GitHubOrganizationAuditEntryConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubOrganizationAuditEntryEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubOrganizationAuditEntry>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** Metadata for an audit entry with action org.* */
+export type GitHubOrganizationAuditEntryData = {
+  /** The Organization associated with the Audit Entry. */
+  organization?: Maybe<GitHubOrganization>
+  /** The name of the Organization. */
+  organizationName?: Maybe<Scalars['String']>
+  /** The HTTP path for the organization */
+  organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+  /** The HTTP URL for the organization */
+  organizationUrl?: Maybe<Scalars['GitHubURI']>
+}
+
+/** An edge in a connection. */
+export type GitHubOrganizationAuditEntryEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubOrganizationAuditEntry>
+}
 
 /** The connection type for Organization. */
 export type GitHubOrganizationConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubOrganizationEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubOrganizationEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubOrganization>>>;
+  nodes?: Maybe<Array<Maybe<GitHubOrganization>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubOrganizationEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubOrganization>;
-};
+  node?: Maybe<GitHubOrganization>
+}
 
 /** An Identity Provider configured to provision SAML and SCIM identities for Organizations */
 export type GitHubOrganizationIdentityProvider = GitHubNode & {
   /** The digest algorithm used to sign SAML requests for the Identity Provider. */
-  digestMethod?: Maybe<Scalars["GitHubURI"]>;
+  digestMethod?: Maybe<Scalars['GitHubURI']>
   /** External Identities provisioned by this Identity Provider */
-  externalIdentities: GitHubExternalIdentityConnection;
-  id: Scalars["ID"];
+  externalIdentities: GitHubExternalIdentityConnection
+  id: Scalars['ID']
   /** The x509 certificate used by the Identity Provder to sign assertions and responses. */
-  idpCertificate?: Maybe<Scalars["GitHubX509Certificate"]>;
+  idpCertificate?: Maybe<Scalars['GitHubX509Certificate']>
   /** The Issuer Entity ID for the SAML Identity Provider */
-  issuer?: Maybe<Scalars["String"]>;
+  issuer?: Maybe<Scalars['String']>
   /** Organization this Identity Provider belongs to */
-  organization?: Maybe<GitHubOrganization>;
+  organization?: Maybe<GitHubOrganization>
   /** The signature algorithm used to sign SAML requests for the Identity Provider. */
-  signatureMethod?: Maybe<Scalars["GitHubURI"]>;
+  signatureMethod?: Maybe<Scalars['GitHubURI']>
   /** The URL endpoint for the Identity Provider's SAML SSO. */
-  ssoUrl?: Maybe<Scalars["GitHubURI"]>;
-};
+  ssoUrl?: Maybe<Scalars['GitHubURI']>
+}
 
 /** An Identity Provider configured to provision SAML and SCIM identities for Organizations */
 export type GitHubOrganizationIdentityProviderExternalIdentitiesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** An Invitation for a user to an organization. */
 export type GitHubOrganizationInvitation = GitHubNode & {
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** The email address of the user invited to the organization. */
-  email?: Maybe<Scalars["String"]>;
-  id: Scalars["ID"];
+  email?: Maybe<Scalars['String']>
+  id: Scalars['ID']
   /** The type of invitation that was sent (e.g. email, user). */
-  invitationType: GitHubOrganizationInvitationType;
+  invitationType: GitHubOrganizationInvitationType
   /** The user who was invited to the organization. */
-  invitee?: Maybe<GitHubUser>;
+  invitee?: Maybe<GitHubUser>
   /** The user who created the invitation. */
-  inviter: GitHubUser;
+  inviter: GitHubUser
   /** The organization the invite is for */
-  organization: GitHubOrganization;
+  organization: GitHubOrganization
   /** The user's pending role in the organization (e.g. member, owner). */
-  role: GitHubOrganizationInvitationRole;
-};
+  role: GitHubOrganizationInvitationRole
+}
 
 /** The connection type for OrganizationInvitation. */
 export type GitHubOrganizationInvitationConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubOrganizationInvitationEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubOrganizationInvitationEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubOrganizationInvitation>>>;
+  nodes?: Maybe<Array<Maybe<GitHubOrganizationInvitation>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubOrganizationInvitationEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubOrganizationInvitation>;
-};
+  node?: Maybe<GitHubOrganizationInvitation>
+}
 
 /** The possible organization invitation roles. */
 export enum GitHubOrganizationInvitationRole {
   /** The user is invited to be a direct member of the organization. */
-  DirectMember = "DIRECT_MEMBER",
+  DirectMember = 'DIRECT_MEMBER',
   /** The user is invited to be an admin of the organization. */
-  Admin = "ADMIN",
+  Admin = 'ADMIN',
   /** The user is invited to be a billing manager of the organization. */
-  BillingManager = "BILLING_MANAGER",
+  BillingManager = 'BILLING_MANAGER',
   /** The user's previous role will be reinstated. */
-  Reinstate = "REINSTATE"
+  Reinstate = 'REINSTATE',
 }
 
 /** The possible organization invitation types. */
 export enum GitHubOrganizationInvitationType {
   /** The invitation was to an existing user. */
-  User = "USER",
+  User = 'USER',
   /** The invitation was to an email address. */
-  Email = "EMAIL"
+  Email = 'EMAIL',
 }
 
 /** The connection type for User. */
 export type GitHubOrganizationMemberConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubOrganizationMemberEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubOrganizationMemberEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubUser>>>;
+  nodes?: Maybe<Array<Maybe<GitHubUser>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** Represents a user within an organization. */
 export type GitHubOrganizationMemberEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** Whether the organization member has two factor enabled or not. Returns null if information is not available to viewer. */
-  hasTwoFactorEnabled?: Maybe<Scalars["Boolean"]>;
+  hasTwoFactorEnabled?: Maybe<Scalars['Boolean']>
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubUser>;
+  node?: Maybe<GitHubUser>
   /** The role this user has in the organization. */
-  role?: Maybe<GitHubOrganizationMemberRole>;
-};
+  role?: Maybe<GitHubOrganizationMemberRole>
+}
 
 /** The possible roles within an organization for its members. */
 export enum GitHubOrganizationMemberRole {
   /** The user is a member of the organization. */
-  Member = "MEMBER",
+  Member = 'MEMBER',
   /** The user is an administrator of the organization. */
-  Admin = "ADMIN"
+  Admin = 'ADMIN',
 }
+
+/** The possible values for the members can create repositories setting on an organization. */
+export enum GitHubOrganizationMembersCanCreateRepositoriesSettingValue {
+  /** Members will be able to create public and private repositories. */
+  All = 'ALL',
+  /** Members will be able to create only private repositories. */
+  Private = 'PRIVATE',
+  /** Members will not be able to create public or private repositories. */
+  Disabled = 'DISABLED',
+}
+
+/** Ordering options for organization connections. */
+export type GitHubOrganizationOrder = {
+  /** The field to order organizations by. */
+  field: GitHubOrganizationOrderField
+  /** The ordering direction. */
+  direction: GitHubOrderDirection
+}
+
+/** Properties by which organization connections can be ordered. */
+export enum GitHubOrganizationOrderField {
+  /** Order organizations by creation time */
+  CreatedAt = 'CREATED_AT',
+  /** Order organizations by login */
+  Login = 'LOGIN',
+}
+
+/** An organization list hovercard context */
+export type GitHubOrganizationsHovercardContext = GitHubHovercardContext & {
+  /** A string describing this context */
+  message: Scalars['String']
+  /** An octicon to accompany this context */
+  octicon: Scalars['String']
+  /** Organizations this user is a member of that are relevant */
+  relevantOrganizations: GitHubOrganizationConnection
+  /** The total number of organizations this user is in */
+  totalOrganizationCount: Scalars['Int']
+}
+
+/** An organization list hovercard context */
+export type GitHubOrganizationsHovercardContextRelevantOrganizationsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** An organization teams hovercard context */
+export type GitHubOrganizationTeamsHovercardContext = GitHubHovercardContext & {
+  /** A string describing this context */
+  message: Scalars['String']
+  /** An octicon to accompany this context */
+  octicon: Scalars['String']
+  /** Teams in this organization the user is a member of that are relevant */
+  relevantTeams: GitHubTeamConnection
+  /** The path for the full team list for this user */
+  teamsResourcePath: Scalars['GitHubURI']
+  /** The URL for the full team list for this user */
+  teamsUrl: Scalars['GitHubURI']
+  /** The total number of teams the user is on in the organization */
+  totalTeamCount: Scalars['Int']
+}
+
+/** An organization teams hovercard context */
+export type GitHubOrganizationTeamsHovercardContextRelevantTeamsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** Audit log entry for a org.block_user */
+export type GitHubOrgBlockUserAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The blocked user. */
+    blockedUser?: Maybe<GitHubUser>
+    /** The username of the blocked user. */
+    blockedUserName?: Maybe<Scalars['String']>
+    /** The HTTP path for the blocked user. */
+    blockedUserResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the blocked user. */
+    blockedUserUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.config.disable_collaborators_only event. */
+export type GitHubOrgConfigDisableCollaboratorsOnlyAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.config.enable_collaborators_only event. */
+export type GitHubOrgConfigEnableCollaboratorsOnlyAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.create event. */
+export type GitHubOrgCreateAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The billing plan for the Organization. */
+    billingPlan?: Maybe<GitHubOrgCreateAuditEntryBillingPlan>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** The billing plans available for organizations. */
+export enum GitHubOrgCreateAuditEntryBillingPlan {
+  /** Free Plan */
+  Free = 'FREE',
+  /** Team Plan */
+  Business = 'BUSINESS',
+  /** Enterprise Cloud Plan */
+  BusinessPlus = 'BUSINESS_PLUS',
+  /** Legacy Unlimited Plan */
+  Unlimited = 'UNLIMITED',
+  /** Tiered Per Seat Plan */
+  TieredPerSeat = 'TIERED_PER_SEAT',
+}
+
+/** Audit log entry for a org.disable_oauth_app_restrictions event. */
+export type GitHubOrgDisableOauthAppRestrictionsAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.disable_saml event. */
+export type GitHubOrgDisableSamlAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    /** The SAML provider's digest algorithm URL. */
+    digestMethodUrl?: Maybe<Scalars['GitHubURI']>
+    id: Scalars['ID']
+    /** The SAML provider's issuer URL. */
+    issuerUrl?: Maybe<Scalars['GitHubURI']>
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The SAML provider's signature algorithm URL. */
+    signatureMethodUrl?: Maybe<Scalars['GitHubURI']>
+    /** The SAML provider's single sign-on URL. */
+    singleSignOnUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.disable_two_factor_requirement event. */
+export type GitHubOrgDisableTwoFactorRequirementAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.enable_oauth_app_restrictions event. */
+export type GitHubOrgEnableOauthAppRestrictionsAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.enable_saml event. */
+export type GitHubOrgEnableSamlAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    /** The SAML provider's digest algorithm URL. */
+    digestMethodUrl?: Maybe<Scalars['GitHubURI']>
+    id: Scalars['ID']
+    /** The SAML provider's issuer URL. */
+    issuerUrl?: Maybe<Scalars['GitHubURI']>
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The SAML provider's signature algorithm URL. */
+    signatureMethodUrl?: Maybe<Scalars['GitHubURI']>
+    /** The SAML provider's single sign-on URL. */
+    singleSignOnUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.enable_two_factor_requirement event. */
+export type GitHubOrgEnableTwoFactorRequirementAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.invite_member event. */
+export type GitHubOrgInviteMemberAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    /** The email address of the organization invitation. */
+    email?: Maybe<Scalars['String']>
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The organization invitation. */
+    organizationInvitation?: Maybe<GitHubOrganizationInvitation>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.invite_to_business event. */
+export type GitHubOrgInviteToBusinessAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubEnterpriseAuditEntryData &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    /** The HTTP path for this enterprise. */
+    enterpriseResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The slug of the enterprise. */
+    enterpriseSlug?: Maybe<Scalars['String']>
+    /** The HTTP URL for this enterprise. */
+    enterpriseUrl?: Maybe<Scalars['GitHubURI']>
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.oauth_app_access_approved event. */
+export type GitHubOrgOauthAppAccessApprovedAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOauthApplicationAuditEntryData &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The name of the OAuth Application. */
+    oauthApplicationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the OAuth Application */
+    oauthApplicationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the OAuth Application */
+    oauthApplicationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.oauth_app_access_denied event. */
+export type GitHubOrgOauthAppAccessDeniedAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOauthApplicationAuditEntryData &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The name of the OAuth Application. */
+    oauthApplicationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the OAuth Application */
+    oauthApplicationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the OAuth Application */
+    oauthApplicationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.oauth_app_access_requested event. */
+export type GitHubOrgOauthAppAccessRequestedAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOauthApplicationAuditEntryData &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The name of the OAuth Application. */
+    oauthApplicationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the OAuth Application */
+    oauthApplicationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the OAuth Application */
+    oauthApplicationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.remove_billing_manager event. */
+export type GitHubOrgRemoveBillingManagerAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The reason for the billing manager being removed. */
+    reason?: Maybe<GitHubOrgRemoveBillingManagerAuditEntryReason>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** The reason a billing manager was removed from an Organization. */
+export enum GitHubOrgRemoveBillingManagerAuditEntryReason {
+  /** The organization required 2FA of its billing managers and this user did not have 2FA enabled. */
+  TwoFactorRequirementNonCompliance = 'TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE',
+  /** SAML external identity missing */
+  SamlExternalIdentityMissing = 'SAML_EXTERNAL_IDENTITY_MISSING',
+  /** SAML SSO enforcement requires an external identity */
+  SamlSsoEnforcementRequiresExternalIdentity = 'SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY',
+}
+
+/** Audit log entry for a org.remove_member event. */
+export type GitHubOrgRemoveMemberAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The types of membership the member has with the organization. */
+    membershipTypes?: Maybe<
+      Array<GitHubOrgRemoveMemberAuditEntryMembershipType>
+    >
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The reason for the member being removed. */
+    reason?: Maybe<GitHubOrgRemoveMemberAuditEntryReason>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** The type of membership a user has with an Organization. */
+export enum GitHubOrgRemoveMemberAuditEntryMembershipType {
+  /** A direct member is a user that is a member of the Organization. */
+  DirectMember = 'DIRECT_MEMBER',
+  /** Organization administrators have full access and can change several settings,
+   * including the names of repositories that belong to the Organization and Owners
+   * team membership. In addition, organization admins can delete the organization
+   * and all of its repositories.
+   */
+  Admin = 'ADMIN',
+  /** A billing manager is a user who manages the billing settings for the Organization, such as updating payment information. */
+  BillingManager = 'BILLING_MANAGER',
+  /** An unaffiliated collaborator is a person who is not a member of the
+   * Organization and does not have access to any repositories in the Organization.
+   */
+  Unaffiliated = 'UNAFFILIATED',
+  /** An outside collaborator is a person who isn't explicitly a member of the
+   * Organization, but who has Read, Write, or Admin permissions to one or more
+   * repositories in the organization.
+   */
+  OutsideCollaborator = 'OUTSIDE_COLLABORATOR',
+}
+
+/** The reason a member was removed from an Organization. */
+export enum GitHubOrgRemoveMemberAuditEntryReason {
+  /** The organization required 2FA of its billing managers and this user did not have 2FA enabled. */
+  TwoFactorRequirementNonCompliance = 'TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE',
+  /** SAML external identity missing */
+  SamlExternalIdentityMissing = 'SAML_EXTERNAL_IDENTITY_MISSING',
+  /** SAML SSO enforcement requires an external identity */
+  SamlSsoEnforcementRequiresExternalIdentity = 'SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY',
+}
+
+/** Audit log entry for a org.remove_outside_collaborator event. */
+export type GitHubOrgRemoveOutsideCollaboratorAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The types of membership the outside collaborator has with the organization. */
+    membershipTypes?: Maybe<
+      Array<GitHubOrgRemoveOutsideCollaboratorAuditEntryMembershipType>
+    >
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The reason for the outside collaborator being removed from the Organization. */
+    reason?: Maybe<GitHubOrgRemoveOutsideCollaboratorAuditEntryReason>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** The type of membership a user has with an Organization. */
+export enum GitHubOrgRemoveOutsideCollaboratorAuditEntryMembershipType {
+  /** An outside collaborator is a person who isn't explicitly a member of the
+   * Organization, but who has Read, Write, or Admin permissions to one or more
+   * repositories in the organization.
+   */
+  OutsideCollaborator = 'OUTSIDE_COLLABORATOR',
+  /** An unaffiliated collaborator is a person who is not a member of the
+   * Organization and does not have access to any repositories in the organization.
+   */
+  Unaffiliated = 'UNAFFILIATED',
+  /** A billing manager is a user who manages the billing settings for the Organization, such as updating payment information. */
+  BillingManager = 'BILLING_MANAGER',
+}
+
+/** The reason an outside collaborator was removed from an Organization. */
+export enum GitHubOrgRemoveOutsideCollaboratorAuditEntryReason {
+  /** The organization required 2FA of its billing managers and this user did not have 2FA enabled. */
+  TwoFactorRequirementNonCompliance = 'TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE',
+  /** SAML external identity missing */
+  SamlExternalIdentityMissing = 'SAML_EXTERNAL_IDENTITY_MISSING',
+}
+
+/** Audit log entry for a org.restore_member event. */
+export type GitHubOrgRestoreMemberAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The number of custom email routings for the restored member. */
+    restoredCustomEmailRoutingsCount?: Maybe<Scalars['Int']>
+    /** The number of issue assignemnts for the restored member. */
+    restoredIssueAssignmentsCount?: Maybe<Scalars['Int']>
+    /** Restored organization membership objects. */
+    restoredMemberships?: Maybe<
+      Array<GitHubOrgRestoreMemberAuditEntryMembership>
+    >
+    /** The number of restored memberships. */
+    restoredMembershipsCount?: Maybe<Scalars['Int']>
+    /** The number of repositories of the restored member. */
+    restoredRepositoriesCount?: Maybe<Scalars['Int']>
+    /** The number of starred repositories for the restored member. */
+    restoredRepositoryStarsCount?: Maybe<Scalars['Int']>
+    /** The number of watched repositories for the restored member. */
+    restoredRepositoryWatchesCount?: Maybe<Scalars['Int']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Types of memberships that can be restored for an Organization member. */
+export type GitHubOrgRestoreMemberAuditEntryMembership =
+  | GitHubOrgRestoreMemberMembershipOrganizationAuditEntryData
+  | GitHubOrgRestoreMemberMembershipRepositoryAuditEntryData
+  | GitHubOrgRestoreMemberMembershipTeamAuditEntryData
+
+/** Metadata for an organization membership for org.restore_member actions */
+export type GitHubOrgRestoreMemberMembershipOrganizationAuditEntryData = GitHubOrganizationAuditEntryData & {
+  /** The Organization associated with the Audit Entry. */
+  organization?: Maybe<GitHubOrganization>
+  /** The name of the Organization. */
+  organizationName?: Maybe<Scalars['String']>
+  /** The HTTP path for the organization */
+  organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+  /** The HTTP URL for the organization */
+  organizationUrl?: Maybe<Scalars['GitHubURI']>
+}
+
+/** Metadata for a repository membership for org.restore_member actions */
+export type GitHubOrgRestoreMemberMembershipRepositoryAuditEntryData = GitHubRepositoryAuditEntryData & {
+  /** The repository associated with the action */
+  repository?: Maybe<GitHubRepository>
+  /** The name of the repository */
+  repositoryName?: Maybe<Scalars['String']>
+  /** The HTTP path for the repository */
+  repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+  /** The HTTP URL for the repository */
+  repositoryUrl?: Maybe<Scalars['GitHubURI']>
+}
+
+/** Metadata for a team membership for org.restore_member actions */
+export type GitHubOrgRestoreMemberMembershipTeamAuditEntryData = GitHubTeamAuditEntryData & {
+  /** The team associated with the action */
+  team?: Maybe<GitHubTeam>
+  /** The name of the team */
+  teamName?: Maybe<Scalars['String']>
+  /** The HTTP path for this team */
+  teamResourcePath?: Maybe<Scalars['GitHubURI']>
+  /** The HTTP URL for this team */
+  teamUrl?: Maybe<Scalars['GitHubURI']>
+}
+
+/** Audit log entry for a org.unblock_user */
+export type GitHubOrgUnblockUserAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user being unblocked by the organization. */
+    blockedUser?: Maybe<GitHubUser>
+    /** The username of the blocked user. */
+    blockedUserName?: Maybe<Scalars['String']>
+    /** The HTTP path for the blocked user. */
+    blockedUserResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the blocked user. */
+    blockedUserUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a org.update_default_repository_permission */
+export type GitHubOrgUpdateDefaultRepositoryPermissionAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The new default repository permission level for the organization. */
+    permission?: Maybe<
+      GitHubOrgUpdateDefaultRepositoryPermissionAuditEntryPermission
+    >
+    /** The former default repository permission level for the organization. */
+    permissionWas?: Maybe<
+      GitHubOrgUpdateDefaultRepositoryPermissionAuditEntryPermission
+    >
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** The default permission a repository can have in an Organization. */
+export enum GitHubOrgUpdateDefaultRepositoryPermissionAuditEntryPermission {
+  /** Can read and clone repositories. */
+  Read = 'READ',
+  /** Can read, clone and push to repositories. */
+  Write = 'WRITE',
+  /** Can read, clone, push, and add collaborators to repositories. */
+  Admin = 'ADMIN',
+  /** No default permission value. */
+  None = 'NONE',
+}
+
+/** Audit log entry for a org.update_member event. */
+export type GitHubOrgUpdateMemberAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The new member permission level for the organization. */
+    permission?: Maybe<GitHubOrgUpdateMemberAuditEntryPermission>
+    /** The former member permission level for the organization. */
+    permissionWas?: Maybe<GitHubOrgUpdateMemberAuditEntryPermission>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** The permissions available to members on an Organization. */
+export enum GitHubOrgUpdateMemberAuditEntryPermission {
+  /** Can read and clone repositories. */
+  Read = 'READ',
+  /** Can read, clone, push, and add collaborators to repositories. */
+  Admin = 'ADMIN',
+}
+
+/** Audit log entry for a org.update_member_repository_creation_permission event. */
+export type GitHubOrgUpdateMemberRepositoryCreationPermissionAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** Can members create repositories in the organization. */
+    canCreateRepositories?: Maybe<Scalars['Boolean']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+    /** The permission for visibility level of repositories for this organization. */
+    visibility?: Maybe<
+      GitHubOrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility
+    >
+  }
+
+/** The permissions available for repository creation on an Organization. */
+export enum GitHubOrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility {
+  /** All organization members are restricted from creating any repositories. */
+  All = 'ALL',
+  /** All organization members are restricted from creating public repositories. */
+  Public = 'PUBLIC',
+}
+
+/** Audit log entry for a org.update_member_repository_invitation_permission event. */
+export type GitHubOrgUpdateMemberRepositoryInvitationPermissionAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** Can outside collaborators be invited to repositories in the organization. */
+    canInviteOutsideCollaboratorsToRepositories?: Maybe<Scalars['Boolean']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
 
 /** Information about pagination in a connection. */
 export type GitHubPageInfo = {
   /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars["String"]>;
+  endCursor?: Maybe<Scalars['String']>
   /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars["Boolean"];
+  hasNextPage: Scalars['Boolean']
   /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars["Boolean"];
+  hasPreviousPage: Scalars['Boolean']
   /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars["String"]>;
-};
+  startCursor?: Maybe<Scalars['String']>
+}
 
 /** Types that can grant permissions on a repository to a user */
 export type GitHubPermissionGranter =
   | GitHubOrganization
   | GitHubRepository
-  | GitHubTeam;
+  | GitHubTeam
 
 /** A level of permission and source for a user's access to a repository. */
 export type GitHubPermissionSource = {
   /** The organization the repository belongs to. */
-  organization: GitHubOrganization;
+  organization: GitHubOrganization
   /** The level of access this source has granted to the user. */
-  permission: GitHubDefaultRepositoryPermissionField;
+  permission: GitHubDefaultRepositoryPermissionField
   /** The source of this permission. */
-  source: GitHubPermissionGranter;
-};
+  source: GitHubPermissionGranter
+}
 
 /** Autogenerated input type of PinIssue */
 export type GitHubPinIssueInput = {
   /** The ID of the issue to be pinned */
-  issueId: Scalars["ID"];
+  issueId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Types that can be pinned to a profile page. */
-export type GitHubPinnableItem = GitHubGist | GitHubRepository;
+export type GitHubPinnableItem = GitHubGist | GitHubRepository
 
 /** The connection type for PinnableItem. */
 export type GitHubPinnableItemConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubPinnableItemEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubPinnableItemEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubPinnableItem>>>;
+  nodes?: Maybe<Array<Maybe<GitHubPinnableItem>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubPinnableItemEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubPinnableItem>;
-};
+  node?: Maybe<GitHubPinnableItem>
+}
 
-/** Represents items that can be pinned to a profile page. */
+/** Represents items that can be pinned to a profile page or dashboard. */
 export enum GitHubPinnableItemType {
   /** A repository. */
-  Repository = "REPOSITORY",
+  Repository = 'REPOSITORY',
   /** A gist. */
-  Gist = "GIST"
+  Gist = 'GIST',
+  /** An issue. */
+  Issue = 'ISSUE',
+  /** A project. */
+  Project = 'PROJECT',
+  /** A pull request. */
+  PullRequest = 'PULL_REQUEST',
+  /** A user. */
+  User = 'USER',
+  /** An organization. */
+  Organization = 'ORGANIZATION',
+  /** A team. */
+  Team = 'TEAM',
 }
 
 /** Represents a 'pinned' event on a given issue or pull request. */
 export type GitHubPinnedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** Identifies the issue associated with the event. */
-  issue: GitHubIssue;
-};
+  issue: GitHubIssue
+}
+
+/** Audit log entry for a private_repository_forking.disable event. */
+export type GitHubPrivateRepositoryForkingDisableAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubEnterpriseAuditEntryData &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    /** The HTTP path for this enterprise. */
+    enterpriseResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The slug of the enterprise. */
+    enterpriseSlug?: Maybe<Scalars['String']>
+    /** The HTTP URL for this enterprise. */
+    enterpriseUrl?: Maybe<Scalars['GitHubURI']>
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a private_repository_forking.enable event. */
+export type GitHubPrivateRepositoryForkingEnableAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubEnterpriseAuditEntryData &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    /** The HTTP path for this enterprise. */
+    enterpriseResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The slug of the enterprise. */
+    enterpriseSlug?: Maybe<Scalars['String']>
+    /** The HTTP URL for this enterprise. */
+    enterpriseUrl?: Maybe<Scalars['GitHubURI']>
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
 
 /** A curatable list of repositories relating to a repository owner, which defaults
  * to showing the most popular repositories they own.
  */
 export type GitHubProfileItemShowcase = {
   /** Whether or not the owner has pinned any repositories or gists. */
-  hasPinnedItems: Scalars["Boolean"];
+  hasPinnedItems: Scalars['Boolean']
   /** The repositories and gists in the showcase. If the profile owner has any
    * pinned items, those will be returned. Otherwise, the profile owner's popular
    * repositories will be returned.
    */
-  items: GitHubPinnableItemConnection;
-};
+  items: GitHubPinnableItemConnection
+}
 
 /** A curatable list of repositories relating to a repository owner, which defaults
  * to showing the most popular repositories they own.
  */
 export type GitHubProfileItemShowcaseItemsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** Represents any entity on GitHub that has a profile page. */
 export type GitHubProfileOwner = {
   /** Determine if this repository owner has any items that can be pinned to their profile. */
-  anyPinnableItems: Scalars["Boolean"];
+  anyPinnableItems: Scalars['Boolean']
   /** The public profile email. */
-  email?: Maybe<Scalars["String"]>;
-  id: Scalars["ID"];
+  email?: Maybe<Scalars['String']>
+  id: Scalars['ID']
   /** Showcases a selection of repositories and gists that the profile owner has
    * either curated or that have been selected automatically based on popularity.
    */
-  itemShowcase: GitHubProfileItemShowcase;
+  itemShowcase: GitHubProfileItemShowcase
   /** The public profile location. */
-  location?: Maybe<Scalars["String"]>;
+  location?: Maybe<Scalars['String']>
   /** The username used to login. */
-  login: Scalars["String"];
+  login: Scalars['String']
   /** The public profile name. */
-  name?: Maybe<Scalars["String"]>;
+  name?: Maybe<Scalars['String']>
   /** A list of repositories and gists this profile owner can pin to their profile. */
-  pinnableItems: GitHubPinnableItemConnection;
+  pinnableItems: GitHubPinnableItemConnection
   /** A list of repositories and gists this profile owner has pinned to their profile */
-  pinnedItems: GitHubPinnableItemConnection;
+  pinnedItems: GitHubPinnableItemConnection
   /** Returns how many more items this profile owner can pin to their profile. */
-  pinnedItemsRemaining: Scalars["Int"];
+  pinnedItemsRemaining: Scalars['Int']
   /** Can the viewer pin repositories and gists to the profile? */
-  viewerCanChangePinnedItems: Scalars["Boolean"];
+  viewerCanChangePinnedItems: Scalars['Boolean']
   /** The public profile website URL. */
-  websiteUrl?: Maybe<Scalars["GitHubURI"]>;
-};
+  websiteUrl?: Maybe<Scalars['GitHubURI']>
+}
 
 /** Represents any entity on GitHub that has a profile page. */
 export type GitHubProfileOwnerAnyPinnableItemsArgs = {
-  type?: Maybe<GitHubPinnableItemType>;
-};
+  type?: Maybe<GitHubPinnableItemType>
+}
 
 /** Represents any entity on GitHub that has a profile page. */
 export type GitHubProfileOwnerPinnableItemsArgs = {
-  types?: Maybe<Array<GitHubPinnableItemType>>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  types?: Maybe<Array<GitHubPinnableItemType>>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** Represents any entity on GitHub that has a profile page. */
 export type GitHubProfileOwnerPinnedItemsArgs = {
-  types?: Maybe<Array<GitHubPinnableItemType>>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  types?: Maybe<Array<GitHubPinnableItemType>>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** Projects manage issues, pull requests and notes within a project owner. */
 export type GitHubProject = GitHubNode &
   GitHubClosable &
   GitHubUpdatable & {
     /** The project's description body. */
-    body?: Maybe<Scalars["String"]>;
+    body?: Maybe<Scalars['String']>
     /** The projects description body rendered to HTML. */
-    bodyHTML: Scalars["GitHubHTML"];
+    bodyHTML: Scalars['GitHubHTML']
     /** `true` if the object is closed (definition of closed may depend on type) */
-    closed: Scalars["Boolean"];
+    closed: Scalars['Boolean']
     /** Identifies the date and time when the object was closed. */
-    closedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    closedAt?: Maybe<Scalars['GitHubDateTime']>
     /** List of columns in the project */
-    columns: GitHubProjectColumnConnection;
+    columns: GitHubProjectColumnConnection
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** The actor who originally created the project. */
-    creator?: Maybe<GitHubActor>;
+    creator?: Maybe<GitHubActor>
     /** Identifies the primary key from the database. */
-    databaseId?: Maybe<Scalars["Int"]>;
-    id: Scalars["ID"];
+    databaseId?: Maybe<Scalars['Int']>
+    id: Scalars['ID']
     /** The project's name. */
-    name: Scalars["String"];
+    name: Scalars['String']
     /** The project's number. */
-    number: Scalars["Int"];
+    number: Scalars['Int']
     /** The project's owner. Currently limited to repositories, organizations, and users. */
-    owner: GitHubProjectOwner;
+    owner: GitHubProjectOwner
     /** List of pending cards in this project */
-    pendingCards: GitHubProjectCardConnection;
+    pendingCards: GitHubProjectCardConnection
     /** The HTTP path for this project */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** Whether the project is open or closed. */
-    state: GitHubProjectState;
+    state: GitHubProjectState
     /** Identifies the date and time when the object was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
     /** The HTTP URL for this project */
-    url: Scalars["GitHubURI"];
+    url: Scalars['GitHubURI']
     /** Check if the current viewer can update this object. */
-    viewerCanUpdate: Scalars["Boolean"];
-  };
+    viewerCanUpdate: Scalars['Boolean']
+  }
 
 /** Projects manage issues, pull requests and notes within a project owner. */
 export type GitHubProjectColumnsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** Projects manage issues, pull requests and notes within a project owner. */
 export type GitHubProjectPendingCardsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  archivedStates?: Maybe<Array<Maybe<GitHubProjectCardArchivedState>>>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  archivedStates: Array<Maybe<GitHubProjectCardArchivedState>>
+}
 
 /** A card in a project. */
 export type GitHubProjectCard = GitHubNode & {
@@ -5008,266 +8591,283 @@ export type GitHubProjectCard = GitHubNode & {
    * in a pending state and has yet to be associated with a column. Once cards are
    * associated with a column, they will not become pending in the future.
    */
-  column?: Maybe<GitHubProjectColumn>;
+  column?: Maybe<GitHubProjectColumn>
   /** The card content item */
-  content?: Maybe<GitHubProjectCardItem>;
+  content?: Maybe<GitHubProjectCardItem>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** The actor who created this card */
-  creator?: Maybe<GitHubActor>;
+  creator?: Maybe<GitHubActor>
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
-  id: Scalars["ID"];
+  databaseId?: Maybe<Scalars['Int']>
+  id: Scalars['ID']
   /** Whether the card is archived */
-  isArchived: Scalars["Boolean"];
+  isArchived: Scalars['Boolean']
   /** The card note */
-  note?: Maybe<Scalars["String"]>;
+  note?: Maybe<Scalars['String']>
   /** The project that contains this card. */
-  project: GitHubProject;
+  project: GitHubProject
   /** The HTTP path for this card */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** The state of ProjectCard */
-  state?: Maybe<GitHubProjectCardState>;
+  state?: Maybe<GitHubProjectCardState>
   /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars["GitHubDateTime"];
+  updatedAt: Scalars['GitHubDateTime']
   /** The HTTP URL for this card */
-  url: Scalars["GitHubURI"];
-};
+  url: Scalars['GitHubURI']
+}
 
 /** The possible archived states of a project card. */
 export enum GitHubProjectCardArchivedState {
   /** A project card that is archived */
-  Archived = "ARCHIVED",
+  Archived = 'ARCHIVED',
   /** A project card that is not archived */
-  NotArchived = "NOT_ARCHIVED"
+  NotArchived = 'NOT_ARCHIVED',
 }
 
 /** The connection type for ProjectCard. */
 export type GitHubProjectCardConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubProjectCardEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubProjectCardEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubProjectCard>>>;
+  nodes?: Maybe<Array<Maybe<GitHubProjectCard>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubProjectCardEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubProjectCard>;
-};
+  node?: Maybe<GitHubProjectCard>
+}
 
 /** An issue or PR and its owning repository to be used in a project card. */
 export type GitHubProjectCardImport = {
   /** Repository name with owner (owner/repository). */
-  repository: Scalars["String"];
+  repository: Scalars['String']
   /** The issue or pull request number. */
-  number: Scalars["Int"];
-};
+  number: Scalars['Int']
+}
 
 /** Types that can be inside Project Cards. */
-export type GitHubProjectCardItem = GitHubIssue | GitHubPullRequest;
+export type GitHubProjectCardItem = GitHubIssue | GitHubPullRequest
 
 /** Various content states of a ProjectCard */
 export enum GitHubProjectCardState {
   /** The card has content only. */
-  ContentOnly = "CONTENT_ONLY",
+  ContentOnly = 'CONTENT_ONLY',
   /** The card has a note only. */
-  NoteOnly = "NOTE_ONLY",
+  NoteOnly = 'NOTE_ONLY',
   /** The card is redacted. */
-  Redacted = "REDACTED"
+  Redacted = 'REDACTED',
 }
 
 /** A column inside a project. */
 export type GitHubProjectColumn = GitHubNode & {
   /** List of cards in the column */
-  cards: GitHubProjectCardConnection;
+  cards: GitHubProjectCardConnection
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
-  id: Scalars["ID"];
+  databaseId?: Maybe<Scalars['Int']>
+  id: Scalars['ID']
   /** The project column's name. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** The project that contains this column. */
-  project: GitHubProject;
+  project: GitHubProject
   /** The semantic purpose of the column */
-  purpose?: Maybe<GitHubProjectColumnPurpose>;
+  purpose?: Maybe<GitHubProjectColumnPurpose>
   /** The HTTP path for this project column */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars["GitHubDateTime"];
+  updatedAt: Scalars['GitHubDateTime']
   /** The HTTP URL for this project column */
-  url: Scalars["GitHubURI"];
-};
+  url: Scalars['GitHubURI']
+}
 
 /** A column inside a project. */
 export type GitHubProjectColumnCardsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  archivedStates?: Maybe<Array<Maybe<GitHubProjectCardArchivedState>>>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  archivedStates: Array<Maybe<GitHubProjectCardArchivedState>>
+}
 
 /** The connection type for ProjectColumn. */
 export type GitHubProjectColumnConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubProjectColumnEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubProjectColumnEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubProjectColumn>>>;
+  nodes?: Maybe<Array<Maybe<GitHubProjectColumn>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubProjectColumnEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubProjectColumn>;
-};
+  node?: Maybe<GitHubProjectColumn>
+}
 
 /** A project column and a list of its issues and PRs. */
 export type GitHubProjectColumnImport = {
   /** The name of the column. */
-  columnName: Scalars["String"];
+  columnName: Scalars['String']
   /** The position of the column, starting from 0. */
-  position: Scalars["Int"];
+  position: Scalars['Int']
   /** A list of issues and pull requests in the column. */
-  issues?: Maybe<Array<GitHubProjectCardImport>>;
-};
+  issues?: Maybe<Array<GitHubProjectCardImport>>
+}
 
 /** The semantic purpose of the column - todo, in progress, or done. */
 export enum GitHubProjectColumnPurpose {
   /** The column contains cards still to be worked on */
-  Todo = "TODO",
+  Todo = 'TODO',
   /** The column contains cards which are currently being worked on */
-  InProgress = "IN_PROGRESS",
+  InProgress = 'IN_PROGRESS',
   /** The column contains cards which are complete */
-  Done = "DONE"
+  Done = 'DONE',
 }
 
 /** A list of projects associated with the owner. */
 export type GitHubProjectConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubProjectEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubProjectEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubProject>>>;
+  nodes?: Maybe<Array<Maybe<GitHubProject>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubProjectEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubProject>;
-};
+  node?: Maybe<GitHubProject>
+}
 
 /** Ways in which lists of projects can be ordered upon return. */
 export type GitHubProjectOrder = {
   /** The field in which to order projects by. */
-  field: GitHubProjectOrderField;
+  field: GitHubProjectOrderField
   /** The direction in which to order projects by the specified field. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which project connections can be ordered. */
 export enum GitHubProjectOrderField {
   /** Order projects by creation time */
-  CreatedAt = "CREATED_AT",
+  CreatedAt = 'CREATED_AT',
   /** Order projects by update time */
-  UpdatedAt = "UPDATED_AT",
+  UpdatedAt = 'UPDATED_AT',
   /** Order projects by name */
-  Name = "NAME"
+  Name = 'NAME',
 }
 
 /** Represents an owner of a Project. */
 export type GitHubProjectOwner = {
-  id: Scalars["ID"];
+  id: Scalars['ID']
   /** Find project by number. */
-  project?: Maybe<GitHubProject>;
+  project?: Maybe<GitHubProject>
   /** A list of projects under the owner. */
-  projects: GitHubProjectConnection;
+  projects: GitHubProjectConnection
   /** The HTTP path listing owners projects */
-  projectsResourcePath: Scalars["GitHubURI"];
+  projectsResourcePath: Scalars['GitHubURI']
   /** The HTTP URL listing owners projects */
-  projectsUrl: Scalars["GitHubURI"];
+  projectsUrl: Scalars['GitHubURI']
   /** Can the current viewer create new projects on this owner. */
-  viewerCanCreateProjects: Scalars["Boolean"];
-};
+  viewerCanCreateProjects: Scalars['Boolean']
+}
 
 /** Represents an owner of a Project. */
 export type GitHubProjectOwnerProjectArgs = {
-  number: Scalars["Int"];
-};
+  number: Scalars['Int']
+}
 
 /** Represents an owner of a Project. */
 export type GitHubProjectOwnerProjectsArgs = {
-  orderBy?: Maybe<GitHubProjectOrder>;
-  search?: Maybe<Scalars["String"]>;
-  states?: Maybe<Array<GitHubProjectState>>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  orderBy?: Maybe<GitHubProjectOrder>
+  search?: Maybe<Scalars['String']>
+  states?: Maybe<Array<GitHubProjectState>>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** State of the project; either 'open' or 'closed' */
 export enum GitHubProjectState {
   /** The project is open. */
-  Open = "OPEN",
+  Open = 'OPEN',
   /** The project is closed. */
-  Closed = "CLOSED"
+  Closed = 'CLOSED',
+}
+
+/** GitHub-provided templates for Projects */
+export enum GitHubProjectTemplate {
+  /** Create a board with columns for To do, In progress and Done. */
+  BasicKanban = 'BASIC_KANBAN',
+  /** Create a board with v2 triggers to automatically move cards across To do, In progress and Done columns. */
+  AutomatedKanbanV2 = 'AUTOMATED_KANBAN_V2',
+  /** Create a board with triggers to automatically move cards across columns with review automation. */
+  AutomatedReviewsKanban = 'AUTOMATED_REVIEWS_KANBAN',
+  /** Create a board to triage and prioritize bugs with To do, priority, and Done columns. */
+  BugTriage = 'BUG_TRIAGE',
 }
 
 /** A user's public key. */
 export type GitHubPublicKey = GitHubNode & {
-  /** The last time this authorization was used to perform an action */
-  accessedAt?: Maybe<Scalars["GitHubDateTime"]>;
-  /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  /** The fingerprint for this PublicKey */
-  fingerprint?: Maybe<Scalars["String"]>;
-  id: Scalars["ID"];
-  /** Whether this PublicKey is read-only or not */
-  isReadOnly: Scalars["Boolean"];
-  /** The public key string */
-  key: Scalars["String"];
-  /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars["GitHubDateTime"];
-};
+  /** The last time this authorization was used to perform an action. Values will be null for keys not owned by the user. */
+  accessedAt?: Maybe<Scalars['GitHubDateTime']>
+  /** Identifies the date and time when the key was created. Keys created before
+   * March 5th, 2014 have inaccurate values. Values will be null for keys not owned by the user.
+   */
+  createdAt?: Maybe<Scalars['GitHubDateTime']>
+  /** The fingerprint for this PublicKey. */
+  fingerprint: Scalars['String']
+  id: Scalars['ID']
+  /** Whether this PublicKey is read-only or not. Values will be null for keys not owned by the user. */
+  isReadOnly?: Maybe<Scalars['Boolean']>
+  /** The public key string. */
+  key: Scalars['String']
+  /** Identifies the date and time when the key was updated. Keys created before
+   * March 5th, 2014 may have inaccurate values. Values will be null for keys not
+   * owned by the user.
+   */
+  updatedAt?: Maybe<Scalars['GitHubDateTime']>
+}
 
 /** The connection type for PublicKey. */
 export type GitHubPublicKeyConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubPublicKeyEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubPublicKeyEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubPublicKey>>>;
+  nodes?: Maybe<Array<Maybe<GitHubPublicKey>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubPublicKeyEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubPublicKey>;
-};
+  node?: Maybe<GitHubPublicKey>
+}
 
 /** A repository pull request. */
 export type GitHubPullRequest = GitHubNode &
@@ -5283,428 +8883,445 @@ export type GitHubPullRequest = GitHubNode &
   GitHubSubscribable &
   GitHubUniformResourceLocatable & {
     /** Reason that the conversation was locked. */
-    activeLockReason?: Maybe<GitHubLockReason>;
+    activeLockReason?: Maybe<GitHubLockReason>
     /** The number of additions in this pull request. */
-    additions: Scalars["Int"];
+    additions: Scalars['Int']
     /** A list of Users assigned to this object. */
-    assignees: GitHubUserConnection;
+    assignees: GitHubUserConnection
     /** The actor who authored the comment. */
-    author?: Maybe<GitHubActor>;
+    author?: Maybe<GitHubActor>
     /** Author's association with the subject of the comment. */
-    authorAssociation: GitHubCommentAuthorAssociation;
+    authorAssociation: GitHubCommentAuthorAssociation
     /** Identifies the base Ref associated with the pull request. */
-    baseRef?: Maybe<GitHubRef>;
+    baseRef?: Maybe<GitHubRef>
     /** Identifies the name of the base Ref associated with the pull request, even if the ref has been deleted. */
-    baseRefName: Scalars["String"];
+    baseRefName: Scalars['String']
     /** Identifies the oid of the base ref associated with the pull request, even if the ref has been deleted. */
-    baseRefOid: Scalars["GitHubGitObjectID"];
+    baseRefOid: Scalars['GitHubGitObjectID']
     /** The repository associated with this pull request's base Ref. */
-    baseRepository?: Maybe<GitHubRepository>;
+    baseRepository?: Maybe<GitHubRepository>
     /** The body as Markdown. */
-    body: Scalars["String"];
+    body: Scalars['String']
     /** The body rendered to HTML. */
-    bodyHTML: Scalars["GitHubHTML"];
+    bodyHTML: Scalars['GitHubHTML']
     /** The body rendered to text. */
-    bodyText: Scalars["String"];
+    bodyText: Scalars['String']
     /** The number of changed files in this pull request. */
-    changedFiles: Scalars["Int"];
+    changedFiles: Scalars['Int']
     /** `true` if the pull request is closed */
-    closed: Scalars["Boolean"];
+    closed: Scalars['Boolean']
     /** Identifies the date and time when the object was closed. */
-    closedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    closedAt?: Maybe<Scalars['GitHubDateTime']>
     /** A list of comments associated with the pull request. */
-    comments: GitHubIssueCommentConnection;
+    comments: GitHubIssueCommentConnection
     /** A list of commits present in this pull request's head branch not present in the base branch. */
-    commits: GitHubPullRequestCommitConnection;
+    commits: GitHubPullRequestCommitConnection
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** Check if this comment was created via an email reply. */
-    createdViaEmail: Scalars["Boolean"];
+    createdViaEmail: Scalars['Boolean']
     /** Identifies the primary key from the database. */
-    databaseId?: Maybe<Scalars["Int"]>;
+    databaseId?: Maybe<Scalars['Int']>
     /** The number of deletions in this pull request. */
-    deletions: Scalars["Int"];
+    deletions: Scalars['Int']
     /** The actor who edited this pull request's body. */
-    editor?: Maybe<GitHubActor>;
+    editor?: Maybe<GitHubActor>
     /** Lists the files changed within this pull request. */
-    files?: Maybe<GitHubPullRequestChangedFileConnection>;
+    files?: Maybe<GitHubPullRequestChangedFileConnection>
     /** Identifies the head Ref associated with the pull request. */
-    headRef?: Maybe<GitHubRef>;
+    headRef?: Maybe<GitHubRef>
     /** Identifies the name of the head Ref associated with the pull request, even if the ref has been deleted. */
-    headRefName: Scalars["String"];
+    headRefName: Scalars['String']
     /** Identifies the oid of the head ref associated with the pull request, even if the ref has been deleted. */
-    headRefOid: Scalars["GitHubGitObjectID"];
+    headRefOid: Scalars['GitHubGitObjectID']
     /** The repository associated with this pull request's head Ref. */
-    headRepository?: Maybe<GitHubRepository>;
+    headRepository?: Maybe<GitHubRepository>
     /** The owner of the repository associated with this pull request's head Ref. */
-    headRepositoryOwner?: Maybe<GitHubRepositoryOwner>;
-    id: Scalars["ID"];
+    headRepositoryOwner?: Maybe<GitHubRepositoryOwner>
+    /** The hovercard information for this issue */
+    hovercard: GitHubHovercard
+    id: Scalars['ID']
     /** Check if this comment was edited and includes an edit with the creation data */
-    includesCreatedEdit: Scalars["Boolean"];
+    includesCreatedEdit: Scalars['Boolean']
     /** The head and base repositories are different. */
-    isCrossRepository: Scalars["Boolean"];
+    isCrossRepository: Scalars['Boolean']
     /** A list of labels associated with the object. */
-    labels?: Maybe<GitHubLabelConnection>;
+    labels?: Maybe<GitHubLabelConnection>
     /** The moment the editor made the last edit */
-    lastEditedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    lastEditedAt?: Maybe<Scalars['GitHubDateTime']>
     /** `true` if the pull request is locked */
-    locked: Scalars["Boolean"];
+    locked: Scalars['Boolean']
     /** Indicates whether maintainers can modify the pull request. */
-    maintainerCanModify: Scalars["Boolean"];
+    maintainerCanModify: Scalars['Boolean']
     /** The commit that was created when this pull request was merged. */
-    mergeCommit?: Maybe<GitHubCommit>;
+    mergeCommit?: Maybe<GitHubCommit>
     /** Whether or not the pull request can be merged based on the existence of merge conflicts. */
-    mergeable: GitHubMergeableState;
+    mergeable: GitHubMergeableState
     /** Whether or not the pull request was merged. */
-    merged: Scalars["Boolean"];
+    merged: Scalars['Boolean']
     /** The date and time that the pull request was merged. */
-    mergedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    mergedAt?: Maybe<Scalars['GitHubDateTime']>
     /** The actor who merged the pull request. */
-    mergedBy?: Maybe<GitHubActor>;
+    mergedBy?: Maybe<GitHubActor>
     /** Identifies the milestone associated with the pull request. */
-    milestone?: Maybe<GitHubMilestone>;
+    milestone?: Maybe<GitHubMilestone>
     /** Identifies the pull request number. */
-    number: Scalars["Int"];
+    number: Scalars['Int']
     /** A list of Users that are participating in the Pull Request conversation. */
-    participants: GitHubUserConnection;
+    participants: GitHubUserConnection
     /** The permalink to the pull request. */
-    permalink: Scalars["GitHubURI"];
+    permalink: Scalars['GitHubURI']
     /** The commit that GitHub automatically generated to test if this pull request
      * could be merged. This field will not return a value if the pull request is
      * merged, or if the test merge commit is still being generated. See the
      * `mergeable` field for more details on the mergeability of the pull request.
      */
-    potentialMergeCommit?: Maybe<GitHubCommit>;
+    potentialMergeCommit?: Maybe<GitHubCommit>
     /** List of project cards associated with this pull request. */
-    projectCards: GitHubProjectCardConnection;
+    projectCards: GitHubProjectCardConnection
     /** Identifies when the comment was published at. */
-    publishedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    publishedAt?: Maybe<Scalars['GitHubDateTime']>
     /** A list of reactions grouped by content left on the subject. */
-    reactionGroups?: Maybe<Array<GitHubReactionGroup>>;
+    reactionGroups?: Maybe<Array<GitHubReactionGroup>>
     /** A list of Reactions left on the Issue. */
-    reactions: GitHubReactionConnection;
+    reactions: GitHubReactionConnection
     /** The repository associated with this node. */
-    repository: GitHubRepository;
+    repository: GitHubRepository
     /** The HTTP path for this pull request. */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** The HTTP path for reverting this pull request. */
-    revertResourcePath: Scalars["GitHubURI"];
+    revertResourcePath: Scalars['GitHubURI']
     /** The HTTP URL for reverting this pull request. */
-    revertUrl: Scalars["GitHubURI"];
+    revertUrl: Scalars['GitHubURI']
     /** A list of review requests associated with the pull request. */
-    reviewRequests?: Maybe<GitHubReviewRequestConnection>;
+    reviewRequests?: Maybe<GitHubReviewRequestConnection>
     /** The list of all review threads for this pull request. */
-    reviewThreads: GitHubPullRequestReviewThreadConnection;
+    reviewThreads: GitHubPullRequestReviewThreadConnection
     /** A list of reviews associated with the pull request. */
-    reviews?: Maybe<GitHubPullRequestReviewConnection>;
+    reviews?: Maybe<GitHubPullRequestReviewConnection>
     /** Identifies the state of the pull request. */
-    state: GitHubPullRequestState;
+    state: GitHubPullRequestState
     /** A list of reviewer suggestions based on commit history and past review comments. */
-    suggestedReviewers: Array<Maybe<GitHubSuggestedReviewer>>;
+    suggestedReviewers: Array<Maybe<GitHubSuggestedReviewer>>
     /** A list of events, comments, commits, etc. associated with the pull request. */
-    timeline: GitHubPullRequestTimelineConnection;
+    timeline: GitHubPullRequestTimelineConnection
     /** A list of events, comments, commits, etc. associated with the pull request. */
-    timelineItems: GitHubPullRequestTimelineItemsConnection;
+    timelineItems: GitHubPullRequestTimelineItemsConnection
     /** Identifies the pull request title. */
-    title: Scalars["String"];
+    title: Scalars['String']
     /** Identifies the date and time when the object was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
     /** The HTTP URL for this pull request. */
-    url: Scalars["GitHubURI"];
+    url: Scalars['GitHubURI']
     /** A list of edits to this content. */
-    userContentEdits?: Maybe<GitHubUserContentEditConnection>;
+    userContentEdits?: Maybe<GitHubUserContentEditConnection>
     /** Whether or not the viewer can apply suggestion. */
-    viewerCanApplySuggestion: Scalars["Boolean"];
+    viewerCanApplySuggestion: Scalars['Boolean']
     /** Can user react to this subject */
-    viewerCanReact: Scalars["Boolean"];
+    viewerCanReact: Scalars['Boolean']
     /** Check if the viewer is able to change their subscription status for the repository. */
-    viewerCanSubscribe: Scalars["Boolean"];
+    viewerCanSubscribe: Scalars['Boolean']
     /** Check if the current viewer can update this object. */
-    viewerCanUpdate: Scalars["Boolean"];
+    viewerCanUpdate: Scalars['Boolean']
     /** Reasons why the current viewer can not update this comment. */
-    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>;
+    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>
     /** Did the viewer author this comment. */
-    viewerDidAuthor: Scalars["Boolean"];
+    viewerDidAuthor: Scalars['Boolean']
     /** Identifies if the viewer is watching, not watching, or ignoring the subscribable entity. */
-    viewerSubscription?: Maybe<GitHubSubscriptionState>;
-  };
+    viewerSubscription?: Maybe<GitHubSubscriptionState>
+  }
 
 /** A repository pull request. */
 export type GitHubPullRequestAssigneesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository pull request. */
 export type GitHubPullRequestCommentsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository pull request. */
 export type GitHubPullRequestCommitsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository pull request. */
 export type GitHubPullRequestFilesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** A repository pull request. */
+export type GitHubPullRequestHovercardArgs = {
+  includeNotificationContexts: Scalars['Boolean']
+}
 
 /** A repository pull request. */
 export type GitHubPullRequestLabelsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository pull request. */
 export type GitHubPullRequestParticipantsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository pull request. */
 export type GitHubPullRequestProjectCardsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  archivedStates?: Maybe<Array<Maybe<GitHubProjectCardArchivedState>>>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  archivedStates: Array<Maybe<GitHubProjectCardArchivedState>>
+}
 
 /** A repository pull request. */
 export type GitHubPullRequestReactionsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  content?: Maybe<GitHubReactionContent>;
-  orderBy?: Maybe<GitHubReactionOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  content?: Maybe<GitHubReactionContent>
+  orderBy?: Maybe<GitHubReactionOrder>
+}
 
 /** A repository pull request. */
 export type GitHubPullRequestReviewRequestsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository pull request. */
 export type GitHubPullRequestReviewThreadsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository pull request. */
 export type GitHubPullRequestReviewsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  states?: Maybe<Array<GitHubPullRequestReviewState>>;
-  author?: Maybe<Scalars["String"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  states?: Maybe<Array<GitHubPullRequestReviewState>>
+  author?: Maybe<Scalars['String']>
+}
 
 /** A repository pull request. */
 export type GitHubPullRequestTimelineArgs = {
-  since?: Maybe<Scalars["GitHubDateTime"]>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  since?: Maybe<Scalars['GitHubDateTime']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository pull request. */
 export type GitHubPullRequestTimelineItemsArgs = {
-  since?: Maybe<Scalars["GitHubDateTime"]>;
-  skip?: Maybe<Scalars["Int"]>;
-  itemTypes?: Maybe<Array<GitHubPullRequestTimelineItemsItemType>>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  since?: Maybe<Scalars['GitHubDateTime']>
+  skip?: Maybe<Scalars['Int']>
+  itemTypes?: Maybe<Array<GitHubPullRequestTimelineItemsItemType>>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository pull request. */
 export type GitHubPullRequestUserContentEditsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A file changed in a pull request. */
 export type GitHubPullRequestChangedFile = {
   /** The number of additions to the file. */
-  additions: Scalars["Int"];
+  additions: Scalars['Int']
   /** The number of deletions to the file. */
-  deletions: Scalars["Int"];
+  deletions: Scalars['Int']
   /** The path of the file. */
-  path: Scalars["String"];
-};
+  path: Scalars['String']
+}
 
 /** The connection type for PullRequestChangedFile. */
 export type GitHubPullRequestChangedFileConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubPullRequestChangedFileEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubPullRequestChangedFileEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubPullRequestChangedFile>>>;
+  nodes?: Maybe<Array<Maybe<GitHubPullRequestChangedFile>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubPullRequestChangedFileEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubPullRequestChangedFile>;
-};
+  node?: Maybe<GitHubPullRequestChangedFile>
+}
 
 /** Represents a Git commit part of a pull request. */
 export type GitHubPullRequestCommit = GitHubNode &
   GitHubUniformResourceLocatable & {
     /** The Git commit object */
-    commit: GitHubCommit;
-    id: Scalars["ID"];
+    commit: GitHubCommit
+    id: Scalars['ID']
     /** The pull request this commit belongs to */
-    pullRequest: GitHubPullRequest;
+    pullRequest: GitHubPullRequest
     /** The HTTP path for this pull request commit */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** The HTTP URL for this pull request commit */
-    url: Scalars["GitHubURI"];
-  };
+    url: Scalars['GitHubURI']
+  }
 
 /** Represents a commit comment thread part of a pull request. */
 export type GitHubPullRequestCommitCommentThread = GitHubNode &
   GitHubRepositoryNode & {
     /** The comments that exist in this thread. */
-    comments: GitHubCommitCommentConnection;
+    comments: GitHubCommitCommentConnection
     /** The commit the comments were made on. */
-    commit: GitHubCommit;
-    id: Scalars["ID"];
+    commit: GitHubCommit
+    id: Scalars['ID']
     /** The file the comments were made on. */
-    path?: Maybe<Scalars["String"]>;
+    path?: Maybe<Scalars['String']>
     /** The position in the diff for the commit that the comment was made on. */
-    position?: Maybe<Scalars["Int"]>;
+    position?: Maybe<Scalars['Int']>
     /** The pull request this commit comment thread belongs to */
-    pullRequest: GitHubPullRequest;
+    pullRequest: GitHubPullRequest
     /** The repository associated with this node. */
-    repository: GitHubRepository;
-  };
+    repository: GitHubRepository
+  }
 
 /** Represents a commit comment thread part of a pull request. */
 export type GitHubPullRequestCommitCommentThreadCommentsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** The connection type for PullRequestCommit. */
 export type GitHubPullRequestCommitConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubPullRequestCommitEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubPullRequestCommitEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubPullRequestCommit>>>;
+  nodes?: Maybe<Array<Maybe<GitHubPullRequestCommit>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubPullRequestCommitEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubPullRequestCommit>;
-};
+  node?: Maybe<GitHubPullRequestCommit>
+}
 
 /** The connection type for PullRequest. */
 export type GitHubPullRequestConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubPullRequestEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubPullRequestEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubPullRequest>>>;
+  nodes?: Maybe<Array<Maybe<GitHubPullRequest>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** This aggregates pull requests opened by a user within one repository. */
 export type GitHubPullRequestContributionsByRepository = {
   /** The pull request contributions. */
-  contributions: GitHubCreatedPullRequestContributionConnection;
+  contributions: GitHubCreatedPullRequestContributionConnection
   /** The repository in which the pull requests were opened. */
-  repository: GitHubRepository;
-};
+  repository: GitHubRepository
+}
 
 /** This aggregates pull requests opened by a user within one repository. */
 export type GitHubPullRequestContributionsByRepositoryContributionsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  orderBy?: Maybe<GitHubContributionOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy: GitHubContributionOrder
+}
 
 /** An edge in a connection. */
 export type GitHubPullRequestEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubPullRequest>;
-};
+  node?: Maybe<GitHubPullRequest>
+}
+
+/** Represents available types of methods to use when merging a pull request. */
+export enum GitHubPullRequestMergeMethod {
+  /** Add all commits from the head branch to the base branch with a merge commit. */
+  Merge = 'MERGE',
+  /** Combine all commits from the head branch into a single commit in the base branch. */
+  Squash = 'SQUASH',
+  /** Add all commits from the head branch onto the base branch individually. */
+  Rebase = 'REBASE',
+}
 
 /** Ways in which lists of issues can be ordered upon return. */
 export type GitHubPullRequestOrder = {
   /** The field in which to order pull requests by. */
-  field: GitHubPullRequestOrderField;
+  field: GitHubPullRequestOrderField
   /** The direction in which to order pull requests by the specified field. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which pull_requests connections can be ordered. */
 export enum GitHubPullRequestOrderField {
   /** Order pull_requests by creation time */
-  CreatedAt = "CREATED_AT",
+  CreatedAt = 'CREATED_AT',
   /** Order pull_requests by update time */
-  UpdatedAt = "UPDATED_AT"
+  UpdatedAt = 'UPDATED_AT',
 }
 
 /** The possible PubSub channels for a pull request. */
 export enum GitHubPullRequestPubSubTopic {
   /** The channel ID for observing pull request updates. */
-  Updated = "UPDATED",
+  Updated = 'UPDATED',
   /** The channel ID for marking an pull request as read. */
-  Markasread = "MARKASREAD",
+  Markasread = 'MARKASREAD',
   /** The channel ID for observing head ref updates. */
-  HeadRef = "HEAD_REF",
+  HeadRef = 'HEAD_REF',
   /** The channel ID for updating items on the pull request timeline. */
-  Timeline = "TIMELINE",
+  Timeline = 'TIMELINE',
   /** The channel ID for observing pull request state updates. */
-  State = "STATE"
+  State = 'STATE',
 }
 
 /** A review object for a given pull request. */
@@ -5716,101 +9333,101 @@ export type GitHubPullRequestReview = GitHubNode &
   GitHubReactable &
   GitHubRepositoryNode & {
     /** The actor who authored the comment. */
-    author?: Maybe<GitHubActor>;
+    author?: Maybe<GitHubActor>
     /** Author's association with the subject of the comment. */
-    authorAssociation: GitHubCommentAuthorAssociation;
+    authorAssociation: GitHubCommentAuthorAssociation
     /** Identifies the pull request review body. */
-    body: Scalars["String"];
-    /** The body of this review rendered to HTML. */
-    bodyHTML: Scalars["GitHubHTML"];
+    body: Scalars['String']
+    /** The body rendered to HTML. */
+    bodyHTML: Scalars['GitHubHTML']
     /** The body of this review rendered as plain text. */
-    bodyText: Scalars["String"];
+    bodyText: Scalars['String']
     /** A list of review comments for the current pull request review. */
-    comments: GitHubPullRequestReviewCommentConnection;
+    comments: GitHubPullRequestReviewCommentConnection
     /** Identifies the commit associated with this pull request review. */
-    commit?: Maybe<GitHubCommit>;
+    commit?: Maybe<GitHubCommit>
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** Check if this comment was created via an email reply. */
-    createdViaEmail: Scalars["Boolean"];
+    createdViaEmail: Scalars['Boolean']
     /** Identifies the primary key from the database. */
-    databaseId?: Maybe<Scalars["Int"]>;
+    databaseId?: Maybe<Scalars['Int']>
     /** The actor who edited the comment. */
-    editor?: Maybe<GitHubActor>;
-    id: Scalars["ID"];
+    editor?: Maybe<GitHubActor>
+    id: Scalars['ID']
     /** Check if this comment was edited and includes an edit with the creation data */
-    includesCreatedEdit: Scalars["Boolean"];
+    includesCreatedEdit: Scalars['Boolean']
     /** The moment the editor made the last edit */
-    lastEditedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    lastEditedAt?: Maybe<Scalars['GitHubDateTime']>
     /** A list of teams that this review was made on behalf of. */
-    onBehalfOf: GitHubTeamConnection;
+    onBehalfOf: GitHubTeamConnection
     /** Identifies when the comment was published at. */
-    publishedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    publishedAt?: Maybe<Scalars['GitHubDateTime']>
     /** Identifies the pull request associated with this pull request review. */
-    pullRequest: GitHubPullRequest;
+    pullRequest: GitHubPullRequest
     /** A list of reactions grouped by content left on the subject. */
-    reactionGroups?: Maybe<Array<GitHubReactionGroup>>;
+    reactionGroups?: Maybe<Array<GitHubReactionGroup>>
     /** A list of Reactions left on the Issue. */
-    reactions: GitHubReactionConnection;
+    reactions: GitHubReactionConnection
     /** The repository associated with this node. */
-    repository: GitHubRepository;
+    repository: GitHubRepository
     /** The HTTP path permalink for this PullRequestReview. */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** Identifies the current state of the pull request review. */
-    state: GitHubPullRequestReviewState;
+    state: GitHubPullRequestReviewState
     /** Identifies when the Pull Request Review was submitted */
-    submittedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    submittedAt?: Maybe<Scalars['GitHubDateTime']>
     /** Identifies the date and time when the object was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
     /** The HTTP URL permalink for this PullRequestReview. */
-    url: Scalars["GitHubURI"];
+    url: Scalars['GitHubURI']
     /** A list of edits to this content. */
-    userContentEdits?: Maybe<GitHubUserContentEditConnection>;
+    userContentEdits?: Maybe<GitHubUserContentEditConnection>
     /** Check if the current viewer can delete this object. */
-    viewerCanDelete: Scalars["Boolean"];
+    viewerCanDelete: Scalars['Boolean']
     /** Can user react to this subject */
-    viewerCanReact: Scalars["Boolean"];
+    viewerCanReact: Scalars['Boolean']
     /** Check if the current viewer can update this object. */
-    viewerCanUpdate: Scalars["Boolean"];
+    viewerCanUpdate: Scalars['Boolean']
     /** Reasons why the current viewer can not update this comment. */
-    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>;
+    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>
     /** Did the viewer author this comment. */
-    viewerDidAuthor: Scalars["Boolean"];
-  };
+    viewerDidAuthor: Scalars['Boolean']
+  }
 
 /** A review object for a given pull request. */
 export type GitHubPullRequestReviewCommentsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A review object for a given pull request. */
 export type GitHubPullRequestReviewOnBehalfOfArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A review object for a given pull request. */
 export type GitHubPullRequestReviewReactionsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  content?: Maybe<GitHubReactionContent>;
-  orderBy?: Maybe<GitHubReactionOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  content?: Maybe<GitHubReactionContent>
+  orderBy?: Maybe<GitHubReactionOrder>
+}
 
 /** A review object for a given pull request. */
 export type GitHubPullRequestReviewUserContentEditsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A review comment associated with a given repository pull request. */
 export type GitHubPullRequestReviewComment = GitHubNode &
@@ -5821,273 +9438,274 @@ export type GitHubPullRequestReviewComment = GitHubNode &
   GitHubReactable &
   GitHubRepositoryNode & {
     /** The actor who authored the comment. */
-    author?: Maybe<GitHubActor>;
+    author?: Maybe<GitHubActor>
     /** Author's association with the subject of the comment. */
-    authorAssociation: GitHubCommentAuthorAssociation;
+    authorAssociation: GitHubCommentAuthorAssociation
     /** The comment body of this review comment. */
-    body: Scalars["String"];
-    /** The comment body of this review comment rendered to HTML. */
-    bodyHTML: Scalars["GitHubHTML"];
+    body: Scalars['String']
+    /** The body rendered to HTML. */
+    bodyHTML: Scalars['GitHubHTML']
     /** The comment body of this review comment rendered as plain text. */
-    bodyText: Scalars["String"];
+    bodyText: Scalars['String']
     /** Identifies the commit associated with the comment. */
-    commit: GitHubCommit;
+    commit?: Maybe<GitHubCommit>
     /** Identifies when the comment was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** Check if this comment was created via an email reply. */
-    createdViaEmail: Scalars["Boolean"];
+    createdViaEmail: Scalars['Boolean']
     /** Identifies the primary key from the database. */
-    databaseId?: Maybe<Scalars["Int"]>;
+    databaseId?: Maybe<Scalars['Int']>
     /** The diff hunk to which the comment applies. */
-    diffHunk: Scalars["String"];
+    diffHunk: Scalars['String']
     /** Identifies when the comment was created in a draft state. */
-    draftedAt: Scalars["GitHubDateTime"];
+    draftedAt: Scalars['GitHubDateTime']
     /** The actor who edited the comment. */
-    editor?: Maybe<GitHubActor>;
-    id: Scalars["ID"];
+    editor?: Maybe<GitHubActor>
+    id: Scalars['ID']
     /** Check if this comment was edited and includes an edit with the creation data */
-    includesCreatedEdit: Scalars["Boolean"];
+    includesCreatedEdit: Scalars['Boolean']
     /** Returns whether or not a comment has been minimized. */
-    isMinimized: Scalars["Boolean"];
+    isMinimized: Scalars['Boolean']
     /** The moment the editor made the last edit */
-    lastEditedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    lastEditedAt?: Maybe<Scalars['GitHubDateTime']>
     /** Returns why the comment was minimized. */
-    minimizedReason?: Maybe<Scalars["String"]>;
+    minimizedReason?: Maybe<Scalars['String']>
     /** Identifies the original commit associated with the comment. */
-    originalCommit?: Maybe<GitHubCommit>;
+    originalCommit?: Maybe<GitHubCommit>
     /** The original line index in the diff to which the comment applies. */
-    originalPosition: Scalars["Int"];
+    originalPosition: Scalars['Int']
     /** Identifies when the comment body is outdated */
-    outdated: Scalars["Boolean"];
+    outdated: Scalars['Boolean']
     /** The path to which the comment applies. */
-    path: Scalars["String"];
+    path: Scalars['String']
     /** The line index in the diff to which the comment applies. */
-    position?: Maybe<Scalars["Int"]>;
+    position?: Maybe<Scalars['Int']>
     /** Identifies when the comment was published at. */
-    publishedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    publishedAt?: Maybe<Scalars['GitHubDateTime']>
     /** The pull request associated with this review comment. */
-    pullRequest: GitHubPullRequest;
+    pullRequest: GitHubPullRequest
     /** The pull request review associated with this review comment. */
-    pullRequestReview?: Maybe<GitHubPullRequestReview>;
+    pullRequestReview?: Maybe<GitHubPullRequestReview>
     /** A list of reactions grouped by content left on the subject. */
-    reactionGroups?: Maybe<Array<GitHubReactionGroup>>;
+    reactionGroups?: Maybe<Array<GitHubReactionGroup>>
     /** A list of Reactions left on the Issue. */
-    reactions: GitHubReactionConnection;
+    reactions: GitHubReactionConnection
     /** The comment this is a reply to. */
-    replyTo?: Maybe<GitHubPullRequestReviewComment>;
+    replyTo?: Maybe<GitHubPullRequestReviewComment>
     /** The repository associated with this node. */
-    repository: GitHubRepository;
+    repository: GitHubRepository
     /** The HTTP path permalink for this review comment. */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** Identifies the state of the comment. */
-    state: GitHubPullRequestReviewCommentState;
+    state: GitHubPullRequestReviewCommentState
     /** Identifies when the comment was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
     /** The HTTP URL permalink for this review comment. */
-    url: Scalars["GitHubURI"];
+    url: Scalars['GitHubURI']
     /** A list of edits to this content. */
-    userContentEdits?: Maybe<GitHubUserContentEditConnection>;
+    userContentEdits?: Maybe<GitHubUserContentEditConnection>
     /** Check if the current viewer can delete this object. */
-    viewerCanDelete: Scalars["Boolean"];
+    viewerCanDelete: Scalars['Boolean']
     /** Check if the current viewer can minimize this object. */
-    viewerCanMinimize: Scalars["Boolean"];
+    viewerCanMinimize: Scalars['Boolean']
     /** Can user react to this subject */
-    viewerCanReact: Scalars["Boolean"];
+    viewerCanReact: Scalars['Boolean']
     /** Check if the current viewer can update this object. */
-    viewerCanUpdate: Scalars["Boolean"];
+    viewerCanUpdate: Scalars['Boolean']
     /** Reasons why the current viewer can not update this comment. */
-    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>;
+    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>
     /** Did the viewer author this comment. */
-    viewerDidAuthor: Scalars["Boolean"];
-  };
+    viewerDidAuthor: Scalars['Boolean']
+  }
 
 /** A review comment associated with a given repository pull request. */
 export type GitHubPullRequestReviewCommentReactionsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  content?: Maybe<GitHubReactionContent>;
-  orderBy?: Maybe<GitHubReactionOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  content?: Maybe<GitHubReactionContent>
+  orderBy?: Maybe<GitHubReactionOrder>
+}
 
 /** A review comment associated with a given repository pull request. */
 export type GitHubPullRequestReviewCommentUserContentEditsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** The connection type for PullRequestReviewComment. */
 export type GitHubPullRequestReviewCommentConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubPullRequestReviewCommentEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubPullRequestReviewCommentEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubPullRequestReviewComment>>>;
+  nodes?: Maybe<Array<Maybe<GitHubPullRequestReviewComment>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubPullRequestReviewCommentEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubPullRequestReviewComment>;
-};
+  node?: Maybe<GitHubPullRequestReviewComment>
+}
 
 /** The possible states of a pull request review comment. */
 export enum GitHubPullRequestReviewCommentState {
   /** A comment that is part of a pending review */
-  Pending = "PENDING",
+  Pending = 'PENDING',
   /** A comment that is part of a submitted review */
-  Submitted = "SUBMITTED"
+  Submitted = 'SUBMITTED',
 }
 
 /** The connection type for PullRequestReview. */
 export type GitHubPullRequestReviewConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubPullRequestReviewEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubPullRequestReviewEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubPullRequestReview>>>;
+  nodes?: Maybe<Array<Maybe<GitHubPullRequestReview>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** This aggregates pull request reviews made by a user within one repository. */
 export type GitHubPullRequestReviewContributionsByRepository = {
   /** The pull request review contributions. */
-  contributions: GitHubCreatedPullRequestReviewContributionConnection;
+  contributions: GitHubCreatedPullRequestReviewContributionConnection
   /** The repository in which the pull request reviews were made. */
-  repository: GitHubRepository;
-};
+  repository: GitHubRepository
+}
 
 /** This aggregates pull request reviews made by a user within one repository. */
 export type GitHubPullRequestReviewContributionsByRepositoryContributionsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  orderBy?: Maybe<GitHubContributionOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy: GitHubContributionOrder
+}
 
 /** An edge in a connection. */
 export type GitHubPullRequestReviewEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubPullRequestReview>;
-};
+  node?: Maybe<GitHubPullRequestReview>
+}
 
 /** The possible events to perform on a pull request review. */
 export enum GitHubPullRequestReviewEvent {
   /** Submit general feedback without explicit approval. */
-  Comment = "COMMENT",
+  Comment = 'COMMENT',
   /** Submit feedback and approve merging these changes. */
-  Approve = "APPROVE",
+  Approve = 'APPROVE',
   /** Submit feedback that must be addressed before merging. */
-  RequestChanges = "REQUEST_CHANGES",
+  RequestChanges = 'REQUEST_CHANGES',
   /** Dismiss review so it now longer effects merging. */
-  Dismiss = "DISMISS"
+  Dismiss = 'DISMISS',
 }
 
 /** The possible states of a pull request review. */
 export enum GitHubPullRequestReviewState {
   /** A review that has not yet been submitted. */
-  Pending = "PENDING",
+  Pending = 'PENDING',
   /** An informational review. */
-  Commented = "COMMENTED",
+  Commented = 'COMMENTED',
   /** A review allowing the pull request to merge. */
-  Approved = "APPROVED",
+  Approved = 'APPROVED',
   /** A review blocking the pull request from merging. */
-  ChangesRequested = "CHANGES_REQUESTED",
+  ChangesRequested = 'CHANGES_REQUESTED',
   /** A review that has been dismissed. */
-  Dismissed = "DISMISSED"
+  Dismissed = 'DISMISSED',
 }
 
 /** A threaded list of comments for a given pull request. */
 export type GitHubPullRequestReviewThread = GitHubNode & {
   /** A list of pull request comments associated with the thread. */
-  comments: GitHubPullRequestReviewCommentConnection;
-  id: Scalars["ID"];
+  comments: GitHubPullRequestReviewCommentConnection
+  id: Scalars['ID']
   /** Whether this thread has been resolved */
-  isResolved: Scalars["Boolean"];
+  isResolved: Scalars['Boolean']
   /** Identifies the pull request associated with this thread. */
-  pullRequest: GitHubPullRequest;
+  pullRequest: GitHubPullRequest
   /** Identifies the repository associated with this thread. */
-  repository: GitHubRepository;
+  repository: GitHubRepository
   /** The user who resolved this thread */
-  resolvedBy?: Maybe<GitHubUser>;
+  resolvedBy?: Maybe<GitHubUser>
   /** Whether or not the viewer can resolve this thread */
-  viewerCanResolve: Scalars["Boolean"];
+  viewerCanResolve: Scalars['Boolean']
   /** Whether or not the viewer can unresolve this thread */
-  viewerCanUnresolve: Scalars["Boolean"];
-};
+  viewerCanUnresolve: Scalars['Boolean']
+}
 
 /** A threaded list of comments for a given pull request. */
 export type GitHubPullRequestReviewThreadCommentsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  skip?: Maybe<Scalars['Int']>
+}
 
 /** Review comment threads for a pull request review. */
 export type GitHubPullRequestReviewThreadConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubPullRequestReviewThreadEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubPullRequestReviewThreadEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubPullRequestReviewThread>>>;
+  nodes?: Maybe<Array<Maybe<GitHubPullRequestReviewThread>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubPullRequestReviewThreadEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubPullRequestReviewThread>;
-};
+  node?: Maybe<GitHubPullRequestReviewThread>
+}
 
 /** Represents the latest point in the pull request timeline for which the viewer has seen the pull request's commits. */
 export type GitHubPullRequestRevisionMarker = {
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** The last commit the viewer has seen. */
-  lastSeenCommit: GitHubCommit;
+  lastSeenCommit: GitHubCommit
   /** The pull request to which the marker belongs. */
-  pullRequest: GitHubPullRequest;
-};
+  pullRequest: GitHubPullRequest
+}
 
 /** The possible states of a pull request. */
 export enum GitHubPullRequestState {
   /** A pull request that is still open. */
-  Open = "OPEN",
+  Open = 'OPEN',
   /** A pull request that has been closed without being merged. */
-  Closed = "CLOSED",
+  Closed = 'CLOSED',
   /** A pull request that has been closed by being merged. */
-  Merged = "MERGED"
+  Merged = 'MERGED',
 }
 
 /** The connection type for PullRequestTimelineItem. */
 export type GitHubPullRequestTimelineConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubPullRequestTimelineItemEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubPullRequestTimelineItemEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubPullRequestTimelineItem>>>;
+  nodes?: Maybe<Array<Maybe<GitHubPullRequestTimelineItem>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An item in an pull request timeline */
 export type GitHubPullRequestTimelineItem =
@@ -6122,15 +9740,15 @@ export type GitHubPullRequestTimelineItem =
   | GitHubReviewRequestedEvent
   | GitHubReviewRequestRemovedEvent
   | GitHubReviewDismissedEvent
-  | GitHubUserBlockedEvent;
+  | GitHubUserBlockedEvent
 
 /** An edge in a connection. */
 export type GitHubPullRequestTimelineItemEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubPullRequestTimelineItem>;
-};
+  node?: Maybe<GitHubPullRequestTimelineItem>
+}
 
 /** An item in a pull request timeline */
 export type GitHubPullRequestTimelineItems =
@@ -6150,6 +9768,7 @@ export type GitHubPullRequestTimelineItems =
   | GitHubReviewDismissedEvent
   | GitHubReviewRequestedEvent
   | GitHubReviewRequestRemovedEvent
+  | GitHubReadyForReviewEvent
   | GitHubIssueComment
   | GitHubCrossReferencedEvent
   | GitHubAddedToProjectEvent
@@ -6160,6 +9779,7 @@ export type GitHubPullRequestTimelineItems =
   | GitHubDemilestonedEvent
   | GitHubLabeledEvent
   | GitHubLockedEvent
+  | GitHubMarkedAsDuplicateEvent
   | GitHubMentionedEvent
   | GitHubMilestonedEvent
   | GitHubMovedColumnsInProjectEvent
@@ -6175,1427 +9795,3250 @@ export type GitHubPullRequestTimelineItems =
   | GitHubUnlockedEvent
   | GitHubUserBlockedEvent
   | GitHubUnpinnedEvent
-  | GitHubUnsubscribedEvent;
+  | GitHubUnsubscribedEvent
 
 /** The connection type for PullRequestTimelineItems. */
 export type GitHubPullRequestTimelineItemsConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubPullRequestTimelineItemsEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubPullRequestTimelineItemsEdge>>>
   /** Identifies the count of items after applying `before` and `after` filters. */
-  filteredCount: Scalars["Int"];
+  filteredCount: Scalars['Int']
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubPullRequestTimelineItems>>>;
+  nodes?: Maybe<Array<Maybe<GitHubPullRequestTimelineItems>>>
   /** Identifies the count of items after applying `before`/`after` filters and `first`/`last`/`skip` slicing. */
-  pageCount: Scalars["Int"];
+  pageCount: Scalars['Int']
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
+  totalCount: Scalars['Int']
   /** Identifies the date and time when the timeline was last updated. */
-  updatedAt: Scalars["GitHubDateTime"];
-};
+  updatedAt: Scalars['GitHubDateTime']
+}
 
 /** An edge in a connection. */
 export type GitHubPullRequestTimelineItemsEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubPullRequestTimelineItems>;
-};
+  node?: Maybe<GitHubPullRequestTimelineItems>
+}
 
 /** The possible item types found in a timeline. */
 export enum GitHubPullRequestTimelineItemsItemType {
   /** Represents a Git commit part of a pull request. */
-  PullRequestCommit = "PULL_REQUEST_COMMIT",
+  PullRequestCommit = 'PULL_REQUEST_COMMIT',
   /** Represents a commit comment thread part of a pull request. */
-  PullRequestCommitCommentThread = "PULL_REQUEST_COMMIT_COMMENT_THREAD",
+  PullRequestCommitCommentThread = 'PULL_REQUEST_COMMIT_COMMENT_THREAD',
   /** A review object for a given pull request. */
-  PullRequestReview = "PULL_REQUEST_REVIEW",
+  PullRequestReview = 'PULL_REQUEST_REVIEW',
   /** A threaded list of comments for a given pull request. */
-  PullRequestReviewThread = "PULL_REQUEST_REVIEW_THREAD",
+  PullRequestReviewThread = 'PULL_REQUEST_REVIEW_THREAD',
   /** Represents the latest point in the pull request timeline for which the viewer has seen the pull request's commits. */
-  PullRequestRevisionMarker = "PULL_REQUEST_REVISION_MARKER",
+  PullRequestRevisionMarker = 'PULL_REQUEST_REVISION_MARKER',
   /** Represents a 'base_ref_changed' event on a given issue or pull request. */
-  BaseRefChangedEvent = "BASE_REF_CHANGED_EVENT",
+  BaseRefChangedEvent = 'BASE_REF_CHANGED_EVENT',
   /** Represents a 'base_ref_force_pushed' event on a given pull request. */
-  BaseRefForcePushedEvent = "BASE_REF_FORCE_PUSHED_EVENT",
+  BaseRefForcePushedEvent = 'BASE_REF_FORCE_PUSHED_EVENT',
   /** Represents a 'deployed' event on a given pull request. */
-  DeployedEvent = "DEPLOYED_EVENT",
+  DeployedEvent = 'DEPLOYED_EVENT',
   /** Represents a 'deployment_environment_changed' event on a given pull request. */
-  DeploymentEnvironmentChangedEvent = "DEPLOYMENT_ENVIRONMENT_CHANGED_EVENT",
+  DeploymentEnvironmentChangedEvent = 'DEPLOYMENT_ENVIRONMENT_CHANGED_EVENT',
   /** Represents a 'head_ref_deleted' event on a given pull request. */
-  HeadRefDeletedEvent = "HEAD_REF_DELETED_EVENT",
+  HeadRefDeletedEvent = 'HEAD_REF_DELETED_EVENT',
   /** Represents a 'head_ref_force_pushed' event on a given pull request. */
-  HeadRefForcePushedEvent = "HEAD_REF_FORCE_PUSHED_EVENT",
+  HeadRefForcePushedEvent = 'HEAD_REF_FORCE_PUSHED_EVENT',
   /** Represents a 'head_ref_restored' event on a given pull request. */
-  HeadRefRestoredEvent = "HEAD_REF_RESTORED_EVENT",
+  HeadRefRestoredEvent = 'HEAD_REF_RESTORED_EVENT',
   /** Represents a 'merged' event on a given pull request. */
-  MergedEvent = "MERGED_EVENT",
+  MergedEvent = 'MERGED_EVENT',
   /** Represents a 'review_dismissed' event on a given issue or pull request. */
-  ReviewDismissedEvent = "REVIEW_DISMISSED_EVENT",
+  ReviewDismissedEvent = 'REVIEW_DISMISSED_EVENT',
   /** Represents an 'review_requested' event on a given pull request. */
-  ReviewRequestedEvent = "REVIEW_REQUESTED_EVENT",
+  ReviewRequestedEvent = 'REVIEW_REQUESTED_EVENT',
   /** Represents an 'review_request_removed' event on a given pull request. */
-  ReviewRequestRemovedEvent = "REVIEW_REQUEST_REMOVED_EVENT",
+  ReviewRequestRemovedEvent = 'REVIEW_REQUEST_REMOVED_EVENT',
+  /** Represents a 'ready_for_review' event on a given pull request. */
+  ReadyForReviewEvent = 'READY_FOR_REVIEW_EVENT',
   /** Represents a comment on an Issue. */
-  IssueComment = "ISSUE_COMMENT",
+  IssueComment = 'ISSUE_COMMENT',
   /** Represents a mention made by one issue or pull request to another. */
-  CrossReferencedEvent = "CROSS_REFERENCED_EVENT",
+  CrossReferencedEvent = 'CROSS_REFERENCED_EVENT',
   /** Represents a 'added_to_project' event on a given issue or pull request. */
-  AddedToProjectEvent = "ADDED_TO_PROJECT_EVENT",
+  AddedToProjectEvent = 'ADDED_TO_PROJECT_EVENT',
   /** Represents an 'assigned' event on any assignable object. */
-  AssignedEvent = "ASSIGNED_EVENT",
+  AssignedEvent = 'ASSIGNED_EVENT',
   /** Represents a 'closed' event on any `Closable`. */
-  ClosedEvent = "CLOSED_EVENT",
+  ClosedEvent = 'CLOSED_EVENT',
   /** Represents a 'comment_deleted' event on a given issue or pull request. */
-  CommentDeletedEvent = "COMMENT_DELETED_EVENT",
+  CommentDeletedEvent = 'COMMENT_DELETED_EVENT',
   /** Represents a 'converted_note_to_issue' event on a given issue or pull request. */
-  ConvertedNoteToIssueEvent = "CONVERTED_NOTE_TO_ISSUE_EVENT",
+  ConvertedNoteToIssueEvent = 'CONVERTED_NOTE_TO_ISSUE_EVENT',
   /** Represents a 'demilestoned' event on a given issue or pull request. */
-  DemilestonedEvent = "DEMILESTONED_EVENT",
+  DemilestonedEvent = 'DEMILESTONED_EVENT',
   /** Represents a 'labeled' event on a given issue or pull request. */
-  LabeledEvent = "LABELED_EVENT",
+  LabeledEvent = 'LABELED_EVENT',
   /** Represents a 'locked' event on a given issue or pull request. */
-  LockedEvent = "LOCKED_EVENT",
+  LockedEvent = 'LOCKED_EVENT',
+  /** Represents a 'marked_as_duplicate' event on a given issue or pull request. */
+  MarkedAsDuplicateEvent = 'MARKED_AS_DUPLICATE_EVENT',
   /** Represents a 'mentioned' event on a given issue or pull request. */
-  MentionedEvent = "MENTIONED_EVENT",
+  MentionedEvent = 'MENTIONED_EVENT',
   /** Represents a 'milestoned' event on a given issue or pull request. */
-  MilestonedEvent = "MILESTONED_EVENT",
+  MilestonedEvent = 'MILESTONED_EVENT',
   /** Represents a 'moved_columns_in_project' event on a given issue or pull request. */
-  MovedColumnsInProjectEvent = "MOVED_COLUMNS_IN_PROJECT_EVENT",
+  MovedColumnsInProjectEvent = 'MOVED_COLUMNS_IN_PROJECT_EVENT',
   /** Represents a 'pinned' event on a given issue or pull request. */
-  PinnedEvent = "PINNED_EVENT",
+  PinnedEvent = 'PINNED_EVENT',
   /** Represents a 'referenced' event on a given `ReferencedSubject`. */
-  ReferencedEvent = "REFERENCED_EVENT",
+  ReferencedEvent = 'REFERENCED_EVENT',
   /** Represents a 'removed_from_project' event on a given issue or pull request. */
-  RemovedFromProjectEvent = "REMOVED_FROM_PROJECT_EVENT",
+  RemovedFromProjectEvent = 'REMOVED_FROM_PROJECT_EVENT',
   /** Represents a 'renamed' event on a given issue or pull request */
-  RenamedTitleEvent = "RENAMED_TITLE_EVENT",
+  RenamedTitleEvent = 'RENAMED_TITLE_EVENT',
   /** Represents a 'reopened' event on any `Closable`. */
-  ReopenedEvent = "REOPENED_EVENT",
+  ReopenedEvent = 'REOPENED_EVENT',
   /** Represents a 'subscribed' event on a given `Subscribable`. */
-  SubscribedEvent = "SUBSCRIBED_EVENT",
+  SubscribedEvent = 'SUBSCRIBED_EVENT',
   /** Represents a 'transferred' event on a given issue or pull request. */
-  TransferredEvent = "TRANSFERRED_EVENT",
+  TransferredEvent = 'TRANSFERRED_EVENT',
   /** Represents an 'unassigned' event on any assignable object. */
-  UnassignedEvent = "UNASSIGNED_EVENT",
+  UnassignedEvent = 'UNASSIGNED_EVENT',
   /** Represents an 'unlabeled' event on a given issue or pull request. */
-  UnlabeledEvent = "UNLABELED_EVENT",
+  UnlabeledEvent = 'UNLABELED_EVENT',
   /** Represents an 'unlocked' event on a given issue or pull request. */
-  UnlockedEvent = "UNLOCKED_EVENT",
+  UnlockedEvent = 'UNLOCKED_EVENT',
   /** Represents a 'user_blocked' event on a given user. */
-  UserBlockedEvent = "USER_BLOCKED_EVENT",
+  UserBlockedEvent = 'USER_BLOCKED_EVENT',
   /** Represents an 'unpinned' event on a given issue or pull request. */
-  UnpinnedEvent = "UNPINNED_EVENT",
+  UnpinnedEvent = 'UNPINNED_EVENT',
   /** Represents an 'unsubscribed' event on a given `Subscribable`. */
-  UnsubscribedEvent = "UNSUBSCRIBED_EVENT"
+  UnsubscribedEvent = 'UNSUBSCRIBED_EVENT',
 }
 
-/** A team or user who has the ability to push to a protected branch. */
+/** The possible target states when updating a pull request. */
+export enum GitHubPullRequestUpdateState {
+  /** A pull request that is still open. */
+  Open = 'OPEN',
+  /** A pull request that has been closed without being merged. */
+  Closed = 'CLOSED',
+}
+
+/** A team, user or app who has the ability to push to a protected branch. */
 export type GitHubPushAllowance = GitHubNode & {
   /** The actor that can push. */
-  actor?: Maybe<GitHubPushAllowanceActor>;
+  actor?: Maybe<GitHubPushAllowanceActor>
   /** Identifies the branch protection rule associated with the allowed user or team. */
-  branchProtectionRule?: Maybe<GitHubBranchProtectionRule>;
-  id: Scalars["ID"];
-};
+  branchProtectionRule?: Maybe<GitHubBranchProtectionRule>
+  id: Scalars['ID']
+}
 
 /** Types that can be an actor. */
-export type GitHubPushAllowanceActor = GitHubUser | GitHubTeam;
+export type GitHubPushAllowanceActor = GitHubUser | GitHubTeam | GitHubApp
 
 /** The connection type for PushAllowance. */
 export type GitHubPushAllowanceConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubPushAllowanceEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubPushAllowanceEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubPushAllowance>>>;
+  nodes?: Maybe<Array<Maybe<GitHubPushAllowance>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubPushAllowanceEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubPushAllowance>;
-};
+  node?: Maybe<GitHubPushAllowance>
+}
 
 /** Represents the client's rate limit. */
 export type GitHubRateLimit = {
   /** The point cost for the current query counting against the rate limit. */
-  cost: Scalars["Int"];
+  cost: Scalars['Int']
   /** The maximum number of points the client is permitted to consume in a 60 minute window. */
-  limit: Scalars["Int"];
+  limit: Scalars['Int']
   /** The maximum number of nodes this query may return */
-  nodeCount: Scalars["Int"];
+  nodeCount: Scalars['Int']
   /** The number of points remaining in the current rate limit window. */
-  remaining: Scalars["Int"];
+  remaining: Scalars['Int']
   /** The time at which the current rate limit window resets in UTC epoch seconds. */
-  resetAt: Scalars["GitHubDateTime"];
-};
+  resetAt: Scalars['GitHubDateTime']
+}
 
 /** Represents a subject that can be reacted on. */
 export type GitHubReactable = {
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
-  id: Scalars["ID"];
+  databaseId?: Maybe<Scalars['Int']>
+  id: Scalars['ID']
   /** A list of reactions grouped by content left on the subject. */
-  reactionGroups?: Maybe<Array<GitHubReactionGroup>>;
+  reactionGroups?: Maybe<Array<GitHubReactionGroup>>
   /** A list of Reactions left on the Issue. */
-  reactions: GitHubReactionConnection;
+  reactions: GitHubReactionConnection
   /** Can user react to this subject */
-  viewerCanReact: Scalars["Boolean"];
-};
+  viewerCanReact: Scalars['Boolean']
+}
 
 /** Represents a subject that can be reacted on. */
 export type GitHubReactableReactionsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  content?: Maybe<GitHubReactionContent>;
-  orderBy?: Maybe<GitHubReactionOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  content?: Maybe<GitHubReactionContent>
+  orderBy?: Maybe<GitHubReactionOrder>
+}
 
 /** The connection type for User. */
 export type GitHubReactingUserConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubReactingUserEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubReactingUserEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubUser>>>;
+  nodes?: Maybe<Array<Maybe<GitHubUser>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** Represents a user that's made a reaction. */
 export type GitHubReactingUserEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
-  node: GitHubUser;
+  cursor: Scalars['String']
+  node: GitHubUser
   /** The moment when the user made the reaction. */
-  reactedAt: Scalars["GitHubDateTime"];
-};
+  reactedAt: Scalars['GitHubDateTime']
+}
 
 /** An emoji reaction to a particular piece of content. */
 export type GitHubReaction = GitHubNode & {
   /** Identifies the emoji reaction. */
-  content: GitHubReactionContent;
+  content: GitHubReactionContent
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
-  id: Scalars["ID"];
+  databaseId?: Maybe<Scalars['Int']>
+  id: Scalars['ID']
   /** The reactable piece of content */
-  reactable: GitHubReactable;
+  reactable: GitHubReactable
   /** Identifies the user who created this reaction. */
-  user?: Maybe<GitHubUser>;
-};
+  user?: Maybe<GitHubUser>
+}
 
 /** A list of reactions that have been left on the subject. */
 export type GitHubReactionConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubReactionEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubReactionEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubReaction>>>;
+  nodes?: Maybe<Array<Maybe<GitHubReaction>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
+  totalCount: Scalars['Int']
   /** Whether or not the authenticated user has left a reaction on the subject. */
-  viewerHasReacted: Scalars["Boolean"];
-};
+  viewerHasReacted: Scalars['Boolean']
+}
 
 /** Emojis that can be attached to Issues, Pull Requests and Comments. */
 export enum GitHubReactionContent {
-  /** Represents the 👍 emoji. */
-  ThumbsUp = "THUMBS_UP",
-  /** Represents the 👎 emoji. */
-  ThumbsDown = "THUMBS_DOWN",
-  /** Represents the 😄 emoji. */
-  Laugh = "LAUGH",
-  /** Represents the 🎉 emoji. */
-  Hooray = "HOORAY",
-  /** Represents the 😕 emoji. */
-  Confused = "CONFUSED",
-  /** Represents the ❤️ emoji. */
-  Heart = "HEART",
-  /** Represents the 🚀 emoji. */
-  Rocket = "ROCKET",
-  /** Represents the 👀 emoji. */
-  Eyes = "EYES"
+  /** Represents the `:+1:` emoji. */
+  ThumbsUp = 'THUMBS_UP',
+  /** Represents the `:-1:` emoji. */
+  ThumbsDown = 'THUMBS_DOWN',
+  /** Represents the `:laugh:` emoji. */
+  Laugh = 'LAUGH',
+  /** Represents the `:hooray:` emoji. */
+  Hooray = 'HOORAY',
+  /** Represents the `:confused:` emoji. */
+  Confused = 'CONFUSED',
+  /** Represents the `:heart:` emoji. */
+  Heart = 'HEART',
+  /** Represents the `:rocket:` emoji. */
+  Rocket = 'ROCKET',
+  /** Represents the `:eyes:` emoji. */
+  Eyes = 'EYES',
 }
 
 /** An edge in a connection. */
 export type GitHubReactionEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubReaction>;
-};
+  node?: Maybe<GitHubReaction>
+}
 
 /** A group of emoji reactions to a particular piece of content. */
 export type GitHubReactionGroup = {
   /** Identifies the emoji reaction. */
-  content: GitHubReactionContent;
+  content: GitHubReactionContent
   /** Identifies when the reaction was created. */
-  createdAt?: Maybe<Scalars["GitHubDateTime"]>;
+  createdAt?: Maybe<Scalars['GitHubDateTime']>
   /** The subject that was reacted to. */
-  subject: GitHubReactable;
+  subject: GitHubReactable
   /** Users who have reacted to the reaction subject with the emotion represented by this reaction group */
-  users: GitHubReactingUserConnection;
+  users: GitHubReactingUserConnection
   /** Whether or not the authenticated user has left a reaction on the subject. */
-  viewerHasReacted: Scalars["Boolean"];
-};
+  viewerHasReacted: Scalars['Boolean']
+}
 
 /** A group of emoji reactions to a particular piece of content. */
 export type GitHubReactionGroupUsersArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** Ways in which lists of reactions can be ordered upon return. */
 export type GitHubReactionOrder = {
   /** The field in which to order reactions by. */
-  field: GitHubReactionOrderField;
+  field: GitHubReactionOrderField
   /** The direction in which to order reactions by the specified field. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** A list of fields that reactions can be ordered by. */
 export enum GitHubReactionOrderField {
   /** Allows ordering a list of reactions by when they were created. */
-  CreatedAt = "CREATED_AT"
+  CreatedAt = 'CREATED_AT',
 }
+
+/** Represents a 'ready_for_review' event on a given pull request. */
+export type GitHubReadyForReviewEvent = GitHubNode &
+  GitHubUniformResourceLocatable & {
+    /** Identifies the actor who performed the event. */
+    actor?: Maybe<GitHubActor>
+    /** Identifies the date and time when the object was created. */
+    createdAt: Scalars['GitHubDateTime']
+    id: Scalars['ID']
+    /** PullRequest referenced by event. */
+    pullRequest: GitHubPullRequest
+    /** The HTTP path for this ready for review event. */
+    resourcePath: Scalars['GitHubURI']
+    /** The HTTP URL for this ready for review event. */
+    url: Scalars['GitHubURI']
+  }
 
 /** Represents a Git reference. */
 export type GitHubRef = GitHubNode & {
   /** A list of pull requests with this ref as the head ref. */
-  associatedPullRequests: GitHubPullRequestConnection;
-  id: Scalars["ID"];
+  associatedPullRequests: GitHubPullRequestConnection
+  id: Scalars['ID']
   /** The ref name. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** The ref's prefix, such as `refs/heads/` or `refs/tags/`. */
-  prefix: Scalars["String"];
+  prefix: Scalars['String']
   /** The repository the ref belongs to. */
-  repository: GitHubRepository;
+  repository: GitHubRepository
   /** The object the ref points to. */
-  target: GitHubGitObject;
-};
+  target: GitHubGitObject
+}
 
 /** Represents a Git reference. */
 export type GitHubRefAssociatedPullRequestsArgs = {
-  states?: Maybe<Array<GitHubPullRequestState>>;
-  labels?: Maybe<Array<Scalars["String"]>>;
-  headRefName?: Maybe<Scalars["String"]>;
-  baseRefName?: Maybe<Scalars["String"]>;
-  orderBy?: Maybe<GitHubIssueOrder>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  states?: Maybe<Array<GitHubPullRequestState>>
+  labels?: Maybe<Array<Scalars['String']>>
+  headRefName?: Maybe<Scalars['String']>
+  baseRefName?: Maybe<Scalars['String']>
+  orderBy?: Maybe<GitHubIssueOrder>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** The connection type for Ref. */
 export type GitHubRefConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubRefEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubRefEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubRef>>>;
+  nodes?: Maybe<Array<Maybe<GitHubRef>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubRefEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubRef>;
-};
+  node?: Maybe<GitHubRef>
+}
 
 /** Represents a 'referenced' event on a given `ReferencedSubject`. */
 export type GitHubReferencedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the commit associated with the 'referenced' event. */
-  commit?: Maybe<GitHubCommit>;
+  commit?: Maybe<GitHubCommit>
   /** Identifies the repository associated with the 'referenced' event. */
-  commitRepository: GitHubRepository;
+  commitRepository: GitHubRepository
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** Reference originated in a different repository. */
-  isCrossRepository: Scalars["Boolean"];
+  isCrossRepository: Scalars['Boolean']
   /** Checks if the commit message itself references the subject. Can be false in the case of a commit comment reference. */
-  isDirectReference: Scalars["Boolean"];
+  isDirectReference: Scalars['Boolean']
   /** Object referenced by event. */
-  subject: GitHubReferencedSubject;
-};
+  subject: GitHubReferencedSubject
+}
 
 /** Any referencable object */
-export type GitHubReferencedSubject = GitHubIssue | GitHubPullRequest;
+export type GitHubReferencedSubject = GitHubIssue | GitHubPullRequest
 
 /** Ways in which lists of git refs can be ordered upon return. */
 export type GitHubRefOrder = {
   /** The field in which to order refs by. */
-  field: GitHubRefOrderField;
+  field: GitHubRefOrderField
   /** The direction in which to order refs by the specified field. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which ref connections can be ordered. */
 export enum GitHubRefOrderField {
   /** Order refs by underlying commit date if the ref prefix is refs/tags/ */
-  TagCommitDate = "TAG_COMMIT_DATE",
+  TagCommitDate = 'TAG_COMMIT_DATE',
   /** Order refs by their alphanumeric name */
-  Alphabetical = "ALPHABETICAL"
+  Alphabetical = 'ALPHABETICAL',
+}
+
+/** Autogenerated input type of RegenerateEnterpriseIdentityProviderRecoveryCodes */
+export type GitHubRegenerateEnterpriseIdentityProviderRecoveryCodesInput = {
+  /** The ID of the enterprise on which to set an identity provider. */
+  enterpriseId: Scalars['ID']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of RegenerateEnterpriseIdentityProviderRecoveryCodes */
+export type GitHubRegenerateEnterpriseIdentityProviderRecoveryCodesPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The identity provider for the enterprise. */
+  identityProvider?: Maybe<GitHubEnterpriseIdentityProvider>
+}
+
+/** A registry package contains the content for an uploaded package. */
+export type GitHubRegistryPackage = GitHubNode & {
+  /** The package type color */
+  color: Scalars['String']
+  id: Scalars['ID']
+  /** Find the latest version for the package. */
+  latestVersion?: Maybe<GitHubRegistryPackageVersion>
+  /** Identifies the title of the package. */
+  name: Scalars['String']
+  /** Identifies the title of the package, with the owner prefixed. */
+  nameWithOwner: Scalars['String']
+  /** Find the package file identified by the guid. */
+  packageFileByGuid?: Maybe<GitHubRegistryPackageFile>
+  /** Find the package file identified by the sha256. */
+  packageFileBySha256?: Maybe<GitHubRegistryPackageFile>
+  /** Identifies the type of the package. */
+  packageType: GitHubRegistryPackageType
+  /** List the prerelease versions for this package. */
+  preReleaseVersions?: Maybe<GitHubRegistryPackageVersionConnection>
+  /** The type of the package. */
+  registryPackageType?: Maybe<Scalars['String']>
+  /** repository that the release is associated with */
+  repository?: Maybe<GitHubRepository>
+  /** Statistics about package activity. */
+  statistics?: Maybe<GitHubRegistryPackageStatistics>
+  /** list of tags for this package */
+  tags: GitHubRegistryPackageTagConnection
+  /** List the topics for this package. */
+  topics?: Maybe<GitHubTopicConnection>
+  /** Find package version by version string. */
+  version?: Maybe<GitHubRegistryPackageVersion>
+  /** Find package version by version string. */
+  versionByPlatform?: Maybe<GitHubRegistryPackageVersion>
+  /** Find package version by manifest SHA256. */
+  versionBySha256?: Maybe<GitHubRegistryPackageVersion>
+  /** list of versions for this package */
+  versions: GitHubRegistryPackageVersionConnection
+  /** List package versions with a specific metadatum. */
+  versionsByMetadatum?: Maybe<GitHubRegistryPackageVersionConnection>
+}
+
+/** A registry package contains the content for an uploaded package. */
+export type GitHubRegistryPackagePackageFileByGuidArgs = {
+  guid: Scalars['String']
+}
+
+/** A registry package contains the content for an uploaded package. */
+export type GitHubRegistryPackagePackageFileBySha256Args = {
+  sha256: Scalars['String']
+}
+
+/** A registry package contains the content for an uploaded package. */
+export type GitHubRegistryPackagePreReleaseVersionsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** A registry package contains the content for an uploaded package. */
+export type GitHubRegistryPackageTagsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** A registry package contains the content for an uploaded package. */
+export type GitHubRegistryPackageTopicsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** A registry package contains the content for an uploaded package. */
+export type GitHubRegistryPackageVersionArgs = {
+  version: Scalars['String']
+}
+
+/** A registry package contains the content for an uploaded package. */
+export type GitHubRegistryPackageVersionByPlatformArgs = {
+  version: Scalars['String']
+  platform: Scalars['String']
+}
+
+/** A registry package contains the content for an uploaded package. */
+export type GitHubRegistryPackageVersionBySha256Args = {
+  sha256: Scalars['String']
+}
+
+/** A registry package contains the content for an uploaded package. */
+export type GitHubRegistryPackageVersionsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** A registry package contains the content for an uploaded package. */
+export type GitHubRegistryPackageVersionsByMetadatumArgs = {
+  metadatum: GitHubRegistryPackageMetadatum
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** The connection type for RegistryPackage. */
+export type GitHubRegistryPackageConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubRegistryPackageEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubRegistryPackage>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** A package dependency contains the information needed to satisfy a dependency. */
+export type GitHubRegistryPackageDependency = GitHubNode & {
+  /** Identifies the type of dependency. */
+  dependencyType: GitHubRegistryPackageDependencyType
+  id: Scalars['ID']
+  /** Identifies the name of the dependency. */
+  name: Scalars['String']
+  /** Identifies the version of the dependency. */
+  version: Scalars['String']
+}
+
+/** The connection type for RegistryPackageDependency. */
+export type GitHubRegistryPackageDependencyConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubRegistryPackageDependencyEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubRegistryPackageDependency>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubRegistryPackageDependencyEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubRegistryPackageDependency>
+}
+
+/** The possible types of a registry package dependency. */
+export enum GitHubRegistryPackageDependencyType {
+  /** A default registry package dependency type. */
+  Default = 'DEFAULT',
+  /** A dev registry package dependency type. */
+  Dev = 'DEV',
+  /** A test registry package dependency type. */
+  Test = 'TEST',
+  /** A peer registry package dependency type. */
+  Peer = 'PEER',
+  /** An optional registry package dependency type. */
+  Optional = 'OPTIONAL',
+  /** An optional registry package dependency type. */
+  Bundled = 'BUNDLED',
+}
+
+/** An edge in a connection. */
+export type GitHubRegistryPackageEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubRegistryPackage>
+}
+
+/** A file in a specific registry package version. */
+export type GitHubRegistryPackageFile = GitHubNode & {
+  /** A unique identifier for this file. */
+  guid?: Maybe<Scalars['String']>
+  id: Scalars['ID']
+  /** Identifies the md5. */
+  md5?: Maybe<Scalars['String']>
+  /** URL to download the asset metadata. */
+  metadataUrl: Scalars['GitHubURI']
+  /** Name of the file */
+  name: Scalars['String']
+  /** The package version this file belongs to. */
+  packageVersion: GitHubRegistryPackageVersion
+  /** Identifies the sha1. */
+  sha1?: Maybe<Scalars['String']>
+  /** Identifies the sha256. */
+  sha256?: Maybe<Scalars['String']>
+  /** Identifies the size. */
+  size?: Maybe<Scalars['Int']>
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['GitHubDateTime']
+  /** URL to download the asset. */
+  url: Scalars['GitHubURI']
+}
+
+/** The connection type for RegistryPackageFile. */
+export type GitHubRegistryPackageFileConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubRegistryPackageFileEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubRegistryPackageFile>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubRegistryPackageFileEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubRegistryPackageFile>
+}
+
+/** The possible states of a registry package file. */
+export enum GitHubRegistryPackageFileState {
+  /** Package file doesn't have a blob backing it. */
+  New = 'NEW',
+  /** All Package file contents have been uploaded. */
+  Uploaded = 'UPLOADED',
+}
+
+/** Represents a single registry metadatum */
+export type GitHubRegistryPackageMetadatum = {
+  /** Name of the metadatum. */
+  name: Scalars['String']
+  /** Value of the metadatum. */
+  value: Scalars['String']
+  /** True, if the metadatum can be updated if it already exists */
+  update?: Maybe<Scalars['Boolean']>
 }
 
 /** Represents an owner of a registry package. */
 export type GitHubRegistryPackageOwner = {
-  id: Scalars["ID"];
-};
+  id: Scalars['ID']
+  /** A list of registry packages under the owner. */
+  registryPackages: GitHubRegistryPackageConnection
+}
+
+/** Represents an owner of a registry package. */
+export type GitHubRegistryPackageOwnerRegistryPackagesArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  name?: Maybe<Scalars['String']>
+  names?: Maybe<Array<Maybe<Scalars['String']>>>
+  repositoryId?: Maybe<Scalars['ID']>
+  packageType?: Maybe<GitHubRegistryPackageType>
+  registryPackageType?: Maybe<Scalars['String']>
+  publicOnly: Scalars['Boolean']
+}
 
 /** Represents an interface to search packages on an object. */
 export type GitHubRegistryPackageSearch = {
-  id: Scalars["ID"];
-};
+  id: Scalars['ID']
+  /** A list of registry packages for a particular search query. */
+  registryPackagesForQuery: GitHubRegistryPackageConnection
+}
+
+/** Represents an interface to search packages on an object. */
+export type GitHubRegistryPackageSearchRegistryPackagesForQueryArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  query?: Maybe<Scalars['String']>
+  packageType?: Maybe<GitHubRegistryPackageType>
+}
+
+/** Represents a object that contains package activity statistics such as downloads. */
+export type GitHubRegistryPackageStatistics = {
+  /** Number of times the package was downloaded this month. */
+  downloadsThisMonth: Scalars['Int']
+  /** Number of times the package was downloaded this week. */
+  downloadsThisWeek: Scalars['Int']
+  /** Number of times the package was downloaded this year. */
+  downloadsThisYear: Scalars['Int']
+  /** Number of times the package was downloaded today. */
+  downloadsToday: Scalars['Int']
+  /** Number of times the package was downloaded since it was created. */
+  downloadsTotalCount: Scalars['Int']
+}
+
+/** A version tag contains the mapping between a tag name and a version. */
+export type GitHubRegistryPackageTag = GitHubNode & {
+  id: Scalars['ID']
+  /** Identifies the tag name of the version. */
+  name: Scalars['String']
+  /** version that the tag is associated with */
+  version?: Maybe<GitHubRegistryPackageVersion>
+}
+
+/** The connection type for RegistryPackageTag. */
+export type GitHubRegistryPackageTagConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubRegistryPackageTagEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubRegistryPackageTag>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubRegistryPackageTagEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubRegistryPackageTag>
+}
+
+/** The possible types of a registry package. */
+export enum GitHubRegistryPackageType {
+  /** An npm registry package. */
+  Npm = 'NPM',
+  /** A rubygems registry package. */
+  Rubygems = 'RUBYGEMS',
+  /** A maven registry package. */
+  Maven = 'MAVEN',
+  /** A docker image. */
+  Docker = 'DOCKER',
+  /** A debian package. */
+  Debian = 'DEBIAN',
+  /** A nuget package. */
+  Nuget = 'NUGET',
+  /** A python package. */
+  Python = 'PYTHON',
+}
+
+/** A package version contains the information about a specific package version. */
+export type GitHubRegistryPackageVersion = GitHubNode & {
+  /** list of dependencies for this package */
+  dependencies: GitHubRegistryPackageDependencyConnection
+  /** A file associated with this registry package version */
+  fileByName?: Maybe<GitHubRegistryPackageFile>
+  /** List of files associated with this registry package version */
+  files: GitHubRegistryPackageFileConnection
+  id: Scalars['ID']
+  /** A single line of text to install this package version. */
+  installationCommand?: Maybe<Scalars['String']>
+  /** Identifies the package manifest for this package version. */
+  manifest?: Maybe<Scalars['String']>
+  /** Identifies the platform this version was built for. */
+  platform?: Maybe<Scalars['String']>
+  /** Indicates whether this version is a pre-release. */
+  preRelease: Scalars['Boolean']
+  /** The README of this package version */
+  readme?: Maybe<Scalars['String']>
+  /** The HTML README of this package version */
+  readmeHtml?: Maybe<Scalars['GitHubHTML']>
+  /** Registry package associated with this version. */
+  registryPackage?: Maybe<GitHubRegistryPackage>
+  /** Release associated with this package. */
+  release?: Maybe<GitHubRelease>
+  /** Identifies the sha256. */
+  sha256?: Maybe<Scalars['String']>
+  /** Identifies the size. */
+  size?: Maybe<Scalars['Int']>
+  /** Statistics about package activity. */
+  statistics?: Maybe<GitHubRegistryPackageVersionStatistics>
+  /** Identifies the package version summary. */
+  summary?: Maybe<Scalars['String']>
+  /** Time at which the most recent file upload for this package version finished */
+  updatedAt: Scalars['GitHubDateTime']
+  /** Identifies the version number. */
+  version: Scalars['String']
+  /** Can the current viewer edit this Package version. */
+  viewerCanEdit: Scalars['Boolean']
+}
+
+/** A package version contains the information about a specific package version. */
+export type GitHubRegistryPackageVersionDependenciesArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  type?: Maybe<GitHubRegistryPackageDependencyType>
+}
+
+/** A package version contains the information about a specific package version. */
+export type GitHubRegistryPackageVersionFileByNameArgs = {
+  filename: Scalars['String']
+}
+
+/** A package version contains the information about a specific package version. */
+export type GitHubRegistryPackageVersionFilesArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** The connection type for RegistryPackageVersion. */
+export type GitHubRegistryPackageVersionConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubRegistryPackageVersionEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubRegistryPackageVersion>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubRegistryPackageVersionEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubRegistryPackageVersion>
+}
+
+/** Represents a object that contains package version activity statistics such as downloads. */
+export type GitHubRegistryPackageVersionStatistics = {
+  /** Number of times the package was downloaded this month. */
+  downloadsThisMonth: Scalars['Int']
+  /** Number of times the package was downloaded this week. */
+  downloadsThisWeek: Scalars['Int']
+  /** Number of times the package was downloaded this year. */
+  downloadsThisYear: Scalars['Int']
+  /** Number of times the package was downloaded today. */
+  downloadsToday: Scalars['Int']
+  /** Number of times the package was downloaded since it was created. */
+  downloadsTotalCount: Scalars['Int']
+}
 
 /** A release contains the content for a release. */
 export type GitHubRelease = GitHubNode &
   GitHubUniformResourceLocatable & {
     /** The author of the release */
-    author?: Maybe<GitHubUser>;
+    author?: Maybe<GitHubUser>
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
-    /** Identifies the description of the release. */
-    description?: Maybe<Scalars["String"]>;
-    id: Scalars["ID"];
+    createdAt: Scalars['GitHubDateTime']
+    /** The description of the release. */
+    description?: Maybe<Scalars['String']>
+    /** The description of this release rendered to HTML. */
+    descriptionHTML?: Maybe<Scalars['GitHubHTML']>
+    id: Scalars['ID']
     /** Whether or not the release is a draft */
-    isDraft: Scalars["Boolean"];
+    isDraft: Scalars['Boolean']
     /** Whether or not the release is a prerelease */
-    isPrerelease: Scalars["Boolean"];
-    /** Identifies the title of the release. */
-    name?: Maybe<Scalars["String"]>;
+    isPrerelease: Scalars['Boolean']
+    /** The title of the release. */
+    name?: Maybe<Scalars['String']>
     /** Identifies the date and time when the release was created. */
-    publishedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    publishedAt?: Maybe<Scalars['GitHubDateTime']>
     /** List of releases assets which are dependent on this release. */
-    releaseAssets: GitHubReleaseAssetConnection;
+    releaseAssets: GitHubReleaseAssetConnection
     /** The HTTP path for this issue */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
+    /** A description of the release, rendered to HTML without any links in it. */
+    shortDescriptionHTML?: Maybe<Scalars['GitHubHTML']>
     /** The Git tag the release points to */
-    tag?: Maybe<GitHubRef>;
+    tag?: Maybe<GitHubRef>
     /** The name of the release's Git tag */
-    tagName: Scalars["String"];
+    tagName: Scalars['String']
     /** Identifies the date and time when the object was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
     /** The HTTP URL for this issue */
-    url: Scalars["GitHubURI"];
-  };
+    url: Scalars['GitHubURI']
+  }
 
 /** A release contains the content for a release. */
 export type GitHubReleaseReleaseAssetsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  name?: Maybe<Scalars['String']>
+}
+
+/** A release contains the content for a release. */
+export type GitHubReleaseShortDescriptionHtmlArgs = {
+  limit: Scalars['Int']
+}
 
 /** A release asset contains the content for a release asset. */
 export type GitHubReleaseAsset = GitHubNode & {
   /** The asset's content-type */
-  contentType: Scalars["String"];
+  contentType: Scalars['String']
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** The number of times this asset was downloaded */
-  downloadCount: Scalars["Int"];
+  downloadCount: Scalars['Int']
   /** Identifies the URL where you can download the release asset via the browser. */
-  downloadUrl: Scalars["GitHubURI"];
-  id: Scalars["ID"];
+  downloadUrl: Scalars['GitHubURI']
+  id: Scalars['ID']
   /** Identifies the title of the release asset. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** Release that the asset is associated with */
-  release?: Maybe<GitHubRelease>;
+  release?: Maybe<GitHubRelease>
   /** The size (in bytes) of the asset */
-  size: Scalars["Int"];
+  size: Scalars['Int']
   /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars["GitHubDateTime"];
+  updatedAt: Scalars['GitHubDateTime']
   /** The user that performed the upload */
-  uploadedBy: GitHubUser;
+  uploadedBy: GitHubUser
   /** Identifies the URL of the release asset. */
-  url: Scalars["GitHubURI"];
-};
+  url: Scalars['GitHubURI']
+}
 
 /** The connection type for ReleaseAsset. */
 export type GitHubReleaseAssetConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubReleaseAssetEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubReleaseAssetEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubReleaseAsset>>>;
+  nodes?: Maybe<Array<Maybe<GitHubReleaseAsset>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubReleaseAssetEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubReleaseAsset>;
-};
+  node?: Maybe<GitHubReleaseAsset>
+}
 
 /** The connection type for Release. */
 export type GitHubReleaseConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubReleaseEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubReleaseEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubRelease>>>;
+  nodes?: Maybe<Array<Maybe<GitHubRelease>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubReleaseEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubRelease>;
-};
+  node?: Maybe<GitHubRelease>
+}
 
 /** Ways in which lists of releases can be ordered upon return. */
 export type GitHubReleaseOrder = {
   /** The field in which to order releases by. */
-  field: GitHubReleaseOrderField;
+  field: GitHubReleaseOrderField
   /** The direction in which to order releases by the specified field. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which release connections can be ordered. */
 export enum GitHubReleaseOrderField {
   /** Order releases by creation time */
-  CreatedAt = "CREATED_AT",
+  CreatedAt = 'CREATED_AT',
   /** Order releases alphabetically by name */
-  Name = "NAME"
+  Name = 'NAME',
 }
 
 /** Autogenerated input type of RemoveAssigneesFromAssignable */
 export type GitHubRemoveAssigneesFromAssignableInput = {
   /** The id of the assignable object to remove assignees from. */
-  assignableId: Scalars["ID"];
+  assignableId: Scalars['ID']
   /** The id of users to remove as assignees. */
-  assigneeIds: Array<Scalars["ID"]>;
+  assigneeIds: Array<Scalars['ID']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of RemoveAssigneesFromAssignable */
 export type GitHubRemoveAssigneesFromAssignablePayload = {
   /** The item that was unassigned. */
-  assignable?: Maybe<GitHubAssignable>;
+  assignable?: Maybe<GitHubAssignable>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Represents a 'removed_from_project' event on a given issue or pull request. */
 export type GitHubRemovedFromProjectEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
-  id: Scalars["ID"];
-};
+  databaseId?: Maybe<Scalars['Int']>
+  id: Scalars['ID']
+}
+
+/** Autogenerated input type of RemoveEnterpriseAdmin */
+export type GitHubRemoveEnterpriseAdminInput = {
+  /** The Enterprise ID from which to remove the administrator. */
+  enterpriseId: Scalars['ID']
+  /** The login of the user to remove as an administrator. */
+  login: Scalars['String']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of RemoveEnterpriseAdmin */
+export type GitHubRemoveEnterpriseAdminPayload = {
+  /** The user who was removed as an administrator. */
+  admin?: Maybe<GitHubUser>
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The updated enterprise. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of removing an administrator. */
+  message?: Maybe<Scalars['String']>
+  /** The viewer performing the mutation. */
+  viewer?: Maybe<GitHubUser>
+}
+
+/** Autogenerated input type of RemoveEnterpriseOrganization */
+export type GitHubRemoveEnterpriseOrganizationInput = {
+  /** The ID of the enterprise from which the organization should be removed. */
+  enterpriseId: Scalars['ID']
+  /** The ID of the organization to remove from the enterprise. */
+  organizationId: Scalars['ID']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of RemoveEnterpriseOrganization */
+export type GitHubRemoveEnterpriseOrganizationPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The updated enterprise. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** The organization that was removed from the enterprise. */
+  organization?: Maybe<GitHubOrganization>
+  /** The viewer performing the mutation. */
+  viewer?: Maybe<GitHubUser>
+}
 
 /** Autogenerated input type of RemoveLabelsFromLabelable */
 export type GitHubRemoveLabelsFromLabelableInput = {
   /** The id of the Labelable to remove labels from. */
-  labelableId: Scalars["ID"];
+  labelableId: Scalars['ID']
   /** The ids of labels to remove. */
-  labelIds: Array<Scalars["ID"]>;
+  labelIds: Array<Scalars['ID']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of RemoveLabelsFromLabelable */
 export type GitHubRemoveLabelsFromLabelablePayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The Labelable the labels were removed from. */
-  labelable?: Maybe<GitHubLabelable>;
-};
+  labelable?: Maybe<GitHubLabelable>
+}
 
 /** Autogenerated input type of RemoveOutsideCollaborator */
 export type GitHubRemoveOutsideCollaboratorInput = {
   /** The ID of the outside collaborator to remove. */
-  userId: Scalars["ID"];
+  userId: Scalars['ID']
   /** The ID of the organization to remove the outside collaborator from. */
-  organizationId: Scalars["ID"];
+  organizationId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of RemoveOutsideCollaborator */
 export type GitHubRemoveOutsideCollaboratorPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The user that was removed as an outside collaborator. */
-  removedUser?: Maybe<GitHubUser>;
-};
+  removedUser?: Maybe<GitHubUser>
+}
 
 /** Autogenerated input type of RemoveReaction */
 export type GitHubRemoveReactionInput = {
   /** The Node ID of the subject to modify. */
-  subjectId: Scalars["ID"];
+  subjectId: Scalars['ID']
   /** The name of the emoji reaction to remove. */
-  content: GitHubReactionContent;
+  content: GitHubReactionContent
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of RemoveReaction */
 export type GitHubRemoveReactionPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The reaction object. */
-  reaction?: Maybe<GitHubReaction>;
+  reaction?: Maybe<GitHubReaction>
   /** The reactable subject. */
-  subject?: Maybe<GitHubReactable>;
-};
+  subject?: Maybe<GitHubReactable>
+}
 
 /** Autogenerated input type of RemoveStar */
 export type GitHubRemoveStarInput = {
   /** The Starrable ID to unstar. */
-  starrableId: Scalars["ID"];
+  starrableId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of RemoveStar */
 export type GitHubRemoveStarPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The starrable. */
-  starrable?: Maybe<GitHubStarrable>;
-};
+  starrable?: Maybe<GitHubStarrable>
+}
 
 /** Represents a 'renamed' event on a given issue or pull request */
 export type GitHubRenamedTitleEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the current title of the issue or pull request. */
-  currentTitle: Scalars["String"];
-  id: Scalars["ID"];
+  currentTitle: Scalars['String']
+  id: Scalars['ID']
   /** Identifies the previous title of the issue or pull request. */
-  previousTitle: Scalars["String"];
+  previousTitle: Scalars['String']
   /** Subject that was renamed. */
-  subject: GitHubRenamedTitleSubject;
-};
+  subject: GitHubRenamedTitleSubject
+}
 
 /** An object which has a renamable title */
-export type GitHubRenamedTitleSubject = GitHubIssue | GitHubPullRequest;
+export type GitHubRenamedTitleSubject = GitHubIssue | GitHubPullRequest
 
 /** Represents a 'reopened' event on any `Closable`. */
 export type GitHubReopenedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Object that was reopened. */
-  closable: GitHubClosable;
+  closable: GitHubClosable
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
-};
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
+}
 
 /** Autogenerated input type of ReopenIssue */
 export type GitHubReopenIssueInput = {
   /** ID of the issue to be opened. */
-  issueId: Scalars["ID"];
+  issueId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of ReopenIssue */
 export type GitHubReopenIssuePayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The issue that was opened. */
-  issue?: Maybe<GitHubIssue>;
-};
+  issue?: Maybe<GitHubIssue>
+}
 
 /** Autogenerated input type of ReopenPullRequest */
 export type GitHubReopenPullRequestInput = {
   /** ID of the pull request to be reopened. */
-  pullRequestId: Scalars["ID"];
+  pullRequestId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of ReopenPullRequest */
 export type GitHubReopenPullRequestPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The pull request that was reopened. */
-  pullRequest?: Maybe<GitHubPullRequest>;
-};
+  pullRequest?: Maybe<GitHubPullRequest>
+}
+
+/** Audit log entry for a repo.access event. */
+export type GitHubRepoAccessAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+    /** The visibility of the repository */
+    visibility?: Maybe<GitHubRepoAccessAuditEntryVisibility>
+  }
+
+/** The privacy of a repository */
+export enum GitHubRepoAccessAuditEntryVisibility {
+  /** The repository is visible only to users in the same business. */
+  Internal = 'INTERNAL',
+  /** The repository is visible only to those with explicit access. */
+  Private = 'PRIVATE',
+  /** The repository is visible to everyone. */
+  Public = 'PUBLIC',
+}
+
+/** Audit log entry for a repo.add_member event. */
+export type GitHubRepoAddMemberAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+    /** The visibility of the repository */
+    visibility?: Maybe<GitHubRepoAddMemberAuditEntryVisibility>
+  }
+
+/** The privacy of a repository */
+export enum GitHubRepoAddMemberAuditEntryVisibility {
+  /** The repository is visible only to users in the same business. */
+  Internal = 'INTERNAL',
+  /** The repository is visible only to those with explicit access. */
+  Private = 'PRIVATE',
+  /** The repository is visible to everyone. */
+  Public = 'PUBLIC',
+}
+
+/** Audit log entry for a repo.add_topic event. */
+export type GitHubRepoAddTopicAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubRepositoryAuditEntryData &
+  GitHubOrganizationAuditEntryData &
+  GitHubTopicAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The name of the topic added to the repository */
+    topic?: Maybe<GitHubTopic>
+    /** The name of the topic added to the repository */
+    topicName?: Maybe<Scalars['String']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a repo.archived event. */
+export type GitHubRepoArchivedAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubRepositoryAuditEntryData &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+    /** The visibility of the repository */
+    visibility?: Maybe<GitHubRepoArchivedAuditEntryVisibility>
+  }
+
+/** The privacy of a repository */
+export enum GitHubRepoArchivedAuditEntryVisibility {
+  /** The repository is visible only to users in the same business. */
+  Internal = 'INTERNAL',
+  /** The repository is visible only to those with explicit access. */
+  Private = 'PRIVATE',
+  /** The repository is visible to everyone. */
+  Public = 'PUBLIC',
+}
+
+/** Audit log entry for a repo.change_merge_setting event. */
+export type GitHubRepoChangeMergeSettingAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubRepositoryAuditEntryData &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** Whether the change was to enable (true) or disable (false) the merge type */
+    isEnabled?: Maybe<Scalars['Boolean']>
+    /** The merge method affected by the change */
+    mergeType?: Maybe<GitHubRepoChangeMergeSettingAuditEntryMergeType>
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** The merge options available for pull requests to this repository. */
+export enum GitHubRepoChangeMergeSettingAuditEntryMergeType {
+  /** The pull request is added to the base branch in a merge commit. */
+  Merge = 'MERGE',
+  /** Commits from the pull request are added onto the base branch individually without a merge commit. */
+  Rebase = 'REBASE',
+  /** The pull request's commits are squashed into a single commit before they are merged to the base branch. */
+  Squash = 'SQUASH',
+}
+
+/** Audit log entry for a repo.config.disable_anonymous_git_access event. */
+export type GitHubRepoConfigDisableAnonymousGitAccessAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a repo.config.disable_collaborators_only event. */
+export type GitHubRepoConfigDisableCollaboratorsOnlyAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a repo.config.disable_contributors_only event. */
+export type GitHubRepoConfigDisableContributorsOnlyAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a repo.config.disable_sockpuppet_disallowed event. */
+export type GitHubRepoConfigDisableSockpuppetDisallowedAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a repo.config.enable_anonymous_git_access event. */
+export type GitHubRepoConfigEnableAnonymousGitAccessAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a repo.config.enable_collaborators_only event. */
+export type GitHubRepoConfigEnableCollaboratorsOnlyAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a repo.config.enable_contributors_only event. */
+export type GitHubRepoConfigEnableContributorsOnlyAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a repo.config.enable_sockpuppet_disallowed event. */
+export type GitHubRepoConfigEnableSockpuppetDisallowedAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a repo.config.lock_anonymous_git_access event. */
+export type GitHubRepoConfigLockAnonymousGitAccessAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a repo.config.unlock_anonymous_git_access event. */
+export type GitHubRepoConfigUnlockAnonymousGitAccessAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a repo.create event. */
+export type GitHubRepoCreateAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubRepositoryAuditEntryData &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    /** The name of the parent repository for this forked repository. */
+    forkParentName?: Maybe<Scalars['String']>
+    /** The name of the root repository for this netork. */
+    forkSourceName?: Maybe<Scalars['String']>
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+    /** The visibility of the repository */
+    visibility?: Maybe<GitHubRepoCreateAuditEntryVisibility>
+  }
+
+/** The privacy of a repository */
+export enum GitHubRepoCreateAuditEntryVisibility {
+  /** The repository is visible only to users in the same business. */
+  Internal = 'INTERNAL',
+  /** The repository is visible only to those with explicit access. */
+  Private = 'PRIVATE',
+  /** The repository is visible to everyone. */
+  Public = 'PUBLIC',
+}
+
+/** Audit log entry for a repo.destroy event. */
+export type GitHubRepoDestroyAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubRepositoryAuditEntryData &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+    /** The visibility of the repository */
+    visibility?: Maybe<GitHubRepoDestroyAuditEntryVisibility>
+  }
+
+/** The privacy of a repository */
+export enum GitHubRepoDestroyAuditEntryVisibility {
+  /** The repository is visible only to users in the same business. */
+  Internal = 'INTERNAL',
+  /** The repository is visible only to those with explicit access. */
+  Private = 'PRIVATE',
+  /** The repository is visible to everyone. */
+  Public = 'PUBLIC',
+}
+
+/** Audit log entry for a repo.remove_member event. */
+export type GitHubRepoRemoveMemberAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+    /** The visibility of the repository */
+    visibility?: Maybe<GitHubRepoRemoveMemberAuditEntryVisibility>
+  }
+
+/** The privacy of a repository */
+export enum GitHubRepoRemoveMemberAuditEntryVisibility {
+  /** The repository is visible only to users in the same business. */
+  Internal = 'INTERNAL',
+  /** The repository is visible only to those with explicit access. */
+  Private = 'PRIVATE',
+  /** The repository is visible to everyone. */
+  Public = 'PUBLIC',
+}
+
+/** Audit log entry for a repo.remove_topic event. */
+export type GitHubRepoRemoveTopicAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubRepositoryAuditEntryData &
+  GitHubOrganizationAuditEntryData &
+  GitHubTopicAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The name of the topic added to the repository */
+    topic?: Maybe<GitHubTopic>
+    /** The name of the topic added to the repository */
+    topicName?: Maybe<Scalars['String']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
 
 /** The reasons a piece of content can be reported or minimized. */
 export enum GitHubReportedContentClassifiers {
   /** A spammy piece of content */
-  Spam = "SPAM",
+  Spam = 'SPAM',
   /** An abusive or harassing piece of content */
-  Abuse = "ABUSE",
+  Abuse = 'ABUSE',
   /** An irrelevant piece of content */
-  OffTopic = "OFF_TOPIC",
+  OffTopic = 'OFF_TOPIC',
   /** An outdated piece of content */
-  Outdated = "OUTDATED",
+  Outdated = 'OUTDATED',
   /** The content has been resolved */
-  Resolved = "RESOLVED"
+  Resolved = 'RESOLVED',
 }
 
 /** A repository contains the content for a project. */
 export type GitHubRepository = GitHubNode &
   GitHubProjectOwner &
   GitHubRegistryPackageOwner &
+  GitHubRegistryPackageSearch &
   GitHubSubscribable &
   GitHubStarrable &
   GitHubUniformResourceLocatable &
   GitHubRepositoryInfo & {
     /** A list of users that can be assigned to issues in this repository. */
-    assignableUsers: GitHubUserConnection;
+    assignableUsers: GitHubUserConnection
     /** A list of branch protection rules for this repository. */
-    branchProtectionRules: GitHubBranchProtectionRuleConnection;
+    branchProtectionRules: GitHubBranchProtectionRuleConnection
     /** Returns the code of conduct for this repository */
-    codeOfConduct?: Maybe<GitHubCodeOfConduct>;
+    codeOfConduct?: Maybe<GitHubCodeOfConduct>
     /** A list of collaborators associated with the repository. */
-    collaborators?: Maybe<GitHubRepositoryCollaboratorConnection>;
+    collaborators?: Maybe<GitHubRepositoryCollaboratorConnection>
     /** A list of commit comments associated with the repository. */
-    commitComments: GitHubCommitCommentConnection;
+    commitComments: GitHubCommitCommentConnection
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** Identifies the primary key from the database. */
-    databaseId?: Maybe<Scalars["Int"]>;
+    databaseId?: Maybe<Scalars['Int']>
     /** The Ref associated with the repository's default branch. */
-    defaultBranchRef?: Maybe<GitHubRef>;
+    defaultBranchRef?: Maybe<GitHubRef>
     /** A list of deploy keys that are on this repository. */
-    deployKeys: GitHubDeployKeyConnection;
+    deployKeys: GitHubDeployKeyConnection
     /** Deployments associated with the repository */
-    deployments: GitHubDeploymentConnection;
+    deployments: GitHubDeploymentConnection
     /** The description of the repository. */
-    description?: Maybe<Scalars["String"]>;
+    description?: Maybe<Scalars['String']>
     /** The description of the repository rendered to HTML. */
-    descriptionHTML: Scalars["GitHubHTML"];
+    descriptionHTML: Scalars['GitHubHTML']
     /** The number of kilobytes this repository occupies on disk. */
-    diskUsage?: Maybe<Scalars["Int"]>;
+    diskUsage?: Maybe<Scalars['Int']>
     /** Returns how many forks there are of this repository in the whole network. */
-    forkCount: Scalars["Int"];
+    forkCount: Scalars['Int']
     /** A list of direct forked repositories. */
-    forks: GitHubRepositoryConnection;
+    forks: GitHubRepositoryConnection
     /** Indicates if the repository has issues feature enabled. */
-    hasIssuesEnabled: Scalars["Boolean"];
+    hasIssuesEnabled: Scalars['Boolean']
     /** Indicates if the repository has wiki feature enabled. */
-    hasWikiEnabled: Scalars["Boolean"];
+    hasWikiEnabled: Scalars['Boolean']
     /** The repository's URL. */
-    homepageUrl?: Maybe<Scalars["GitHubURI"]>;
-    id: Scalars["ID"];
+    homepageUrl?: Maybe<Scalars['GitHubURI']>
+    id: Scalars['ID']
     /** Indicates if the repository is unmaintained. */
-    isArchived: Scalars["Boolean"];
+    isArchived: Scalars['Boolean']
     /** Returns whether or not this repository disabled. */
-    isDisabled: Scalars["Boolean"];
+    isDisabled: Scalars['Boolean']
     /** Identifies if the repository is a fork. */
-    isFork: Scalars["Boolean"];
+    isFork: Scalars['Boolean']
     /** Indicates if the repository has been locked or not. */
-    isLocked: Scalars["Boolean"];
+    isLocked: Scalars['Boolean']
     /** Identifies if the repository is a mirror. */
-    isMirror: Scalars["Boolean"];
+    isMirror: Scalars['Boolean']
     /** Identifies if the repository is private. */
-    isPrivate: Scalars["Boolean"];
+    isPrivate: Scalars['Boolean']
+    /** Identifies if the repository is a template that can be used to generate new repositories. */
+    isTemplate: Scalars['Boolean']
     /** Returns a single issue from the current repository by number. */
-    issue?: Maybe<GitHubIssue>;
+    issue?: Maybe<GitHubIssue>
     /** Returns a single issue-like object from the current repository by number. */
-    issueOrPullRequest?: Maybe<GitHubIssueOrPullRequest>;
+    issueOrPullRequest?: Maybe<GitHubIssueOrPullRequest>
     /** A list of issues that have been opened in the repository. */
-    issues: GitHubIssueConnection;
+    issues: GitHubIssueConnection
     /** Returns a single label by name */
-    label?: Maybe<GitHubLabel>;
+    label?: Maybe<GitHubLabel>
     /** A list of labels associated with the repository. */
-    labels?: Maybe<GitHubLabelConnection>;
+    labels?: Maybe<GitHubLabelConnection>
     /** A list containing a breakdown of the language composition of the repository. */
-    languages?: Maybe<GitHubLanguageConnection>;
+    languages?: Maybe<GitHubLanguageConnection>
     /** The license associated with the repository */
-    licenseInfo?: Maybe<GitHubLicense>;
+    licenseInfo?: Maybe<GitHubLicense>
     /** The reason the repository has been locked. */
-    lockReason?: Maybe<GitHubRepositoryLockReason>;
+    lockReason?: Maybe<GitHubRepositoryLockReason>
     /** A list of Users that can be mentioned in the context of the repository. */
-    mentionableUsers: GitHubUserConnection;
+    mentionableUsers: GitHubUserConnection
     /** Whether or not PRs are merged with a merge commit on this repository. */
-    mergeCommitAllowed: Scalars["Boolean"];
+    mergeCommitAllowed: Scalars['Boolean']
     /** Returns a single milestone from the current repository by number. */
-    milestone?: Maybe<GitHubMilestone>;
+    milestone?: Maybe<GitHubMilestone>
     /** A list of milestones associated with the repository. */
-    milestones?: Maybe<GitHubMilestoneConnection>;
+    milestones?: Maybe<GitHubMilestoneConnection>
     /** The repository's original mirror URL. */
-    mirrorUrl?: Maybe<Scalars["GitHubURI"]>;
+    mirrorUrl?: Maybe<Scalars['GitHubURI']>
     /** The name of the repository. */
-    name: Scalars["String"];
+    name: Scalars['String']
     /** The repository's name with owner. */
-    nameWithOwner: Scalars["String"];
+    nameWithOwner: Scalars['String']
     /** A Git object in the repository */
-    object?: Maybe<GitHubGitObject>;
+    object?: Maybe<GitHubGitObject>
+    /** The image used to represent this repository in Open Graph data. */
+    openGraphImageUrl: Scalars['GitHubURI']
     /** The User owner of the repository. */
-    owner: GitHubRepositoryOwner;
+    owner: GitHubRepositoryOwner
     /** The repository parent, if this is a fork. */
-    parent?: Maybe<GitHubRepository>;
+    parent?: Maybe<GitHubRepository>
     /** The primary language of the repository's code. */
-    primaryLanguage?: Maybe<GitHubLanguage>;
+    primaryLanguage?: Maybe<GitHubLanguage>
     /** Find project by number. */
-    project?: Maybe<GitHubProject>;
+    project?: Maybe<GitHubProject>
     /** A list of projects under the owner. */
-    projects: GitHubProjectConnection;
+    projects: GitHubProjectConnection
     /** The HTTP path listing the repository's projects */
-    projectsResourcePath: Scalars["GitHubURI"];
+    projectsResourcePath: Scalars['GitHubURI']
     /** The HTTP URL listing the repository's projects */
-    projectsUrl: Scalars["GitHubURI"];
+    projectsUrl: Scalars['GitHubURI']
     /** Returns a single pull request from the current repository by number. */
-    pullRequest?: Maybe<GitHubPullRequest>;
+    pullRequest?: Maybe<GitHubPullRequest>
     /** A list of pull requests that have been opened in the repository. */
-    pullRequests: GitHubPullRequestConnection;
+    pullRequests: GitHubPullRequestConnection
     /** Identifies when the repository was last pushed to. */
-    pushedAt?: Maybe<Scalars["GitHubDateTime"]>;
+    pushedAt?: Maybe<Scalars['GitHubDateTime']>
     /** Whether or not rebase-merging is enabled on this repository. */
-    rebaseMergeAllowed: Scalars["Boolean"];
+    rebaseMergeAllowed: Scalars['Boolean']
     /** Fetch a given ref from the repository */
-    ref?: Maybe<GitHubRef>;
+    ref?: Maybe<GitHubRef>
     /** Fetch a list of refs from the repository */
-    refs?: Maybe<GitHubRefConnection>;
+    refs?: Maybe<GitHubRefConnection>
+    /** A list of registry packages under the owner. */
+    registryPackages: GitHubRegistryPackageConnection
+    /** A list of registry packages for a particular search query. */
+    registryPackagesForQuery: GitHubRegistryPackageConnection
     /** Lookup a single release given various criteria. */
-    release?: Maybe<GitHubRelease>;
+    release?: Maybe<GitHubRelease>
     /** List of releases which are dependent on this repository. */
-    releases: GitHubReleaseConnection;
+    releases: GitHubReleaseConnection
     /** A list of applied repository-topic associations for this repository. */
-    repositoryTopics: GitHubRepositoryTopicConnection;
+    repositoryTopics: GitHubRepositoryTopicConnection
     /** The HTTP path for this repository */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** A description of the repository, rendered to HTML without any links in it. */
-    shortDescriptionHTML: Scalars["GitHubHTML"];
+    shortDescriptionHTML: Scalars['GitHubHTML']
     /** Whether or not squash-merging is enabled on this repository. */
-    squashMergeAllowed: Scalars["Boolean"];
+    squashMergeAllowed: Scalars['Boolean']
     /** The SSH URL to clone this repository */
-    sshUrl: Scalars["GitHubGitSSHRemote"];
+    sshUrl: Scalars['GitHubGitSSHRemote']
     /** A list of users who have starred this starrable. */
-    stargazers: GitHubStargazerConnection;
+    stargazers: GitHubStargazerConnection
+    /** The repository from which this repository was generated, if any. */
+    templateRepository?: Maybe<GitHubRepository>
     /** Identifies the date and time when the object was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
     /** The HTTP URL for this repository */
-    url: Scalars["GitHubURI"];
+    url: Scalars['GitHubURI']
+    /** Whether this repository has a custom image to use with Open Graph as opposed to being represented by the owner's avatar. */
+    usesCustomOpenGraphImage: Scalars['Boolean']
     /** Indicates whether the viewer has admin permissions on this repository. */
-    viewerCanAdminister: Scalars["Boolean"];
+    viewerCanAdminister: Scalars['Boolean']
     /** Can the current viewer create new projects on this owner. */
-    viewerCanCreateProjects: Scalars["Boolean"];
+    viewerCanCreateProjects: Scalars['Boolean']
     /** Check if the viewer is able to change their subscription status for the repository. */
-    viewerCanSubscribe: Scalars["Boolean"];
+    viewerCanSubscribe: Scalars['Boolean']
     /** Indicates whether the viewer can update the topics of this repository. */
-    viewerCanUpdateTopics: Scalars["Boolean"];
+    viewerCanUpdateTopics: Scalars['Boolean']
     /** Returns a boolean indicating whether the viewing user has starred this starrable. */
-    viewerHasStarred: Scalars["Boolean"];
+    viewerHasStarred: Scalars['Boolean']
     /** The users permission level on the repository. Will return null if authenticated as an GitHub App. */
-    viewerPermission?: Maybe<GitHubRepositoryPermission>;
+    viewerPermission?: Maybe<GitHubRepositoryPermission>
     /** Identifies if the viewer is watching, not watching, or ignoring the subscribable entity. */
-    viewerSubscription?: Maybe<GitHubSubscriptionState>;
+    viewerSubscription?: Maybe<GitHubSubscriptionState>
+    /** A list of vulnerability alerts that are on this repository. */
+    vulnerabilityAlerts?: Maybe<GitHubRepositoryVulnerabilityAlertConnection>
     /** A list of users watching the repository. */
-    watchers: GitHubUserConnection;
-  };
+    watchers: GitHubUserConnection
+  }
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryAssignableUsersArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  query?: Maybe<Scalars['String']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryBranchProtectionRulesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryCollaboratorsArgs = {
-  affiliation?: Maybe<GitHubCollaboratorAffiliation>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  affiliation?: Maybe<GitHubCollaboratorAffiliation>
+  query?: Maybe<Scalars['String']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryCommitCommentsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryDeployKeysArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryDeploymentsArgs = {
-  environments?: Maybe<Array<Scalars["String"]>>;
-  orderBy?: Maybe<GitHubDeploymentOrder>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  environments?: Maybe<Array<Scalars['String']>>
+  orderBy: GitHubDeploymentOrder
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryForksArgs = {
-  privacy?: Maybe<GitHubRepositoryPrivacy>;
-  orderBy?: Maybe<GitHubRepositoryOrder>;
-  affiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  ownerAffiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  isLocked?: Maybe<Scalars["Boolean"]>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  privacy?: Maybe<GitHubRepositoryPrivacy>
+  orderBy?: Maybe<GitHubRepositoryOrder>
+  affiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  ownerAffiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  isLocked?: Maybe<Scalars['Boolean']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryIssueArgs = {
-  number: Scalars["Int"];
-};
+  number: Scalars['Int']
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryIssueOrPullRequestArgs = {
-  number: Scalars["Int"];
-};
+  number: Scalars['Int']
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryIssuesArgs = {
-  orderBy?: Maybe<GitHubIssueOrder>;
-  labels?: Maybe<Array<Scalars["String"]>>;
-  states?: Maybe<Array<GitHubIssueState>>;
-  filterBy?: Maybe<GitHubIssueFilters>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  orderBy?: Maybe<GitHubIssueOrder>
+  labels?: Maybe<Array<Scalars['String']>>
+  states?: Maybe<Array<GitHubIssueState>>
+  filterBy?: Maybe<GitHubIssueFilters>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryLabelArgs = {
-  name: Scalars["String"];
-};
+  name: Scalars['String']
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryLabelsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  query?: Maybe<Scalars["String"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  query?: Maybe<Scalars['String']>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryLanguagesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  orderBy?: Maybe<GitHubLanguageOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy?: Maybe<GitHubLanguageOrder>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryMentionableUsersArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  query?: Maybe<Scalars['String']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryMilestoneArgs = {
-  number: Scalars["Int"];
-};
+  number: Scalars['Int']
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryMilestonesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  states?: Maybe<Array<GitHubMilestoneState>>;
-  orderBy?: Maybe<GitHubMilestoneOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  states?: Maybe<Array<GitHubMilestoneState>>
+  orderBy?: Maybe<GitHubMilestoneOrder>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryObjectArgs = {
-  oid?: Maybe<Scalars["GitHubGitObjectID"]>;
-  expression?: Maybe<Scalars["String"]>;
-};
+  oid?: Maybe<Scalars['GitHubGitObjectID']>
+  expression?: Maybe<Scalars['String']>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryProjectArgs = {
-  number: Scalars["Int"];
-};
+  number: Scalars['Int']
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryProjectsArgs = {
-  orderBy?: Maybe<GitHubProjectOrder>;
-  search?: Maybe<Scalars["String"]>;
-  states?: Maybe<Array<GitHubProjectState>>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  orderBy?: Maybe<GitHubProjectOrder>
+  search?: Maybe<Scalars['String']>
+  states?: Maybe<Array<GitHubProjectState>>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryPullRequestArgs = {
-  number: Scalars["Int"];
-};
+  number: Scalars['Int']
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryPullRequestsArgs = {
-  states?: Maybe<Array<GitHubPullRequestState>>;
-  labels?: Maybe<Array<Scalars["String"]>>;
-  headRefName?: Maybe<Scalars["String"]>;
-  baseRefName?: Maybe<Scalars["String"]>;
-  orderBy?: Maybe<GitHubIssueOrder>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  states?: Maybe<Array<GitHubPullRequestState>>
+  labels?: Maybe<Array<Scalars['String']>>
+  headRefName?: Maybe<Scalars['String']>
+  baseRefName?: Maybe<Scalars['String']>
+  orderBy?: Maybe<GitHubIssueOrder>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryRefArgs = {
-  qualifiedName: Scalars["String"];
-};
+  qualifiedName: Scalars['String']
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryRefsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  refPrefix: Scalars["String"];
-  direction?: Maybe<GitHubOrderDirection>;
-  orderBy?: Maybe<GitHubRefOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  refPrefix: Scalars['String']
+  direction?: Maybe<GitHubOrderDirection>
+  orderBy?: Maybe<GitHubRefOrder>
+}
+
+/** A repository contains the content for a project. */
+export type GitHubRepositoryRegistryPackagesArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  name?: Maybe<Scalars['String']>
+  names?: Maybe<Array<Maybe<Scalars['String']>>>
+  repositoryId?: Maybe<Scalars['ID']>
+  packageType?: Maybe<GitHubRegistryPackageType>
+  registryPackageType?: Maybe<Scalars['String']>
+  publicOnly: Scalars['Boolean']
+}
+
+/** A repository contains the content for a project. */
+export type GitHubRepositoryRegistryPackagesForQueryArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  query?: Maybe<Scalars['String']>
+  packageType?: Maybe<GitHubRegistryPackageType>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryReleaseArgs = {
-  tagName: Scalars["String"];
-};
+  tagName: Scalars['String']
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryReleasesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  orderBy?: Maybe<GitHubReleaseOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy?: Maybe<GitHubReleaseOrder>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryRepositoryTopicsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryShortDescriptionHtmlArgs = {
-  limit: Scalars["Int"];
-};
+  limit: Scalars['Int']
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryStargazersArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  orderBy?: Maybe<GitHubStarOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy?: Maybe<GitHubStarOrder>
+}
+
+/** A repository contains the content for a project. */
+export type GitHubRepositoryVulnerabilityAlertsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A repository contains the content for a project. */
 export type GitHubRepositoryWatchersArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** The affiliation of a user to a repository */
 export enum GitHubRepositoryAffiliation {
   /** Repositories that are owned by the authenticated user. */
-  Owner = "OWNER",
+  Owner = 'OWNER',
   /** Repositories that the user has been added to as a collaborator. */
-  Collaborator = "COLLABORATOR",
+  Collaborator = 'COLLABORATOR',
   /** Repositories that the user has access to through being a member of an
    * organization. This includes every repository on every team that the user is on.
    */
-  OrganizationMember = "ORGANIZATION_MEMBER"
+  OrganizationMember = 'ORGANIZATION_MEMBER',
+}
+
+/** Metadata for an audit entry with action repo.* */
+export type GitHubRepositoryAuditEntryData = {
+  /** The repository associated with the action */
+  repository?: Maybe<GitHubRepository>
+  /** The name of the repository */
+  repositoryName?: Maybe<Scalars['String']>
+  /** The HTTP path for the repository */
+  repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+  /** The HTTP URL for the repository */
+  repositoryUrl?: Maybe<Scalars['GitHubURI']>
 }
 
 /** The affiliation type between collaborator and repository. */
 export enum GitHubRepositoryCollaboratorAffiliation {
   /** All collaborators of the repository. */
-  All = "ALL",
+  All = 'ALL',
   /** All outside collaborators of an organization-owned repository. */
-  Outside = "OUTSIDE"
+  Outside = 'OUTSIDE',
 }
 
 /** The connection type for User. */
 export type GitHubRepositoryCollaboratorConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubRepositoryCollaboratorEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubRepositoryCollaboratorEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubUser>>>;
+  nodes?: Maybe<Array<Maybe<GitHubUser>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** Represents a user who is a collaborator of a repository. */
 export type GitHubRepositoryCollaboratorEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
-  node: GitHubUser;
+  cursor: Scalars['String']
+  node: GitHubUser
   /** The permission the user has on the repository. */
-  permission: GitHubRepositoryPermission;
+  permission: GitHubRepositoryPermission
   /** A list of sources for the user's access to the repository. */
-  permissionSources?: Maybe<Array<GitHubPermissionSource>>;
-};
+  permissionSources?: Maybe<Array<GitHubPermissionSource>>
+}
 
 /** A list of repositories owned by the subject. */
 export type GitHubRepositoryConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubRepositoryEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubRepositoryEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubRepository>>>;
+  nodes?: Maybe<Array<Maybe<GitHubRepository>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
+  totalCount: Scalars['Int']
   /** The total size in kilobytes of all repositories in the connection. */
-  totalDiskUsage: Scalars["Int"];
-};
+  totalDiskUsage: Scalars['Int']
+}
 
 /** The reason a repository is listed as 'contributed'. */
 export enum GitHubRepositoryContributionType {
   /** Created a commit */
-  Commit = "COMMIT",
+  Commit = 'COMMIT',
   /** Created an issue */
-  Issue = "ISSUE",
+  Issue = 'ISSUE',
   /** Created a pull request */
-  PullRequest = "PULL_REQUEST",
+  PullRequest = 'PULL_REQUEST',
   /** Created the repository */
-  Repository = "REPOSITORY",
+  Repository = 'REPOSITORY',
   /** Reviewed a pull request */
-  PullRequestReview = "PULL_REQUEST_REVIEW"
+  PullRequestReview = 'PULL_REQUEST_REVIEW',
 }
 
 /** An edge in a connection. */
 export type GitHubRepositoryEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubRepository>;
-};
+  node?: Maybe<GitHubRepository>
+}
 
 /** A subset of repository info. */
 export type GitHubRepositoryInfo = {
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** The description of the repository. */
-  description?: Maybe<Scalars["String"]>;
+  description?: Maybe<Scalars['String']>
   /** The description of the repository rendered to HTML. */
-  descriptionHTML: Scalars["GitHubHTML"];
+  descriptionHTML: Scalars['GitHubHTML']
   /** Returns how many forks there are of this repository in the whole network. */
-  forkCount: Scalars["Int"];
+  forkCount: Scalars['Int']
   /** Indicates if the repository has issues feature enabled. */
-  hasIssuesEnabled: Scalars["Boolean"];
+  hasIssuesEnabled: Scalars['Boolean']
   /** Indicates if the repository has wiki feature enabled. */
-  hasWikiEnabled: Scalars["Boolean"];
+  hasWikiEnabled: Scalars['Boolean']
   /** The repository's URL. */
-  homepageUrl?: Maybe<Scalars["GitHubURI"]>;
+  homepageUrl?: Maybe<Scalars['GitHubURI']>
   /** Indicates if the repository is unmaintained. */
-  isArchived: Scalars["Boolean"];
+  isArchived: Scalars['Boolean']
   /** Identifies if the repository is a fork. */
-  isFork: Scalars["Boolean"];
+  isFork: Scalars['Boolean']
   /** Indicates if the repository has been locked or not. */
-  isLocked: Scalars["Boolean"];
+  isLocked: Scalars['Boolean']
   /** Identifies if the repository is a mirror. */
-  isMirror: Scalars["Boolean"];
+  isMirror: Scalars['Boolean']
   /** Identifies if the repository is private. */
-  isPrivate: Scalars["Boolean"];
+  isPrivate: Scalars['Boolean']
+  /** Identifies if the repository is a template that can be used to generate new repositories. */
+  isTemplate: Scalars['Boolean']
   /** The license associated with the repository */
-  licenseInfo?: Maybe<GitHubLicense>;
+  licenseInfo?: Maybe<GitHubLicense>
   /** The reason the repository has been locked. */
-  lockReason?: Maybe<GitHubRepositoryLockReason>;
+  lockReason?: Maybe<GitHubRepositoryLockReason>
   /** The repository's original mirror URL. */
-  mirrorUrl?: Maybe<Scalars["GitHubURI"]>;
+  mirrorUrl?: Maybe<Scalars['GitHubURI']>
   /** The name of the repository. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** The repository's name with owner. */
-  nameWithOwner: Scalars["String"];
+  nameWithOwner: Scalars['String']
+  /** The image used to represent this repository in Open Graph data. */
+  openGraphImageUrl: Scalars['GitHubURI']
   /** The User owner of the repository. */
-  owner: GitHubRepositoryOwner;
+  owner: GitHubRepositoryOwner
   /** Identifies when the repository was last pushed to. */
-  pushedAt?: Maybe<Scalars["GitHubDateTime"]>;
+  pushedAt?: Maybe<Scalars['GitHubDateTime']>
   /** The HTTP path for this repository */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** A description of the repository, rendered to HTML without any links in it. */
-  shortDescriptionHTML: Scalars["GitHubHTML"];
+  shortDescriptionHTML: Scalars['GitHubHTML']
   /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars["GitHubDateTime"];
+  updatedAt: Scalars['GitHubDateTime']
   /** The HTTP URL for this repository */
-  url: Scalars["GitHubURI"];
-};
+  url: Scalars['GitHubURI']
+  /** Whether this repository has a custom image to use with Open Graph as opposed to being represented by the owner's avatar. */
+  usesCustomOpenGraphImage: Scalars['Boolean']
+}
 
 /** A subset of repository info. */
 export type GitHubRepositoryInfoShortDescriptionHtmlArgs = {
-  limit: Scalars["Int"];
-};
+  limit: Scalars['Int']
+}
 
 /** An invitation for a user to be added to a repository. */
 export type GitHubRepositoryInvitation = GitHubNode & {
-  id: Scalars["ID"];
+  id: Scalars['ID']
   /** The user who received the invitation. */
-  invitee: GitHubUser;
+  invitee: GitHubUser
   /** The user who created the invitation. */
-  inviter: GitHubUser;
+  inviter: GitHubUser
   /** The permission granted on this repository by this invitation. */
-  permission: GitHubRepositoryPermission;
+  permission: GitHubRepositoryPermission
   /** The Repository the user is invited to. */
-  repository?: Maybe<GitHubRepositoryInfo>;
-};
+  repository?: Maybe<GitHubRepositoryInfo>
+}
 
 /** An edge in a connection. */
 export type GitHubRepositoryInvitationEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubRepositoryInvitation>;
-};
+  node?: Maybe<GitHubRepositoryInvitation>
+}
+
+/** Ordering options for repository invitation connections. */
+export type GitHubRepositoryInvitationOrder = {
+  /** The field to order repository invitations by. */
+  field: GitHubRepositoryInvitationOrderField
+  /** The ordering direction. */
+  direction: GitHubOrderDirection
+}
+
+/** Properties by which repository invitation connections can be ordered. */
+export enum GitHubRepositoryInvitationOrderField {
+  /** Order repository invitations by creation time */
+  CreatedAt = 'CREATED_AT',
+  /** Order repository invitations by invitee login */
+  InviteeLogin = 'INVITEE_LOGIN',
+}
 
 /** The possible reasons a given repository could be in a locked state. */
 export enum GitHubRepositoryLockReason {
   /** The repository is locked due to a move. */
-  Moving = "MOVING",
+  Moving = 'MOVING',
   /** The repository is locked due to a billing related reason. */
-  Billing = "BILLING",
+  Billing = 'BILLING',
   /** The repository is locked due to a rename. */
-  Rename = "RENAME",
+  Rename = 'RENAME',
   /** The repository is locked due to a migration. */
-  Migrating = "MIGRATING"
+  Migrating = 'MIGRATING',
 }
 
 /** Represents a object that belongs to a repository. */
 export type GitHubRepositoryNode = {
   /** The repository associated with this node. */
-  repository: GitHubRepository;
-};
+  repository: GitHubRepository
+}
 
 /** Ordering options for repository connections */
 export type GitHubRepositoryOrder = {
   /** The field to order repositories by. */
-  field: GitHubRepositoryOrderField;
+  field: GitHubRepositoryOrderField
   /** The ordering direction. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which repository connections can be ordered. */
 export enum GitHubRepositoryOrderField {
   /** Order repositories by creation time */
-  CreatedAt = "CREATED_AT",
+  CreatedAt = 'CREATED_AT',
   /** Order repositories by update time */
-  UpdatedAt = "UPDATED_AT",
+  UpdatedAt = 'UPDATED_AT',
   /** Order repositories by push time */
-  PushedAt = "PUSHED_AT",
+  PushedAt = 'PUSHED_AT',
   /** Order repositories by name */
-  Name = "NAME",
+  Name = 'NAME',
   /** Order repositories by number of stargazers */
-  Stargazers = "STARGAZERS"
+  Stargazers = 'STARGAZERS',
 }
 
 /** Represents an owner of a Repository. */
 export type GitHubRepositoryOwner = {
   /** A URL pointing to the owner's public avatar. */
-  avatarUrl: Scalars["GitHubURI"];
-  id: Scalars["ID"];
+  avatarUrl: Scalars['GitHubURI']
+  id: Scalars['ID']
   /** The username used to login. */
-  login: Scalars["String"];
+  login: Scalars['String']
   /** A list of repositories this user has pinned to their profile */
-  pinnedRepositories: GitHubRepositoryConnection;
+  pinnedRepositories: GitHubRepositoryConnection
   /** A list of repositories that the user owns. */
-  repositories: GitHubRepositoryConnection;
+  repositories: GitHubRepositoryConnection
   /** Find Repository. */
-  repository?: Maybe<GitHubRepository>;
+  repository?: Maybe<GitHubRepository>
   /** The HTTP URL for the owner. */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** The HTTP URL for the owner. */
-  url: Scalars["GitHubURI"];
-};
+  url: Scalars['GitHubURI']
+}
 
 /** Represents an owner of a Repository. */
 export type GitHubRepositoryOwnerAvatarUrlArgs = {
-  size?: Maybe<Scalars["Int"]>;
-};
+  size?: Maybe<Scalars['Int']>
+}
 
 /** Represents an owner of a Repository. */
 export type GitHubRepositoryOwnerPinnedRepositoriesArgs = {
-  privacy?: Maybe<GitHubRepositoryPrivacy>;
-  orderBy?: Maybe<GitHubRepositoryOrder>;
-  affiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  ownerAffiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  isLocked?: Maybe<Scalars["Boolean"]>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  privacy?: Maybe<GitHubRepositoryPrivacy>
+  orderBy?: Maybe<GitHubRepositoryOrder>
+  affiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  ownerAffiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  isLocked?: Maybe<Scalars['Boolean']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** Represents an owner of a Repository. */
 export type GitHubRepositoryOwnerRepositoriesArgs = {
-  privacy?: Maybe<GitHubRepositoryPrivacy>;
-  orderBy?: Maybe<GitHubRepositoryOrder>;
-  affiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  ownerAffiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  isLocked?: Maybe<Scalars["Boolean"]>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  isFork?: Maybe<Scalars["Boolean"]>;
-};
+  privacy?: Maybe<GitHubRepositoryPrivacy>
+  orderBy?: Maybe<GitHubRepositoryOrder>
+  affiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  ownerAffiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  isLocked?: Maybe<Scalars['Boolean']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  isFork?: Maybe<Scalars['Boolean']>
+}
 
 /** Represents an owner of a Repository. */
 export type GitHubRepositoryOwnerRepositoryArgs = {
-  name: Scalars["String"];
-};
+  name: Scalars['String']
+}
 
 /** The access level to a repository */
 export enum GitHubRepositoryPermission {
-  /** Can read, clone, push, and add collaborators */
-  Admin = "ADMIN",
-  /** Can read, clone and push */
-  Write = "WRITE",
-  /** Can read and clone */
-  Read = "READ"
+  /** Can read, clone, and push to this repository. Can also manage issues, pull
+   * requests, and repository settings, including adding collaborators
+   */
+  Admin = 'ADMIN',
+  /** Can read, clone, and push to this repository. They can also manage issues, pull requests, and some repository settings */
+  Maintain = 'MAINTAIN',
+  /** Can read, clone, and push to this repository. Can also manage issues and pull requests */
+  Write = 'WRITE',
+  /** Can read and clone this repository. Can also manage issues and pull requests */
+  Triage = 'TRIAGE',
+  /** Can read and clone this repository. Can also open and comment on issues and pull requests */
+  Read = 'READ',
 }
 
 /** The privacy of a repository */
 export enum GitHubRepositoryPrivacy {
   /** Public */
-  Public = "PUBLIC",
+  Public = 'PUBLIC',
   /** Private */
-  Private = "PRIVATE"
+  Private = 'PRIVATE',
 }
 
 /** A repository-topic connects a repository to a topic. */
 export type GitHubRepositoryTopic = GitHubNode &
   GitHubUniformResourceLocatable & {
-    id: Scalars["ID"];
+    id: Scalars['ID']
     /** The HTTP path for this repository-topic. */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** The topic. */
-    topic: GitHubTopic;
+    topic: GitHubTopic
     /** The HTTP URL for this repository-topic. */
-    url: Scalars["GitHubURI"];
-  };
+    url: Scalars['GitHubURI']
+  }
 
 /** The connection type for RepositoryTopic. */
 export type GitHubRepositoryTopicConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubRepositoryTopicEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubRepositoryTopicEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubRepositoryTopic>>>;
+  nodes?: Maybe<Array<Maybe<GitHubRepositoryTopic>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubRepositoryTopicEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubRepositoryTopic>;
-};
+  node?: Maybe<GitHubRepositoryTopic>
+}
+
+/** The repository's visibility level. */
+export enum GitHubRepositoryVisibility {
+  /** The repository is visible only to those with explicit access. */
+  Private = 'PRIVATE',
+  /** The repository is visible to everyone. */
+  Public = 'PUBLIC',
+  /** The repository is visible only to users in the same business. */
+  Internal = 'INTERNAL',
+}
+
+/** Audit log entry for a repository_visibility_change.disable event. */
+export type GitHubRepositoryVisibilityChangeDisableAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubEnterpriseAuditEntryData &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    /** The HTTP path for this enterprise. */
+    enterpriseResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The slug of the enterprise. */
+    enterpriseSlug?: Maybe<Scalars['String']>
+    /** The HTTP URL for this enterprise. */
+    enterpriseUrl?: Maybe<Scalars['GitHubURI']>
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a repository_visibility_change.enable event. */
+export type GitHubRepositoryVisibilityChangeEnableAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubEnterpriseAuditEntryData &
+  GitHubOrganizationAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    /** The HTTP path for this enterprise. */
+    enterpriseResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The slug of the enterprise. */
+    enterpriseSlug?: Maybe<Scalars['String']>
+    /** The HTTP URL for this enterprise. */
+    enterpriseUrl?: Maybe<Scalars['GitHubURI']>
+    id: Scalars['ID']
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** A alert for a repository with an affected vulnerability. */
+export type GitHubRepositoryVulnerabilityAlert = GitHubNode &
+  GitHubRepositoryNode & {
+    /** The affected version */
+    affectedRange: Scalars['String']
+    /** The reason the alert was dismissed */
+    dismissReason?: Maybe<Scalars['String']>
+    /** When was the alert dimissed? */
+    dismissedAt?: Maybe<Scalars['GitHubDateTime']>
+    /** The user who dismissed the alert */
+    dismisser?: Maybe<GitHubUser>
+    /** The external identifier for the vulnerability */
+    externalIdentifier?: Maybe<Scalars['String']>
+    /** The external reference for the vulnerability */
+    externalReference: Scalars['String']
+    /** The fixed version */
+    fixedIn?: Maybe<Scalars['String']>
+    id: Scalars['ID']
+    /** The affected package */
+    packageName: Scalars['String']
+    /** The associated repository */
+    repository: GitHubRepository
+    /** The associated security advisory */
+    securityAdvisory?: Maybe<GitHubSecurityAdvisory>
+    /** The associated security vulnerablity */
+    securityVulnerability?: Maybe<GitHubSecurityVulnerability>
+    /** The vulnerable manifest filename */
+    vulnerableManifestFilename: Scalars['String']
+    /** The vulnerable manifest path */
+    vulnerableManifestPath: Scalars['String']
+    /** The vulnerable requirements */
+    vulnerableRequirements?: Maybe<Scalars['String']>
+  }
+
+/** The connection type for RepositoryVulnerabilityAlert. */
+export type GitHubRepositoryVulnerabilityAlertConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubRepositoryVulnerabilityAlertEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubRepositoryVulnerabilityAlert>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubRepositoryVulnerabilityAlertEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubRepositoryVulnerabilityAlert>
+}
 
 /** Types that can be requested reviewers. */
-export type GitHubRequestedReviewer = GitHubUser | GitHubTeam | GitHubMannequin;
+export type GitHubRequestedReviewer = GitHubUser | GitHubTeam | GitHubMannequin
 
 /** Autogenerated input type of RequestReviews */
 export type GitHubRequestReviewsInput = {
   /** The Node ID of the pull request to modify. */
-  pullRequestId: Scalars["ID"];
+  pullRequestId: Scalars['ID']
   /** The Node IDs of the user to request. */
-  userIds?: Maybe<Array<Scalars["ID"]>>;
+  userIds?: Maybe<Array<Scalars['ID']>>
   /** The Node IDs of the team to request. */
-  teamIds?: Maybe<Array<Scalars["ID"]>>;
+  teamIds?: Maybe<Array<Scalars['ID']>>
   /** Add users to the set rather than replace. */
-  union?: Maybe<Scalars["Boolean"]>;
+  union?: Maybe<Scalars['Boolean']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of RequestReviews */
 export type GitHubRequestReviewsPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The pull request that is getting requests. */
-  pullRequest?: Maybe<GitHubPullRequest>;
+  pullRequest?: Maybe<GitHubPullRequest>
   /** The edge from the pull request to the requested reviewers. */
-  requestedReviewersEdge?: Maybe<GitHubUserEdge>;
-};
+  requestedReviewersEdge?: Maybe<GitHubUserEdge>
+}
 
 /** Autogenerated input type of ResolveReviewThread */
 export type GitHubResolveReviewThreadInput = {
   /** The ID of the thread to resolve */
-  threadId: Scalars["ID"];
+  threadId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of ResolveReviewThread */
 export type GitHubResolveReviewThreadPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The thread to resolve. */
-  thread?: Maybe<GitHubPullRequestReviewThread>;
-};
+  thread?: Maybe<GitHubPullRequestReviewThread>
+}
 
 /** Represents a private contribution a user made on GitHub. */
 export type GitHubRestrictedContribution = GitHubContribution & {
@@ -7603,137 +13046,216 @@ export type GitHubRestrictedContribution = GitHubContribution & {
    * example, your own 'first issue' contribution may have been made on a repository you can no
    * longer access.
    */
-  isRestricted: Scalars["Boolean"];
+  isRestricted: Scalars['Boolean']
   /** When this contribution was made. */
-  occurredAt: Scalars["GitHubDateTime"];
+  occurredAt: Scalars['GitHubDateTime']
   /** The HTTP path for this contribution. */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** The HTTP URL for this contribution. */
-  url: Scalars["GitHubURI"];
+  url: Scalars['GitHubURI']
   /** The user who made this contribution. */
-  user: GitHubUser;
-};
+  user: GitHubUser
+}
 
 /** A team or user who has the ability to dismiss a review on a protected branch. */
 export type GitHubReviewDismissalAllowance = GitHubNode & {
   /** The actor that can dismiss. */
-  actor?: Maybe<GitHubReviewDismissalAllowanceActor>;
+  actor?: Maybe<GitHubReviewDismissalAllowanceActor>
   /** Identifies the branch protection rule associated with the allowed user or team. */
-  branchProtectionRule?: Maybe<GitHubBranchProtectionRule>;
-  id: Scalars["ID"];
-};
+  branchProtectionRule?: Maybe<GitHubBranchProtectionRule>
+  id: Scalars['ID']
+}
 
 /** Types that can be an actor. */
-export type GitHubReviewDismissalAllowanceActor = GitHubUser | GitHubTeam;
+export type GitHubReviewDismissalAllowanceActor = GitHubUser | GitHubTeam
 
 /** The connection type for ReviewDismissalAllowance. */
 export type GitHubReviewDismissalAllowanceConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubReviewDismissalAllowanceEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubReviewDismissalAllowanceEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubReviewDismissalAllowance>>>;
+  nodes?: Maybe<Array<Maybe<GitHubReviewDismissalAllowance>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubReviewDismissalAllowanceEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubReviewDismissalAllowance>;
-};
+  node?: Maybe<GitHubReviewDismissalAllowance>
+}
 
 /** Represents a 'review_dismissed' event on a given issue or pull request. */
 export type GitHubReviewDismissedEvent = GitHubNode &
   GitHubUniformResourceLocatable & {
     /** Identifies the actor who performed the event. */
-    actor?: Maybe<GitHubActor>;
+    actor?: Maybe<GitHubActor>
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** Identifies the primary key from the database. */
-    databaseId?: Maybe<Scalars["Int"]>;
+    databaseId?: Maybe<Scalars['Int']>
     /** Identifies the optional message associated with the 'review_dismissed' event. */
-    dismissalMessage?: Maybe<Scalars["String"]>;
+    dismissalMessage?: Maybe<Scalars['String']>
     /** Identifies the optional message associated with the event, rendered to HTML. */
-    dismissalMessageHTML?: Maybe<Scalars["String"]>;
-    id: Scalars["ID"];
-    /** Identifies the message associated with the 'review_dismissed' event. */
-    message: Scalars["String"];
-    /** The message associated with the event, rendered to HTML. */
-    messageHtml: Scalars["GitHubHTML"];
+    dismissalMessageHTML?: Maybe<Scalars['String']>
+    id: Scalars['ID']
     /** Identifies the previous state of the review with the 'review_dismissed' event. */
-    previousReviewState: GitHubPullRequestReviewState;
+    previousReviewState: GitHubPullRequestReviewState
     /** PullRequest referenced by event. */
-    pullRequest: GitHubPullRequest;
+    pullRequest: GitHubPullRequest
     /** Identifies the commit which caused the review to become stale. */
-    pullRequestCommit?: Maybe<GitHubPullRequestCommit>;
+    pullRequestCommit?: Maybe<GitHubPullRequestCommit>
     /** The HTTP path for this review dismissed event. */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** Identifies the review associated with the 'review_dismissed' event. */
-    review?: Maybe<GitHubPullRequestReview>;
+    review?: Maybe<GitHubPullRequestReview>
     /** The HTTP URL for this review dismissed event. */
-    url: Scalars["GitHubURI"];
-  };
+    url: Scalars['GitHubURI']
+  }
 
 /** A request for a user to review a pull request. */
 export type GitHubReviewRequest = GitHubNode & {
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
-  id: Scalars["ID"];
+  databaseId?: Maybe<Scalars['Int']>
+  id: Scalars['ID']
   /** Identifies the pull request associated with this review request. */
-  pullRequest: GitHubPullRequest;
+  pullRequest: GitHubPullRequest
   /** The reviewer that is requested. */
-  requestedReviewer?: Maybe<GitHubRequestedReviewer>;
-};
+  requestedReviewer?: Maybe<GitHubRequestedReviewer>
+}
 
 /** The connection type for ReviewRequest. */
 export type GitHubReviewRequestConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubReviewRequestEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubReviewRequestEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubReviewRequest>>>;
+  nodes?: Maybe<Array<Maybe<GitHubReviewRequest>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** Represents an 'review_requested' event on a given pull request. */
 export type GitHubReviewRequestedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** PullRequest referenced by event. */
-  pullRequest: GitHubPullRequest;
+  pullRequest: GitHubPullRequest
   /** Identifies the reviewer whose review was requested. */
-  requestedReviewer?: Maybe<GitHubRequestedReviewer>;
-};
+  requestedReviewer?: Maybe<GitHubRequestedReviewer>
+}
 
 /** An edge in a connection. */
 export type GitHubReviewRequestEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubReviewRequest>;
-};
+  node?: Maybe<GitHubReviewRequest>
+}
 
 /** Represents an 'review_request_removed' event on a given pull request. */
 export type GitHubReviewRequestRemovedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** PullRequest referenced by event. */
-  pullRequest: GitHubPullRequest;
+  pullRequest: GitHubPullRequest
   /** Identifies the reviewer whose review request was removed. */
-  requestedReviewer?: Maybe<GitHubRequestedReviewer>;
-};
+  requestedReviewer?: Maybe<GitHubRequestedReviewer>
+}
+
+/** A hovercard context with a message describing the current code review state of the pull
+ * request.
+ */
+export type GitHubReviewStatusHovercardContext = GitHubHovercardContext & {
+  /** A string describing this context */
+  message: Scalars['String']
+  /** An octicon to accompany this context */
+  octicon: Scalars['String']
+}
+
+/** The possible digest algorithms used to sign SAML requests for an identity provider. */
+export enum GitHubSamlDigestAlgorithm {
+  /** SHA1 */
+  Sha1 = 'SHA1',
+  /** SHA256 */
+  Sha256 = 'SHA256',
+  /** SHA384 */
+  Sha384 = 'SHA384',
+  /** SHA512 */
+  Sha512 = 'SHA512',
+}
+
+/** The possible signature algorithms used to sign SAML requests for a Identity Provider. */
+export enum GitHubSamlSignatureAlgorithm {
+  /** RSA-SHA1 */
+  RsaSha1 = 'RSA_SHA1',
+  /** RSA-SHA256 */
+  RsaSha256 = 'RSA_SHA256',
+  /** RSA-SHA384 */
+  RsaSha384 = 'RSA_SHA384',
+  /** RSA-SHA512 */
+  RsaSha512 = 'RSA_SHA512',
+}
+
+/** A Saved Reply is text a user can use to reply quickly. */
+export type GitHubSavedReply = GitHubNode & {
+  /** The body of the saved reply. */
+  body: Scalars['String']
+  /** The saved reply body rendered to HTML. */
+  bodyHTML: Scalars['GitHubHTML']
+  /** Identifies the primary key from the database. */
+  databaseId?: Maybe<Scalars['Int']>
+  id: Scalars['ID']
+  /** The title of the saved reply. */
+  title: Scalars['String']
+  /** The user that saved this reply. */
+  user?: Maybe<GitHubActor>
+}
+
+/** The connection type for SavedReply. */
+export type GitHubSavedReplyConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubSavedReplyEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubSavedReply>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubSavedReplyEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubSavedReply>
+}
+
+/** Ordering options for saved reply connections. */
+export type GitHubSavedReplyOrder = {
+  /** The field to order saved replies by. */
+  field: GitHubSavedReplyOrderField
+  /** The ordering direction. */
+  direction: GitHubOrderDirection
+}
+
+/** Properties by which saved reply connections can be ordered. */
+export enum GitHubSavedReplyOrderField {
+  /** Order saved reply by when they were updated. */
+  UpdatedAt = 'UPDATED_AT',
+}
 
 /** The results of a search. */
 export type GitHubSearchResultItem =
@@ -7742,205 +13264,210 @@ export type GitHubSearchResultItem =
   | GitHubRepository
   | GitHubUser
   | GitHubOrganization
-  | GitHubMarketplaceListing;
+  | GitHubMarketplaceListing
+  | GitHubApp
 
 /** A list of results that matched against a search query. */
 export type GitHubSearchResultItemConnection = {
   /** The number of pieces of code that matched the search query. */
-  codeCount: Scalars["Int"];
+  codeCount: Scalars['Int']
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubSearchResultItemEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubSearchResultItemEdge>>>
   /** The number of issues that matched the search query. */
-  issueCount: Scalars["Int"];
+  issueCount: Scalars['Int']
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubSearchResultItem>>>;
+  nodes?: Maybe<Array<Maybe<GitHubSearchResultItem>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** The number of repositories that matched the search query. */
-  repositoryCount: Scalars["Int"];
+  repositoryCount: Scalars['Int']
   /** The number of users that matched the search query. */
-  userCount: Scalars["Int"];
+  userCount: Scalars['Int']
   /** The number of wiki pages that matched the search query. */
-  wikiCount: Scalars["Int"];
-};
+  wikiCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubSearchResultItemEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubSearchResultItem>;
+  node?: Maybe<GitHubSearchResultItem>
   /** Text matches on the result found. */
-  textMatches?: Maybe<Array<Maybe<GitHubTextMatch>>>;
-};
+  textMatches?: Maybe<Array<Maybe<GitHubTextMatch>>>
+}
 
 /** Represents the individual results of a search. */
 export enum GitHubSearchType {
   /** Returns results matching issues in repositories. */
-  Issue = "ISSUE",
+  Issue = 'ISSUE',
   /** Returns results matching repositories. */
-  Repository = "REPOSITORY",
+  Repository = 'REPOSITORY',
   /** Returns results matching users and organizations on GitHub. */
-  User = "USER"
+  User = 'USER',
 }
 
 /** A GitHub Security Advisory */
 export type GitHubSecurityAdvisory = GitHubNode & {
   /** Identifies the primary key from the database. */
-  databaseId?: Maybe<Scalars["Int"]>;
+  databaseId?: Maybe<Scalars['Int']>
   /** This is a long plaintext description of the advisory */
-  description: Scalars["String"];
+  description: Scalars['String']
   /** The GitHub Security Advisory ID */
-  ghsaId: Scalars["String"];
-  id: Scalars["ID"];
+  ghsaId: Scalars['String']
+  id: Scalars['ID']
   /** A list of identifiers for this advisory */
-  identifiers: Array<GitHubSecurityAdvisoryIdentifier>;
+  identifiers: Array<GitHubSecurityAdvisoryIdentifier>
+  /** The organization that originated the advisory */
+  origin: Scalars['String']
   /** When the advisory was published */
-  publishedAt: Scalars["GitHubDateTime"];
+  publishedAt: Scalars['GitHubDateTime']
   /** A list of references for this advisory */
-  references: Array<GitHubSecurityAdvisoryReference>;
+  references: Array<GitHubSecurityAdvisoryReference>
   /** The severity of the advisory */
-  severity: GitHubSecurityAdvisorySeverity;
+  severity: GitHubSecurityAdvisorySeverity
   /** A short plaintext summary of the advisory */
-  summary: Scalars["String"];
+  summary: Scalars['String']
   /** When the advisory was last updated */
-  updatedAt: Scalars["GitHubDateTime"];
+  updatedAt: Scalars['GitHubDateTime']
   /** Vulnerabilities associated with this Advisory */
-  vulnerabilities: GitHubSecurityVulnerabilityConnection;
+  vulnerabilities: GitHubSecurityVulnerabilityConnection
   /** When the advisory was withdrawn, if it has been withdrawn */
-  withdrawnAt?: Maybe<Scalars["GitHubDateTime"]>;
-};
+  withdrawnAt?: Maybe<Scalars['GitHubDateTime']>
+}
 
 /** A GitHub Security Advisory */
 export type GitHubSecurityAdvisoryVulnerabilitiesArgs = {
-  orderBy?: Maybe<GitHubSecurityVulnerabilityOrder>;
-  ecosystem?: Maybe<GitHubSecurityAdvisoryEcosystem>;
-  package?: Maybe<Scalars["String"]>;
-  severities?: Maybe<Array<GitHubSecurityAdvisorySeverity>>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  orderBy: GitHubSecurityVulnerabilityOrder
+  ecosystem?: Maybe<GitHubSecurityAdvisoryEcosystem>
+  package?: Maybe<Scalars['String']>
+  severities?: Maybe<Array<GitHubSecurityAdvisorySeverity>>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** The connection type for SecurityAdvisory. */
 export type GitHubSecurityAdvisoryConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubSecurityAdvisoryEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubSecurityAdvisoryEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubSecurityAdvisory>>>;
+  nodes?: Maybe<Array<Maybe<GitHubSecurityAdvisory>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** The possible ecosystems of a security vulnerability's package. */
 export enum GitHubSecurityAdvisoryEcosystem {
   /** Ruby gems hosted at RubyGems.org */
-  Rubygems = "RUBYGEMS",
+  Rubygems = 'RUBYGEMS',
   /** JavaScript packages hosted at npmjs.com */
-  Npm = "NPM",
+  Npm = 'NPM',
   /** Python packages hosted at PyPI.org */
-  Pip = "PIP",
+  Pip = 'PIP',
   /** Java artifacts hosted at the Maven central repository */
-  Maven = "MAVEN",
+  Maven = 'MAVEN',
   /** .NET packages hosted at the NuGet Gallery */
-  Nuget = "NUGET"
+  Nuget = 'NUGET',
+  /** PHP packages hosted at packagist.org */
+  Composer = 'COMPOSER',
 }
 
 /** An edge in a connection. */
 export type GitHubSecurityAdvisoryEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubSecurityAdvisory>;
-};
+  node?: Maybe<GitHubSecurityAdvisory>
+}
 
 /** A GitHub Security Advisory Identifier */
 export type GitHubSecurityAdvisoryIdentifier = {
   /** The identifier type, e.g. GHSA, CVE */
-  type: Scalars["String"];
+  type: Scalars['String']
   /** The identifier */
-  value: Scalars["String"];
-};
+  value: Scalars['String']
+}
 
 /** An advisory identifier to filter results on. */
 export type GitHubSecurityAdvisoryIdentifierFilter = {
   /** The identifier type. */
-  type: GitHubSecurityAdvisoryIdentifierType;
+  type: GitHubSecurityAdvisoryIdentifierType
   /** The identifier string. Supports exact or partial matching. */
-  value: Scalars["String"];
-};
+  value: Scalars['String']
+}
 
 /** Identifier formats available for advisories. */
 export enum GitHubSecurityAdvisoryIdentifierType {
   /** Common Vulnerabilities and Exposures Identifier. */
-  Cve = "CVE",
+  Cve = 'CVE',
   /** GitHub Security Advisory ID. */
-  Ghsa = "GHSA"
+  Ghsa = 'GHSA',
 }
 
 /** Ordering options for security advisory connections */
 export type GitHubSecurityAdvisoryOrder = {
   /** The field to order security advisories by. */
-  field: GitHubSecurityAdvisoryOrderField;
+  field: GitHubSecurityAdvisoryOrderField
   /** The ordering direction. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which security advisory connections can be ordered. */
 export enum GitHubSecurityAdvisoryOrderField {
   /** Order advisories by publication time */
-  PublishedAt = "PUBLISHED_AT",
+  PublishedAt = 'PUBLISHED_AT',
   /** Order advisories by update time */
-  UpdatedAt = "UPDATED_AT"
+  UpdatedAt = 'UPDATED_AT',
 }
 
 /** An individual package */
 export type GitHubSecurityAdvisoryPackage = {
   /** The ecosystem the package belongs to, e.g. RUBYGEMS, NPM */
-  ecosystem: GitHubSecurityAdvisoryEcosystem;
+  ecosystem: GitHubSecurityAdvisoryEcosystem
   /** The package name */
-  name: Scalars["String"];
-};
+  name: Scalars['String']
+}
 
 /** An individual package version */
 export type GitHubSecurityAdvisoryPackageVersion = {
   /** The package name or version */
-  identifier: Scalars["String"];
-};
+  identifier: Scalars['String']
+}
 
 /** A GitHub Security Advisory Reference */
 export type GitHubSecurityAdvisoryReference = {
   /** A publicly accessible reference */
-  url: Scalars["GitHubURI"];
-};
+  url: Scalars['GitHubURI']
+}
 
 /** Severity of the vulnerability. */
 export enum GitHubSecurityAdvisorySeverity {
   /** Low. */
-  Low = "LOW",
+  Low = 'LOW',
   /** Moderate. */
-  Moderate = "MODERATE",
+  Moderate = 'MODERATE',
   /** High. */
-  High = "HIGH",
+  High = 'HIGH',
   /** Critical. */
-  Critical = "CRITICAL"
+  Critical = 'CRITICAL',
 }
 
 /** An individual vulnerability within an Advisory */
 export type GitHubSecurityVulnerability = {
   /** The Advisory associated with this Vulnerability */
-  advisory: GitHubSecurityAdvisory;
+  advisory: GitHubSecurityAdvisory
   /** The first version containing a fix for the vulnerability */
-  firstPatchedVersion?: Maybe<GitHubSecurityAdvisoryPackageVersion>;
+  firstPatchedVersion?: Maybe<GitHubSecurityAdvisoryPackageVersion>
   /** A description of the vulnerable package */
-  package: GitHubSecurityAdvisoryPackage;
+  package: GitHubSecurityAdvisoryPackage
   /** The severity of the vulnerability within this package */
-  severity: GitHubSecurityAdvisorySeverity;
+  severity: GitHubSecurityAdvisorySeverity
   /** When the vulnerability was last updated */
-  updatedAt: Scalars["GitHubDateTime"];
+  updatedAt: Scalars['GitHubDateTime']
   /** A string that describes the vulnerable package versions.
    * This string follows a basic syntax with a few forms.
    * + `= 0.2.0` denotes a single vulnerable version.
@@ -7949,1105 +13476,2315 @@ export type GitHubSecurityVulnerability = {
    * + `>= 4.3.0, < 4.3.5` denotes a version range with a known minimum and maximum version.
    * + `>= 0.0.1` denotes a version range with a known minimum, but no known maximum
    */
-  vulnerableVersionRange: Scalars["String"];
-};
+  vulnerableVersionRange: Scalars['String']
+}
 
 /** The connection type for SecurityVulnerability. */
 export type GitHubSecurityVulnerabilityConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubSecurityVulnerabilityEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubSecurityVulnerabilityEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubSecurityVulnerability>>>;
+  nodes?: Maybe<Array<Maybe<GitHubSecurityVulnerability>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubSecurityVulnerabilityEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubSecurityVulnerability>;
-};
+  node?: Maybe<GitHubSecurityVulnerability>
+}
 
 /** Ordering options for security vulnerability connections */
 export type GitHubSecurityVulnerabilityOrder = {
   /** The field to order security vulnerabilities by. */
-  field: GitHubSecurityVulnerabilityOrderField;
+  field: GitHubSecurityVulnerabilityOrderField
   /** The ordering direction. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which security vulnerability connections can be ordered. */
 export enum GitHubSecurityVulnerabilityOrderField {
   /** Order vulnerability by update time */
-  UpdatedAt = "UPDATED_AT"
+  UpdatedAt = 'UPDATED_AT',
 }
 
 /** Represents an S/MIME signature on a Commit or Tag. */
 export type GitHubSmimeSignature = GitHubGitSignature & {
   /** Email used to sign this object. */
-  email: Scalars["String"];
+  email: Scalars['String']
   /** True if the signature is valid and verified by GitHub. */
-  isValid: Scalars["Boolean"];
+  isValid: Scalars['Boolean']
   /** Payload for GPG signing object. Raw ODB object without the signature header. */
-  payload: Scalars["String"];
+  payload: Scalars['String']
   /** ASCII-armored signature header from object. */
-  signature: Scalars["String"];
+  signature: Scalars['String']
   /** GitHub user corresponding to the email signing this commit. */
-  signer?: Maybe<GitHubUser>;
+  signer?: Maybe<GitHubUser>
   /** The state of this signature. `VALID` if signature is valid and verified by
    * GitHub, otherwise represents reason why signature is considered invalid.
    */
-  state: GitHubGitSignatureState;
+  state: GitHubGitSignatureState
   /** True if the signature was made with GitHub's signing key. */
-  wasSignedByGitHub: Scalars["Boolean"];
-};
+  wasSignedByGitHub: Scalars['Boolean']
+}
+
+/** Entities that can be sponsored through GitHub Sponsors */
+export type GitHubSponsorable = {
+  /** This object's sponsorships as the maintainer. */
+  sponsorshipsAsMaintainer: GitHubSponsorshipConnection
+  /** This object's sponsorships as the sponsor. */
+  sponsorshipsAsSponsor: GitHubSponsorshipConnection
+}
+
+/** Entities that can be sponsored through GitHub Sponsors */
+export type GitHubSponsorableSponsorshipsAsMaintainerArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  includePrivate: Scalars['Boolean']
+  orderBy?: Maybe<GitHubSponsorshipOrder>
+}
+
+/** Entities that can be sponsored through GitHub Sponsors */
+export type GitHubSponsorableSponsorshipsAsSponsorArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy?: Maybe<GitHubSponsorshipOrder>
+}
+
+/** A sponsorship relationship between a sponsor and a maintainer */
+export type GitHubSponsorship = GitHubNode & {
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
+  /** The entity that is being sponsored */
+  maintainer: GitHubUser
+  /** The privacy level for this sponsorship. */
+  privacyLevel: GitHubSponsorshipPrivacy
+  /** The entity that is sponsoring. Returns null if the sponsorship is private */
+  sponsor?: Maybe<GitHubUser>
+}
+
+/** The connection type for Sponsorship. */
+export type GitHubSponsorshipConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubSponsorshipEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubSponsorship>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubSponsorshipEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubSponsorship>
+}
+
+/** Ordering options for sponsorship connections. */
+export type GitHubSponsorshipOrder = {
+  /** The ordering direction. */
+  direction: GitHubOrderDirection
+}
+
+/** The privacy of a sponsorship */
+export enum GitHubSponsorshipPrivacy {
+  /** Public */
+  Public = 'PUBLIC',
+  /** Private */
+  Private = 'PRIVATE',
+}
+
+/** A GitHub Sponsors listing. */
+export type GitHubSponsorsListing = GitHubNode & {
+  /** The full description of the listing. */
+  fullDescription: Scalars['String']
+  /** The full description of the listing rendered to HTML. */
+  fullDescriptionHTML: Scalars['GitHubHTML']
+  id: Scalars['ID']
+  /** The listing's full name. */
+  name: Scalars['String']
+  /** The short description of the listing. */
+  shortDescription: Scalars['String']
+  /** The short name of the listing. */
+  slug: Scalars['String']
+}
 
 /** The connection type for User. */
 export type GitHubStargazerConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubStargazerEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubStargazerEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubUser>>>;
+  nodes?: Maybe<Array<Maybe<GitHubUser>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** Represents a user that's starred a repository. */
 export type GitHubStargazerEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
-  node: GitHubUser;
+  cursor: Scalars['String']
+  node: GitHubUser
   /** Identifies when the item was starred. */
-  starredAt: Scalars["GitHubDateTime"];
-};
+  starredAt: Scalars['GitHubDateTime']
+}
 
 /** Ways in which star connections can be ordered. */
 export type GitHubStarOrder = {
   /** The field in which to order nodes by. */
-  field: GitHubStarOrderField;
+  field: GitHubStarOrderField
   /** The direction in which to order nodes. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which star connections can be ordered. */
 export enum GitHubStarOrderField {
   /** Allows ordering a list of stars by when they were created. */
-  StarredAt = "STARRED_AT"
+  StarredAt = 'STARRED_AT',
 }
 
 /** Things that can be starred. */
 export type GitHubStarrable = {
-  id: Scalars["ID"];
+  id: Scalars['ID']
   /** A list of users who have starred this starrable. */
-  stargazers: GitHubStargazerConnection;
+  stargazers: GitHubStargazerConnection
   /** Returns a boolean indicating whether the viewing user has starred this starrable. */
-  viewerHasStarred: Scalars["Boolean"];
-};
+  viewerHasStarred: Scalars['Boolean']
+}
 
 /** Things that can be starred. */
 export type GitHubStarrableStargazersArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  orderBy?: Maybe<GitHubStarOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy?: Maybe<GitHubStarOrder>
+}
 
 /** The connection type for Repository. */
 export type GitHubStarredRepositoryConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubStarredRepositoryEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubStarredRepositoryEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubRepository>>>;
+  nodes?: Maybe<Array<Maybe<GitHubRepository>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** Represents a starred repository. */
 export type GitHubStarredRepositoryEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
-  node: GitHubRepository;
+  cursor: Scalars['String']
+  node: GitHubRepository
   /** Identifies when the item was starred. */
-  starredAt: Scalars["GitHubDateTime"];
-};
+  starredAt: Scalars['GitHubDateTime']
+}
 
 /** Represents a commit status. */
 export type GitHubStatus = GitHubNode & {
   /** The commit this status is attached to. */
-  commit?: Maybe<GitHubCommit>;
+  commit?: Maybe<GitHubCommit>
   /** Looks up an individual status context by context name. */
-  context?: Maybe<GitHubStatusContext>;
+  context?: Maybe<GitHubStatusContext>
   /** The individual status contexts for this commit. */
-  contexts: Array<GitHubStatusContext>;
-  id: Scalars["ID"];
+  contexts: Array<GitHubStatusContext>
+  id: Scalars['ID']
   /** The combined commit status. */
-  state: GitHubStatusState;
-};
+  state: GitHubStatusState
+}
 
 /** Represents a commit status. */
 export type GitHubStatusContextArgs = {
-  name: Scalars["String"];
-};
+  name: Scalars['String']
+}
 
 /** Represents an individual commit status context */
 export type GitHubStatusContext = GitHubNode & {
+  /** The avatar of the OAuth application or the user that created the status */
+  avatarUrl?: Maybe<Scalars['GitHubURI']>
   /** This commit this status context is attached to. */
-  commit?: Maybe<GitHubCommit>;
+  commit?: Maybe<GitHubCommit>
   /** The name of this status context. */
-  context: Scalars["String"];
+  context: Scalars['String']
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** The actor who created this status context. */
-  creator?: Maybe<GitHubActor>;
+  creator?: Maybe<GitHubActor>
   /** The description for this status context. */
-  description?: Maybe<Scalars["String"]>;
-  id: Scalars["ID"];
+  description?: Maybe<Scalars['String']>
+  id: Scalars['ID']
   /** The state of this status context. */
-  state: GitHubStatusState;
+  state: GitHubStatusState
   /** The URL for this status context. */
-  targetUrl?: Maybe<Scalars["GitHubURI"]>;
-};
+  targetUrl?: Maybe<Scalars['GitHubURI']>
+}
+
+/** Represents an individual commit status context */
+export type GitHubStatusContextAvatarUrlArgs = {
+  size: Scalars['Int']
+}
 
 /** The possible commit status states. */
 export enum GitHubStatusState {
   /** Status is expected. */
-  Expected = "EXPECTED",
+  Expected = 'EXPECTED',
   /** Status is errored. */
-  Error = "ERROR",
+  Error = 'ERROR',
   /** Status is failing. */
-  Failure = "FAILURE",
+  Failure = 'FAILURE',
   /** Status is pending. */
-  Pending = "PENDING",
+  Pending = 'PENDING',
   /** Status is successful. */
-  Success = "SUCCESS"
+  Success = 'SUCCESS',
 }
 
 /** Autogenerated input type of SubmitPullRequestReview */
 export type GitHubSubmitPullRequestReviewInput = {
   /** The Pull Request Review ID to submit. */
-  pullRequestReviewId: Scalars["ID"];
+  pullRequestReviewId: Scalars['ID']
   /** The event to send to the Pull Request Review. */
-  event: GitHubPullRequestReviewEvent;
+  event: GitHubPullRequestReviewEvent
   /** The text field to set on the Pull Request Review. */
-  body?: Maybe<Scalars["String"]>;
+  body?: Maybe<Scalars['String']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of SubmitPullRequestReview */
 export type GitHubSubmitPullRequestReviewPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The submitted pull request review. */
-  pullRequestReview?: Maybe<GitHubPullRequestReview>;
-};
+  pullRequestReview?: Maybe<GitHubPullRequestReview>
+}
 
 /** Entities that can be subscribed to for web and email notifications. */
 export type GitHubSubscribable = {
-  id: Scalars["ID"];
+  id: Scalars['ID']
   /** Check if the viewer is able to change their subscription status for the repository. */
-  viewerCanSubscribe: Scalars["Boolean"];
+  viewerCanSubscribe: Scalars['Boolean']
   /** Identifies if the viewer is watching, not watching, or ignoring the subscribable entity. */
-  viewerSubscription?: Maybe<GitHubSubscriptionState>;
-};
+  viewerSubscription?: Maybe<GitHubSubscriptionState>
+}
 
 /** Represents a 'subscribed' event on a given `Subscribable`. */
 export type GitHubSubscribedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** Object referenced by event. */
-  subscribable: GitHubSubscribable;
-};
+  subscribable: GitHubSubscribable
+}
 
 /** The possible states of a subscription. */
 export enum GitHubSubscriptionState {
   /** The User is only notified when participating or @mentioned. */
-  Unsubscribed = "UNSUBSCRIBED",
+  Unsubscribed = 'UNSUBSCRIBED',
   /** The User is notified of all conversations. */
-  Subscribed = "SUBSCRIBED",
+  Subscribed = 'SUBSCRIBED',
   /** The User is never notified. */
-  Ignored = "IGNORED"
+  Ignored = 'IGNORED',
 }
 
 /** A suggestion to review a pull request based on a user's commit history and review comments. */
 export type GitHubSuggestedReviewer = {
   /** Is this suggestion based on past commits? */
-  isAuthor: Scalars["Boolean"];
+  isAuthor: Scalars['Boolean']
   /** Is this suggestion based on past review comments? */
-  isCommenter: Scalars["Boolean"];
+  isCommenter: Scalars['Boolean']
   /** Identifies the user suggested to review the pull request. */
-  reviewer: GitHubUser;
-};
+  reviewer: GitHubUser
+}
 
 /** Represents a Git tag. */
 export type GitHubTag = GitHubNode &
   GitHubGitObject & {
     /** An abbreviated version of the Git object ID */
-    abbreviatedOid: Scalars["String"];
+    abbreviatedOid: Scalars['String']
     /** The HTTP path for this Git object */
-    commitResourcePath: Scalars["GitHubURI"];
+    commitResourcePath: Scalars['GitHubURI']
     /** The HTTP URL for this Git object */
-    commitUrl: Scalars["GitHubURI"];
-    id: Scalars["ID"];
+    commitUrl: Scalars['GitHubURI']
+    id: Scalars['ID']
     /** The Git tag message. */
-    message?: Maybe<Scalars["String"]>;
+    message?: Maybe<Scalars['String']>
     /** The Git tag name. */
-    name: Scalars["String"];
+    name: Scalars['String']
     /** The Git object ID */
-    oid: Scalars["GitHubGitObjectID"];
+    oid: Scalars['GitHubGitObjectID']
     /** The Repository the Git object belongs to */
-    repository: GitHubRepository;
+    repository: GitHubRepository
     /** Details about the tag author. */
-    tagger?: Maybe<GitHubGitActor>;
+    tagger?: Maybe<GitHubGitActor>
     /** The Git object the tag points to. */
-    target: GitHubGitObject;
-  };
+    target: GitHubGitObject
+  }
 
 /** A team of users in an organization. */
 export type GitHubTeam = GitHubNode &
   GitHubSubscribable &
   GitHubMemberStatusable & {
     /** A list of teams that are ancestors of this team. */
-    ancestors: GitHubTeamConnection;
+    ancestors: GitHubTeamConnection
     /** A URL pointing to the team's avatar. */
-    avatarUrl?: Maybe<Scalars["GitHubURI"]>;
+    avatarUrl?: Maybe<Scalars['GitHubURI']>
     /** List of child teams belonging to this team */
-    childTeams: GitHubTeamConnection;
+    childTeams: GitHubTeamConnection
     /** The slug corresponding to the organization and team. */
-    combinedSlug: Scalars["String"];
+    combinedSlug: Scalars['String']
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** The description of the team. */
-    description?: Maybe<Scalars["String"]>;
+    description?: Maybe<Scalars['String']>
+    /** Find a team discussion by its number. */
+    discussion?: Maybe<GitHubTeamDiscussion>
+    /** A list of team discussions. */
+    discussions: GitHubTeamDiscussionConnection
+    /** The HTTP path for team discussions */
+    discussionsResourcePath: Scalars['GitHubURI']
+    /** The HTTP URL for team discussions */
+    discussionsUrl: Scalars['GitHubURI']
     /** The HTTP path for editing this team */
-    editTeamResourcePath: Scalars["GitHubURI"];
+    editTeamResourcePath: Scalars['GitHubURI']
     /** The HTTP URL for editing this team */
-    editTeamUrl: Scalars["GitHubURI"];
-    id: Scalars["ID"];
+    editTeamUrl: Scalars['GitHubURI']
+    id: Scalars['ID']
     /** A list of pending invitations for users to this team */
-    invitations?: Maybe<GitHubOrganizationInvitationConnection>;
+    invitations?: Maybe<GitHubOrganizationInvitationConnection>
     /** Get the status messages members of this entity have set that are either public or visible only to the organization. */
-    memberStatuses: GitHubUserStatusConnection;
+    memberStatuses: GitHubUserStatusConnection
     /** A list of users who are members of this team. */
-    members: GitHubTeamMemberConnection;
+    members: GitHubTeamMemberConnection
     /** The HTTP path for the team' members */
-    membersResourcePath: Scalars["GitHubURI"];
+    membersResourcePath: Scalars['GitHubURI']
     /** The HTTP URL for the team' members */
-    membersUrl: Scalars["GitHubURI"];
+    membersUrl: Scalars['GitHubURI']
     /** The name of the team. */
-    name: Scalars["String"];
+    name: Scalars['String']
     /** The HTTP path creating a new team */
-    newTeamResourcePath: Scalars["GitHubURI"];
+    newTeamResourcePath: Scalars['GitHubURI']
     /** The HTTP URL creating a new team */
-    newTeamUrl: Scalars["GitHubURI"];
+    newTeamUrl: Scalars['GitHubURI']
     /** The organization that owns this team. */
-    organization: GitHubOrganization;
+    organization: GitHubOrganization
     /** The parent team of the team. */
-    parentTeam?: Maybe<GitHubTeam>;
+    parentTeam?: Maybe<GitHubTeam>
     /** The level of privacy the team has. */
-    privacy: GitHubTeamPrivacy;
+    privacy: GitHubTeamPrivacy
     /** A list of repositories this team has access to. */
-    repositories: GitHubTeamRepositoryConnection;
+    repositories: GitHubTeamRepositoryConnection
     /** The HTTP path for this team's repositories */
-    repositoriesResourcePath: Scalars["GitHubURI"];
+    repositoriesResourcePath: Scalars['GitHubURI']
     /** The HTTP URL for this team's repositories */
-    repositoriesUrl: Scalars["GitHubURI"];
+    repositoriesUrl: Scalars['GitHubURI']
     /** The HTTP path for this team */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
     /** The slug corresponding to the team. */
-    slug: Scalars["String"];
+    slug: Scalars['String']
     /** The HTTP path for this team's teams */
-    teamsResourcePath: Scalars["GitHubURI"];
+    teamsResourcePath: Scalars['GitHubURI']
     /** The HTTP URL for this team's teams */
-    teamsUrl: Scalars["GitHubURI"];
+    teamsUrl: Scalars['GitHubURI']
     /** Identifies the date and time when the object was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
     /** The HTTP URL for this team */
-    url: Scalars["GitHubURI"];
+    url: Scalars['GitHubURI']
     /** Team is adminable by the viewer. */
-    viewerCanAdminister: Scalars["Boolean"];
+    viewerCanAdminister: Scalars['Boolean']
     /** Check if the viewer is able to change their subscription status for the repository. */
-    viewerCanSubscribe: Scalars["Boolean"];
+    viewerCanSubscribe: Scalars['Boolean']
     /** Identifies if the viewer is watching, not watching, or ignoring the subscribable entity. */
-    viewerSubscription?: Maybe<GitHubSubscriptionState>;
-  };
+    viewerSubscription?: Maybe<GitHubSubscriptionState>
+  }
 
 /** A team of users in an organization. */
 export type GitHubTeamAncestorsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A team of users in an organization. */
 export type GitHubTeamAvatarUrlArgs = {
-  size: Scalars["Int"];
-};
+  size: Scalars['Int']
+}
 
 /** A team of users in an organization. */
 export type GitHubTeamChildTeamsArgs = {
-  orderBy?: Maybe<GitHubTeamOrder>;
-  userLogins?: Maybe<Array<Scalars["String"]>>;
-  immediateOnly: Scalars["Boolean"];
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  orderBy?: Maybe<GitHubTeamOrder>
+  userLogins?: Maybe<Array<Scalars['String']>>
+  immediateOnly: Scalars['Boolean']
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** A team of users in an organization. */
+export type GitHubTeamDiscussionArgs = {
+  number: Scalars['Int']
+}
+
+/** A team of users in an organization. */
+export type GitHubTeamDiscussionsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  isPinned?: Maybe<Scalars['Boolean']>
+  orderBy?: Maybe<GitHubTeamDiscussionOrder>
+}
 
 /** A team of users in an organization. */
 export type GitHubTeamInvitationsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A team of users in an organization. */
 export type GitHubTeamMemberStatusesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  orderBy?: Maybe<GitHubUserStatusOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy: GitHubUserStatusOrder
+}
 
 /** A team of users in an organization. */
 export type GitHubTeamMembersArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  query?: Maybe<Scalars["String"]>;
-  membership: GitHubTeamMembershipType;
-  role?: Maybe<GitHubTeamMemberRole>;
-  orderBy?: Maybe<GitHubTeamMemberOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  query?: Maybe<Scalars['String']>
+  membership: GitHubTeamMembershipType
+  role?: Maybe<GitHubTeamMemberRole>
+  orderBy?: Maybe<GitHubTeamMemberOrder>
+}
 
 /** A team of users in an organization. */
 export type GitHubTeamRepositoriesArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  query?: Maybe<Scalars["String"]>;
-  orderBy?: Maybe<GitHubTeamRepositoryOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  query?: Maybe<Scalars['String']>
+  orderBy?: Maybe<GitHubTeamRepositoryOrder>
+}
+
+/** Audit log entry for a team.add_member event. */
+export type GitHubTeamAddMemberAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubTeamAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** Whether the team was mapped to an LDAP Group. */
+    isLdapMapped?: Maybe<Scalars['Boolean']>
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The team associated with the action */
+    team?: Maybe<GitHubTeam>
+    /** The name of the team */
+    teamName?: Maybe<Scalars['String']>
+    /** The HTTP path for this team */
+    teamResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for this team */
+    teamUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a team.add_repository event. */
+export type GitHubTeamAddRepositoryAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData &
+  GitHubTeamAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** Whether the team was mapped to an LDAP Group. */
+    isLdapMapped?: Maybe<Scalars['Boolean']>
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The team associated with the action */
+    team?: Maybe<GitHubTeam>
+    /** The name of the team */
+    teamName?: Maybe<Scalars['String']>
+    /** The HTTP path for this team */
+    teamResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for this team */
+    teamUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Metadata for an audit entry with action team.* */
+export type GitHubTeamAuditEntryData = {
+  /** The team associated with the action */
+  team?: Maybe<GitHubTeam>
+  /** The name of the team */
+  teamName?: Maybe<Scalars['String']>
+  /** The HTTP path for this team */
+  teamResourcePath?: Maybe<Scalars['GitHubURI']>
+  /** The HTTP URL for this team */
+  teamUrl?: Maybe<Scalars['GitHubURI']>
+}
+
+/** Audit log entry for a team.change_parent_team event. */
+export type GitHubTeamChangeParentTeamAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubTeamAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** Whether the team was mapped to an LDAP Group. */
+    isLdapMapped?: Maybe<Scalars['Boolean']>
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The new parent team. */
+    parentTeam?: Maybe<GitHubTeam>
+    /** The name of the new parent team */
+    parentTeamName?: Maybe<Scalars['String']>
+    /** The name of the former parent team */
+    parentTeamNameWas?: Maybe<Scalars['String']>
+    /** The HTTP path for the parent team */
+    parentTeamResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the parent team */
+    parentTeamUrl?: Maybe<Scalars['GitHubURI']>
+    /** The former parent team. */
+    parentTeamWas?: Maybe<GitHubTeam>
+    /** The HTTP path for the previous parent team */
+    parentTeamWasResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the previous parent team */
+    parentTeamWasUrl?: Maybe<Scalars['GitHubURI']>
+    /** The team associated with the action */
+    team?: Maybe<GitHubTeam>
+    /** The name of the team */
+    teamName?: Maybe<Scalars['String']>
+    /** The HTTP path for this team */
+    teamResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for this team */
+    teamUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
 
 /** The connection type for Team. */
 export type GitHubTeamConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubTeamEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubTeamEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubTeam>>>;
+  nodes?: Maybe<Array<Maybe<GitHubTeam>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
+
+/** A team discussion. */
+export type GitHubTeamDiscussion = GitHubNode &
+  GitHubComment &
+  GitHubDeletable &
+  GitHubReactable &
+  GitHubSubscribable &
+  GitHubUniformResourceLocatable &
+  GitHubUpdatable &
+  GitHubUpdatableComment & {
+    /** The actor who authored the comment. */
+    author?: Maybe<GitHubActor>
+    /** Author's association with the discussion's team. */
+    authorAssociation: GitHubCommentAuthorAssociation
+    /** The body as Markdown. */
+    body: Scalars['String']
+    /** The body rendered to HTML. */
+    bodyHTML: Scalars['GitHubHTML']
+    /** The body rendered to text. */
+    bodyText: Scalars['String']
+    /** Identifies the discussion body hash. */
+    bodyVersion: Scalars['String']
+    /** A list of comments on this discussion. */
+    comments: GitHubTeamDiscussionCommentConnection
+    /** The HTTP path for discussion comments */
+    commentsResourcePath: Scalars['GitHubURI']
+    /** The HTTP URL for discussion comments */
+    commentsUrl: Scalars['GitHubURI']
+    /** Identifies the date and time when the object was created. */
+    createdAt: Scalars['GitHubDateTime']
+    /** Check if this comment was created via an email reply. */
+    createdViaEmail: Scalars['Boolean']
+    /** Identifies the primary key from the database. */
+    databaseId?: Maybe<Scalars['Int']>
+    /** The actor who edited the comment. */
+    editor?: Maybe<GitHubActor>
+    id: Scalars['ID']
+    /** Check if this comment was edited and includes an edit with the creation data */
+    includesCreatedEdit: Scalars['Boolean']
+    /** Whether or not the discussion is pinned. */
+    isPinned: Scalars['Boolean']
+    /** Whether or not the discussion is only visible to team members and org admins. */
+    isPrivate: Scalars['Boolean']
+    /** The moment the editor made the last edit */
+    lastEditedAt?: Maybe<Scalars['GitHubDateTime']>
+    /** Identifies the discussion within its team. */
+    number: Scalars['Int']
+    /** Identifies when the comment was published at. */
+    publishedAt?: Maybe<Scalars['GitHubDateTime']>
+    /** A list of reactions grouped by content left on the subject. */
+    reactionGroups?: Maybe<Array<GitHubReactionGroup>>
+    /** A list of Reactions left on the Issue. */
+    reactions: GitHubReactionConnection
+    /** The HTTP path for this discussion */
+    resourcePath: Scalars['GitHubURI']
+    /** The team that defines the context of this discussion. */
+    team: GitHubTeam
+    /** The title of the discussion */
+    title: Scalars['String']
+    /** Identifies the date and time when the object was last updated. */
+    updatedAt: Scalars['GitHubDateTime']
+    /** The HTTP URL for this discussion */
+    url: Scalars['GitHubURI']
+    /** A list of edits to this content. */
+    userContentEdits?: Maybe<GitHubUserContentEditConnection>
+    /** Check if the current viewer can delete this object. */
+    viewerCanDelete: Scalars['Boolean']
+    /** Whether or not the current viewer can pin this discussion. */
+    viewerCanPin: Scalars['Boolean']
+    /** Can user react to this subject */
+    viewerCanReact: Scalars['Boolean']
+    /** Check if the viewer is able to change their subscription status for the repository. */
+    viewerCanSubscribe: Scalars['Boolean']
+    /** Check if the current viewer can update this object. */
+    viewerCanUpdate: Scalars['Boolean']
+    /** Reasons why the current viewer can not update this comment. */
+    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>
+    /** Did the viewer author this comment. */
+    viewerDidAuthor: Scalars['Boolean']
+    /** Identifies if the viewer is watching, not watching, or ignoring the subscribable entity. */
+    viewerSubscription?: Maybe<GitHubSubscriptionState>
+  }
+
+/** A team discussion. */
+export type GitHubTeamDiscussionCommentsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy?: Maybe<GitHubTeamDiscussionCommentOrder>
+  fromComment?: Maybe<Scalars['Int']>
+}
+
+/** A team discussion. */
+export type GitHubTeamDiscussionReactionsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  content?: Maybe<GitHubReactionContent>
+  orderBy?: Maybe<GitHubReactionOrder>
+}
+
+/** A team discussion. */
+export type GitHubTeamDiscussionUserContentEditsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** A comment on a team discussion. */
+export type GitHubTeamDiscussionComment = GitHubNode &
+  GitHubComment &
+  GitHubDeletable &
+  GitHubReactable &
+  GitHubUniformResourceLocatable &
+  GitHubUpdatable &
+  GitHubUpdatableComment & {
+    /** The actor who authored the comment. */
+    author?: Maybe<GitHubActor>
+    /** Author's association with the comment's team. */
+    authorAssociation: GitHubCommentAuthorAssociation
+    /** The body as Markdown. */
+    body: Scalars['String']
+    /** The body rendered to HTML. */
+    bodyHTML: Scalars['GitHubHTML']
+    /** The body rendered to text. */
+    bodyText: Scalars['String']
+    /** The current version of the body content. */
+    bodyVersion: Scalars['String']
+    /** Identifies the date and time when the object was created. */
+    createdAt: Scalars['GitHubDateTime']
+    /** Check if this comment was created via an email reply. */
+    createdViaEmail: Scalars['Boolean']
+    /** Identifies the primary key from the database. */
+    databaseId?: Maybe<Scalars['Int']>
+    /** The discussion this comment is about. */
+    discussion: GitHubTeamDiscussion
+    /** The actor who edited the comment. */
+    editor?: Maybe<GitHubActor>
+    id: Scalars['ID']
+    /** Check if this comment was edited and includes an edit with the creation data */
+    includesCreatedEdit: Scalars['Boolean']
+    /** The moment the editor made the last edit */
+    lastEditedAt?: Maybe<Scalars['GitHubDateTime']>
+    /** Identifies the comment number. */
+    number: Scalars['Int']
+    /** Identifies when the comment was published at. */
+    publishedAt?: Maybe<Scalars['GitHubDateTime']>
+    /** A list of reactions grouped by content left on the subject. */
+    reactionGroups?: Maybe<Array<GitHubReactionGroup>>
+    /** A list of Reactions left on the Issue. */
+    reactions: GitHubReactionConnection
+    /** The HTTP path for this comment */
+    resourcePath: Scalars['GitHubURI']
+    /** Identifies the date and time when the object was last updated. */
+    updatedAt: Scalars['GitHubDateTime']
+    /** The HTTP URL for this comment */
+    url: Scalars['GitHubURI']
+    /** A list of edits to this content. */
+    userContentEdits?: Maybe<GitHubUserContentEditConnection>
+    /** Check if the current viewer can delete this object. */
+    viewerCanDelete: Scalars['Boolean']
+    /** Can user react to this subject */
+    viewerCanReact: Scalars['Boolean']
+    /** Check if the current viewer can update this object. */
+    viewerCanUpdate: Scalars['Boolean']
+    /** Reasons why the current viewer can not update this comment. */
+    viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>
+    /** Did the viewer author this comment. */
+    viewerDidAuthor: Scalars['Boolean']
+  }
+
+/** A comment on a team discussion. */
+export type GitHubTeamDiscussionCommentReactionsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  content?: Maybe<GitHubReactionContent>
+  orderBy?: Maybe<GitHubReactionOrder>
+}
+
+/** A comment on a team discussion. */
+export type GitHubTeamDiscussionCommentUserContentEditsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** The connection type for TeamDiscussionComment. */
+export type GitHubTeamDiscussionCommentConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubTeamDiscussionCommentEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubTeamDiscussionComment>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubTeamDiscussionCommentEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubTeamDiscussionComment>
+}
+
+/** Ways in which team discussion comment connections can be ordered. */
+export type GitHubTeamDiscussionCommentOrder = {
+  /** The field by which to order nodes. */
+  field: GitHubTeamDiscussionCommentOrderField
+  /** The direction in which to order nodes. */
+  direction: GitHubOrderDirection
+}
+
+/** Properties by which team discussion comment connections can be ordered. */
+export enum GitHubTeamDiscussionCommentOrderField {
+  /** Allows sequential ordering of team discussion comments (which is equivalent to chronological ordering). */
+  Number = 'NUMBER',
+}
+
+/** The connection type for TeamDiscussion. */
+export type GitHubTeamDiscussionConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubTeamDiscussionEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubTeamDiscussion>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubTeamDiscussionEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubTeamDiscussion>
+}
+
+/** Ways in which team discussion connections can be ordered. */
+export type GitHubTeamDiscussionOrder = {
+  /** The field by which to order nodes. */
+  field: GitHubTeamDiscussionOrderField
+  /** The direction in which to order nodes. */
+  direction: GitHubOrderDirection
+}
+
+/** Properties by which team discussion connections can be ordered. */
+export enum GitHubTeamDiscussionOrderField {
+  /** Allows chronological ordering of team discussions. */
+  CreatedAt = 'CREATED_AT',
+}
 
 /** An edge in a connection. */
 export type GitHubTeamEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubTeam>;
-};
+  node?: Maybe<GitHubTeam>
+}
 
 /** The connection type for User. */
 export type GitHubTeamMemberConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubTeamMemberEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubTeamMemberEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubUser>>>;
+  nodes?: Maybe<Array<Maybe<GitHubUser>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** Represents a user who is a member of a team. */
 export type GitHubTeamMemberEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The HTTP path to the organization's member access page. */
-  memberAccessResourcePath: Scalars["GitHubURI"];
+  memberAccessResourcePath: Scalars['GitHubURI']
   /** The HTTP URL to the organization's member access page. */
-  memberAccessUrl: Scalars["GitHubURI"];
-  node: GitHubUser;
+  memberAccessUrl: Scalars['GitHubURI']
+  node: GitHubUser
   /** The role the member has on the team. */
-  role: GitHubTeamMemberRole;
-};
+  role: GitHubTeamMemberRole
+}
 
 /** Ordering options for team member connections */
 export type GitHubTeamMemberOrder = {
   /** The field to order team members by. */
-  field: GitHubTeamMemberOrderField;
+  field: GitHubTeamMemberOrderField
   /** The ordering direction. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which team member connections can be ordered. */
 export enum GitHubTeamMemberOrderField {
   /** Order team members by login */
-  Login = "LOGIN",
+  Login = 'LOGIN',
   /** Order team members by creation time */
-  CreatedAt = "CREATED_AT"
+  CreatedAt = 'CREATED_AT',
 }
 
 /** The possible team member roles; either 'maintainer' or 'member'. */
 export enum GitHubTeamMemberRole {
   /** A team maintainer has permission to add and remove team members. */
-  Maintainer = "MAINTAINER",
+  Maintainer = 'MAINTAINER',
   /** A team member has no administrative permissions on the team. */
-  Member = "MEMBER"
+  Member = 'MEMBER',
 }
 
 /** Defines which types of team members are included in the returned list. Can be one of IMMEDIATE, CHILD_TEAM or ALL. */
 export enum GitHubTeamMembershipType {
   /** Includes only immediate members of the team. */
-  Immediate = "IMMEDIATE",
+  Immediate = 'IMMEDIATE',
   /** Includes only child team members for the team. */
-  ChildTeam = "CHILD_TEAM",
+  ChildTeam = 'CHILD_TEAM',
   /** Includes immediate and child team members for the team. */
-  All = "ALL"
+  All = 'ALL',
 }
 
 /** Ways in which team connections can be ordered. */
 export type GitHubTeamOrder = {
   /** The field in which to order nodes by. */
-  field: GitHubTeamOrderField;
+  field: GitHubTeamOrderField
   /** The direction in which to order nodes. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which team connections can be ordered. */
 export enum GitHubTeamOrderField {
   /** Allows ordering a list of teams by name. */
-  Name = "NAME"
+  Name = 'NAME',
 }
 
 /** The possible team privacy values. */
 export enum GitHubTeamPrivacy {
   /** A secret team can only be seen by its members. */
-  Secret = "SECRET",
+  Secret = 'SECRET',
   /** A visible team can be seen and @mentioned by every member of the organization. */
-  Visible = "VISIBLE"
+  Visible = 'VISIBLE',
 }
+
+/** Audit log entry for a team.remove_member event. */
+export type GitHubTeamRemoveMemberAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubTeamAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** Whether the team was mapped to an LDAP Group. */
+    isLdapMapped?: Maybe<Scalars['Boolean']>
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The team associated with the action */
+    team?: Maybe<GitHubTeam>
+    /** The name of the team */
+    teamName?: Maybe<Scalars['String']>
+    /** The HTTP path for this team */
+    teamResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for this team */
+    teamUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
+
+/** Audit log entry for a team.remove_repository event. */
+export type GitHubTeamRemoveRepositoryAuditEntry = GitHubNode &
+  GitHubAuditEntry &
+  GitHubOrganizationAuditEntryData &
+  GitHubRepositoryAuditEntryData &
+  GitHubTeamAuditEntryData & {
+    /** The action name */
+    action: Scalars['String']
+    /** The user who initiated the action */
+    actor?: Maybe<GitHubAuditEntryActor>
+    /** The IP address of the actor */
+    actorIp?: Maybe<Scalars['String']>
+    /** A readable representation of the actor's location */
+    actorLocation?: Maybe<GitHubActorLocation>
+    /** The username of the user who initiated the action */
+    actorLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the actor. */
+    actorResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the actor. */
+    actorUrl?: Maybe<Scalars['GitHubURI']>
+    /** The time the action was initiated */
+    createdAt: Scalars['GitHubPreciseDateTime']
+    id: Scalars['ID']
+    /** Whether the team was mapped to an LDAP Group. */
+    isLdapMapped?: Maybe<Scalars['Boolean']>
+    /** The corresponding operation type for the action */
+    operationType?: Maybe<GitHubOperationType>
+    /** The Organization associated with the Audit Entry. */
+    organization?: Maybe<GitHubOrganization>
+    /** The name of the Organization. */
+    organizationName?: Maybe<Scalars['String']>
+    /** The HTTP path for the organization */
+    organizationResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the organization */
+    organizationUrl?: Maybe<Scalars['GitHubURI']>
+    /** The repository associated with the action */
+    repository?: Maybe<GitHubRepository>
+    /** The name of the repository */
+    repositoryName?: Maybe<Scalars['String']>
+    /** The HTTP path for the repository */
+    repositoryResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the repository */
+    repositoryUrl?: Maybe<Scalars['GitHubURI']>
+    /** The team associated with the action */
+    team?: Maybe<GitHubTeam>
+    /** The name of the team */
+    teamName?: Maybe<Scalars['String']>
+    /** The HTTP path for this team */
+    teamResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for this team */
+    teamUrl?: Maybe<Scalars['GitHubURI']>
+    /** The user affected by the action */
+    user?: Maybe<GitHubUser>
+    /** For actions involving two users, the actor is the initiator and the user is the affected user. */
+    userLogin?: Maybe<Scalars['String']>
+    /** The HTTP path for the user. */
+    userResourcePath?: Maybe<Scalars['GitHubURI']>
+    /** The HTTP URL for the user. */
+    userUrl?: Maybe<Scalars['GitHubURI']>
+  }
 
 /** The connection type for Repository. */
 export type GitHubTeamRepositoryConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubTeamRepositoryEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubTeamRepositoryEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubRepository>>>;
+  nodes?: Maybe<Array<Maybe<GitHubRepository>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** Represents a team repository. */
 export type GitHubTeamRepositoryEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
-  node: GitHubRepository;
+  cursor: Scalars['String']
+  node: GitHubRepository
   /** The permission level the team has on the repository */
-  permission: GitHubRepositoryPermission;
-};
+  permission: GitHubRepositoryPermission
+}
 
 /** Ordering options for team repository connections */
 export type GitHubTeamRepositoryOrder = {
   /** The field to order repositories by. */
-  field: GitHubTeamRepositoryOrderField;
+  field: GitHubTeamRepositoryOrderField
   /** The ordering direction. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which team repository connections can be ordered. */
 export enum GitHubTeamRepositoryOrderField {
   /** Order repositories by creation time */
-  CreatedAt = "CREATED_AT",
+  CreatedAt = 'CREATED_AT',
   /** Order repositories by update time */
-  UpdatedAt = "UPDATED_AT",
+  UpdatedAt = 'UPDATED_AT',
   /** Order repositories by push time */
-  PushedAt = "PUSHED_AT",
+  PushedAt = 'PUSHED_AT',
   /** Order repositories by name */
-  Name = "NAME",
+  Name = 'NAME',
   /** Order repositories by permission */
-  Permission = "PERMISSION",
+  Permission = 'PERMISSION',
   /** Order repositories by number of stargazers */
-  Stargazers = "STARGAZERS"
+  Stargazers = 'STARGAZERS',
 }
 
 /** The role of a user on a team. */
 export enum GitHubTeamRole {
   /** User has admin rights on the team. */
-  Admin = "ADMIN",
+  Admin = 'ADMIN',
   /** User is a member of the team. */
-  Member = "MEMBER"
+  Member = 'MEMBER',
 }
 
 /** A text match within a search result. */
 export type GitHubTextMatch = {
   /** The specific text fragment within the property matched on. */
-  fragment: Scalars["String"];
+  fragment: Scalars['String']
   /** Highlights within the matched fragment. */
-  highlights: Array<GitHubTextMatchHighlight>;
+  highlights: Array<GitHubTextMatchHighlight>
   /** The property matched on. */
-  property: Scalars["String"];
-};
+  property: Scalars['String']
+}
 
 /** Represents a single highlight in a search result match. */
 export type GitHubTextMatchHighlight = {
   /** The indice in the fragment where the matched text begins. */
-  beginIndice: Scalars["Int"];
+  beginIndice: Scalars['Int']
   /** The indice in the fragment where the matched text ends. */
-  endIndice: Scalars["Int"];
+  endIndice: Scalars['Int']
   /** The text matched. */
-  text: Scalars["String"];
-};
+  text: Scalars['String']
+}
 
 /** A topic aggregates entities that are related to a subject. */
 export type GitHubTopic = GitHubNode &
   GitHubStarrable & {
-    id: Scalars["ID"];
+    id: Scalars['ID']
     /** The topic's name. */
-    name: Scalars["String"];
+    name: Scalars['String']
     /** A list of related topics, including aliases of this topic, sorted with the most relevant
      * first. Returns up to 10 Topics.
      */
-    relatedTopics: Array<GitHubTopic>;
+    relatedTopics: Array<GitHubTopic>
     /** A list of users who have starred this starrable. */
-    stargazers: GitHubStargazerConnection;
+    stargazers: GitHubStargazerConnection
     /** Returns a boolean indicating whether the viewing user has starred this starrable. */
-    viewerHasStarred: Scalars["Boolean"];
-  };
+    viewerHasStarred: Scalars['Boolean']
+  }
 
 /** A topic aggregates entities that are related to a subject. */
 export type GitHubTopicRelatedTopicsArgs = {
-  first: Scalars["Int"];
-};
+  first: Scalars['Int']
+}
 
 /** A topic aggregates entities that are related to a subject. */
 export type GitHubTopicStargazersArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  orderBy?: Maybe<GitHubStarOrder>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy?: Maybe<GitHubStarOrder>
+}
+
+/** Metadata for an audit entry with a topic. */
+export type GitHubTopicAuditEntryData = {
+  /** The name of the topic added to the repository */
+  topic?: Maybe<GitHubTopic>
+  /** The name of the topic added to the repository */
+  topicName?: Maybe<Scalars['String']>
+}
 
 /** The connection type for Topic. */
 export type GitHubTopicConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubTopicEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubTopicEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubTopic>>>;
+  nodes?: Maybe<Array<Maybe<GitHubTopic>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubTopicEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubTopic>;
-};
+  node?: Maybe<GitHubTopic>
+}
 
 /** Reason that the suggested topic is declined. */
 export enum GitHubTopicSuggestionDeclineReason {
   /** The suggested topic is not relevant to the repository. */
-  NotRelevant = "NOT_RELEVANT",
+  NotRelevant = 'NOT_RELEVANT',
   /** The suggested topic is too specific for the repository (e.g. #ruby-on-rails-version-4-2-1). */
-  TooSpecific = "TOO_SPECIFIC",
+  TooSpecific = 'TOO_SPECIFIC',
   /** The viewer does not like the suggested topic. */
-  PersonalPreference = "PERSONAL_PREFERENCE",
+  PersonalPreference = 'PERSONAL_PREFERENCE',
   /** The suggested topic is too general for the repository. */
-  TooGeneral = "TOO_GENERAL"
+  TooGeneral = 'TOO_GENERAL',
+}
+
+/** Autogenerated input type of TransferIssue */
+export type GitHubTransferIssueInput = {
+  /** The Node ID of the issue to be transferred */
+  issueId: Scalars['ID']
+  /** The Node ID of the repository the issue should be transferred to */
+  repositoryId: Scalars['ID']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of TransferIssue */
+export type GitHubTransferIssuePayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The issue that was transferred */
+  issue?: Maybe<GitHubIssue>
 }
 
 /** Represents a 'transferred' event on a given issue or pull request. */
 export type GitHubTransferredEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** The repository this came from */
-  fromRepository?: Maybe<GitHubRepository>;
-  id: Scalars["ID"];
+  fromRepository?: Maybe<GitHubRepository>
+  id: Scalars['ID']
   /** Identifies the issue associated with the event. */
-  issue: GitHubIssue;
-};
+  issue: GitHubIssue
+}
 
 /** Represents a Git tree. */
 export type GitHubTree = GitHubNode &
   GitHubGitObject & {
     /** An abbreviated version of the Git object ID */
-    abbreviatedOid: Scalars["String"];
+    abbreviatedOid: Scalars['String']
     /** The HTTP path for this Git object */
-    commitResourcePath: Scalars["GitHubURI"];
+    commitResourcePath: Scalars['GitHubURI']
     /** The HTTP URL for this Git object */
-    commitUrl: Scalars["GitHubURI"];
+    commitUrl: Scalars['GitHubURI']
     /** A list of tree entries. */
-    entries?: Maybe<Array<GitHubTreeEntry>>;
-    id: Scalars["ID"];
+    entries?: Maybe<Array<GitHubTreeEntry>>
+    id: Scalars['ID']
     /** The Git object ID */
-    oid: Scalars["GitHubGitObjectID"];
+    oid: Scalars['GitHubGitObjectID']
     /** The Repository the Git object belongs to */
-    repository: GitHubRepository;
-  };
+    repository: GitHubRepository
+  }
 
 /** Represents a Git tree entry. */
 export type GitHubTreeEntry = {
   /** Entry file mode. */
-  mode: Scalars["Int"];
+  mode: Scalars['Int']
   /** Entry file name. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** Entry file object. */
-  object?: Maybe<GitHubGitObject>;
+  object?: Maybe<GitHubGitObject>
   /** Entry file Git object ID. */
-  oid: Scalars["GitHubGitObjectID"];
+  oid: Scalars['GitHubGitObjectID']
   /** The Repository the tree entry belongs to */
-  repository: GitHubRepository;
+  repository: GitHubRepository
   /** Entry file type. */
-  type: Scalars["String"];
-};
+  type: Scalars['String']
+}
 
 /** Represents an 'unassigned' event on any assignable object. */
 export type GitHubUnassignedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the assignable associated with the event. */
-  assignable: GitHubAssignable;
+  assignable: GitHubAssignable
+  /** Identifies the user or mannequin that was unassigned. */
+  assignee?: Maybe<GitHubAssignee>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** Identifies the subject (user) who was unassigned. */
-  user?: Maybe<GitHubUser>;
-};
+  user?: Maybe<GitHubUser>
+}
+
+/** Autogenerated input type of UnfollowUser */
+export type GitHubUnfollowUserInput = {
+  /** ID of the user to unfollow. */
+  userId: Scalars['ID']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UnfollowUser */
+export type GitHubUnfollowUserPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The user that was unfollowed. */
+  user?: Maybe<GitHubUser>
+}
 
 /** Represents a type that can be retrieved by a URL. */
 export type GitHubUniformResourceLocatable = {
   /** The HTML path to this resource. */
-  resourcePath: Scalars["GitHubURI"];
+  resourcePath: Scalars['GitHubURI']
   /** The URL to this resource. */
-  url: Scalars["GitHubURI"];
-};
+  url: Scalars['GitHubURI']
+}
 
 /** Represents an unknown signature on a Commit or Tag. */
 export type GitHubUnknownSignature = GitHubGitSignature & {
   /** Email used to sign this object. */
-  email: Scalars["String"];
+  email: Scalars['String']
   /** True if the signature is valid and verified by GitHub. */
-  isValid: Scalars["Boolean"];
+  isValid: Scalars['Boolean']
   /** Payload for GPG signing object. Raw ODB object without the signature header. */
-  payload: Scalars["String"];
+  payload: Scalars['String']
   /** ASCII-armored signature header from object. */
-  signature: Scalars["String"];
+  signature: Scalars['String']
   /** GitHub user corresponding to the email signing this commit. */
-  signer?: Maybe<GitHubUser>;
+  signer?: Maybe<GitHubUser>
   /** The state of this signature. `VALID` if signature is valid and verified by
    * GitHub, otherwise represents reason why signature is considered invalid.
    */
-  state: GitHubGitSignatureState;
+  state: GitHubGitSignatureState
   /** True if the signature was made with GitHub's signing key. */
-  wasSignedByGitHub: Scalars["Boolean"];
-};
+  wasSignedByGitHub: Scalars['Boolean']
+}
 
 /** Represents an 'unlabeled' event on a given issue or pull request. */
 export type GitHubUnlabeledEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** Identifies the label associated with the 'unlabeled' event. */
-  label: GitHubLabel;
+  label: GitHubLabel
   /** Identifies the `Labelable` associated with the event. */
-  labelable: GitHubLabelable;
-};
+  labelable: GitHubLabelable
+}
+
+/** Autogenerated input type of UnlinkRepositoryFromProject */
+export type GitHubUnlinkRepositoryFromProjectInput = {
+  /** The ID of the Project linked to the Repository. */
+  projectId: Scalars['ID']
+  /** The ID of the Repository linked to the Project. */
+  repositoryId: Scalars['ID']
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UnlinkRepositoryFromProject */
+export type GitHubUnlinkRepositoryFromProjectPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The linked Project. */
+  project?: Maybe<GitHubProject>
+  /** The linked Repository. */
+  repository?: Maybe<GitHubRepository>
+}
 
 /** Represents an 'unlocked' event on a given issue or pull request. */
 export type GitHubUnlockedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** Object that was unlocked. */
-  lockable: GitHubLockable;
-};
+  lockable: GitHubLockable
+}
 
 /** Autogenerated input type of UnlockLockable */
 export type GitHubUnlockLockableInput = {
   /** ID of the issue or pull request to be unlocked. */
-  lockableId: Scalars["ID"];
+  lockableId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of UnlockLockable */
 export type GitHubUnlockLockablePayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The item that was unlocked. */
-  unlockedRecord?: Maybe<GitHubLockable>;
-};
+  unlockedRecord?: Maybe<GitHubLockable>
+}
 
 /** Autogenerated input type of UnmarkIssueAsDuplicate */
 export type GitHubUnmarkIssueAsDuplicateInput = {
   /** ID of the issue or pull request currently marked as a duplicate. */
-  duplicateId: Scalars["ID"];
+  duplicateId: Scalars['ID']
   /** ID of the issue or pull request currently considered canonical/authoritative/original. */
-  canonicalId: Scalars["ID"];
+  canonicalId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of UnmarkIssueAsDuplicate */
 export type GitHubUnmarkIssueAsDuplicatePayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The issue or pull request that was marked as a duplicate. */
-  duplicate?: Maybe<GitHubIssueOrPullRequest>;
-};
+  duplicate?: Maybe<GitHubIssueOrPullRequest>
+}
 
 /** Autogenerated input type of UnminimizeComment */
 export type GitHubUnminimizeCommentInput = {
   /** The Node ID of the subject to modify. */
-  subjectId: Scalars["ID"];
+  subjectId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated input type of UnpinIssue */
 export type GitHubUnpinIssueInput = {
   /** The ID of the issue to be unpinned */
-  issueId: Scalars["ID"];
+  issueId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Represents an 'unpinned' event on a given issue or pull request. */
 export type GitHubUnpinnedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** Identifies the issue associated with the event. */
-  issue: GitHubIssue;
-};
+  issue: GitHubIssue
+}
 
 /** Autogenerated input type of UnresolveReviewThread */
 export type GitHubUnresolveReviewThreadInput = {
   /** The ID of the thread to unresolve */
-  threadId: Scalars["ID"];
+  threadId: Scalars['ID']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of UnresolveReviewThread */
 export type GitHubUnresolveReviewThreadPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The thread to resolve. */
-  thread?: Maybe<GitHubPullRequestReviewThread>;
-};
+  thread?: Maybe<GitHubPullRequestReviewThread>
+}
 
 /** Represents an 'unsubscribed' event on a given `Subscribable`. */
 export type GitHubUnsubscribedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** Object referenced by event. */
-  subscribable: GitHubSubscribable;
-};
+  subscribable: GitHubSubscribable
+}
 
 /** Entities that can be updated. */
 export type GitHubUpdatable = {
   /** Check if the current viewer can update this object. */
-  viewerCanUpdate: Scalars["Boolean"];
-};
+  viewerCanUpdate: Scalars['Boolean']
+}
 
 /** Comments that can be updated. */
 export type GitHubUpdatableComment = {
   /** Reasons why the current viewer can not update this comment. */
-  viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>;
-};
+  viewerCannotUpdateReasons: Array<GitHubCommentCannotUpdateReason>
+}
 
 /** Autogenerated input type of UpdateBranchProtectionRule */
 export type GitHubUpdateBranchProtectionRuleInput = {
   /** The global relay id of the branch protection rule to be updated. */
-  branchProtectionRuleId: Scalars["ID"];
+  branchProtectionRuleId: Scalars['ID']
   /** The glob-like pattern used to determine matching branches. */
-  pattern?: Maybe<Scalars["String"]>;
+  pattern?: Maybe<Scalars['String']>
   /** Are approving reviews required to update matching branches. */
-  requiresApprovingReviews?: Maybe<Scalars["Boolean"]>;
+  requiresApprovingReviews?: Maybe<Scalars['Boolean']>
   /** Number of approving reviews required to update matching branches. */
-  requiredApprovingReviewCount?: Maybe<Scalars["Int"]>;
+  requiredApprovingReviewCount?: Maybe<Scalars['Int']>
   /** Are commits required to be signed. */
-  requiresCommitSignatures?: Maybe<Scalars["Boolean"]>;
+  requiresCommitSignatures?: Maybe<Scalars['Boolean']>
   /** Can admins overwrite branch protection. */
-  isAdminEnforced?: Maybe<Scalars["Boolean"]>;
+  isAdminEnforced?: Maybe<Scalars['Boolean']>
   /** Are status checks required to update matching branches. */
-  requiresStatusChecks?: Maybe<Scalars["Boolean"]>;
+  requiresStatusChecks?: Maybe<Scalars['Boolean']>
   /** Are branches required to be up to date before merging. */
-  requiresStrictStatusChecks?: Maybe<Scalars["Boolean"]>;
+  requiresStrictStatusChecks?: Maybe<Scalars['Boolean']>
   /** Are reviews from code owners required to update matching branches. */
-  requiresCodeOwnerReviews?: Maybe<Scalars["Boolean"]>;
+  requiresCodeOwnerReviews?: Maybe<Scalars['Boolean']>
   /** Will new commits pushed to matching branches dismiss pull request review approvals. */
-  dismissesStaleReviews?: Maybe<Scalars["Boolean"]>;
+  dismissesStaleReviews?: Maybe<Scalars['Boolean']>
   /** Is dismissal of pull request reviews restricted. */
-  restrictsReviewDismissals?: Maybe<Scalars["Boolean"]>;
+  restrictsReviewDismissals?: Maybe<Scalars['Boolean']>
   /** A list of User or Team IDs allowed to dismiss reviews on pull requests targeting matching branches. */
-  reviewDismissalActorIds?: Maybe<Array<Scalars["ID"]>>;
+  reviewDismissalActorIds?: Maybe<Array<Scalars['ID']>>
   /** Is pushing to matching branches restricted. */
-  restrictsPushes?: Maybe<Scalars["Boolean"]>;
-  /** A list of User or Team IDs allowed to push to matching branches. */
-  pushActorIds?: Maybe<Array<Scalars["ID"]>>;
+  restrictsPushes?: Maybe<Scalars['Boolean']>
+  /** A list of User, Team or App IDs allowed to push to matching branches. */
+  pushActorIds?: Maybe<Array<Scalars['ID']>>
   /** List of required status check contexts that must pass for commits to be accepted to matching branches. */
-  requiredStatusCheckContexts?: Maybe<Array<Scalars["String"]>>;
+  requiredStatusCheckContexts?: Maybe<Array<Scalars['String']>>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of UpdateBranchProtectionRule */
 export type GitHubUpdateBranchProtectionRulePayload = {
   /** The newly created BranchProtectionRule. */
-  branchProtectionRule?: Maybe<GitHubBranchProtectionRule>;
+  branchProtectionRule?: Maybe<GitHubBranchProtectionRule>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseActionExecutionCapabilitySetting */
+export type GitHubUpdateEnterpriseActionExecutionCapabilitySettingInput = {
+  /** The ID of the enterprise on which to set the members can create repositories setting. */
+  enterpriseId: Scalars['ID']
+  /** The value for the action execution capability setting on the enterprise. */
+  capability: GitHubActionExecutionCapabilitySetting
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseActionExecutionCapabilitySetting */
+export type GitHubUpdateEnterpriseActionExecutionCapabilitySettingPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise with the updated action execution capability setting. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of updating the action execution capability setting. */
+  message?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseAdministratorRole */
+export type GitHubUpdateEnterpriseAdministratorRoleInput = {
+  /** The ID of the Enterprise which the admin belongs to. */
+  enterpriseId: Scalars['ID']
+  /** The login of a administrator whose role is being changed. */
+  login: Scalars['String']
+  /** The new role for the Enterprise administrator. */
+  role: GitHubEnterpriseAdministratorRole
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseAdministratorRole */
+export type GitHubUpdateEnterpriseAdministratorRolePayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** A message confirming the result of changing the administrator's role. */
+  message?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseAllowPrivateRepositoryForkingSetting */
+export type GitHubUpdateEnterpriseAllowPrivateRepositoryForkingSettingInput = {
+  /** The ID of the enterprise on which to set the allow private repository forking setting. */
+  enterpriseId: Scalars['ID']
+  /** The value for the allow private repository forking setting on the enterprise. */
+  settingValue: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseAllowPrivateRepositoryForkingSetting */
+export type GitHubUpdateEnterpriseAllowPrivateRepositoryForkingSettingPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise with the updated allow private repository forking setting. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of updating the allow private repository forking setting. */
+  message?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseDefaultRepositoryPermissionSetting */
+export type GitHubUpdateEnterpriseDefaultRepositoryPermissionSettingInput = {
+  /** The ID of the enterprise on which to set the default repository permission setting. */
+  enterpriseId: Scalars['ID']
+  /** The value for the default repository permission setting on the enterprise. */
+  settingValue: GitHubEnterpriseDefaultRepositoryPermissionSettingValue
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseDefaultRepositoryPermissionSetting */
+export type GitHubUpdateEnterpriseDefaultRepositoryPermissionSettingPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise with the updated default repository permission setting. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of updating the default repository permission setting. */
+  message?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseMembersCanChangeRepositoryVisibilitySetting */
+export type GitHubUpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput = {
+  /** The ID of the enterprise on which to set the members can change repository visibility setting. */
+  enterpriseId: Scalars['ID']
+  /** The value for the members can change repository visibility setting on the enterprise. */
+  settingValue: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseMembersCanChangeRepositoryVisibilitySetting */
+export type GitHubUpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise with the updated members can change repository visibility setting. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of updating the members can change repository visibility setting. */
+  message?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseMembersCanCreateRepositoriesSetting */
+export type GitHubUpdateEnterpriseMembersCanCreateRepositoriesSettingInput = {
+  /** The ID of the enterprise on which to set the members can create repositories setting. */
+  enterpriseId: Scalars['ID']
+  /** Value for the members can create repositories setting on the enterprise. This
+   * or the granular public/private/internal allowed fields (but not both) must be provided.
+   */
+  settingValue?: Maybe<GitHubEnterpriseMembersCanCreateRepositoriesSettingValue>
+  /** When false, allow member organizations to set their own repository creation member privileges. */
+  membersCanCreateRepositoriesPolicyEnabled?: Maybe<Scalars['Boolean']>
+  /** Allow members to create public repositories. Defaults to current value. */
+  membersCanCreatePublicRepositories?: Maybe<Scalars['Boolean']>
+  /** Allow members to create private repositories. Defaults to current value. */
+  membersCanCreatePrivateRepositories?: Maybe<Scalars['Boolean']>
+  /** Allow members to create internal repositories. Defaults to current value. */
+  membersCanCreateInternalRepositories?: Maybe<Scalars['Boolean']>
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseMembersCanCreateRepositoriesSetting */
+export type GitHubUpdateEnterpriseMembersCanCreateRepositoriesSettingPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise with the updated members can create repositories setting. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of updating the members can create repositories setting. */
+  message?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseMembersCanDeleteIssuesSetting */
+export type GitHubUpdateEnterpriseMembersCanDeleteIssuesSettingInput = {
+  /** The ID of the enterprise on which to set the members can delete issues setting. */
+  enterpriseId: Scalars['ID']
+  /** The value for the members can delete issues setting on the enterprise. */
+  settingValue: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseMembersCanDeleteIssuesSetting */
+export type GitHubUpdateEnterpriseMembersCanDeleteIssuesSettingPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise with the updated members can delete issues setting. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of updating the members can delete issues setting. */
+  message?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseMembersCanDeleteRepositoriesSetting */
+export type GitHubUpdateEnterpriseMembersCanDeleteRepositoriesSettingInput = {
+  /** The ID of the enterprise on which to set the members can delete repositories setting. */
+  enterpriseId: Scalars['ID']
+  /** The value for the members can delete repositories setting on the enterprise. */
+  settingValue: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseMembersCanDeleteRepositoriesSetting */
+export type GitHubUpdateEnterpriseMembersCanDeleteRepositoriesSettingPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise with the updated members can delete repositories setting. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of updating the members can delete repositories setting. */
+  message?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseMembersCanInviteCollaboratorsSetting */
+export type GitHubUpdateEnterpriseMembersCanInviteCollaboratorsSettingInput = {
+  /** The ID of the enterprise on which to set the members can invite collaborators setting. */
+  enterpriseId: Scalars['ID']
+  /** The value for the members can invite collaborators setting on the enterprise. */
+  settingValue: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseMembersCanInviteCollaboratorsSetting */
+export type GitHubUpdateEnterpriseMembersCanInviteCollaboratorsSettingPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise with the updated members can invite collaborators setting. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of updating the members can invite collaborators setting. */
+  message?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseMembersCanMakePurchasesSetting */
+export type GitHubUpdateEnterpriseMembersCanMakePurchasesSettingInput = {
+  /** The ID of the enterprise on which to set the members can make purchases setting. */
+  enterpriseId: Scalars['ID']
+  /** The value for the members can make purchases setting on the enterprise. */
+  settingValue: GitHubEnterpriseMembersCanMakePurchasesSettingValue
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseMembersCanMakePurchasesSetting */
+export type GitHubUpdateEnterpriseMembersCanMakePurchasesSettingPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise with the updated members can make purchases setting. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of updating the members can make purchases setting. */
+  message?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseMembersCanUpdateProtectedBranchesSetting */
+export type GitHubUpdateEnterpriseMembersCanUpdateProtectedBranchesSettingInput = {
+  /** The ID of the enterprise on which to set the members can update protected branches setting. */
+  enterpriseId: Scalars['ID']
+  /** The value for the members can update protected branches setting on the enterprise. */
+  settingValue: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseMembersCanUpdateProtectedBranchesSetting */
+export type GitHubUpdateEnterpriseMembersCanUpdateProtectedBranchesSettingPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise with the updated members can update protected branches setting. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of updating the members can update protected branches setting. */
+  message?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseMembersCanViewDependencyInsightsSetting */
+export type GitHubUpdateEnterpriseMembersCanViewDependencyInsightsSettingInput = {
+  /** The ID of the enterprise on which to set the members can view dependency insights setting. */
+  enterpriseId: Scalars['ID']
+  /** The value for the members can view dependency insights setting on the enterprise. */
+  settingValue: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseMembersCanViewDependencyInsightsSetting */
+export type GitHubUpdateEnterpriseMembersCanViewDependencyInsightsSettingPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise with the updated members can view dependency insights setting. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of updating the members can view dependency insights setting. */
+  message?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseOrganizationProjectsSetting */
+export type GitHubUpdateEnterpriseOrganizationProjectsSettingInput = {
+  /** The ID of the enterprise on which to set the organization projects setting. */
+  enterpriseId: Scalars['ID']
+  /** The value for the organization projects setting on the enterprise. */
+  settingValue: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseOrganizationProjectsSetting */
+export type GitHubUpdateEnterpriseOrganizationProjectsSettingPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise with the updated organization projects setting. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of updating the organization projects setting. */
+  message?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseProfile */
+export type GitHubUpdateEnterpriseProfileInput = {
+  /** The Enterprise ID to update. */
+  enterpriseId: Scalars['ID']
+  /** The name of the enterprise. */
+  name?: Maybe<Scalars['String']>
+  /** The description of the enterprise. */
+  description?: Maybe<Scalars['String']>
+  /** The URL of the enterprise's website. */
+  websiteUrl?: Maybe<Scalars['String']>
+  /** The location of the enterprise. */
+  location?: Maybe<Scalars['String']>
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseProfile */
+export type GitHubUpdateEnterpriseProfilePayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The updated enterprise. */
+  enterprise?: Maybe<GitHubEnterprise>
+}
+
+/** Autogenerated input type of UpdateEnterpriseRepositoryProjectsSetting */
+export type GitHubUpdateEnterpriseRepositoryProjectsSettingInput = {
+  /** The ID of the enterprise on which to set the repository projects setting. */
+  enterpriseId: Scalars['ID']
+  /** The value for the repository projects setting on the enterprise. */
+  settingValue: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseRepositoryProjectsSetting */
+export type GitHubUpdateEnterpriseRepositoryProjectsSettingPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise with the updated repository projects setting. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of updating the repository projects setting. */
+  message?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseTeamDiscussionsSetting */
+export type GitHubUpdateEnterpriseTeamDiscussionsSettingInput = {
+  /** The ID of the enterprise on which to set the team discussions setting. */
+  enterpriseId: Scalars['ID']
+  /** The value for the team discussions setting on the enterprise. */
+  settingValue: GitHubEnterpriseEnabledDisabledSettingValue
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseTeamDiscussionsSetting */
+export type GitHubUpdateEnterpriseTeamDiscussionsSettingPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise with the updated team discussions setting. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of updating the team discussions setting. */
+  message?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated input type of UpdateEnterpriseTwoFactorAuthenticationRequiredSetting */
+export type GitHubUpdateEnterpriseTwoFactorAuthenticationRequiredSettingInput = {
+  /** The ID of the enterprise on which to set the two factor authentication required setting. */
+  enterpriseId: Scalars['ID']
+  /** The value for the two factor authentication required setting on the enterprise. */
+  settingValue: GitHubEnterpriseEnabledSettingValue
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateEnterpriseTwoFactorAuthenticationRequiredSetting */
+export type GitHubUpdateEnterpriseTwoFactorAuthenticationRequiredSettingPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The enterprise with the updated two factor authentication required setting. */
+  enterprise?: Maybe<GitHubEnterprise>
+  /** A message confirming the result of updating the two factor authentication required setting. */
+  message?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated input type of UpdateIssueComment */
 export type GitHubUpdateIssueCommentInput = {
   /** The ID of the IssueComment to modify. */
-  id: Scalars["ID"];
+  id: Scalars['ID']
   /** The updated text of the comment. */
-  body: Scalars["String"];
+  body: Scalars['String']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of UpdateIssueComment */
 export type GitHubUpdateIssueCommentPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The updated comment. */
-  issueComment?: Maybe<GitHubIssueComment>;
-};
+  issueComment?: Maybe<GitHubIssueComment>
+}
 
 /** Autogenerated input type of UpdateIssue */
 export type GitHubUpdateIssueInput = {
   /** The ID of the Issue to modify. */
-  id: Scalars["ID"];
+  id: Scalars['ID']
   /** The title for the issue. */
-  title?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars['String']>
   /** The body for the issue description. */
-  body?: Maybe<Scalars["String"]>;
+  body?: Maybe<Scalars['String']>
   /** An array of Node IDs of users for this issue. */
-  assigneeIds?: Maybe<Array<Scalars["ID"]>>;
+  assigneeIds?: Maybe<Array<Scalars['ID']>>
   /** The Node ID of the milestone for this issue. */
-  milestoneId?: Maybe<Scalars["ID"]>;
+  milestoneId?: Maybe<Scalars['ID']>
   /** An array of Node IDs of labels for this issue. */
-  labelIds?: Maybe<Array<Scalars["ID"]>>;
+  labelIds?: Maybe<Array<Scalars['ID']>>
   /** The desired issue state. */
-  state?: Maybe<GitHubIssueState>;
+  state?: Maybe<GitHubIssueState>
   /** An array of Node IDs for projects associated with this issue. */
-  projectIds?: Maybe<Array<Scalars["ID"]>>;
+  projectIds?: Maybe<Array<Scalars['ID']>>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of UpdateIssue */
 export type GitHubUpdateIssuePayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The issue. */
-  issue?: Maybe<GitHubIssue>;
-};
+  issue?: Maybe<GitHubIssue>
+}
 
 /** Autogenerated input type of UpdateProjectCard */
 export type GitHubUpdateProjectCardInput = {
   /** The ProjectCard ID to update. */
-  projectCardId: Scalars["ID"];
+  projectCardId: Scalars['ID']
   /** Whether or not the ProjectCard should be archived */
-  isArchived?: Maybe<Scalars["Boolean"]>;
+  isArchived?: Maybe<Scalars['Boolean']>
   /** The note of ProjectCard. */
-  note?: Maybe<Scalars["String"]>;
+  note?: Maybe<Scalars['String']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of UpdateProjectCard */
 export type GitHubUpdateProjectCardPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The updated ProjectCard. */
-  projectCard?: Maybe<GitHubProjectCard>;
-};
+  projectCard?: Maybe<GitHubProjectCard>
+}
 
 /** Autogenerated input type of UpdateProjectColumn */
 export type GitHubUpdateProjectColumnInput = {
   /** The ProjectColumn ID to update. */
-  projectColumnId: Scalars["ID"];
+  projectColumnId: Scalars['ID']
   /** The name of project column. */
-  name: Scalars["String"];
+  name: Scalars['String']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of UpdateProjectColumn */
 export type GitHubUpdateProjectColumnPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The updated project column. */
-  projectColumn?: Maybe<GitHubProjectColumn>;
-};
+  projectColumn?: Maybe<GitHubProjectColumn>
+}
 
 /** Autogenerated input type of UpdateProject */
 export type GitHubUpdateProjectInput = {
   /** The Project ID to update. */
-  projectId: Scalars["ID"];
+  projectId: Scalars['ID']
   /** The name of project. */
-  name?: Maybe<Scalars["String"]>;
+  name?: Maybe<Scalars['String']>
   /** The description of project. */
-  body?: Maybe<Scalars["String"]>;
+  body?: Maybe<Scalars['String']>
   /** Whether the project is open or closed. */
-  state?: Maybe<GitHubProjectState>;
+  state?: Maybe<GitHubProjectState>
   /** Whether the project is public or not. */
-  public?: Maybe<Scalars["Boolean"]>;
+  public?: Maybe<Scalars['Boolean']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of UpdateProject */
 export type GitHubUpdateProjectPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The updated project. */
-  project?: Maybe<GitHubProject>;
-};
+  project?: Maybe<GitHubProject>
+}
 
 /** Autogenerated input type of UpdatePullRequest */
 export type GitHubUpdatePullRequestInput = {
   /** The Node ID of the pull request. */
-  pullRequestId: Scalars["ID"];
+  pullRequestId: Scalars['ID']
   /** The name of the branch you want your changes pulled into. This should be an existing branch
    * on the current repository.
    */
-  baseRefName?: Maybe<Scalars["String"]>;
+  baseRefName?: Maybe<Scalars['String']>
   /** The title of the pull request. */
-  title?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars['String']>
   /** The contents of the pull request. */
-  body?: Maybe<Scalars["String"]>;
+  body?: Maybe<Scalars['String']>
+  /** The target state of the pull request. */
+  state?: Maybe<GitHubPullRequestUpdateState>
   /** Indicates whether maintainers can modify the pull request. */
-  maintainerCanModify?: Maybe<Scalars["Boolean"]>;
+  maintainerCanModify?: Maybe<Scalars['Boolean']>
+  /** An array of Node IDs of users for this pull request. */
+  assigneeIds?: Maybe<Array<Scalars['ID']>>
+  /** The Node ID of the milestone for this pull request. */
+  milestoneId?: Maybe<Scalars['ID']>
+  /** An array of Node IDs of labels for this pull request. */
+  labelIds?: Maybe<Array<Scalars['ID']>>
+  /** An array of Node IDs for projects associated with this pull request. */
+  projectIds?: Maybe<Array<Scalars['ID']>>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of UpdatePullRequest */
 export type GitHubUpdatePullRequestPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The updated pull request. */
-  pullRequest?: Maybe<GitHubPullRequest>;
-};
+  pullRequest?: Maybe<GitHubPullRequest>
+}
 
 /** Autogenerated input type of UpdatePullRequestReviewComment */
 export type GitHubUpdatePullRequestReviewCommentInput = {
   /** The Node ID of the comment to modify. */
-  pullRequestReviewCommentId: Scalars["ID"];
+  pullRequestReviewCommentId: Scalars['ID']
   /** The text of the comment. */
-  body: Scalars["String"];
+  body: Scalars['String']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of UpdatePullRequestReviewComment */
 export type GitHubUpdatePullRequestReviewCommentPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The updated comment. */
-  pullRequestReviewComment?: Maybe<GitHubPullRequestReviewComment>;
-};
+  pullRequestReviewComment?: Maybe<GitHubPullRequestReviewComment>
+}
 
 /** Autogenerated input type of UpdatePullRequestReview */
 export type GitHubUpdatePullRequestReviewInput = {
   /** The Node ID of the pull request review to modify. */
-  pullRequestReviewId: Scalars["ID"];
+  pullRequestReviewId: Scalars['ID']
   /** The contents of the pull request review body. */
-  body: Scalars["String"];
+  body: Scalars['String']
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of UpdatePullRequestReview */
 export type GitHubUpdatePullRequestReviewPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The updated pull request review. */
-  pullRequestReview?: Maybe<GitHubPullRequestReview>;
-};
+  pullRequestReview?: Maybe<GitHubPullRequestReview>
+}
+
+/** Autogenerated input type of UpdateRef */
+export type GitHubUpdateRefInput = {
+  /** The Node ID of the Ref to be updated. */
+  refId: Scalars['ID']
+  /** The GitObjectID that the Ref shall be updated to target. */
+  oid: Scalars['GitHubGitObjectID']
+  /** Permit updates of branch Refs that are not fast-forwards? */
+  force?: Maybe<Scalars['Boolean']>
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateRef */
+export type GitHubUpdateRefPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The updated Ref. */
+  ref?: Maybe<GitHubRef>
+}
+
+/** Autogenerated input type of UpdateRepository */
+export type GitHubUpdateRepositoryInput = {
+  /** The ID of the repository to update. */
+  repositoryId: Scalars['ID']
+  /** The new name of the repository. */
+  name?: Maybe<Scalars['String']>
+  /** A new description for the repository. Pass an empty string to erase the existing description. */
+  description?: Maybe<Scalars['String']>
+  /** Whether this repository should be marked as a template such that anyone who
+   * can access it can create new repositories with the same files and directory structure.
+   */
+  template?: Maybe<Scalars['Boolean']>
+  /** The URL for a web page about this repository. Pass an empty string to erase the existing URL. */
+  homepageUrl?: Maybe<Scalars['GitHubURI']>
+  /** Indicates if the repository should have the wiki feature enabled. */
+  hasWikiEnabled?: Maybe<Scalars['Boolean']>
+  /** Indicates if the repository should have the issues feature enabled. */
+  hasIssuesEnabled?: Maybe<Scalars['Boolean']>
+  /** Indicates if the repository should have the project boards feature enabled. */
+  hasProjectsEnabled?: Maybe<Scalars['Boolean']>
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateRepository */
+export type GitHubUpdateRepositoryPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The updated repository. */
+  repository?: Maybe<GitHubRepository>
+}
 
 /** Autogenerated input type of UpdateSubscription */
 export type GitHubUpdateSubscriptionInput = {
   /** The Node ID of the subscribable object to modify. */
-  subscribableId: Scalars["ID"];
+  subscribableId: Scalars['ID']
   /** The new state of the subscription. */
-  state: GitHubSubscriptionState;
+  state: GitHubSubscriptionState
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of UpdateSubscription */
 export type GitHubUpdateSubscriptionPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** The input subscribable entity. */
-  subscribable?: Maybe<GitHubSubscribable>;
-};
+  subscribable?: Maybe<GitHubSubscribable>
+}
+
+/** Autogenerated input type of UpdateTeamDiscussionComment */
+export type GitHubUpdateTeamDiscussionCommentInput = {
+  /** The ID of the comment to modify. */
+  id: Scalars['ID']
+  /** The updated text of the comment. */
+  body: Scalars['String']
+  /** The current version of the body content. */
+  bodyVersion?: Maybe<Scalars['String']>
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateTeamDiscussionComment */
+export type GitHubUpdateTeamDiscussionCommentPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The updated comment. */
+  teamDiscussionComment?: Maybe<GitHubTeamDiscussionComment>
+}
+
+/** Autogenerated input type of UpdateTeamDiscussion */
+export type GitHubUpdateTeamDiscussionInput = {
+  /** The Node ID of the discussion to modify. */
+  id: Scalars['ID']
+  /** The updated title of the discussion. */
+  title?: Maybe<Scalars['String']>
+  /** The updated text of the discussion. */
+  body?: Maybe<Scalars['String']>
+  /** The current version of the body content. If provided, this update operation
+   * will be rejected if the given version does not match the latest version on the server.
+   */
+  bodyVersion?: Maybe<Scalars['String']>
+  /** If provided, sets the pinned state of the updated discussion. */
+  pinned?: Maybe<Scalars['Boolean']>
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+}
+
+/** Autogenerated return type of UpdateTeamDiscussion */
+export type GitHubUpdateTeamDiscussionPayload = {
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationId?: Maybe<Scalars['String']>
+  /** The updated discussion. */
+  teamDiscussion?: Maybe<GitHubTeamDiscussion>
+}
 
 /** Autogenerated input type of UpdateTopics */
 export type GitHubUpdateTopicsInput = {
   /** The Node ID of the repository. */
-  repositoryId: Scalars["ID"];
+  repositoryId: Scalars['ID']
   /** An array of topic names. */
-  topicNames: Array<Scalars["String"]>;
+  topicNames: Array<Scalars['String']>
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
-};
+  clientMutationId?: Maybe<Scalars['String']>
+}
 
 /** Autogenerated return type of UpdateTopics */
 export type GitHubUpdateTopicsPayload = {
   /** A unique identifier for the client performing the mutation. */
-  clientMutationId?: Maybe<Scalars["String"]>;
+  clientMutationId?: Maybe<Scalars['String']>
   /** Names of the provided topics that are not valid. */
-  invalidTopicNames?: Maybe<Array<Scalars["String"]>>;
+  invalidTopicNames?: Maybe<Array<Scalars['String']>>
   /** The updated repository. */
-  repository?: Maybe<GitHubRepository>;
-};
+  repository?: Maybe<GitHubRepository>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUser = GitHubNode &
@@ -9057,861 +15794,965 @@ export type GitHubUser = GitHubNode &
   GitHubProjectOwner &
   GitHubRepositoryOwner &
   GitHubUniformResourceLocatable &
-  GitHubProfileOwner & {
+  GitHubProfileOwner &
+  GitHubSponsorable & {
     /** Determine if this repository owner has any items that can be pinned to their profile. */
-    anyPinnableItems: Scalars["Boolean"];
+    anyPinnableItems: Scalars['Boolean']
     /** A URL pointing to the user's public avatar. */
-    avatarUrl: Scalars["GitHubURI"];
+    avatarUrl: Scalars['GitHubURI']
     /** The user's public profile bio. */
-    bio?: Maybe<Scalars["String"]>;
+    bio?: Maybe<Scalars['String']>
     /** The user's public profile bio as HTML. */
-    bioHTML: Scalars["GitHubHTML"];
+    bioHTML: Scalars['GitHubHTML']
     /** A list of commit comments made by this user. */
-    commitComments: GitHubCommitCommentConnection;
+    commitComments: GitHubCommitCommentConnection
     /** The user's public profile company. */
-    company?: Maybe<Scalars["String"]>;
+    company?: Maybe<Scalars['String']>
     /** The user's public profile company as HTML. */
-    companyHTML: Scalars["GitHubHTML"];
+    companyHTML: Scalars['GitHubHTML']
     /** The collection of contributions this user has made to different repositories. */
-    contributionsCollection: GitHubContributionsCollection;
+    contributionsCollection: GitHubContributionsCollection
     /** Identifies the date and time when the object was created. */
-    createdAt: Scalars["GitHubDateTime"];
+    createdAt: Scalars['GitHubDateTime']
     /** Identifies the primary key from the database. */
-    databaseId?: Maybe<Scalars["Int"]>;
+    databaseId?: Maybe<Scalars['Int']>
     /** The user's publicly visible profile email. */
-    email: Scalars["String"];
+    email: Scalars['String']
     /** A list of users the given user is followed by. */
-    followers: GitHubFollowerConnection;
+    followers: GitHubFollowerConnection
     /** A list of users the given user is following. */
-    following: GitHubFollowingConnection;
+    following: GitHubFollowingConnection
     /** Find gist by repo name. */
-    gist?: Maybe<GitHubGist>;
+    gist?: Maybe<GitHubGist>
     /** A list of gist comments made by this user. */
-    gistComments: GitHubGistCommentConnection;
+    gistComments: GitHubGistCommentConnection
     /** A list of the Gists the user has created. */
-    gists: GitHubGistConnection;
-    id: Scalars["ID"];
+    gists: GitHubGistConnection
+    /** The hovercard information for this user in a given context */
+    hovercard: GitHubHovercard
+    id: Scalars['ID']
     /** Whether or not this user is a participant in the GitHub Security Bug Bounty. */
-    isBountyHunter: Scalars["Boolean"];
+    isBountyHunter: Scalars['Boolean']
     /** Whether or not this user is a participant in the GitHub Campus Experts Program. */
-    isCampusExpert: Scalars["Boolean"];
+    isCampusExpert: Scalars['Boolean']
     /** Whether or not this user is a GitHub Developer Program member. */
-    isDeveloperProgramMember: Scalars["Boolean"];
+    isDeveloperProgramMember: Scalars['Boolean']
     /** Whether or not this user is a GitHub employee. */
-    isEmployee: Scalars["Boolean"];
+    isEmployee: Scalars['Boolean']
     /** Whether or not the user has marked themselves as for hire. */
-    isHireable: Scalars["Boolean"];
+    isHireable: Scalars['Boolean']
     /** Whether or not this user is a site administrator. */
-    isSiteAdmin: Scalars["Boolean"];
+    isSiteAdmin: Scalars['Boolean']
     /** Whether or not this user is the viewing user. */
-    isViewer: Scalars["Boolean"];
+    isViewer: Scalars['Boolean']
     /** A list of issue comments made by this user. */
-    issueComments: GitHubIssueCommentConnection;
+    issueComments: GitHubIssueCommentConnection
     /** A list of issues associated with this user. */
-    issues: GitHubIssueConnection;
+    issues: GitHubIssueConnection
     /** Showcases a selection of repositories and gists that the profile owner has
      * either curated or that have been selected automatically based on popularity.
      */
-    itemShowcase: GitHubProfileItemShowcase;
+    itemShowcase: GitHubProfileItemShowcase
     /** The user's public profile location. */
-    location?: Maybe<Scalars["String"]>;
+    location?: Maybe<Scalars['String']>
     /** The username used to login. */
-    login: Scalars["String"];
+    login: Scalars['String']
     /** The user's public profile name. */
-    name?: Maybe<Scalars["String"]>;
+    name?: Maybe<Scalars['String']>
     /** Find an organization by its login that the user belongs to. */
-    organization?: Maybe<GitHubOrganization>;
+    organization?: Maybe<GitHubOrganization>
     /** A list of organizations the user belongs to. */
-    organizations: GitHubOrganizationConnection;
+    organizations: GitHubOrganizationConnection
     /** A list of repositories and gists this profile owner can pin to their profile. */
-    pinnableItems: GitHubPinnableItemConnection;
+    pinnableItems: GitHubPinnableItemConnection
     /** A list of repositories and gists this profile owner has pinned to their profile */
-    pinnedItems: GitHubPinnableItemConnection;
+    pinnedItems: GitHubPinnableItemConnection
     /** Returns how many more items this profile owner can pin to their profile. */
-    pinnedItemsRemaining: Scalars["Int"];
+    pinnedItemsRemaining: Scalars['Int']
     /** A list of repositories this user has pinned to their profile */
-    pinnedRepositories: GitHubRepositoryConnection;
+    pinnedRepositories: GitHubRepositoryConnection
     /** Find project by number. */
-    project?: Maybe<GitHubProject>;
+    project?: Maybe<GitHubProject>
     /** A list of projects under the owner. */
-    projects: GitHubProjectConnection;
+    projects: GitHubProjectConnection
     /** The HTTP path listing user's projects */
-    projectsResourcePath: Scalars["GitHubURI"];
+    projectsResourcePath: Scalars['GitHubURI']
     /** The HTTP URL listing user's projects */
-    projectsUrl: Scalars["GitHubURI"];
+    projectsUrl: Scalars['GitHubURI']
     /** A list of public keys associated with this user. */
-    publicKeys: GitHubPublicKeyConnection;
+    publicKeys: GitHubPublicKeyConnection
     /** A list of pull requests associated with this user. */
-    pullRequests: GitHubPullRequestConnection;
+    pullRequests: GitHubPullRequestConnection
+    /** A list of registry packages under the owner. */
+    registryPackages: GitHubRegistryPackageConnection
+    /** A list of registry packages for a particular search query. */
+    registryPackagesForQuery: GitHubRegistryPackageConnection
     /** A list of repositories that the user owns. */
-    repositories: GitHubRepositoryConnection;
+    repositories: GitHubRepositoryConnection
     /** A list of repositories that the user recently contributed to. */
-    repositoriesContributedTo: GitHubRepositoryConnection;
+    repositoriesContributedTo: GitHubRepositoryConnection
     /** Find Repository. */
-    repository?: Maybe<GitHubRepository>;
+    repository?: Maybe<GitHubRepository>
     /** The HTTP path for this user */
-    resourcePath: Scalars["GitHubURI"];
+    resourcePath: Scalars['GitHubURI']
+    /** Replies this user has saved */
+    savedReplies?: Maybe<GitHubSavedReplyConnection>
+    /** This object's sponsorships as the maintainer. */
+    sponsorshipsAsMaintainer: GitHubSponsorshipConnection
+    /** This object's sponsorships as the sponsor. */
+    sponsorshipsAsSponsor: GitHubSponsorshipConnection
     /** Repositories the user has starred. */
-    starredRepositories: GitHubStarredRepositoryConnection;
+    starredRepositories: GitHubStarredRepositoryConnection
     /** The user's description of what they're currently doing. */
-    status?: Maybe<GitHubUserStatus>;
+    status?: Maybe<GitHubUserStatus>
+    /** Repositories the user has contributed to, ordered by contribution rank, plus repositories the user has created */
+    topRepositories: GitHubRepositoryConnection
     /** Identifies the date and time when the object was last updated. */
-    updatedAt: Scalars["GitHubDateTime"];
+    updatedAt: Scalars['GitHubDateTime']
     /** The HTTP URL for this user */
-    url: Scalars["GitHubURI"];
+    url: Scalars['GitHubURI']
     /** Can the viewer pin repositories and gists to the profile? */
-    viewerCanChangePinnedItems: Scalars["Boolean"];
+    viewerCanChangePinnedItems: Scalars['Boolean']
     /** Can the current viewer create new projects on this owner. */
-    viewerCanCreateProjects: Scalars["Boolean"];
+    viewerCanCreateProjects: Scalars['Boolean']
     /** Whether or not the viewer is able to follow the user. */
-    viewerCanFollow: Scalars["Boolean"];
+    viewerCanFollow: Scalars['Boolean']
     /** Whether or not this user is followed by the viewer. */
-    viewerIsFollowing: Scalars["Boolean"];
+    viewerIsFollowing: Scalars['Boolean']
     /** A list of repositories the given user is watching. */
-    watching: GitHubRepositoryConnection;
+    watching: GitHubRepositoryConnection
     /** A URL pointing to the user's public website/blog. */
-    websiteUrl?: Maybe<Scalars["GitHubURI"]>;
-  };
+    websiteUrl?: Maybe<Scalars['GitHubURI']>
+  }
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserAnyPinnableItemsArgs = {
-  type?: Maybe<GitHubPinnableItemType>;
-};
+  type?: Maybe<GitHubPinnableItemType>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserAvatarUrlArgs = {
-  size?: Maybe<Scalars["Int"]>;
-};
+  size?: Maybe<Scalars['Int']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserCommitCommentsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserContributionsCollectionArgs = {
-  organizationID?: Maybe<Scalars["ID"]>;
-  from?: Maybe<Scalars["GitHubDateTime"]>;
-  to?: Maybe<Scalars["GitHubDateTime"]>;
-};
+  organizationID?: Maybe<Scalars['ID']>
+  from?: Maybe<Scalars['GitHubDateTime']>
+  to?: Maybe<Scalars['GitHubDateTime']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserFollowersArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserFollowingArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserGistArgs = {
-  name: Scalars["String"];
-};
+  name: Scalars['String']
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserGistCommentsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserGistsArgs = {
-  privacy?: Maybe<GitHubGistPrivacy>;
-  orderBy?: Maybe<GitHubGistOrder>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  privacy?: Maybe<GitHubGistPrivacy>
+  orderBy?: Maybe<GitHubGistOrder>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** A user is an individual's account on GitHub that owns repositories and can make new content. */
+export type GitHubUserHovercardArgs = {
+  primarySubjectId?: Maybe<Scalars['ID']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserIssueCommentsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserIssuesArgs = {
-  orderBy?: Maybe<GitHubIssueOrder>;
-  labels?: Maybe<Array<Scalars["String"]>>;
-  states?: Maybe<Array<GitHubIssueState>>;
-  filterBy?: Maybe<GitHubIssueFilters>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  orderBy?: Maybe<GitHubIssueOrder>
+  labels?: Maybe<Array<Scalars['String']>>
+  states?: Maybe<Array<GitHubIssueState>>
+  filterBy?: Maybe<GitHubIssueFilters>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserOrganizationArgs = {
-  login: Scalars["String"];
-};
+  login: Scalars['String']
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserOrganizationsArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserPinnableItemsArgs = {
-  types?: Maybe<Array<GitHubPinnableItemType>>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  types?: Maybe<Array<GitHubPinnableItemType>>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserPinnedItemsArgs = {
-  types?: Maybe<Array<GitHubPinnableItemType>>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  types?: Maybe<Array<GitHubPinnableItemType>>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserPinnedRepositoriesArgs = {
-  privacy?: Maybe<GitHubRepositoryPrivacy>;
-  orderBy?: Maybe<GitHubRepositoryOrder>;
-  affiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  ownerAffiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  isLocked?: Maybe<Scalars["Boolean"]>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  privacy?: Maybe<GitHubRepositoryPrivacy>
+  orderBy?: Maybe<GitHubRepositoryOrder>
+  affiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  ownerAffiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  isLocked?: Maybe<Scalars['Boolean']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserProjectArgs = {
-  number: Scalars["Int"];
-};
+  number: Scalars['Int']
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserProjectsArgs = {
-  orderBy?: Maybe<GitHubProjectOrder>;
-  search?: Maybe<Scalars["String"]>;
-  states?: Maybe<Array<GitHubProjectState>>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  orderBy?: Maybe<GitHubProjectOrder>
+  search?: Maybe<Scalars['String']>
+  states?: Maybe<Array<GitHubProjectState>>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserPublicKeysArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserPullRequestsArgs = {
-  states?: Maybe<Array<GitHubPullRequestState>>;
-  labels?: Maybe<Array<Scalars["String"]>>;
-  headRefName?: Maybe<Scalars["String"]>;
-  baseRefName?: Maybe<Scalars["String"]>;
-  orderBy?: Maybe<GitHubIssueOrder>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  states?: Maybe<Array<GitHubPullRequestState>>
+  labels?: Maybe<Array<Scalars['String']>>
+  headRefName?: Maybe<Scalars['String']>
+  baseRefName?: Maybe<Scalars['String']>
+  orderBy?: Maybe<GitHubIssueOrder>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** A user is an individual's account on GitHub that owns repositories and can make new content. */
+export type GitHubUserRegistryPackagesArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  name?: Maybe<Scalars['String']>
+  names?: Maybe<Array<Maybe<Scalars['String']>>>
+  repositoryId?: Maybe<Scalars['ID']>
+  packageType?: Maybe<GitHubRegistryPackageType>
+  registryPackageType?: Maybe<Scalars['String']>
+  publicOnly: Scalars['Boolean']
+}
+
+/** A user is an individual's account on GitHub that owns repositories and can make new content. */
+export type GitHubUserRegistryPackagesForQueryArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  query?: Maybe<Scalars['String']>
+  packageType?: Maybe<GitHubRegistryPackageType>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserRepositoriesArgs = {
-  privacy?: Maybe<GitHubRepositoryPrivacy>;
-  orderBy?: Maybe<GitHubRepositoryOrder>;
-  affiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  ownerAffiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  isLocked?: Maybe<Scalars["Boolean"]>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  isFork?: Maybe<Scalars["Boolean"]>;
-};
+  privacy?: Maybe<GitHubRepositoryPrivacy>
+  orderBy?: Maybe<GitHubRepositoryOrder>
+  affiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  ownerAffiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  isLocked?: Maybe<Scalars['Boolean']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  isFork?: Maybe<Scalars['Boolean']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserRepositoriesContributedToArgs = {
-  privacy?: Maybe<GitHubRepositoryPrivacy>;
-  orderBy?: Maybe<GitHubRepositoryOrder>;
-  isLocked?: Maybe<Scalars["Boolean"]>;
-  includeUserRepositories?: Maybe<Scalars["Boolean"]>;
-  contributionTypes?: Maybe<Array<Maybe<GitHubRepositoryContributionType>>>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  privacy?: Maybe<GitHubRepositoryPrivacy>
+  orderBy?: Maybe<GitHubRepositoryOrder>
+  isLocked?: Maybe<Scalars['Boolean']>
+  includeUserRepositories?: Maybe<Scalars['Boolean']>
+  contributionTypes?: Maybe<Array<Maybe<GitHubRepositoryContributionType>>>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserRepositoryArgs = {
-  name: Scalars["String"];
-};
+  name: Scalars['String']
+}
+
+/** A user is an individual's account on GitHub that owns repositories and can make new content. */
+export type GitHubUserSavedRepliesArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy: GitHubSavedReplyOrder
+}
+
+/** A user is an individual's account on GitHub that owns repositories and can make new content. */
+export type GitHubUserSponsorshipsAsMaintainerArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  includePrivate: Scalars['Boolean']
+  orderBy?: Maybe<GitHubSponsorshipOrder>
+}
+
+/** A user is an individual's account on GitHub that owns repositories and can make new content. */
+export type GitHubUserSponsorshipsAsSponsorArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy?: Maybe<GitHubSponsorshipOrder>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserStarredRepositoriesArgs = {
-  ownedByViewer?: Maybe<Scalars["Boolean"]>;
-  orderBy?: Maybe<GitHubStarOrder>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  ownedByViewer?: Maybe<Scalars['Boolean']>
+  orderBy?: Maybe<GitHubStarOrder>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** A user is an individual's account on GitHub that owns repositories and can make new content. */
+export type GitHubUserTopRepositoriesArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy: GitHubRepositoryOrder
+  since?: Maybe<Scalars['GitHubDateTime']>
+}
 
 /** A user is an individual's account on GitHub that owns repositories and can make new content. */
 export type GitHubUserWatchingArgs = {
-  privacy?: Maybe<GitHubRepositoryPrivacy>;
-  orderBy?: Maybe<GitHubRepositoryOrder>;
-  affiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  ownerAffiliations?: Maybe<Array<Maybe<GitHubRepositoryAffiliation>>>;
-  isLocked?: Maybe<Scalars["Boolean"]>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  privacy?: Maybe<GitHubRepositoryPrivacy>
+  orderBy?: Maybe<GitHubRepositoryOrder>
+  affiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  ownerAffiliations: Array<Maybe<GitHubRepositoryAffiliation>>
+  isLocked?: Maybe<Scalars['Boolean']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 /** The possible durations that a user can be blocked for. */
 export enum GitHubUserBlockDuration {
   /** The user was blocked for 1 day */
-  OneDay = "ONE_DAY",
+  OneDay = 'ONE_DAY',
   /** The user was blocked for 3 days */
-  ThreeDays = "THREE_DAYS",
+  ThreeDays = 'THREE_DAYS',
   /** The user was blocked for 7 days */
-  OneWeek = "ONE_WEEK",
+  OneWeek = 'ONE_WEEK',
   /** The user was blocked for 30 days */
-  OneMonth = "ONE_MONTH",
+  OneMonth = 'ONE_MONTH',
   /** The user was blocked permanently */
-  Permanent = "PERMANENT"
+  Permanent = 'PERMANENT',
 }
 
 /** Represents a 'user_blocked' event on a given user. */
 export type GitHubUserBlockedEvent = GitHubNode & {
   /** Identifies the actor who performed the event. */
-  actor?: Maybe<GitHubActor>;
+  actor?: Maybe<GitHubActor>
   /** Number of days that the user was blocked for. */
-  blockDuration: GitHubUserBlockDuration;
+  blockDuration: GitHubUserBlockDuration
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
-  id: Scalars["ID"];
+  createdAt: Scalars['GitHubDateTime']
+  id: Scalars['ID']
   /** The user who was blocked. */
-  subject?: Maybe<GitHubUser>;
-};
+  subject?: Maybe<GitHubUser>
+}
 
 /** The connection type for User. */
 export type GitHubUserConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubUserEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubUserEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubUser>>>;
+  nodes?: Maybe<Array<Maybe<GitHubUser>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edit on user content */
 export type GitHubUserContentEdit = GitHubNode & {
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** Identifies the date and time when the object was deleted. */
-  deletedAt?: Maybe<Scalars["GitHubDateTime"]>;
+  deletedAt?: Maybe<Scalars['GitHubDateTime']>
   /** The actor who deleted this content */
-  deletedBy?: Maybe<GitHubActor>;
+  deletedBy?: Maybe<GitHubActor>
   /** A summary of the changes for this edit */
-  diff?: Maybe<Scalars["String"]>;
+  diff?: Maybe<Scalars['String']>
   /** When this content was edited */
-  editedAt: Scalars["GitHubDateTime"];
+  editedAt: Scalars['GitHubDateTime']
   /** The actor who edited this content */
-  editor?: Maybe<GitHubActor>;
-  id: Scalars["ID"];
+  editor?: Maybe<GitHubActor>
+  id: Scalars['ID']
   /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars["GitHubDateTime"];
-};
+  updatedAt: Scalars['GitHubDateTime']
+}
 
 /** A list of edits to content. */
 export type GitHubUserContentEditConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubUserContentEditEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubUserContentEditEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubUserContentEdit>>>;
+  nodes?: Maybe<Array<Maybe<GitHubUserContentEdit>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubUserContentEditEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubUserContentEdit>;
-};
+  node?: Maybe<GitHubUserContentEdit>
+}
 
 /** Represents a user. */
 export type GitHubUserEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubUser>;
-};
+  node?: Maybe<GitHubUser>
+}
 
 /** The user's description of what they're currently doing. */
 export type GitHubUserStatus = GitHubNode & {
   /** Identifies the date and time when the object was created. */
-  createdAt: Scalars["GitHubDateTime"];
+  createdAt: Scalars['GitHubDateTime']
   /** An emoji summarizing the user's status. */
-  emoji?: Maybe<Scalars["String"]>;
+  emoji?: Maybe<Scalars['String']>
+  /** The status emoji as HTML. */
+  emojiHTML?: Maybe<Scalars['GitHubHTML']>
+  /** If set, the status will not be shown after this date. */
+  expiresAt?: Maybe<Scalars['GitHubDateTime']>
   /** ID of the object. */
-  id: Scalars["ID"];
+  id: Scalars['ID']
   /** Whether this status indicates the user is not fully available on GitHub. */
-  indicatesLimitedAvailability: Scalars["Boolean"];
+  indicatesLimitedAvailability: Scalars['Boolean']
   /** A brief message describing what the user is doing. */
-  message?: Maybe<Scalars["String"]>;
+  message?: Maybe<Scalars['String']>
   /** The organization whose members can see this status. If null, this status is publicly visible. */
-  organization?: Maybe<GitHubOrganization>;
+  organization?: Maybe<GitHubOrganization>
   /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars["GitHubDateTime"];
+  updatedAt: Scalars['GitHubDateTime']
   /** The user who has this status. */
-  user: GitHubUser;
-};
+  user: GitHubUser
+}
 
 /** The connection type for UserStatus. */
 export type GitHubUserStatusConnection = {
   /** A list of edges. */
-  edges?: Maybe<Array<Maybe<GitHubUserStatusEdge>>>;
+  edges?: Maybe<Array<Maybe<GitHubUserStatusEdge>>>
   /** A list of nodes. */
-  nodes?: Maybe<Array<Maybe<GitHubUserStatus>>>;
+  nodes?: Maybe<Array<Maybe<GitHubUserStatus>>>
   /** Information to aid in pagination. */
-  pageInfo: GitHubPageInfo;
+  pageInfo: GitHubPageInfo
   /** Identifies the total count of items in the connection. */
-  totalCount: Scalars["Int"];
-};
+  totalCount: Scalars['Int']
+}
 
 /** An edge in a connection. */
 export type GitHubUserStatusEdge = {
   /** A cursor for use in pagination. */
-  cursor: Scalars["String"];
+  cursor: Scalars['String']
   /** The item at the end of the edge. */
-  node?: Maybe<GitHubUserStatus>;
-};
+  node?: Maybe<GitHubUserStatus>
+}
 
 /** Ordering options for user status connections. */
 export type GitHubUserStatusOrder = {
   /** The field to order user statuses by. */
-  field: GitHubUserStatusOrderField;
+  field: GitHubUserStatusOrderField
   /** The ordering direction. */
-  direction: GitHubOrderDirection;
-};
+  direction: GitHubOrderDirection
+}
 
 /** Properties by which user status connections can be ordered. */
 export enum GitHubUserStatusOrderField {
   /** Order user statuses by when they were updated. */
-  UpdatedAt = "UPDATED_AT"
+  UpdatedAt = 'UPDATED_AT',
+}
+
+/** A hovercard context with a message describing how the viewer is related. */
+export type GitHubViewerHovercardContext = GitHubHovercardContext & {
+  /** A string describing this context */
+  message: Scalars['String']
+  /** An octicon to accompany this context */
+  octicon: Scalars['String']
+  /** Identifies the user who is related to this context. */
+  viewer: GitHubUser
 }
 
 export type Mutation = {
-  updateBoard?: Maybe<Board>;
-  deleteBoard?: Maybe<Board>;
-  createColumn: Column;
-  updateColumn?: Maybe<Column>;
-  deleteColumn?: Maybe<Column>;
-  signIn: SignInPayload;
-  signOut: Scalars["Boolean"];
-  createBoard: Board;
-};
+  updateBoard?: Maybe<Board>
+  deleteBoard?: Maybe<Board>
+  createColumn: Column
+  updateColumn?: Maybe<Column>
+  deleteColumn?: Maybe<Column>
+  signIn: SignInPayload
+  signOut: Scalars['Boolean']
+  createBoard: Board
+}
 
 export type MutationUpdateBoardArgs = {
-  data: BoardUpdateInput;
-  where: BoardWhereUniqueInput;
-};
+  data: BoardUpdateInput
+  where: BoardWhereUniqueInput
+}
 
 export type MutationDeleteBoardArgs = {
-  where: BoardWhereUniqueInput;
-};
+  where: BoardWhereUniqueInput
+}
 
 export type MutationCreateColumnArgs = {
-  data: ColumnCreateInput;
-};
+  data: ColumnCreateInput
+}
 
 export type MutationUpdateColumnArgs = {
-  data: ColumnUpdateInput;
-  where: ColumnWhereUniqueInput;
-};
+  data: ColumnUpdateInput
+  where: ColumnWhereUniqueInput
+}
 
 export type MutationDeleteColumnArgs = {
-  where: ColumnWhereUniqueInput;
-};
+  where: ColumnWhereUniqueInput
+}
 
 export type MutationSignInArgs = {
-  gitHubCode: Scalars["String"];
-};
+  gitHubCode: Scalars['String']
+}
 
 export type MutationCreateBoardArgs = {
-  data: BoardCreateInput;
-};
+  data: BoardCreateInput
+}
 
 export type Query = {
-  board?: Maybe<Board>;
-  isSignedIn: Scalars["Boolean"];
-  signedInUser: User;
+  board?: Maybe<Board>
+  isSignedIn: Scalars['Boolean']
+  signedInUser: User
   /** Perform a search across resources. */
-  search: GitHubSearchResultItemConnection;
+  search: GitHubSearchResultItemConnection
   /** The currently authenticated user. */
-  viewer: GitHubUser;
-};
+  viewer: GitHubUser
+}
 
 export type QueryBoardArgs = {
-  where: BoardWhereUniqueInput;
-};
+  where: BoardWhereUniqueInput
+}
 
 export type QuerySearchArgs = {
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-  query: Scalars["String"];
-  type: GitHubSearchType;
-};
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  query: Scalars['String']
+  type: GitHubSearchType
+}
 
 export type SignInPayload = {
-  token: Scalars["String"];
-};
+  token: Scalars['String']
+}
 
 export type User = {
-  id: Scalars["ID"];
-  createdAt: Scalars["DateTime"];
-  updatedAt: Scalars["DateTime"];
-  gitHubId: Scalars["ID"];
-  boards?: Maybe<Array<Board>>;
-};
+  id: Scalars['ID']
+  createdAt: Scalars['DateTime']
+  updatedAt: Scalars['DateTime']
+  gitHubId: Scalars['ID']
+  boards?: Maybe<Array<Board>>
+}
 
 export type UserBoardsArgs = {
-  where?: Maybe<BoardWhereInput>;
-  orderBy?: Maybe<BoardOrderByInput>;
-  skip?: Maybe<Scalars["Int"]>;
-  after?: Maybe<Scalars["String"]>;
-  before?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
-};
+  where?: Maybe<BoardWhereInput>
+  orderBy?: Maybe<BoardOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
 
 export type UserCreateOneWithoutBoardsInput = {
-  create?: Maybe<UserCreateWithoutBoardsInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-};
+  create?: Maybe<UserCreateWithoutBoardsInput>
+  connect?: Maybe<UserWhereUniqueInput>
+}
 
 export type UserCreateWithoutBoardsInput = {
-  gitHubId: Scalars["ID"];
-};
+  id?: Maybe<Scalars['ID']>
+  gitHubId: Scalars['ID']
+}
 
 export type UserUpdateOneRequiredWithoutBoardsInput = {
-  create?: Maybe<UserCreateWithoutBoardsInput>;
-  update?: Maybe<UserUpdateWithoutBoardsDataInput>;
-  upsert?: Maybe<UserUpsertWithoutBoardsInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-};
+  create?: Maybe<UserCreateWithoutBoardsInput>
+  update?: Maybe<UserUpdateWithoutBoardsDataInput>
+  upsert?: Maybe<UserUpsertWithoutBoardsInput>
+  connect?: Maybe<UserWhereUniqueInput>
+}
 
 export type UserUpdateWithoutBoardsDataInput = {
-  gitHubId?: Maybe<Scalars["ID"]>;
-};
+  gitHubId?: Maybe<Scalars['ID']>
+}
 
 export type UserUpsertWithoutBoardsInput = {
-  update: UserUpdateWithoutBoardsDataInput;
-  create: UserCreateWithoutBoardsInput;
-};
+  update: UserUpdateWithoutBoardsDataInput
+  create: UserCreateWithoutBoardsInput
+}
 
 export type UserWhereInput = {
-  id?: Maybe<Scalars["ID"]>;
-  id_not?: Maybe<Scalars["ID"]>;
-  id_in?: Maybe<Array<Scalars["ID"]>>;
-  id_not_in?: Maybe<Array<Scalars["ID"]>>;
-  id_lt?: Maybe<Scalars["ID"]>;
-  id_lte?: Maybe<Scalars["ID"]>;
-  id_gt?: Maybe<Scalars["ID"]>;
-  id_gte?: Maybe<Scalars["ID"]>;
-  id_contains?: Maybe<Scalars["ID"]>;
-  id_not_contains?: Maybe<Scalars["ID"]>;
-  id_starts_with?: Maybe<Scalars["ID"]>;
-  id_not_starts_with?: Maybe<Scalars["ID"]>;
-  id_ends_with?: Maybe<Scalars["ID"]>;
-  id_not_ends_with?: Maybe<Scalars["ID"]>;
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  createdAt_not?: Maybe<Scalars["DateTime"]>;
-  createdAt_in?: Maybe<Array<Scalars["DateTime"]>>;
-  createdAt_not_in?: Maybe<Array<Scalars["DateTime"]>>;
-  createdAt_lt?: Maybe<Scalars["DateTime"]>;
-  createdAt_lte?: Maybe<Scalars["DateTime"]>;
-  createdAt_gt?: Maybe<Scalars["DateTime"]>;
-  createdAt_gte?: Maybe<Scalars["DateTime"]>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
-  updatedAt_not?: Maybe<Scalars["DateTime"]>;
-  updatedAt_in?: Maybe<Array<Scalars["DateTime"]>>;
-  updatedAt_not_in?: Maybe<Array<Scalars["DateTime"]>>;
-  updatedAt_lt?: Maybe<Scalars["DateTime"]>;
-  updatedAt_lte?: Maybe<Scalars["DateTime"]>;
-  updatedAt_gt?: Maybe<Scalars["DateTime"]>;
-  updatedAt_gte?: Maybe<Scalars["DateTime"]>;
-  gitHubId?: Maybe<Scalars["ID"]>;
-  gitHubId_not?: Maybe<Scalars["ID"]>;
-  gitHubId_in?: Maybe<Array<Scalars["ID"]>>;
-  gitHubId_not_in?: Maybe<Array<Scalars["ID"]>>;
-  gitHubId_lt?: Maybe<Scalars["ID"]>;
-  gitHubId_lte?: Maybe<Scalars["ID"]>;
-  gitHubId_gt?: Maybe<Scalars["ID"]>;
-  gitHubId_gte?: Maybe<Scalars["ID"]>;
-  gitHubId_contains?: Maybe<Scalars["ID"]>;
-  gitHubId_not_contains?: Maybe<Scalars["ID"]>;
-  gitHubId_starts_with?: Maybe<Scalars["ID"]>;
-  gitHubId_not_starts_with?: Maybe<Scalars["ID"]>;
-  gitHubId_ends_with?: Maybe<Scalars["ID"]>;
-  gitHubId_not_ends_with?: Maybe<Scalars["ID"]>;
-  boards_every?: Maybe<BoardWhereInput>;
-  boards_some?: Maybe<BoardWhereInput>;
-  boards_none?: Maybe<BoardWhereInput>;
-  AND?: Maybe<Array<UserWhereInput>>;
-  OR?: Maybe<Array<UserWhereInput>>;
-  NOT?: Maybe<Array<UserWhereInput>>;
-};
+  id?: Maybe<Scalars['ID']>
+  id_not?: Maybe<Scalars['ID']>
+  id_in?: Maybe<Array<Scalars['ID']>>
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  id_lt?: Maybe<Scalars['ID']>
+  id_lte?: Maybe<Scalars['ID']>
+  id_gt?: Maybe<Scalars['ID']>
+  id_gte?: Maybe<Scalars['ID']>
+  id_contains?: Maybe<Scalars['ID']>
+  id_not_contains?: Maybe<Scalars['ID']>
+  id_starts_with?: Maybe<Scalars['ID']>
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  id_ends_with?: Maybe<Scalars['ID']>
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  gitHubId?: Maybe<Scalars['ID']>
+  gitHubId_not?: Maybe<Scalars['ID']>
+  gitHubId_in?: Maybe<Array<Scalars['ID']>>
+  gitHubId_not_in?: Maybe<Array<Scalars['ID']>>
+  gitHubId_lt?: Maybe<Scalars['ID']>
+  gitHubId_lte?: Maybe<Scalars['ID']>
+  gitHubId_gt?: Maybe<Scalars['ID']>
+  gitHubId_gte?: Maybe<Scalars['ID']>
+  gitHubId_contains?: Maybe<Scalars['ID']>
+  gitHubId_not_contains?: Maybe<Scalars['ID']>
+  gitHubId_starts_with?: Maybe<Scalars['ID']>
+  gitHubId_not_starts_with?: Maybe<Scalars['ID']>
+  gitHubId_ends_with?: Maybe<Scalars['ID']>
+  gitHubId_not_ends_with?: Maybe<Scalars['ID']>
+  boards_every?: Maybe<BoardWhereInput>
+  boards_some?: Maybe<BoardWhereInput>
+  boards_none?: Maybe<BoardWhereInput>
+  AND?: Maybe<Array<UserWhereInput>>
+  OR?: Maybe<Array<UserWhereInput>>
+  NOT?: Maybe<Array<UserWhereInput>>
+}
 
 export type UserWhereUniqueInput = {
-  id?: Maybe<Scalars["ID"]>;
-  gitHubId?: Maybe<Scalars["ID"]>;
-};
+  id?: Maybe<Scalars['ID']>
+  gitHubId?: Maybe<Scalars['ID']>
+}
 export type CreateBoardMutationVariables = {
-  name: Scalars["String"];
-  query: Scalars["String"];
-};
+  name: Scalars['String']
+  query: Scalars['String']
+}
 
-export type CreateBoardMutation = { __typename?: "Mutation" } & {
-  createBoard: { __typename?: "Board" } & Pick<Board, "id" | "name" | "query">;
-};
+export type CreateBoardMutation = { __typename?: 'Mutation' } & {
+  createBoard: { __typename?: 'Board' } & Pick<Board, 'id' | 'name' | 'query'>
+}
 
 export type CreateColumnMutationVariables = {
-  boardId: Scalars["ID"];
-  name: Scalars["String"];
-  query: Scalars["String"];
-};
+  boardId: Scalars['ID']
+  name: Scalars['String']
+  query: Scalars['String']
+  index: Scalars['Int']
+}
 
-export type CreateColumnMutation = { __typename?: "Mutation" } & {
-  createColumn: { __typename?: "Column" } & Pick<
+export type CreateColumnMutation = { __typename?: 'Mutation' } & {
+  createColumn: { __typename?: 'Column' } & Pick<
     Column,
-    "id" | "name" | "query"
-  >;
-};
+    'id' | 'name' | 'query' | 'index'
+  >
+}
 
 export type DeleteBoardMutationVariables = {
-  id: Scalars["ID"];
-};
+  id: Scalars['ID']
+}
 
-export type DeleteBoardMutation = { __typename?: "Mutation" } & {
-  deleteBoard: Maybe<{ __typename?: "Board" } & Pick<Board, "id">>;
-};
+export type DeleteBoardMutation = { __typename?: 'Mutation' } & {
+  deleteBoard: Maybe<{ __typename?: 'Board' } & Pick<Board, 'id'>>
+}
 
 export type DeleteColumnMutationVariables = {
-  id: Scalars["ID"];
-};
+  id: Scalars['ID']
+}
 
-export type DeleteColumnMutation = { __typename?: "Mutation" } & {
-  deleteColumn: Maybe<{ __typename?: "Column" } & Pick<Column, "id">>;
-};
+export type DeleteColumnMutation = { __typename?: 'Mutation' } & {
+  deleteColumn: Maybe<{ __typename?: 'Column' } & Pick<Column, 'id'>>
+}
 
 export type GetBoardQueryVariables = {
-  id: Scalars["ID"];
-};
+  id: Scalars['ID']
+}
 
-export type GetBoardQuery = { __typename?: "Query" } & {
+export type GetBoardQuery = { __typename?: 'Query' } & {
   board: Maybe<
-    { __typename?: "Board" } & Pick<Board, "id" | "name" | "query"> & {
+    { __typename?: 'Board' } & Pick<Board, 'id' | 'name' | 'query'> & {
         columns: Maybe<
           Array<
-            { __typename?: "Column" } & Pick<Column, "id" | "name" | "query">
+            { __typename?: 'Column' } & Pick<
+              Column,
+              'id' | 'name' | 'query' | 'index'
+            >
           >
-        >;
+        >
       }
-  >;
-};
+  >
+}
 
-export type GetBoardsQueryVariables = {};
+export type GetBoardsQueryVariables = {}
 
-export type GetBoardsQuery = { __typename?: "Query" } & {
-  signedInUser: { __typename?: "User" } & {
+export type GetBoardsQuery = { __typename?: 'Query' } & {
+  signedInUser: { __typename?: 'User' } & {
     boards: Maybe<
-      Array<{ __typename?: "Board" } & Pick<Board, "id" | "name" | "query">>
-    >;
-  };
-};
+      Array<{ __typename?: 'Board' } & Pick<Board, 'id' | 'name' | 'query'>>
+    >
+  }
+}
 
-export type GetIsSignedInQueryVariables = {};
+export type GetIsSignedInQueryVariables = {}
 
-export type GetIsSignedInQuery = { __typename?: "Query" } & Pick<
+export type GetIsSignedInQuery = { __typename?: 'Query' } & Pick<
   Query,
-  "isSignedIn"
->;
+  'isSignedIn'
+>
 
-export type GetViewerQueryVariables = {};
+export type GetViewerQueryVariables = {}
 
-export type GetViewerQuery = { __typename?: "Query" } & {
-  viewer: { __typename?: "GitHubUser" } & Pick<
+export type GetViewerQuery = { __typename?: 'Query' } & {
+  viewer: { __typename?: 'GitHubUser' } & Pick<
     GitHubUser,
-    "login" | "name" | "avatarUrl"
-  >;
-};
+    'login' | 'name' | 'avatarUrl'
+  >
+}
 
 export type SearchGitHubQueryVariables = {
-  query: Scalars["String"];
-  endCursor?: Maybe<Scalars["String"]>;
-};
+  query: Scalars['String']
+  endCursor?: Maybe<Scalars['String']>
+}
 
-export type SearchGitHubQuery = { __typename?: "Query" } & {
-  search: { __typename?: "GitHubSearchResultItemConnection" } & Pick<
+export type SearchGitHubQuery = { __typename?: 'Query' } & {
+  search: { __typename?: 'GitHubSearchResultItemConnection' } & Pick<
     GitHubSearchResultItemConnection,
-    "issueCount"
+    'issueCount'
   > & {
-      pageInfo: { __typename?: "GitHubPageInfo" } & Pick<
+      pageInfo: { __typename?: 'GitHubPageInfo' } & Pick<
         GitHubPageInfo,
-        "endCursor" | "hasNextPage"
-      >;
+        'endCursor' | 'hasNextPage'
+      >
       issues: Maybe<
         Array<
           Maybe<
 
-              | ({ __typename?: "GitHubIssue" } & Pick<
+              | ({ __typename?: 'GitHubIssue' } & Pick<
                   GitHubIssue,
-                  "title" | "url" | "createdAt"
-                > & { issueState: GitHubIssue["state"] } & {
-                    repository: { __typename?: "GitHubRepository" } & Pick<
+                  'title' | 'url' | 'createdAt'
+                > & { issueState: GitHubIssue['state'] } & {
+                    repository: { __typename?: 'GitHubRepository' } & Pick<
                       GitHubRepository,
-                      "nameWithOwner" | "url"
-                    >;
+                      'nameWithOwner' | 'url'
+                    >
                     author: Maybe<
                       {
                         __typename?:
-                          | "GitHubUser"
-                          | "GitHubOrganization"
-                          | "GitHubMannequin"
-                          | "GitHubBot";
-                      } & Pick<GitHubActor, "login" | "url">
-                    >;
+                          | 'GitHubUser'
+                          | 'GitHubOrganization'
+                          | 'GitHubBot'
+                          | 'GitHubMannequin'
+                          | 'GitHubEnterpriseUserAccount'
+                      } & Pick<GitHubActor, 'login' | 'url'>
+                    >
                     labels: Maybe<
-                      { __typename?: "GitHubLabelConnection" } & {
+                      { __typename?: 'GitHubLabelConnection' } & {
                         nodes: Maybe<
                           Array<
                             Maybe<
-                              { __typename?: "GitHubLabel" } & Pick<
+                              { __typename?: 'GitHubLabel' } & Pick<
                                 GitHubLabel,
-                                "name" | "color"
+                                'name' | 'color'
                               >
                             >
                           >
-                        >;
+                        >
                       }
-                    >;
+                    >
                   })
-              | ({ __typename?: "GitHubPullRequest" } & Pick<
+              | ({ __typename?: 'GitHubPullRequest' } & Pick<
                   GitHubPullRequest,
-                  "title" | "url" | "createdAt"
-                > & { pullRequestState: GitHubPullRequest["state"] } & {
-                    repository: { __typename?: "GitHubRepository" } & Pick<
+                  'title' | 'url' | 'createdAt'
+                > & { pullRequestState: GitHubPullRequest['state'] } & {
+                    repository: { __typename?: 'GitHubRepository' } & Pick<
                       GitHubRepository,
-                      "nameWithOwner" | "url"
-                    >;
+                      'nameWithOwner' | 'url'
+                    >
                     author: Maybe<
                       {
                         __typename?:
-                          | "GitHubUser"
-                          | "GitHubOrganization"
-                          | "GitHubMannequin"
-                          | "GitHubBot";
-                      } & Pick<GitHubActor, "login" | "url">
-                    >;
+                          | 'GitHubUser'
+                          | 'GitHubOrganization'
+                          | 'GitHubBot'
+                          | 'GitHubMannequin'
+                          | 'GitHubEnterpriseUserAccount'
+                      } & Pick<GitHubActor, 'login' | 'url'>
+                    >
                     labels: Maybe<
-                      { __typename?: "GitHubLabelConnection" } & {
+                      { __typename?: 'GitHubLabelConnection' } & {
                         nodes: Maybe<
                           Array<
                             Maybe<
-                              { __typename?: "GitHubLabel" } & Pick<
+                              { __typename?: 'GitHubLabel' } & Pick<
                                 GitHubLabel,
-                                "name" | "color"
+                                'name' | 'color'
                               >
                             >
                           >
-                        >;
+                        >
                       }
-                    >;
+                    >
                   })
           >
         >
-      >;
-    };
-};
+      >
+    }
+}
 
 export type SignInMutationVariables = {
-  gitHubCode: Scalars["String"];
-};
+  gitHubCode: Scalars['String']
+}
 
-export type SignInMutation = { __typename?: "Mutation" } & {
-  signIn: { __typename?: "SignInPayload" } & Pick<SignInPayload, "token">;
-};
+export type SignInMutation = { __typename?: 'Mutation' } & {
+  signIn: { __typename?: 'SignInPayload' } & Pick<SignInPayload, 'token'>
+}
 
-export type SignOutMutationVariables = {};
+export type SignOutMutationVariables = {}
 
-export type SignOutMutation = { __typename?: "Mutation" } & Pick<
+export type SignOutMutation = { __typename?: 'Mutation' } & Pick<
   Mutation,
-  "signOut"
->;
+  'signOut'
+>
 
 export type UpdateBoardMutationVariables = {
-  id: Scalars["ID"];
-  name?: Maybe<Scalars["String"]>;
-  query?: Maybe<Scalars["String"]>;
-};
+  id: Scalars['ID']
+  name?: Maybe<Scalars['String']>
+  query?: Maybe<Scalars['String']>
+}
 
-export type UpdateBoardMutation = { __typename?: "Mutation" } & {
+export type UpdateBoardMutation = { __typename?: 'Mutation' } & {
   updateBoard: Maybe<
-    { __typename?: "Board" } & Pick<Board, "id" | "name" | "query">
-  >;
-};
+    { __typename?: 'Board' } & Pick<Board, 'id' | 'name' | 'query'>
+  >
+}
 
 export type UpdateColumnMutationVariables = {
-  id: Scalars["ID"];
-  name?: Maybe<Scalars["String"]>;
-  query?: Maybe<Scalars["String"]>;
-};
+  id: Scalars['ID']
+  name?: Maybe<Scalars['String']>
+  query?: Maybe<Scalars['String']>
+  index?: Maybe<Scalars['Int']>
+}
 
-export type UpdateColumnMutation = { __typename?: "Mutation" } & {
+export type UpdateColumnMutation = { __typename?: 'Mutation' } & {
   updateColumn: Maybe<
-    { __typename?: "Column" } & Pick<Column, "id" | "name" | "query">
-  >;
-};
+    { __typename?: 'Column' } & Pick<Column, 'id' | 'name' | 'query' | 'index'>
+  >
+}
 
-import gql from "graphql-tag";
-import * as React from "react";
-import * as ReactApollo from "react-apollo";
-export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+import gql from 'graphql-tag'
+import * as React from 'react'
+import * as ReactApollo from 'react-apollo'
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 
 export const CreateBoardDocument = gql`
   mutation createBoard($name: String!, $query: String!) {
@@ -9921,11 +16762,11 @@ export const CreateBoardDocument = gql`
       query
     }
   }
-`;
+`
 export type CreateBoardMutationFn = ReactApollo.MutationFn<
   CreateBoardMutation,
   CreateBoardMutationVariables
->;
+>
 
 export const CreateBoardComponent = (
   props: Omit<
@@ -9934,28 +16775,28 @@ export const CreateBoardComponent = (
         CreateBoardMutation,
         CreateBoardMutationVariables
       >,
-      "mutation"
+      'mutation'
     >,
-    "variables"
-  > & { variables?: CreateBoardMutationVariables }
+    'variables'
+  > & { variables?: CreateBoardMutationVariables },
 ) => (
   <ReactApollo.Mutation<CreateBoardMutation, CreateBoardMutationVariables>
     mutation={CreateBoardDocument}
     {...props}
   />
-);
+)
 
 export type CreateBoardProps<TChildProps = {}> = Partial<
   ReactApollo.MutateProps<CreateBoardMutation, CreateBoardMutationVariables>
 > &
-  TChildProps;
+  TChildProps
 export function withCreateBoard<TProps, TChildProps = {}>(
   operationOptions?: ReactApollo.OperationOption<
     TProps,
     CreateBoardMutation,
     CreateBoardMutationVariables,
     CreateBoardProps<TChildProps>
-  >
+  >,
 ) {
   return ReactApollo.withMutation<
     TProps,
@@ -9963,25 +16804,36 @@ export function withCreateBoard<TProps, TChildProps = {}>(
     CreateBoardMutationVariables,
     CreateBoardProps<TChildProps>
   >(CreateBoardDocument, {
-    alias: "withCreateBoard",
-    ...operationOptions
-  });
+    alias: 'withCreateBoard',
+    ...operationOptions,
+  })
 }
 export const CreateColumnDocument = gql`
-  mutation createColumn($boardId: ID!, $name: String!, $query: String!) {
+  mutation createColumn(
+    $boardId: ID!
+    $name: String!
+    $query: String!
+    $index: Int!
+  ) {
     createColumn(
-      data: { board: { connect: { id: $boardId } }, name: $name, query: $query }
+      data: {
+        board: { connect: { id: $boardId } }
+        name: $name
+        query: $query
+        index: $index
+      }
     ) {
       id
       name
       query
+      index
     }
   }
-`;
+`
 export type CreateColumnMutationFn = ReactApollo.MutationFn<
   CreateColumnMutation,
   CreateColumnMutationVariables
->;
+>
 
 export const CreateColumnComponent = (
   props: Omit<
@@ -9990,28 +16842,28 @@ export const CreateColumnComponent = (
         CreateColumnMutation,
         CreateColumnMutationVariables
       >,
-      "mutation"
+      'mutation'
     >,
-    "variables"
-  > & { variables?: CreateColumnMutationVariables }
+    'variables'
+  > & { variables?: CreateColumnMutationVariables },
 ) => (
   <ReactApollo.Mutation<CreateColumnMutation, CreateColumnMutationVariables>
     mutation={CreateColumnDocument}
     {...props}
   />
-);
+)
 
 export type CreateColumnProps<TChildProps = {}> = Partial<
   ReactApollo.MutateProps<CreateColumnMutation, CreateColumnMutationVariables>
 > &
-  TChildProps;
+  TChildProps
 export function withCreateColumn<TProps, TChildProps = {}>(
   operationOptions?: ReactApollo.OperationOption<
     TProps,
     CreateColumnMutation,
     CreateColumnMutationVariables,
     CreateColumnProps<TChildProps>
-  >
+  >,
 ) {
   return ReactApollo.withMutation<
     TProps,
@@ -10019,9 +16871,9 @@ export function withCreateColumn<TProps, TChildProps = {}>(
     CreateColumnMutationVariables,
     CreateColumnProps<TChildProps>
   >(CreateColumnDocument, {
-    alias: "withCreateColumn",
-    ...operationOptions
-  });
+    alias: 'withCreateColumn',
+    ...operationOptions,
+  })
 }
 export const DeleteBoardDocument = gql`
   mutation deleteBoard($id: ID!) {
@@ -10029,11 +16881,11 @@ export const DeleteBoardDocument = gql`
       id
     }
   }
-`;
+`
 export type DeleteBoardMutationFn = ReactApollo.MutationFn<
   DeleteBoardMutation,
   DeleteBoardMutationVariables
->;
+>
 
 export const DeleteBoardComponent = (
   props: Omit<
@@ -10042,28 +16894,28 @@ export const DeleteBoardComponent = (
         DeleteBoardMutation,
         DeleteBoardMutationVariables
       >,
-      "mutation"
+      'mutation'
     >,
-    "variables"
-  > & { variables?: DeleteBoardMutationVariables }
+    'variables'
+  > & { variables?: DeleteBoardMutationVariables },
 ) => (
   <ReactApollo.Mutation<DeleteBoardMutation, DeleteBoardMutationVariables>
     mutation={DeleteBoardDocument}
     {...props}
   />
-);
+)
 
 export type DeleteBoardProps<TChildProps = {}> = Partial<
   ReactApollo.MutateProps<DeleteBoardMutation, DeleteBoardMutationVariables>
 > &
-  TChildProps;
+  TChildProps
 export function withDeleteBoard<TProps, TChildProps = {}>(
   operationOptions?: ReactApollo.OperationOption<
     TProps,
     DeleteBoardMutation,
     DeleteBoardMutationVariables,
     DeleteBoardProps<TChildProps>
-  >
+  >,
 ) {
   return ReactApollo.withMutation<
     TProps,
@@ -10071,9 +16923,9 @@ export function withDeleteBoard<TProps, TChildProps = {}>(
     DeleteBoardMutationVariables,
     DeleteBoardProps<TChildProps>
   >(DeleteBoardDocument, {
-    alias: "withDeleteBoard",
-    ...operationOptions
-  });
+    alias: 'withDeleteBoard',
+    ...operationOptions,
+  })
 }
 export const DeleteColumnDocument = gql`
   mutation deleteColumn($id: ID!) {
@@ -10081,11 +16933,11 @@ export const DeleteColumnDocument = gql`
       id
     }
   }
-`;
+`
 export type DeleteColumnMutationFn = ReactApollo.MutationFn<
   DeleteColumnMutation,
   DeleteColumnMutationVariables
->;
+>
 
 export const DeleteColumnComponent = (
   props: Omit<
@@ -10094,28 +16946,28 @@ export const DeleteColumnComponent = (
         DeleteColumnMutation,
         DeleteColumnMutationVariables
       >,
-      "mutation"
+      'mutation'
     >,
-    "variables"
-  > & { variables?: DeleteColumnMutationVariables }
+    'variables'
+  > & { variables?: DeleteColumnMutationVariables },
 ) => (
   <ReactApollo.Mutation<DeleteColumnMutation, DeleteColumnMutationVariables>
     mutation={DeleteColumnDocument}
     {...props}
   />
-);
+)
 
 export type DeleteColumnProps<TChildProps = {}> = Partial<
   ReactApollo.MutateProps<DeleteColumnMutation, DeleteColumnMutationVariables>
 > &
-  TChildProps;
+  TChildProps
 export function withDeleteColumn<TProps, TChildProps = {}>(
   operationOptions?: ReactApollo.OperationOption<
     TProps,
     DeleteColumnMutation,
     DeleteColumnMutationVariables,
     DeleteColumnProps<TChildProps>
-  >
+  >,
 ) {
   return ReactApollo.withMutation<
     TProps,
@@ -10123,9 +16975,9 @@ export function withDeleteColumn<TProps, TChildProps = {}>(
     DeleteColumnMutationVariables,
     DeleteColumnProps<TChildProps>
   >(DeleteColumnDocument, {
-    alias: "withDeleteColumn",
-    ...operationOptions
-  });
+    alias: 'withDeleteColumn',
+    ...operationOptions,
+  })
 }
 export const GetBoardDocument = gql`
   query getBoard($id: ID!) {
@@ -10133,41 +16985,42 @@ export const GetBoardDocument = gql`
       id
       name
       query
-      columns {
+      columns(orderBy: index_ASC) {
         id
         name
         query
+        index
       }
     }
   }
-`;
+`
 
 export const GetBoardComponent = (
   props: Omit<
     Omit<
       ReactApollo.QueryProps<GetBoardQuery, GetBoardQueryVariables>,
-      "query"
+      'query'
     >,
-    "variables"
-  > & { variables: GetBoardQueryVariables }
+    'variables'
+  > & { variables: GetBoardQueryVariables },
 ) => (
   <ReactApollo.Query<GetBoardQuery, GetBoardQueryVariables>
     query={GetBoardDocument}
     {...props}
   />
-);
+)
 
 export type GetBoardProps<TChildProps = {}> = Partial<
   ReactApollo.DataProps<GetBoardQuery, GetBoardQueryVariables>
 > &
-  TChildProps;
+  TChildProps
 export function withGetBoard<TProps, TChildProps = {}>(
   operationOptions?: ReactApollo.OperationOption<
     TProps,
     GetBoardQuery,
     GetBoardQueryVariables,
     GetBoardProps<TChildProps>
-  >
+  >,
 ) {
   return ReactApollo.withQuery<
     TProps,
@@ -10175,9 +17028,9 @@ export function withGetBoard<TProps, TChildProps = {}>(
     GetBoardQueryVariables,
     GetBoardProps<TChildProps>
   >(GetBoardDocument, {
-    alias: "withGetBoard",
-    ...operationOptions
-  });
+    alias: 'withGetBoard',
+    ...operationOptions,
+  })
 }
 export const GetBoardsDocument = gql`
   query getBoards {
@@ -10189,34 +17042,34 @@ export const GetBoardsDocument = gql`
       }
     }
   }
-`;
+`
 
 export const GetBoardsComponent = (
   props: Omit<
     Omit<
       ReactApollo.QueryProps<GetBoardsQuery, GetBoardsQueryVariables>,
-      "query"
+      'query'
     >,
-    "variables"
-  > & { variables?: GetBoardsQueryVariables }
+    'variables'
+  > & { variables?: GetBoardsQueryVariables },
 ) => (
   <ReactApollo.Query<GetBoardsQuery, GetBoardsQueryVariables>
     query={GetBoardsDocument}
     {...props}
   />
-);
+)
 
 export type GetBoardsProps<TChildProps = {}> = Partial<
   ReactApollo.DataProps<GetBoardsQuery, GetBoardsQueryVariables>
 > &
-  TChildProps;
+  TChildProps
 export function withGetBoards<TProps, TChildProps = {}>(
   operationOptions?: ReactApollo.OperationOption<
     TProps,
     GetBoardsQuery,
     GetBoardsQueryVariables,
     GetBoardsProps<TChildProps>
-  >
+  >,
 ) {
   return ReactApollo.withQuery<
     TProps,
@@ -10224,42 +17077,42 @@ export function withGetBoards<TProps, TChildProps = {}>(
     GetBoardsQueryVariables,
     GetBoardsProps<TChildProps>
   >(GetBoardsDocument, {
-    alias: "withGetBoards",
-    ...operationOptions
-  });
+    alias: 'withGetBoards',
+    ...operationOptions,
+  })
 }
 export const GetIsSignedInDocument = gql`
   query getIsSignedIn {
     isSignedIn
   }
-`;
+`
 
 export const GetIsSignedInComponent = (
   props: Omit<
     Omit<
       ReactApollo.QueryProps<GetIsSignedInQuery, GetIsSignedInQueryVariables>,
-      "query"
+      'query'
     >,
-    "variables"
-  > & { variables?: GetIsSignedInQueryVariables }
+    'variables'
+  > & { variables?: GetIsSignedInQueryVariables },
 ) => (
   <ReactApollo.Query<GetIsSignedInQuery, GetIsSignedInQueryVariables>
     query={GetIsSignedInDocument}
     {...props}
   />
-);
+)
 
 export type GetIsSignedInProps<TChildProps = {}> = Partial<
   ReactApollo.DataProps<GetIsSignedInQuery, GetIsSignedInQueryVariables>
 > &
-  TChildProps;
+  TChildProps
 export function withGetIsSignedIn<TProps, TChildProps = {}>(
   operationOptions?: ReactApollo.OperationOption<
     TProps,
     GetIsSignedInQuery,
     GetIsSignedInQueryVariables,
     GetIsSignedInProps<TChildProps>
-  >
+  >,
 ) {
   return ReactApollo.withQuery<
     TProps,
@@ -10267,9 +17120,9 @@ export function withGetIsSignedIn<TProps, TChildProps = {}>(
     GetIsSignedInQueryVariables,
     GetIsSignedInProps<TChildProps>
   >(GetIsSignedInDocument, {
-    alias: "withGetIsSignedIn",
-    ...operationOptions
-  });
+    alias: 'withGetIsSignedIn',
+    ...operationOptions,
+  })
 }
 export const GetViewerDocument = gql`
   query getViewer {
@@ -10279,34 +17132,34 @@ export const GetViewerDocument = gql`
       avatarUrl
     }
   }
-`;
+`
 
 export const GetViewerComponent = (
   props: Omit<
     Omit<
       ReactApollo.QueryProps<GetViewerQuery, GetViewerQueryVariables>,
-      "query"
+      'query'
     >,
-    "variables"
-  > & { variables?: GetViewerQueryVariables }
+    'variables'
+  > & { variables?: GetViewerQueryVariables },
 ) => (
   <ReactApollo.Query<GetViewerQuery, GetViewerQueryVariables>
     query={GetViewerDocument}
     {...props}
   />
-);
+)
 
 export type GetViewerProps<TChildProps = {}> = Partial<
   ReactApollo.DataProps<GetViewerQuery, GetViewerQueryVariables>
 > &
-  TChildProps;
+  TChildProps
 export function withGetViewer<TProps, TChildProps = {}>(
   operationOptions?: ReactApollo.OperationOption<
     TProps,
     GetViewerQuery,
     GetViewerQueryVariables,
     GetViewerProps<TChildProps>
-  >
+  >,
 ) {
   return ReactApollo.withQuery<
     TProps,
@@ -10314,9 +17167,9 @@ export function withGetViewer<TProps, TChildProps = {}>(
     GetViewerQueryVariables,
     GetViewerProps<TChildProps>
   >(GetViewerDocument, {
-    alias: "withGetViewer",
-    ...operationOptions
-  });
+    alias: 'withGetViewer',
+    ...operationOptions,
+  })
 }
 export const SearchGitHubDocument = gql`
   query searchGitHub($query: String!, $endCursor: String) {
@@ -10370,34 +17223,34 @@ export const SearchGitHubDocument = gql`
       }
     }
   }
-`;
+`
 
 export const SearchGitHubComponent = (
   props: Omit<
     Omit<
       ReactApollo.QueryProps<SearchGitHubQuery, SearchGitHubQueryVariables>,
-      "query"
+      'query'
     >,
-    "variables"
-  > & { variables: SearchGitHubQueryVariables }
+    'variables'
+  > & { variables: SearchGitHubQueryVariables },
 ) => (
   <ReactApollo.Query<SearchGitHubQuery, SearchGitHubQueryVariables>
     query={SearchGitHubDocument}
     {...props}
   />
-);
+)
 
 export type SearchGitHubProps<TChildProps = {}> = Partial<
   ReactApollo.DataProps<SearchGitHubQuery, SearchGitHubQueryVariables>
 > &
-  TChildProps;
+  TChildProps
 export function withSearchGitHub<TProps, TChildProps = {}>(
   operationOptions?: ReactApollo.OperationOption<
     TProps,
     SearchGitHubQuery,
     SearchGitHubQueryVariables,
     SearchGitHubProps<TChildProps>
-  >
+  >,
 ) {
   return ReactApollo.withQuery<
     TProps,
@@ -10405,9 +17258,9 @@ export function withSearchGitHub<TProps, TChildProps = {}>(
     SearchGitHubQueryVariables,
     SearchGitHubProps<TChildProps>
   >(SearchGitHubDocument, {
-    alias: "withSearchGitHub",
-    ...operationOptions
-  });
+    alias: 'withSearchGitHub',
+    ...operationOptions,
+  })
 }
 export const SignInDocument = gql`
   mutation signIn($gitHubCode: String!) {
@@ -10415,38 +17268,38 @@ export const SignInDocument = gql`
       token
     }
   }
-`;
+`
 export type SignInMutationFn = ReactApollo.MutationFn<
   SignInMutation,
   SignInMutationVariables
->;
+>
 
 export const SignInComponent = (
   props: Omit<
     Omit<
       ReactApollo.MutationProps<SignInMutation, SignInMutationVariables>,
-      "mutation"
+      'mutation'
     >,
-    "variables"
-  > & { variables?: SignInMutationVariables }
+    'variables'
+  > & { variables?: SignInMutationVariables },
 ) => (
   <ReactApollo.Mutation<SignInMutation, SignInMutationVariables>
     mutation={SignInDocument}
     {...props}
   />
-);
+)
 
 export type SignInProps<TChildProps = {}> = Partial<
   ReactApollo.MutateProps<SignInMutation, SignInMutationVariables>
 > &
-  TChildProps;
+  TChildProps
 export function withSignIn<TProps, TChildProps = {}>(
   operationOptions?: ReactApollo.OperationOption<
     TProps,
     SignInMutation,
     SignInMutationVariables,
     SignInProps<TChildProps>
-  >
+  >,
 ) {
   return ReactApollo.withMutation<
     TProps,
@@ -10454,46 +17307,46 @@ export function withSignIn<TProps, TChildProps = {}>(
     SignInMutationVariables,
     SignInProps<TChildProps>
   >(SignInDocument, {
-    alias: "withSignIn",
-    ...operationOptions
-  });
+    alias: 'withSignIn',
+    ...operationOptions,
+  })
 }
 export const SignOutDocument = gql`
   mutation signOut {
     signOut
   }
-`;
+`
 export type SignOutMutationFn = ReactApollo.MutationFn<
   SignOutMutation,
   SignOutMutationVariables
->;
+>
 
 export const SignOutComponent = (
   props: Omit<
     Omit<
       ReactApollo.MutationProps<SignOutMutation, SignOutMutationVariables>,
-      "mutation"
+      'mutation'
     >,
-    "variables"
-  > & { variables?: SignOutMutationVariables }
+    'variables'
+  > & { variables?: SignOutMutationVariables },
 ) => (
   <ReactApollo.Mutation<SignOutMutation, SignOutMutationVariables>
     mutation={SignOutDocument}
     {...props}
   />
-);
+)
 
 export type SignOutProps<TChildProps = {}> = Partial<
   ReactApollo.MutateProps<SignOutMutation, SignOutMutationVariables>
 > &
-  TChildProps;
+  TChildProps
 export function withSignOut<TProps, TChildProps = {}>(
   operationOptions?: ReactApollo.OperationOption<
     TProps,
     SignOutMutation,
     SignOutMutationVariables,
     SignOutProps<TChildProps>
-  >
+  >,
 ) {
   return ReactApollo.withMutation<
     TProps,
@@ -10501,9 +17354,9 @@ export function withSignOut<TProps, TChildProps = {}>(
     SignOutMutationVariables,
     SignOutProps<TChildProps>
   >(SignOutDocument, {
-    alias: "withSignOut",
-    ...operationOptions
-  });
+    alias: 'withSignOut',
+    ...operationOptions,
+  })
 }
 export const UpdateBoardDocument = gql`
   mutation updateBoard($id: ID!, $name: String, $query: String) {
@@ -10513,11 +17366,11 @@ export const UpdateBoardDocument = gql`
       query
     }
   }
-`;
+`
 export type UpdateBoardMutationFn = ReactApollo.MutationFn<
   UpdateBoardMutation,
   UpdateBoardMutationVariables
->;
+>
 
 export const UpdateBoardComponent = (
   props: Omit<
@@ -10526,28 +17379,28 @@ export const UpdateBoardComponent = (
         UpdateBoardMutation,
         UpdateBoardMutationVariables
       >,
-      "mutation"
+      'mutation'
     >,
-    "variables"
-  > & { variables?: UpdateBoardMutationVariables }
+    'variables'
+  > & { variables?: UpdateBoardMutationVariables },
 ) => (
   <ReactApollo.Mutation<UpdateBoardMutation, UpdateBoardMutationVariables>
     mutation={UpdateBoardDocument}
     {...props}
   />
-);
+)
 
 export type UpdateBoardProps<TChildProps = {}> = Partial<
   ReactApollo.MutateProps<UpdateBoardMutation, UpdateBoardMutationVariables>
 > &
-  TChildProps;
+  TChildProps
 export function withUpdateBoard<TProps, TChildProps = {}>(
   operationOptions?: ReactApollo.OperationOption<
     TProps,
     UpdateBoardMutation,
     UpdateBoardMutationVariables,
     UpdateBoardProps<TChildProps>
-  >
+  >,
 ) {
   return ReactApollo.withMutation<
     TProps,
@@ -10555,23 +17408,27 @@ export function withUpdateBoard<TProps, TChildProps = {}>(
     UpdateBoardMutationVariables,
     UpdateBoardProps<TChildProps>
   >(UpdateBoardDocument, {
-    alias: "withUpdateBoard",
-    ...operationOptions
-  });
+    alias: 'withUpdateBoard',
+    ...operationOptions,
+  })
 }
 export const UpdateColumnDocument = gql`
-  mutation updateColumn($id: ID!, $name: String, $query: String) {
-    updateColumn(where: { id: $id }, data: { name: $name, query: $query }) {
+  mutation updateColumn($id: ID!, $name: String, $query: String, $index: Int) {
+    updateColumn(
+      where: { id: $id }
+      data: { name: $name, query: $query, index: $index }
+    ) {
       id
       name
       query
+      index
     }
   }
-`;
+`
 export type UpdateColumnMutationFn = ReactApollo.MutationFn<
   UpdateColumnMutation,
   UpdateColumnMutationVariables
->;
+>
 
 export const UpdateColumnComponent = (
   props: Omit<
@@ -10580,28 +17437,28 @@ export const UpdateColumnComponent = (
         UpdateColumnMutation,
         UpdateColumnMutationVariables
       >,
-      "mutation"
+      'mutation'
     >,
-    "variables"
-  > & { variables?: UpdateColumnMutationVariables }
+    'variables'
+  > & { variables?: UpdateColumnMutationVariables },
 ) => (
   <ReactApollo.Mutation<UpdateColumnMutation, UpdateColumnMutationVariables>
     mutation={UpdateColumnDocument}
     {...props}
   />
-);
+)
 
 export type UpdateColumnProps<TChildProps = {}> = Partial<
   ReactApollo.MutateProps<UpdateColumnMutation, UpdateColumnMutationVariables>
 > &
-  TChildProps;
+  TChildProps
 export function withUpdateColumn<TProps, TChildProps = {}>(
   operationOptions?: ReactApollo.OperationOption<
     TProps,
     UpdateColumnMutation,
     UpdateColumnMutationVariables,
     UpdateColumnProps<TChildProps>
-  >
+  >,
 ) {
   return ReactApollo.withMutation<
     TProps,
@@ -10609,7 +17466,7 @@ export function withUpdateColumn<TProps, TChildProps = {}>(
     UpdateColumnMutationVariables,
     UpdateColumnProps<TChildProps>
   >(UpdateColumnDocument, {
-    alias: "withUpdateColumn",
-    ...operationOptions
-  });
+    alias: 'withUpdateColumn',
+    ...operationOptions,
+  })
 }

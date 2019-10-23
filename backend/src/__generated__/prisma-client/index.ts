@@ -201,7 +201,9 @@ export type ColumnOrderByInput =
   | "name_ASC"
   | "name_DESC"
   | "query_ASC"
-  | "query_DESC";
+  | "query_DESC"
+  | "index_ASC"
+  | "index_DESC";
 
 export type UserOrderByInput =
   | "id_ASC"
@@ -283,6 +285,14 @@ export interface ColumnScalarWhereInput {
   query_not_starts_with?: Maybe<String>;
   query_ends_with?: Maybe<String>;
   query_not_ends_with?: Maybe<String>;
+  index?: Maybe<Int>;
+  index_not?: Maybe<Int>;
+  index_in?: Maybe<Int[] | Int>;
+  index_not_in?: Maybe<Int[] | Int>;
+  index_lt?: Maybe<Int>;
+  index_lte?: Maybe<Int>;
+  index_gt?: Maybe<Int>;
+  index_gte?: Maybe<Int>;
   AND?: Maybe<ColumnScalarWhereInput[] | ColumnScalarWhereInput>;
   OR?: Maybe<ColumnScalarWhereInput[] | ColumnScalarWhereInput>;
   NOT?: Maybe<ColumnScalarWhereInput[] | ColumnScalarWhereInput>;
@@ -406,218 +416,23 @@ export interface ColumnWhereInput {
   query_not_starts_with?: Maybe<String>;
   query_ends_with?: Maybe<String>;
   query_not_ends_with?: Maybe<String>;
+  index?: Maybe<Int>;
+  index_not?: Maybe<Int>;
+  index_in?: Maybe<Int[] | Int>;
+  index_not_in?: Maybe<Int[] | Int>;
+  index_lt?: Maybe<Int>;
+  index_lte?: Maybe<Int>;
+  index_gt?: Maybe<Int>;
+  index_gte?: Maybe<Int>;
   AND?: Maybe<ColumnWhereInput[] | ColumnWhereInput>;
   OR?: Maybe<ColumnWhereInput[] | ColumnWhereInput>;
   NOT?: Maybe<ColumnWhereInput[] | ColumnWhereInput>;
 }
 
-export interface ColumnCreateManyWithoutBoardInput {
-  create?: Maybe<
-    ColumnCreateWithoutBoardInput[] | ColumnCreateWithoutBoardInput
-  >;
-  connect?: Maybe<ColumnWhereUniqueInput[] | ColumnWhereUniqueInput>;
-}
-
-export interface BoardUpdateOneRequiredWithoutColumnsInput {
-  create?: Maybe<BoardCreateWithoutColumnsInput>;
-  update?: Maybe<BoardUpdateWithoutColumnsDataInput>;
-  upsert?: Maybe<BoardUpsertWithoutColumnsInput>;
-  connect?: Maybe<BoardWhereUniqueInput>;
-}
-
-export interface ColumnCreateWithoutBoardInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  query: String;
-}
-
 export interface ColumnUpdateManyDataInput {
   name?: Maybe<String>;
   query?: Maybe<String>;
-}
-
-export interface BoardUpdateInput {
-  owner?: Maybe<UserUpdateOneRequiredWithoutBoardsInput>;
-  name?: Maybe<String>;
-  query?: Maybe<String>;
-  columns?: Maybe<ColumnUpdateManyWithoutBoardInput>;
-}
-
-export interface ColumnSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ColumnWhereInput>;
-  AND?: Maybe<ColumnSubscriptionWhereInput[] | ColumnSubscriptionWhereInput>;
-  OR?: Maybe<ColumnSubscriptionWhereInput[] | ColumnSubscriptionWhereInput>;
-  NOT?: Maybe<ColumnSubscriptionWhereInput[] | ColumnSubscriptionWhereInput>;
-}
-
-export interface UserUpdateOneRequiredWithoutBoardsInput {
-  create?: Maybe<UserCreateWithoutBoardsInput>;
-  update?: Maybe<UserUpdateWithoutBoardsDataInput>;
-  upsert?: Maybe<UserUpsertWithoutBoardsInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface UserUpdateManyMutationInput {
-  gitHubId?: Maybe<ID_Input>;
-}
-
-export interface UserUpdateWithoutBoardsDataInput {
-  gitHubId?: Maybe<ID_Input>;
-}
-
-export interface BoardUpdateManyWithWhereNestedInput {
-  where: BoardScalarWhereInput;
-  data: BoardUpdateManyDataInput;
-}
-
-export interface UserUpsertWithoutBoardsInput {
-  update: UserUpdateWithoutBoardsDataInput;
-  create: UserCreateWithoutBoardsInput;
-}
-
-export interface BoardScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  query?: Maybe<String>;
-  query_not?: Maybe<String>;
-  query_in?: Maybe<String[] | String>;
-  query_not_in?: Maybe<String[] | String>;
-  query_lt?: Maybe<String>;
-  query_lte?: Maybe<String>;
-  query_gt?: Maybe<String>;
-  query_gte?: Maybe<String>;
-  query_contains?: Maybe<String>;
-  query_not_contains?: Maybe<String>;
-  query_starts_with?: Maybe<String>;
-  query_not_starts_with?: Maybe<String>;
-  query_ends_with?: Maybe<String>;
-  query_not_ends_with?: Maybe<String>;
-  AND?: Maybe<BoardScalarWhereInput[] | BoardScalarWhereInput>;
-  OR?: Maybe<BoardScalarWhereInput[] | BoardScalarWhereInput>;
-  NOT?: Maybe<BoardScalarWhereInput[] | BoardScalarWhereInput>;
-}
-
-export interface ColumnUpdateManyWithoutBoardInput {
-  create?: Maybe<
-    ColumnCreateWithoutBoardInput[] | ColumnCreateWithoutBoardInput
-  >;
-  delete?: Maybe<ColumnWhereUniqueInput[] | ColumnWhereUniqueInput>;
-  connect?: Maybe<ColumnWhereUniqueInput[] | ColumnWhereUniqueInput>;
-  set?: Maybe<ColumnWhereUniqueInput[] | ColumnWhereUniqueInput>;
-  disconnect?: Maybe<ColumnWhereUniqueInput[] | ColumnWhereUniqueInput>;
-  update?: Maybe<
-    | ColumnUpdateWithWhereUniqueWithoutBoardInput[]
-    | ColumnUpdateWithWhereUniqueWithoutBoardInput
-  >;
-  upsert?: Maybe<
-    | ColumnUpsertWithWhereUniqueWithoutBoardInput[]
-    | ColumnUpsertWithWhereUniqueWithoutBoardInput
-  >;
-  deleteMany?: Maybe<ColumnScalarWhereInput[] | ColumnScalarWhereInput>;
-  updateMany?: Maybe<
-    | ColumnUpdateManyWithWhereNestedInput[]
-    | ColumnUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface BoardUpdateWithoutOwnerDataInput {
-  name?: Maybe<String>;
-  query?: Maybe<String>;
-  columns?: Maybe<ColumnUpdateManyWithoutBoardInput>;
-}
-
-export interface BoardCreateManyWithoutOwnerInput {
-  create?: Maybe<BoardCreateWithoutOwnerInput[] | BoardCreateWithoutOwnerInput>;
-  connect?: Maybe<BoardWhereUniqueInput[] | BoardWhereUniqueInput>;
-}
-
-export interface BoardUpdateWithWhereUniqueWithoutOwnerInput {
-  where: BoardWhereUniqueInput;
-  data: BoardUpdateWithoutOwnerDataInput;
-}
-
-export interface ColumnUpdateWithoutBoardDataInput {
-  name?: Maybe<String>;
-  query?: Maybe<String>;
-}
-
-export interface UserUpdateInput {
-  gitHubId?: Maybe<ID_Input>;
-  boards?: Maybe<BoardUpdateManyWithoutOwnerInput>;
-}
-
-export interface ColumnUpsertWithWhereUniqueWithoutBoardInput {
-  where: ColumnWhereUniqueInput;
-  update: ColumnUpdateWithoutBoardDataInput;
-  create: ColumnCreateWithoutBoardInput;
-}
-
-export interface UserCreateOneWithoutBoardsInput {
-  create?: Maybe<UserCreateWithoutBoardsInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  gitHubId: ID_Input;
-  boards?: Maybe<BoardCreateManyWithoutOwnerInput>;
-}
-
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  index?: Maybe<Int>;
 }
 
 export interface BoardWhereInput {
@@ -688,14 +503,158 @@ export interface BoardWhereInput {
   NOT?: Maybe<BoardWhereInput[] | BoardWhereInput>;
 }
 
+export interface ColumnCreateWithoutBoardInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  query: String;
+  index: Int;
+}
+
+export interface BoardUpdateOneRequiredWithoutColumnsInput {
+  create?: Maybe<BoardCreateWithoutColumnsInput>;
+  update?: Maybe<BoardUpdateWithoutColumnsDataInput>;
+  upsert?: Maybe<BoardUpsertWithoutColumnsInput>;
+  connect?: Maybe<BoardWhereUniqueInput>;
+}
+
+export interface BoardUpdateInput {
+  owner?: Maybe<UserUpdateOneRequiredWithoutBoardsInput>;
+  name?: Maybe<String>;
+  query?: Maybe<String>;
+  columns?: Maybe<ColumnUpdateManyWithoutBoardInput>;
+}
+
+export interface BoardUpdateManyMutationInput {
+  name?: Maybe<String>;
+  query?: Maybe<String>;
+}
+
+export interface UserUpdateOneRequiredWithoutBoardsInput {
+  create?: Maybe<UserCreateWithoutBoardsInput>;
+  update?: Maybe<UserUpdateWithoutBoardsDataInput>;
+  upsert?: Maybe<UserUpsertWithoutBoardsInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface ColumnSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ColumnWhereInput>;
+  AND?: Maybe<ColumnSubscriptionWhereInput[] | ColumnSubscriptionWhereInput>;
+  OR?: Maybe<ColumnSubscriptionWhereInput[] | ColumnSubscriptionWhereInput>;
+  NOT?: Maybe<ColumnSubscriptionWhereInput[] | ColumnSubscriptionWhereInput>;
+}
+
+export interface UserUpdateWithoutBoardsDataInput {
+  gitHubId?: Maybe<ID_Input>;
+}
+
+export interface UserUpdateManyMutationInput {
+  gitHubId?: Maybe<ID_Input>;
+}
+
+export interface UserUpsertWithoutBoardsInput {
+  update: UserUpdateWithoutBoardsDataInput;
+  create: UserCreateWithoutBoardsInput;
+}
+
 export interface BoardUpdateManyDataInput {
   name?: Maybe<String>;
   query?: Maybe<String>;
 }
 
-export interface ColumnUpdateManyMutationInput {
+export interface ColumnUpdateManyWithoutBoardInput {
+  create?: Maybe<
+    ColumnCreateWithoutBoardInput[] | ColumnCreateWithoutBoardInput
+  >;
+  delete?: Maybe<ColumnWhereUniqueInput[] | ColumnWhereUniqueInput>;
+  connect?: Maybe<ColumnWhereUniqueInput[] | ColumnWhereUniqueInput>;
+  set?: Maybe<ColumnWhereUniqueInput[] | ColumnWhereUniqueInput>;
+  disconnect?: Maybe<ColumnWhereUniqueInput[] | ColumnWhereUniqueInput>;
+  update?: Maybe<
+    | ColumnUpdateWithWhereUniqueWithoutBoardInput[]
+    | ColumnUpdateWithWhereUniqueWithoutBoardInput
+  >;
+  upsert?: Maybe<
+    | ColumnUpsertWithWhereUniqueWithoutBoardInput[]
+    | ColumnUpsertWithWhereUniqueWithoutBoardInput
+  >;
+  deleteMany?: Maybe<ColumnScalarWhereInput[] | ColumnScalarWhereInput>;
+  updateMany?: Maybe<
+    | ColumnUpdateManyWithWhereNestedInput[]
+    | ColumnUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface BoardScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
   name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
   query?: Maybe<String>;
+  query_not?: Maybe<String>;
+  query_in?: Maybe<String[] | String>;
+  query_not_in?: Maybe<String[] | String>;
+  query_lt?: Maybe<String>;
+  query_lte?: Maybe<String>;
+  query_gt?: Maybe<String>;
+  query_gte?: Maybe<String>;
+  query_contains?: Maybe<String>;
+  query_not_contains?: Maybe<String>;
+  query_starts_with?: Maybe<String>;
+  query_not_starts_with?: Maybe<String>;
+  query_ends_with?: Maybe<String>;
+  query_not_ends_with?: Maybe<String>;
+  AND?: Maybe<BoardScalarWhereInput[] | BoardScalarWhereInput>;
+  OR?: Maybe<BoardScalarWhereInput[] | BoardScalarWhereInput>;
+  NOT?: Maybe<BoardScalarWhereInput[] | BoardScalarWhereInput>;
+}
+
+export interface UserUpdateInput {
+  gitHubId?: Maybe<ID_Input>;
+  boards?: Maybe<BoardUpdateManyWithoutOwnerInput>;
 }
 
 export interface BoardUpsertWithWhereUniqueWithoutOwnerInput {
@@ -704,29 +663,79 @@ export interface BoardUpsertWithWhereUniqueWithoutOwnerInput {
   create: BoardCreateWithoutOwnerInput;
 }
 
-export interface BoardUpdateManyMutationInput {
+export interface ColumnUpdateWithoutBoardDataInput {
   name?: Maybe<String>;
   query?: Maybe<String>;
+  index?: Maybe<Int>;
 }
 
-export interface BoardUpdateManyWithoutOwnerInput {
+export interface BoardUpdateWithWhereUniqueWithoutOwnerInput {
+  where: BoardWhereUniqueInput;
+  data: BoardUpdateWithoutOwnerDataInput;
+}
+
+export interface ColumnUpsertWithWhereUniqueWithoutBoardInput {
+  where: ColumnWhereUniqueInput;
+  update: ColumnUpdateWithoutBoardDataInput;
+  create: ColumnCreateWithoutBoardInput;
+}
+
+export interface UserCreateOneWithoutBoardsInput {
+  create?: Maybe<UserCreateWithoutBoardsInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface BoardCreateWithoutOwnerInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  query: String;
+  columns?: Maybe<ColumnCreateManyWithoutBoardInput>;
+}
+
+export interface ColumnCreateManyWithoutBoardInput {
+  create?: Maybe<
+    ColumnCreateWithoutBoardInput[] | ColumnCreateWithoutBoardInput
+  >;
+  connect?: Maybe<ColumnWhereUniqueInput[] | ColumnWhereUniqueInput>;
+}
+
+export interface BoardCreateManyWithoutOwnerInput {
   create?: Maybe<BoardCreateWithoutOwnerInput[] | BoardCreateWithoutOwnerInput>;
-  delete?: Maybe<BoardWhereUniqueInput[] | BoardWhereUniqueInput>;
   connect?: Maybe<BoardWhereUniqueInput[] | BoardWhereUniqueInput>;
-  set?: Maybe<BoardWhereUniqueInput[] | BoardWhereUniqueInput>;
-  disconnect?: Maybe<BoardWhereUniqueInput[] | BoardWhereUniqueInput>;
-  update?: Maybe<
-    | BoardUpdateWithWhereUniqueWithoutOwnerInput[]
-    | BoardUpdateWithWhereUniqueWithoutOwnerInput
-  >;
-  upsert?: Maybe<
-    | BoardUpsertWithWhereUniqueWithoutOwnerInput[]
-    | BoardUpsertWithWhereUniqueWithoutOwnerInput
-  >;
-  deleteMany?: Maybe<BoardScalarWhereInput[] | BoardScalarWhereInput>;
-  updateMany?: Maybe<
-    BoardUpdateManyWithWhereNestedInput[] | BoardUpdateManyWithWhereNestedInput
-  >;
+}
+
+export interface BoardSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<BoardWhereInput>;
+  AND?: Maybe<BoardSubscriptionWhereInput[] | BoardSubscriptionWhereInput>;
+  OR?: Maybe<BoardSubscriptionWhereInput[] | BoardSubscriptionWhereInput>;
+  NOT?: Maybe<BoardSubscriptionWhereInput[] | BoardSubscriptionWhereInput>;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  gitHubId: ID_Input;
+  boards?: Maybe<BoardCreateManyWithoutOwnerInput>;
+}
+
+export interface BoardUpdateManyWithWhereNestedInput {
+  where: BoardScalarWhereInput;
+  data: BoardUpdateManyDataInput;
+}
+
+export interface ColumnUpdateManyMutationInput {
+  name?: Maybe<String>;
+  query?: Maybe<String>;
+  index?: Maybe<Int>;
+}
+
+export interface BoardUpdateWithoutOwnerDataInput {
+  name?: Maybe<String>;
+  query?: Maybe<String>;
+  columns?: Maybe<ColumnUpdateManyWithoutBoardInput>;
 }
 
 export interface BoardUpsertWithoutColumnsInput {
@@ -748,21 +757,22 @@ export interface BoardUpdateWithoutColumnsDataInput {
   query?: Maybe<String>;
 }
 
-export interface BoardSubscriptionWhereInput {
+export interface UserSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<BoardWhereInput>;
-  AND?: Maybe<BoardSubscriptionWhereInput[] | BoardSubscriptionWhereInput>;
-  OR?: Maybe<BoardSubscriptionWhereInput[] | BoardSubscriptionWhereInput>;
-  NOT?: Maybe<BoardSubscriptionWhereInput[] | BoardSubscriptionWhereInput>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
 export interface ColumnUpdateInput {
   board?: Maybe<BoardUpdateOneRequiredWithoutColumnsInput>;
   name?: Maybe<String>;
   query?: Maybe<String>;
+  index?: Maybe<Int>;
 }
 
 export interface BoardCreateWithoutColumnsInput {
@@ -782,6 +792,7 @@ export interface ColumnCreateInput {
   board: BoardCreateOneWithoutColumnsInput;
   name: String;
   query: String;
+  index: Int;
 }
 
 export type ColumnWhereUniqueInput = AtLeastOne<{
@@ -793,11 +804,24 @@ export interface UserCreateWithoutBoardsInput {
   gitHubId: ID_Input;
 }
 
-export interface BoardCreateWithoutOwnerInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  query: String;
-  columns?: Maybe<ColumnCreateManyWithoutBoardInput>;
+export interface BoardUpdateManyWithoutOwnerInput {
+  create?: Maybe<BoardCreateWithoutOwnerInput[] | BoardCreateWithoutOwnerInput>;
+  delete?: Maybe<BoardWhereUniqueInput[] | BoardWhereUniqueInput>;
+  connect?: Maybe<BoardWhereUniqueInput[] | BoardWhereUniqueInput>;
+  set?: Maybe<BoardWhereUniqueInput[] | BoardWhereUniqueInput>;
+  disconnect?: Maybe<BoardWhereUniqueInput[] | BoardWhereUniqueInput>;
+  update?: Maybe<
+    | BoardUpdateWithWhereUniqueWithoutOwnerInput[]
+    | BoardUpdateWithWhereUniqueWithoutOwnerInput
+  >;
+  upsert?: Maybe<
+    | BoardUpsertWithWhereUniqueWithoutOwnerInput[]
+    | BoardUpsertWithWhereUniqueWithoutOwnerInput
+  >;
+  deleteMany?: Maybe<BoardScalarWhereInput[] | BoardScalarWhereInput>;
+  updateMany?: Maybe<
+    BoardUpdateManyWithWhereNestedInput[] | BoardUpdateManyWithWhereNestedInput
+  >;
 }
 
 export type UserWhereUniqueInput = AtLeastOne<{
@@ -851,25 +875,47 @@ export interface ColumnEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface BoardConnection {
-  pageInfo: PageInfo;
-  edges: BoardEdge[];
+export interface Column {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  name: String;
+  query: String;
+  index: Int;
 }
 
-export interface BoardConnectionPromise
-  extends Promise<BoardConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<BoardEdge>>() => T;
-  aggregate: <T = AggregateBoardPromise>() => T;
+export interface ColumnPromise extends Promise<Column>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  board: <T = BoardPromise>() => T;
+  name: () => Promise<String>;
+  query: () => Promise<String>;
+  index: () => Promise<Int>;
 }
 
-export interface BoardConnectionSubscription
-  extends Promise<AsyncIterator<BoardConnection>>,
+export interface ColumnSubscription
+  extends Promise<AsyncIterator<Column>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<BoardEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateBoardSubscription>() => T;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  board: <T = BoardSubscription>() => T;
+  name: () => Promise<AsyncIterator<String>>;
+  query: () => Promise<AsyncIterator<String>>;
+  index: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ColumnNullablePromise
+  extends Promise<Column | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  board: <T = BoardPromise>() => T;
+  name: () => Promise<String>;
+  query: () => Promise<String>;
+  index: () => Promise<Int>;
 }
 
 export interface ColumnConnection {
@@ -893,20 +939,25 @@ export interface ColumnConnectionSubscription
   aggregate: <T = AggregateColumnSubscription>() => T;
 }
 
-export interface AggregateBoard {
-  count: Int;
+export interface BoardConnection {
+  pageInfo: PageInfo;
+  edges: BoardEdge[];
 }
 
-export interface AggregateBoardPromise
-  extends Promise<AggregateBoard>,
+export interface BoardConnectionPromise
+  extends Promise<BoardConnection>,
     Fragmentable {
-  count: () => Promise<Int>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<BoardEdge>>() => T;
+  aggregate: <T = AggregateBoardPromise>() => T;
 }
 
-export interface AggregateBoardSubscription
-  extends Promise<AsyncIterator<AggregateBoard>>,
+export interface BoardConnectionSubscription
+  extends Promise<AsyncIterator<BoardConnection>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<BoardEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateBoardSubscription>() => T;
 }
 
 export interface BatchPayload {
@@ -923,64 +974,6 @@ export interface BatchPayloadSubscription
   extends Promise<AsyncIterator<BatchPayload>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface UserSubscriptionPayload {
-  mutation: MutationType;
-  node: User;
-  updatedFields: String[];
-  previousValues: UserPreviousValues;
-}
-
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
-}
-
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
-}
-
-export interface BoardEdge {
-  node: Board;
-  cursor: String;
-}
-
-export interface BoardEdgePromise extends Promise<BoardEdge>, Fragmentable {
-  node: <T = BoardPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface BoardEdgeSubscription
-  extends Promise<AsyncIterator<BoardEdge>>,
-    Fragmentable {
-  node: <T = BoardSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateUser {
-  count: Int;
-}
-
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface ColumnSubscriptionPayload {
@@ -1008,6 +1001,128 @@ export interface ColumnSubscriptionPayloadSubscription
   previousValues: <T = ColumnPreviousValuesSubscription>() => T;
 }
 
+export interface User {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  gitHubId: ID_Output;
+}
+
+export interface UserPromise extends Promise<User>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  gitHubId: () => Promise<ID_Output>;
+  boards: <T = FragmentableArray<Board>>(args?: {
+    where?: BoardWhereInput;
+    orderBy?: BoardOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  gitHubId: () => Promise<AsyncIterator<ID_Output>>;
+  boards: <T = Promise<AsyncIterator<BoardSubscription>>>(args?: {
+    where?: BoardWhereInput;
+    orderBy?: BoardOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface UserNullablePromise
+  extends Promise<User | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  gitHubId: () => Promise<ID_Output>;
+  boards: <T = FragmentableArray<Board>>(args?: {
+    where?: BoardWhereInput;
+    orderBy?: BoardOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface AggregateBoard {
+  count: Int;
+}
+
+export interface AggregateBoardPromise
+  extends Promise<AggregateBoard>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateBoardSubscription
+  extends Promise<AsyncIterator<AggregateBoard>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ColumnPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  name: String;
+  query: String;
+  index: Int;
+}
+
+export interface ColumnPreviousValuesPromise
+  extends Promise<ColumnPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  name: () => Promise<String>;
+  query: () => Promise<String>;
+  index: () => Promise<Int>;
+}
+
+export interface ColumnPreviousValuesSubscription
+  extends Promise<AsyncIterator<ColumnPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  name: () => Promise<AsyncIterator<String>>;
+  query: () => Promise<AsyncIterator<String>>;
+  index: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface UserConnection {
   pageInfo: PageInfo;
   edges: UserEdge[];
@@ -1027,22 +1142,6 @@ export interface UserConnectionSubscription
   pageInfo: <T = PageInfoSubscription>() => T;
   edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
   aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface AggregateColumn {
-  count: Int;
-}
-
-export interface AggregateColumnPromise
-  extends Promise<AggregateColumn>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateColumnSubscription
-  extends Promise<AsyncIterator<AggregateColumn>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface BoardPreviousValues {
@@ -1164,6 +1263,23 @@ export interface BoardNullablePromise
   }) => T;
 }
 
+export interface BoardEdge {
+  node: Board;
+  cursor: String;
+}
+
+export interface BoardEdgePromise extends Promise<BoardEdge>, Fragmentable {
+  node: <T = BoardPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface BoardEdgeSubscription
+  extends Promise<AsyncIterator<BoardEdge>>,
+    Fragmentable {
+  node: <T = BoardSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
 export interface PageInfo {
   hasNextPage: Boolean;
   hasPreviousPage: Boolean;
@@ -1187,93 +1303,6 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface User {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  gitHubId: ID_Output;
-}
-
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  gitHubId: () => Promise<ID_Output>;
-  boards: <T = FragmentableArray<Board>>(args?: {
-    where?: BoardWhereInput;
-    orderBy?: BoardOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  gitHubId: () => Promise<AsyncIterator<ID_Output>>;
-  boards: <T = Promise<AsyncIterator<BoardSubscription>>>(args?: {
-    where?: BoardWhereInput;
-    orderBy?: BoardOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface UserNullablePromise
-  extends Promise<User | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  gitHubId: () => Promise<ID_Output>;
-  boards: <T = FragmentableArray<Board>>(args?: {
-    where?: BoardWhereInput;
-    orderBy?: BoardOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface ColumnPreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  name: String;
-  query: String;
-}
-
-export interface ColumnPreviousValuesPromise
-  extends Promise<ColumnPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  name: () => Promise<String>;
-  query: () => Promise<String>;
-}
-
-export interface ColumnPreviousValuesSubscription
-  extends Promise<AsyncIterator<ColumnPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  name: () => Promise<AsyncIterator<String>>;
-  query: () => Promise<AsyncIterator<String>>;
-}
-
 export interface UserEdge {
   node: User;
   cursor: String;
@@ -1291,56 +1320,53 @@ export interface UserEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface Column {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  name: String;
-  query: String;
+export interface UserSubscriptionPayload {
+  mutation: MutationType;
+  node: User;
+  updatedFields: String[];
+  previousValues: UserPreviousValues;
 }
 
-export interface ColumnPromise extends Promise<Column>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  board: <T = BoardPromise>() => T;
-  name: () => Promise<String>;
-  query: () => Promise<String>;
-}
-
-export interface ColumnSubscription
-  extends Promise<AsyncIterator<Column>>,
+export interface UserSubscriptionPayloadPromise
+  extends Promise<UserSubscriptionPayload>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  board: <T = BoardSubscription>() => T;
-  name: () => Promise<AsyncIterator<String>>;
-  query: () => Promise<AsyncIterator<String>>;
+  mutation: () => Promise<MutationType>;
+  node: <T = UserPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValuesPromise>() => T;
 }
 
-export interface ColumnNullablePromise
-  extends Promise<Column | null>,
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  board: <T = BoardPromise>() => T;
-  name: () => Promise<String>;
-  query: () => Promise<String>;
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
+
+export interface AggregateColumn {
+  count: Int;
+}
+
+export interface AggregateColumnPromise
+  extends Promise<AggregateColumn>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateColumnSubscription
+  extends Promise<AsyncIterator<AggregateColumn>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export type Long = string;
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
 export type Int = number;
-
-export type Long = string;
-
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -1357,6 +1383,11 @@ export type DateTimeInput = Date | string;
 DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
 
 /*
 The `Boolean` scalar type represents `true` or `false`.

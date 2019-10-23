@@ -322,6 +322,7 @@ type Column {
   board: Board!
   name: String!
   query: String!
+  index: Int!
 }
 
 type ColumnConnection {
@@ -335,6 +336,7 @@ input ColumnCreateInput {
   board: BoardCreateOneWithoutColumnsInput!
   name: String!
   query: String!
+  index: Int!
 }
 
 input ColumnCreateManyWithoutBoardInput {
@@ -346,6 +348,7 @@ input ColumnCreateWithoutBoardInput {
   id: ID
   name: String!
   query: String!
+  index: Int!
 }
 
 type ColumnEdge {
@@ -364,6 +367,8 @@ enum ColumnOrderByInput {
   name_DESC
   query_ASC
   query_DESC
+  index_ASC
+  index_DESC
 }
 
 type ColumnPreviousValues {
@@ -372,6 +377,7 @@ type ColumnPreviousValues {
   updatedAt: DateTime!
   name: String!
   query: String!
+  index: Int!
 }
 
 input ColumnScalarWhereInput {
@@ -433,6 +439,14 @@ input ColumnScalarWhereInput {
   query_not_starts_with: String
   query_ends_with: String
   query_not_ends_with: String
+  index: Int
+  index_not: Int
+  index_in: [Int!]
+  index_not_in: [Int!]
+  index_lt: Int
+  index_lte: Int
+  index_gt: Int
+  index_gte: Int
   AND: [ColumnScalarWhereInput!]
   OR: [ColumnScalarWhereInput!]
   NOT: [ColumnScalarWhereInput!]
@@ -460,16 +474,19 @@ input ColumnUpdateInput {
   board: BoardUpdateOneRequiredWithoutColumnsInput
   name: String
   query: String
+  index: Int
 }
 
 input ColumnUpdateManyDataInput {
   name: String
   query: String
+  index: Int
 }
 
 input ColumnUpdateManyMutationInput {
   name: String
   query: String
+  index: Int
 }
 
 input ColumnUpdateManyWithoutBoardInput {
@@ -492,6 +509,7 @@ input ColumnUpdateManyWithWhereNestedInput {
 input ColumnUpdateWithoutBoardDataInput {
   name: String
   query: String
+  index: Int
 }
 
 input ColumnUpdateWithWhereUniqueWithoutBoardInput {
@@ -565,6 +583,14 @@ input ColumnWhereInput {
   query_not_starts_with: String
   query_ends_with: String
   query_not_ends_with: String
+  index: Int
+  index_not: Int
+  index_in: [Int!]
+  index_not_in: [Int!]
+  index_lt: Int
+  index_lte: Int
+  index_gt: Int
+  index_gte: Int
   AND: [ColumnWhereInput!]
   OR: [ColumnWhereInput!]
   NOT: [ColumnWhereInput!]
