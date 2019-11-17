@@ -15,6 +15,7 @@ import {
 } from '../__generated__/graphql'
 import Column from './Column'
 import CreateColumnButton from './CreateColumnButton'
+import UserContext from './UserContext'
 
 interface ColumnsProps {
   board: NonNullable<GetBoardQuery['board']>
@@ -24,6 +25,8 @@ const Columns: React.FC<WithApolloClient<ColumnsProps>> = ({
   board,
   client,
 }) => {
+  const user = React.useContext(UserContext)
+
   function handleDragEnd(result: DropResult) {
     if (!board.columns || !result.destination) return
 
@@ -57,7 +60,11 @@ const Columns: React.FC<WithApolloClient<ColumnsProps>> = ({
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
-      <Droppable droppableId="droppable" direction="horizontal">
+      <Droppable
+        droppableId="droppable"
+        direction="horizontal"
+        isDropDisabled={!user || user.id !== board.owner.id}
+      >
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}
@@ -98,8 +105,7 @@ const Columns: React.FC<WithApolloClient<ColumnsProps>> = ({
                           }}
                         >
                           <Column
-                            boardId={board.id}
-                            boardQuery={board.query}
+                            board={board}
                             id={column.id}
                             name={column.name}
                             query={column.query}

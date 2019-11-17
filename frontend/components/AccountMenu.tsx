@@ -1,6 +1,6 @@
 import theme from '../theme'
 import {
-  GetIsSignedInDocument,
+  GetSignedInUserDocument,
   GetViewerComponent,
   SignOutComponent,
 } from '../__generated__/graphql'
@@ -44,7 +44,7 @@ const AccountMenu: React.FC = () => {
                 </div>
                 <MenuDivider />
                 <SignOutComponent
-                  refetchQueries={[{ query: GetIsSignedInDocument }]}
+                  refetchQueries={[{ query: GetSignedInUserDocument }]}
                 >
                   {signOut => (
                     <MenuItem onClick={() => signOut()}>Sign out</MenuItem>

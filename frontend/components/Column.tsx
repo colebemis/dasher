@@ -5,16 +5,17 @@ import theme from '../theme'
 import {
   SearchGitHubDocument,
   SearchGitHubQuery,
+  GetBoardQuery,
 } from '../__generated__/graphql'
 import ColumnMenu from './ColumnMenu'
 import Issue from './Issue'
 import IssueLoader from './IssueLoader'
 import SecondaryButton from './SecondaryButton'
 import Spinner from './Spinner'
+import UserContext from './UserContext'
 
 interface ColumnProps {
-  boardId: string
-  boardQuery: string
+  board: NonNullable<GetBoardQuery['board']>
   id: string
   name: string
   query: string
@@ -23,8 +24,7 @@ interface ColumnProps {
 }
 
 const Column: React.FC<WithApolloClient<ColumnProps>> = ({
-  boardId,
-  boardQuery,
+  board,
   id,
   name,
   query,
@@ -32,6 +32,7 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
   isDragging,
   dragHandleProps,
 }) => {
+  const user = React.useContext(UserContext)
   const [loading, setLoading] = React.useState(true)
   const [loadingMore, setLoadingMore] = React.useState(false)
   const [issueCount, setIssueCount] = React.useState(0)
@@ -48,7 +49,7 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
     client
       .query<SearchGitHubQuery>({
         query: SearchGitHubDocument,
-        variables: { query: `${boardQuery} ${query}` },
+        variables: { query: `${board.query} ${query}` },
       })
       .then(({ data }) => {
         setLoading(false)
@@ -59,14 +60,14 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
           setEndCursor(data.search.pageInfo.endCursor)
         }
       })
-  }, [boardQuery, query])
+  }, [board.query, query])
 
   function loadMore() {
     setLoadingMore(true)
     client
       .query<SearchGitHubQuery>({
         query: SearchGitHubDocument,
-        variables: { query: `${boardQuery} ${query}`, endCursor },
+        variables: { query: `${board.query} ${query}`, endCursor },
       })
       .then(({ data }) => {
         setLoadingMore(false)
@@ -136,7 +137,9 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
             </span>
           )}
           <div css={{ margin: '0 auto' }} />
-          <ColumnMenu boardId={boardId} id={id} name={name} query={query} />
+          {user && user.id === board.owner.id ? (
+            <ColumnMenu boardId={board.id} id={id} name={name} query={query} />
+          ) : null}
         </div>
         {query ? (
           <div

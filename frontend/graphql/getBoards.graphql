@@ -1,5 +1,6 @@
 query getBoards {
   signedInUser {
+    id
     boards(orderBy: createdAt_DESC) {
       id
       name
