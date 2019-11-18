@@ -1,11 +1,13 @@
 import React from 'react'
 import SignIn from './SignIn'
-import UserContext from './UserContext'
+import { useUser } from './UserContext'
 
 const Private: React.FC = ({ children }) => {
-  const user = React.useContext(UserContext)
+  const user = useUser()
 
-  if (!user) return <SignIn />
+  if (!user) {
+    return <SignIn />
+  }
 
   return <>{children}</>
 }

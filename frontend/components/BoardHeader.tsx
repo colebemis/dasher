@@ -6,14 +6,14 @@ import AccountMenu from './AccountMenu'
 import BoardMenu from './BoardMenu'
 import { ChevronLeftIcon } from './Icon'
 import Link from './Link'
-import UserContext from './UserContext'
+import { useUser } from './UserContext'
 
 interface BoardHeaderProps {
   board: NonNullable<GetBoardQuery['board']>
 }
 
 const BoardHeader: React.FC<BoardHeaderProps> = ({ board }) => {
-  const user = React.useContext(UserContext)
+  const user = useUser()
   return (
     <div>
       <div

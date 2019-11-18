@@ -3,16 +3,16 @@ import { withApollo, WithApolloClient } from 'react-apollo'
 import { DraggableProvidedDragHandleProps } from 'react-beautiful-dnd'
 import theme from '../theme'
 import {
+  GetBoardQuery,
   SearchGitHubDocument,
   SearchGitHubQuery,
-  GetBoardQuery,
 } from '../__generated__/graphql'
 import ColumnMenu from './ColumnMenu'
 import Issue from './Issue'
 import IssueLoader from './IssueLoader'
 import SecondaryButton from './SecondaryButton'
 import Spinner from './Spinner'
-import UserContext from './UserContext'
+import { useUser } from './UserContext'
 
 interface ColumnProps {
   board: NonNullable<GetBoardQuery['board']>
@@ -32,7 +32,7 @@ const Column: React.FC<WithApolloClient<ColumnProps>> = ({
   isDragging,
   dragHandleProps,
 }) => {
-  const user = React.useContext(UserContext)
+  const user = useUser()
   const [loading, setLoading] = React.useState(true)
   const [loadingMore, setLoadingMore] = React.useState(false)
   const [issueCount, setIssueCount] = React.useState(0)

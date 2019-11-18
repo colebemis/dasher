@@ -8,14 +8,14 @@ import {
 } from 'react-beautiful-dnd'
 import theme from '../theme'
 import {
-  GetBoardQuery,
-  UpdateColumnMutation,
-  UpdateColumnDocument,
   GetBoardDocument,
+  GetBoardQuery,
+  UpdateColumnDocument,
+  UpdateColumnMutation,
 } from '../__generated__/graphql'
 import Column from './Column'
 import CreateColumnButton from './CreateColumnButton'
-import UserContext from './UserContext'
+import { useUser } from './UserContext'
 
 interface ColumnsProps {
   board: NonNullable<GetBoardQuery['board']>
@@ -25,7 +25,7 @@ const Columns: React.FC<WithApolloClient<ColumnsProps>> = ({
   board,
   client,
 }) => {
-  const user = React.useContext(UserContext)
+  const user = useUser()
 
   function handleDragEnd(result: DropResult) {
     if (!board.columns || !result.destination) return
