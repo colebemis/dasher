@@ -6,7 +6,7 @@ function getTokenPayload(context: Context) {
   try {
     const { token } = context.request.cookies
     return jwt.verify(token, getEnv('APP_SECRET')) as TokenPayload
-  } catch {
+  } catch (error) {
     throw new Error('Not authenticated')
   }
 }
