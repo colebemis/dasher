@@ -8,7 +8,7 @@ import {
   RenameTypes,
   transformSchema,
 } from 'graphql-tools'
-import { GraphQLServer } from 'graphql-yoga'
+import { GraphQLServer, Options } from 'graphql-yoga'
 import makeGitHubSchema from './lib/makeGitHubSchema'
 import schema from './schema'
 import { prisma } from './__generated__/prisma-client'
@@ -38,7 +38,7 @@ makeGitHubSchema().then(gitHubSchema => {
         origin: 'http://localhost:3000',
       },
     },
-    ({ port }) => {
+    ({ port }: Options) => {
       // tslint:disable-next-line:no-console
       console.log(`Server running on port ${port}`)
     },
