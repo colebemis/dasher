@@ -33,11 +33,7 @@ const Board: React.FC<WithRouterProps<Query>> = ({ router }) => {
               <Head>
                 <title>{board.name} | Dasher</title>
               </Head>
-              <BoardHeader
-                id={board.id}
-                name={board.name}
-                query={board.query}
-              />
+              <BoardHeader board={board} />
               <Columns board={board} />
             </div>
           )

@@ -3,6 +3,9 @@ query getBoard($id: ID!) {
     id
     name
     query
+    owner {
+      id
+    }
     columns(orderBy: index_ASC) {
       id
       name

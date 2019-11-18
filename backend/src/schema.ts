@@ -18,25 +18,16 @@ const Query = prismaObjectType({
   name: 'Query',
   definition(t) {
     t.prismaFields(['board'])
-    t.boolean('isSignedIn', {
-      resolve: (root, args, context) => {
-        try {
-          // It should be suffcient to check that the token exists and
-          // was properly signed. We are not explicitly checking the
-          // contents of the payload. getTokenPayload() will throw
-          // an error if the token is undefined or invalid.
-          getTokenPayload(context)
-          return true
-        } catch {
-          return false
-        }
-      },
-    })
     t.field('signedInUser', {
       type: 'User',
+      nullable: true,
       resolve: (root, args, context) => {
-        const { userId } = getTokenPayload(context)
-        return context.prisma.user({ id: userId })
+        try {
+          const { userId } = getTokenPayload(context)
+          return context.prisma.user({ id: userId })
+        } catch (error) {
+          return null
+        }
       },
     })
   },

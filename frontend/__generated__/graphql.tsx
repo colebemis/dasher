@@ -6490,6 +6490,8 @@ export type GitHubOrganization = GitHubNode &
     resourcePath: Scalars['GitHubURI']
     /** The Organization's SAML identity providers */
     samlIdentityProvider?: Maybe<GitHubOrganizationIdentityProvider>
+    /** The GitHub Sponsors listing for this user. */
+    sponsorsListing?: Maybe<GitHubSponsorsListing>
     /** This object's sponsorships as the maintainer. */
     sponsorshipsAsMaintainer: GitHubSponsorshipConnection
     /** This object's sponsorships as the sponsor. */
@@ -13535,6 +13537,8 @@ export type GitHubSmimeSignature = GitHubGitSignature & {
 
 /** Entities that can be sponsored through GitHub Sponsors */
 export type GitHubSponsorable = {
+  /** The GitHub Sponsors listing for this user. */
+  sponsorsListing?: Maybe<GitHubSponsorsListing>
   /** This object's sponsorships as the maintainer. */
   sponsorshipsAsMaintainer: GitHubSponsorshipConnection
   /** This object's sponsorships as the sponsor. */
@@ -13571,6 +13575,8 @@ export type GitHubSponsorship = GitHubNode & {
   privacyLevel: GitHubSponsorshipPrivacy
   /** The entity that is sponsoring. Returns null if the sponsorship is private */
   sponsor?: Maybe<GitHubUser>
+  /** The associated sponsorship tier */
+  tier?: Maybe<GitHubSponsorsTier>
 }
 
 /** The connection type for Sponsorship. */
@@ -13595,8 +13601,16 @@ export type GitHubSponsorshipEdge = {
 
 /** Ordering options for sponsorship connections. */
 export type GitHubSponsorshipOrder = {
+  /** The field to order sponsorship by. */
+  field: GitHubSponsorshipOrderField
   /** The ordering direction. */
   direction: GitHubOrderDirection
+}
+
+/** Properties by which sponsorship connections can be ordered. */
+export enum GitHubSponsorshipOrderField {
+  /** Order sponsorship by creation time. */
+  CreatedAt = 'CREATED_AT',
 }
 
 /** The privacy of a sponsorship */
@@ -13620,6 +13634,92 @@ export type GitHubSponsorsListing = GitHubNode & {
   shortDescription: Scalars['String']
   /** The short name of the listing. */
   slug: Scalars['String']
+  /** The published tiers for this GitHub Sponsors listing. */
+  tiers?: Maybe<GitHubSponsorsTierConnection>
+}
+
+/** A GitHub Sponsors listing. */
+export type GitHubSponsorsListingTiersArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  orderBy: GitHubSponsorsTierOrder
+}
+
+/** A GitHub Sponsors tier associated with a GitHub Sponsors listing. */
+export type GitHubSponsorsTier = GitHubNode & {
+  /** SponsorsTier information only visible to users that can administer the associated Sponsors listing. */
+  adminInfo?: Maybe<GitHubSponsorsTierAdminInfo>
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['GitHubDateTime']
+  /** The description of the tier. */
+  description: Scalars['String']
+  /** The tier description rendered to HTML */
+  descriptionHTML: Scalars['GitHubHTML']
+  id: Scalars['ID']
+  /** How much this tier costs per month in cents. */
+  monthlyPriceInCents: Scalars['Int']
+  /** How much this tier costs per month in dollars. */
+  monthlyPriceInDollars: Scalars['Int']
+  /** The name of the tier. */
+  name: Scalars['String']
+  /** The sponsors listing that this tier belongs to. */
+  sponsorsListing: GitHubSponsorsListing
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['GitHubDateTime']
+}
+
+/** SponsorsTier information only visible to users that can administer the associated Sponsors listing. */
+export type GitHubSponsorsTierAdminInfo = {
+  /** The sponsorships associated with this tier. */
+  sponsorships: GitHubSponsorshipConnection
+}
+
+/** SponsorsTier information only visible to users that can administer the associated Sponsors listing. */
+export type GitHubSponsorsTierAdminInfoSponsorshipsArgs = {
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  includePrivate: Scalars['Boolean']
+  orderBy?: Maybe<GitHubSponsorshipOrder>
+}
+
+/** The connection type for SponsorsTier. */
+export type GitHubSponsorsTierConnection = {
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<GitHubSponsorsTierEdge>>>
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<GitHubSponsorsTier>>>
+  /** Information to aid in pagination. */
+  pageInfo: GitHubPageInfo
+  /** Identifies the total count of items in the connection. */
+  totalCount: Scalars['Int']
+}
+
+/** An edge in a connection. */
+export type GitHubSponsorsTierEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+  /** The item at the end of the edge. */
+  node?: Maybe<GitHubSponsorsTier>
+}
+
+/** Ordering options for Sponsors tiers connections. */
+export type GitHubSponsorsTierOrder = {
+  /** The field to order tiers by. */
+  field: GitHubSponsorsTierOrderField
+  /** The ordering direction. */
+  direction: GitHubOrderDirection
+}
+
+/** Properties by which Sponsors tiers connections can be ordered. */
+export enum GitHubSponsorsTierOrderField {
+  /** Order tiers by creation time. */
+  CreatedAt = 'CREATED_AT',
+  /** Order tiers by their monthly price in cents */
+  MonthlyPriceInCents = 'MONTHLY_PRICE_IN_CENTS',
 }
 
 /** The connection type for User. */
@@ -15897,6 +15997,8 @@ export type GitHubUser = GitHubNode &
     resourcePath: Scalars['GitHubURI']
     /** Replies this user has saved */
     savedReplies?: Maybe<GitHubSavedReplyConnection>
+    /** The GitHub Sponsors listing for this user. */
+    sponsorsListing?: Maybe<GitHubSponsorsListing>
     /** This object's sponsorships as the maintainer. */
     sponsorshipsAsMaintainer: GitHubSponsorshipConnection
     /** This object's sponsorships as the sponsor. */
@@ -16409,8 +16511,7 @@ export type MutationCreateBoardArgs = {
 
 export type Query = {
   board?: Maybe<Board>
-  isSignedIn: Scalars['Boolean']
-  signedInUser: User
+  signedInUser?: Maybe<User>
   /** Perform a search across resources. */
   search: GitHubSearchResultItemConnection
   /** The currently authenticated user. */
@@ -16581,6 +16682,7 @@ export type GetBoardQueryVariables = {
 export type GetBoardQuery = { __typename?: 'Query' } & {
   board: Maybe<
     { __typename?: 'Board' } & Pick<Board, 'id' | 'name' | 'query'> & {
+        owner: { __typename?: 'User' } & Pick<User, 'id'>
         columns: Maybe<
           Array<
             { __typename?: 'Column' } & Pick<
@@ -16596,19 +16698,20 @@ export type GetBoardQuery = { __typename?: 'Query' } & {
 export type GetBoardsQueryVariables = {}
 
 export type GetBoardsQuery = { __typename?: 'Query' } & {
-  signedInUser: { __typename?: 'User' } & {
-    boards: Maybe<
-      Array<{ __typename?: 'Board' } & Pick<Board, 'id' | 'name' | 'query'>>
-    >
-  }
+  signedInUser: Maybe<
+    { __typename?: 'User' } & Pick<User, 'id'> & {
+        boards: Maybe<
+          Array<{ __typename?: 'Board' } & Pick<Board, 'id' | 'name' | 'query'>>
+        >
+      }
+  >
 }
 
-export type GetIsSignedInQueryVariables = {}
+export type GetSignedInUserQueryVariables = {}
 
-export type GetIsSignedInQuery = { __typename?: 'Query' } & Pick<
-  Query,
-  'isSignedIn'
->
+export type GetSignedInUserQuery = { __typename?: 'Query' } & {
+  signedInUser: Maybe<{ __typename?: 'User' } & Pick<User, 'id'>>
+}
 
 export type GetViewerQueryVariables = {}
 
@@ -16985,6 +17088,9 @@ export const GetBoardDocument = gql`
       id
       name
       query
+      owner {
+        id
+      }
       columns(orderBy: index_ASC) {
         id
         name
@@ -17035,6 +17141,7 @@ export function withGetBoard<TProps, TChildProps = {}>(
 export const GetBoardsDocument = gql`
   query getBoards {
     signedInUser {
+      id
       boards(orderBy: createdAt_DESC) {
         id
         name
@@ -17081,46 +17188,51 @@ export function withGetBoards<TProps, TChildProps = {}>(
     ...operationOptions,
   })
 }
-export const GetIsSignedInDocument = gql`
-  query getIsSignedIn {
-    isSignedIn
+export const GetSignedInUserDocument = gql`
+  query getSignedInUser {
+    signedInUser {
+      id
+    }
   }
 `
 
-export const GetIsSignedInComponent = (
+export const GetSignedInUserComponent = (
   props: Omit<
     Omit<
-      ReactApollo.QueryProps<GetIsSignedInQuery, GetIsSignedInQueryVariables>,
+      ReactApollo.QueryProps<
+        GetSignedInUserQuery,
+        GetSignedInUserQueryVariables
+      >,
       'query'
     >,
     'variables'
-  > & { variables?: GetIsSignedInQueryVariables },
+  > & { variables?: GetSignedInUserQueryVariables },
 ) => (
-  <ReactApollo.Query<GetIsSignedInQuery, GetIsSignedInQueryVariables>
-    query={GetIsSignedInDocument}
+  <ReactApollo.Query<GetSignedInUserQuery, GetSignedInUserQueryVariables>
+    query={GetSignedInUserDocument}
     {...props}
   />
 )
 
-export type GetIsSignedInProps<TChildProps = {}> = Partial<
-  ReactApollo.DataProps<GetIsSignedInQuery, GetIsSignedInQueryVariables>
+export type GetSignedInUserProps<TChildProps = {}> = Partial<
+  ReactApollo.DataProps<GetSignedInUserQuery, GetSignedInUserQueryVariables>
 > &
   TChildProps
-export function withGetIsSignedIn<TProps, TChildProps = {}>(
+export function withGetSignedInUser<TProps, TChildProps = {}>(
   operationOptions?: ReactApollo.OperationOption<
     TProps,
-    GetIsSignedInQuery,
-    GetIsSignedInQueryVariables,
-    GetIsSignedInProps<TChildProps>
+    GetSignedInUserQuery,
+    GetSignedInUserQueryVariables,
+    GetSignedInUserProps<TChildProps>
   >,
 ) {
   return ReactApollo.withQuery<
     TProps,
-    GetIsSignedInQuery,
-    GetIsSignedInQueryVariables,
-    GetIsSignedInProps<TChildProps>
-  >(GetIsSignedInDocument, {
-    alias: 'withGetIsSignedIn',
+    GetSignedInUserQuery,
+    GetSignedInUserQueryVariables,
+    GetSignedInUserProps<TChildProps>
+  >(GetSignedInUserDocument, {
+    alias: 'withGetSignedInUser',
     ...operationOptions,
   })
 }

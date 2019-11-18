@@ -1,17 +1,19 @@
 import NextLink from 'next/link'
-import AccountMenu from '../components/AccountMenu'
-import BoardMenu from '../components/BoardMenu'
-import { ChevronLeftIcon } from '../components/Icon'
-import Link from '../components/Link'
+import React from 'react'
 import theme from '../theme'
+import { GetBoardQuery } from '../__generated__/graphql'
+import AccountMenu from './AccountMenu'
+import BoardMenu from './BoardMenu'
+import { ChevronLeftIcon } from './Icon'
+import Link from './Link'
+import { useUser } from './UserContext'
 
 interface BoardHeaderProps {
-  id: string
-  name: string
-  query: string
+  board: NonNullable<GetBoardQuery['board']>
 }
 
-const BoardHeader: React.FC<BoardHeaderProps> = ({ id, name, query }) => {
+const BoardHeader: React.FC<BoardHeaderProps> = ({ board }) => {
+  const user = useUser()
   return (
     <div>
       <div
@@ -54,19 +56,21 @@ const BoardHeader: React.FC<BoardHeaderProps> = ({ id, name, query }) => {
               },
             }}
           >
-            {name}
+            {board.name}
           </h1>
-          <BoardMenu
-            id={id}
-            name={name}
-            query={query}
-            css={{
-              marginLeft: theme.space[1],
-              [theme.mediaQueries.medium]: {
-                marginLeft: theme.space[2],
-              },
-            }}
-          />
+          {user && user.id === board.owner.id ? (
+            <BoardMenu
+              id={board.id}
+              name={board.name}
+              query={board.query}
+              css={{
+                marginLeft: theme.space[1],
+                [theme.mediaQueries.medium]: {
+                  marginLeft: theme.space[2],
+                },
+              }}
+            />
+          ) : null}
         </div>
         <span
           css={{
@@ -79,7 +83,7 @@ const BoardHeader: React.FC<BoardHeaderProps> = ({ id, name, query }) => {
             },
           }}
         >
-          {query}
+          {board.query}
         </span>
       </div>
     </div>

@@ -5,6 +5,7 @@ import Head from 'next/head'
 import { ApolloProvider } from 'react-apollo'
 import GlobalStyles from '../components/GlobalStyles'
 import withApollo from '../lib/withApollo'
+import { UserProvider } from '../components/UserContext'
 
 interface MyAppProps {
   apollo: ApolloClient<{}>
@@ -17,15 +18,17 @@ class MyApp extends App<MyAppProps> {
     return (
       <Container>
         <ApolloProvider client={apollo}>
-          <Head>
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1"
-            />
-            <title>Dasher</title>
-          </Head>
-          <GlobalStyles />
-          <Component {...pageProps} />
+          <UserProvider>
+            <Head>
+              <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1"
+              />
+              <title>Dasher</title>
+            </Head>
+            <GlobalStyles />
+            <Component {...pageProps} />
+          </UserProvider>
         </ApolloProvider>
       </Container>
     )
