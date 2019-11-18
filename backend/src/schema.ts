@@ -14,7 +14,7 @@ import { TokenPayload } from './types'
 import datamodelInfo from './__generated__/nexus-prisma'
 import { prisma } from './__generated__/prisma-client'
 
-const Query = prismaObjectType({
+const Query = prismaObjectType<'Query'>({
   name: 'Query',
   definition(t) {
     t.prismaFields(['board'])
@@ -33,7 +33,7 @@ const Query = prismaObjectType({
   },
 })
 
-const Mutation = prismaObjectType({
+const Mutation = prismaObjectType<'Mutation'>({
   name: 'Mutation',
   definition(t) {
     t.prismaFields([
@@ -92,14 +92,14 @@ const SignInPayload = objectType({
   },
 })
 
-const User = prismaObjectType({
+const User = prismaObjectType<'User'>({
   name: 'User',
   definition(t) {
     t.prismaFields(['*'])
   },
 })
 
-const BoardCreateInput = prismaInputObjectType({
+const BoardCreateInput = prismaInputObjectType<'BoardCreateInput'>({
   name: 'BoardCreateInput',
   definition(t) {
     // `owner` is an unnecessary argument when creating a board
@@ -108,7 +108,7 @@ const BoardCreateInput = prismaInputObjectType({
   },
 })
 
-const Board = prismaObjectType({
+const Board = prismaObjectType<'Board'>({
   name: 'Board',
   definition(t) {
     t.prismaFields(['*'])
