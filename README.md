@@ -10,17 +10,7 @@ git clone https://github.com/colebemis/dasher.git
 cd dasher
 
 # Install dependencies
-yarn install
-
-# Start Prisma server and launch connected database
-pushd backend/prisma
-docker-compose up --detach
-popd
-
-# Deploy Prisma datamodel
-pushd backend
-yarn deploy:prisma
-popd
+yarn
 
 # Start frontend and backend dev servers
 yarn dev
