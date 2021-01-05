@@ -13,7 +13,7 @@
     "@types/dotenv": "6.1.1",
     "@types/jest": "24.0.13",
     "@types/jsonwebtoken": "8.3.2",
-    "axios": "0.18.0",
+    "axios": "0.21.1",
     "cookie-parser": "1.4.4",
     "dotenv": "8.0.0",
     "graphql": "14.5.8",
